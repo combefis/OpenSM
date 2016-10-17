@@ -1,0 +1,45 @@
+{
+  "AUTHENTICATION": {
+    "SIGN_IN": "Sign in",
+    "REGISTER": "register",
+    "FORGOT_PASSWORD": "Forgot your password?"
+  },
+  "BY": "By",
+  "GENERAL": {
+    "CREATE": "Create",
+    "EDIT": "Edit"
+  },
+  "HOME": {
+    "LEAD": "Welcome on the OpenSM platform!",
+    "INTRO": "This is your access point to learn how to code and to directly train the newly learned concepts with interactive exercises, intelligent feedbacks and a customised learning experience.",
+    "OR": "or"
+  },
+  "INFORMATIONS": "Informations",
+  "LOADING": "Loading...",
+  "PROBLEM": {
+    "PROBLEMS": "Problems",
+    "NO_PROBLEM": "No problems yet.",
+    "NB_PROBLEMS": "Number of problems",
+    "CREATE": "Create a problem",
+    "NAME": "Name",
+    "NAME_ERROR": "Please fill in the name.",
+    "TYPE": "Type",
+    "GENERIC_TYPE": "Generic",
+    "UNIT_TESTING_TYPE": "Unit-testing based",
+    "QCM_TYPE": "Multiple choices",
+    "TYPE_ERROR": "Please select the type.",
+    "DESCRIPTION": "Description",
+    "DESCRIPTION_ERROR": "Please fill in the description.",
+    "POINTS": "Points",
+    "MAX_SUBMISSIONS": "Maximum number of submissions",
+    "CONFIG": "Configuration",
+    "NO_CONFIG": "No configuration."
+  },
+  "OPENSM_AUTHORS": "the OpenSM authors",
+  "USER": {
+    "USERNAME": "Username",
+    "USERNAME_ERROR": "Please fill in your username.",
+    "PASSWORD": "Password",
+    "PASSWORD_ERROR": "Please fill in your password."
+  }
+}

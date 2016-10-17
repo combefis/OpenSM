@@ -1,0 +1,58 @@
+<div>
+  <h2>Register</h2>
+  <div class="col-md-12">
+    <form name="vm.userForm" ng-submit="vm.signup(vm.userForm.$valid)" class="form-horizontal" novalidate autocomplete="off">
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label for="firstname">Firstname</label>
+          <input type="text" id="firstname" name="firstname" class="form-control" ng-model="vm.credentials.firstname" placeholder="Firstname" required />
+          <div ng-messages="vm.userForm.firstname.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Please fill in your firstname.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="lastname">Lastname</label>
+          <input type="text" id="lastname" name="lastname" class="form-control" ng-model="vm.credentials.lastname" placeholder="Lastname" required />
+          <div ng-messages="vm.userForm.lastname.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Please fill in your lastname.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" class="form-control" ng-model="vm.credentials.email" placeholder="Email" lowercase required />
+          <div ng-messages="vm.userForm.email.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Please fill in your email address.</p>
+            <p class="help-block error-text" ng-message="email">The email address is invalid.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" class="form-control" ng-model="vm.credentials.username" placeholder="Username" lowercase required />
+          <div ng-messages="vm.userForm.username.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Please choose a username.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="password">Password</label>
+            <input type="password" id="password" name="password" class="form-control" ng-model="vm.credentials.password" placeholder="Password" uib-popover="{{vm.getPopoverMsg()}}" uib-popover-trigger="focus" password-validator required />
+          <div ng-messages="vm.userForm.password.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Please choose a password.</p>
+            <div ng-repeat="passwordError in passwordErrors">
+              <p class="help-block error-text" ng-show="vm.userForm.password.$error.requirements">{{passwordError}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="form-group" ng-show="!vm.userForm.password.$error.required">
+          <label>Password requirements</label>
+          <uib-progressbar value="requirementsProgress" type="{{requirementsColor}}"><span style="color:white; white-space:nowrap;">{{requirementsProgress}}%</span></uib-progressbar>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Sign up</button>
+        </div>
+        <div ng-show="vm.error" class="text-center text-danger">
+          <strong ng-bind="vm.error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>

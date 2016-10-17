@@ -1,0 +1,41 @@
+<section ng-controller="LoginController as vm">
+  <h2>OpenSM</h2>
+  <div class="row">
+    <div class="col-md-7">
+      <p class="lead" ng-bind="'HOME.LEAD' | translate"></p>
+      <p ng-bind="'HOME.INTRO' | translate"></p>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-3" ng-if="!vm.authentication.user">
+      <form name="vm.signinForm" ng-submit="vm.signin(vm.signinForm.$valid)" class="signin" novalidate autocomplete="off">
+        <fieldset>
+          <div class="form-group" show-errors>
+            <label for="username" ng-bind="'USER.USERNAME' | translate"></label>
+            <input type="text" id="username" name="username" class="form-control" ng-model="vm.credentials.username" placeholder="{{'USER.USERNAME' | translate}}" required />
+            <div ng-messages="vm.signinForm.username.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'USER.USERNAME_PASSWORD' | translate"></p>
+            </div>
+          </div>
+          <div class="form-group" show-errors>
+            <label for="password" ng-bind="'USER.PASSWORD' | translate"></label>
+            <input type="password" id="password" name="password" class="form-control" ng-model="vm.credentials.password" placeholder="{{'USER.PASSWORD' | translate}}" required />
+            <div ng-messages="vm.signinForm.password.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'USER.PASSWORD_ERROR' | translate"></p>
+            </div>
+          </div>
+          <div class="text-center form-group">
+            <button type="submit" class="btn btn-primary" ng-bind="'AUTHENTICATION.SIGN_IN' | translate"></button>
+            &nbsp; {{'HOME.OR' | translate}}&nbsp;
+            <a ui-sref="authentication.signup" ng-bind="'AUTHENTICATION.REGISTER' | translate"></a>
+          </div>
+          <div class="text-center forgot-password">
+            <a ui-sref="password.forgot" ng-bind="'AUTHENTICATION.FORGOT_PASSWORD' | translate"></a>
+          </div>
+          <alert type="danger" ng-show="error" class="text-center text-danger">
+            <span ng-bind="vm.error"></span>
+          </alert>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</section>

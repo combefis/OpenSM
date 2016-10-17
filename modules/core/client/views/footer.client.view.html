@@ -1,0 +1,12 @@
+<div class="container" ng-controller="LanguageController as vm">
+  {{'BY' | translate}} <a href="https://github.com/combefis/opensm/blob/master/AUTHORS" ng-bind="'OPENSM_AUTHORS' | translate"></a>.
+
+  <div class="pull-right">
+    <form>
+      <ol class="nya-bs-select dropup" ng-model="vm.lang">
+        <li class="nya-bs-option" value="en_GB"><a ng-click="vm.changeLanguage('en_GB')"><span><span class="flag-gb"></span>English</span></a></li>
+        <li class="nya-bs-option" value="fr_BE"><a ng-click="vm.changeLanguage('fr_BE')"><span><span class="flag-be"></span>Français</span></a></li>
+      </ol>
+    </form>
+  </div>
+</div>
