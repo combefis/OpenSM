@@ -8,6 +8,24 @@ var path = require('path'),
   Course = mongoose.model('Course'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
+  /**
+   * Create a course
+   */
+  exports.create = function (req, res) {
+    var course = new Course(req.body);
+    course.user = req.user;
+    course.coordinator = req.user;
+
+    course.save(function (err) {
+      if (err) {
+        return res.status(400).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      }
+      res.json(course);
+    });
+  };
+
 /**
  * List of courses
  */

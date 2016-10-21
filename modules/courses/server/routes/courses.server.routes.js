@@ -9,5 +9,6 @@ var coursesPolicy = require('../policies/courses.server.policy'),
 module.exports = function (app) {
   // Courses collection routes
   app.route('/api/courses').all(coursesPolicy.isAllowed)
-    .get(courses.list);
+    .get(courses.list)
+    .post(courses.create);
 };

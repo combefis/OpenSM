@@ -13,7 +13,6 @@ var CourseSchema = new Schema({
   serial: {
     type: String,
     required: 'Please fill in the serial of the course.',
-    unique: true,
     trim: true
   },
   coordinator: {
