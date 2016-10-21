@@ -16,24 +16,15 @@
   },
   "INFORMATIONS": "Informations",
   "LOADING": "Loading...",
-  "PROBLEM": {
-    "PROBLEMS": "Problems",
-    "NO_PROBLEM": "No problems yet.",
-    "NB_PROBLEMS": "Number of problems",
-    "CREATE": "Create a problem",
+  "COURSE": {
+    "COURSES": "Courses",
+    "NO_COURSE": "No courses yet.",
+    "NB_COURSES": "Number of courses",
+    "CREATE": "Create a course",
+    "SERIAL": "Serial",
+    "SERIAL_ERROR": "Please fill in the serial.",
     "NAME": "Name",
-    "NAME_ERROR": "Please fill in the name.",
-    "TYPE": "Type",
-    "GENERIC_TYPE": "Generic",
-    "UNIT_TESTING_TYPE": "Unit-testing based",
-    "QCM_TYPE": "Multiple choices",
-    "TYPE_ERROR": "Please select the type.",
-    "DESCRIPTION": "Description",
-    "DESCRIPTION_ERROR": "Please fill in the description.",
-    "POINTS": "Points",
-    "MAX_SUBMISSIONS": "Maximum number of submissions",
-    "CONFIG": "Configuration",
-    "NO_CONFIG": "No configuration."
+    "NAME_ERROR": "Please fill in the name."
   },
   "OPENSM_AUTHORS": "the OpenSM authors",
   "USER": {
