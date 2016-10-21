@@ -40,7 +40,7 @@ exports.read = function (req, res) {
  * List of courses
  */
 exports.list = function (req, res) {
-  Course.find().exec(function (err, courses) {
+  Course.find({ 'academicyear': req.session.academicyear }).exec(function (err, courses) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
