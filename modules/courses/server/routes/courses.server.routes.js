@@ -11,4 +11,11 @@ module.exports = function (app) {
   app.route('/api/courses').all(coursesPolicy.isAllowed)
     .get(courses.list)
     .post(courses.create);
+
+  // Single course routes
+  app.route('/api/courses/:courseId').all(coursesPolicy.isAllowed)
+    .get(courses.read);
+
+  // Finish by binding the course middleware
+  app.param('courseId', courses.courseByID);
 };

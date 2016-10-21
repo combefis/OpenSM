@@ -1,0 +1,41 @@
+<section>
+  <div ng-if="!vm.course.$resolved" class="loading">
+    <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> {{'LOADING' | translate}}
+  </div>
+
+  <div ng-if="vm.course.$resolved">
+    <ol class="breadcrumb">
+      <li><a ui-sref="admin.manage.courses.list" ng-bind="'COURSE.COURSES' | translate"></a></li>
+      <li class="active"><a ui-sref="admin.manage.courses.view({courseId: vm.course._id})">{{vm.course.serial}} — {{vm.course.name}}</a></li>
+    </ol>
+
+    <h2>{{vm.course.serial}} — {{vm.course.name}}</h2>
+
+    <div class="row">
+      <div class="col-md-9">
+        <dl>
+          <dt ng-bind="'COURSE.SERIAL' | translate"></dt>
+          <dd ng-bind="vm.course.serial"></dd>
+          <dt ng-bind="'COURSE.NAME' | translate"></dt>
+          <dd ng-bind="vm.course.name"></dd>
+          <dt ng-bind="'COURSE.COORDINATOR' | translate"></dt>
+          <dd ng-bind="vm.course.coordinator"></dd>
+          <dt ng-bind="'GENERAL.ACADEMICYEAR' | translate"></dt>
+          <dd ng-bind="vm.course.academicyear"></dd>
+        </dl>
+      </div>
+
+      <div class="col-md-3">
+        <div class="panel panel-info">
+          <div class="panel-heading"><h3 class="panel-title" ng-bind="'INFORMATIONS' | translate"></h3></div>
+          <div class="panel-body">
+            <dl>
+              <dt ng-bind="'COURSE.SERIAL' | translate"></dt>
+              <dd ng-bind="vm.course.serial"></dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+</section>

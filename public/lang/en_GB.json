@@ -6,8 +6,10 @@
   },
   "BY": "By",
   "GENERAL": {
+    "ACADEMICYEAR": "Academic year",
     "CREATE": "Create",
-    "EDIT": "Edit"
+    "EDIT": "Edit",
+    "UPDATE": "Update"
   },
   "HOME": {
     "LEAD": "Welcome on the OpenSM platform!",
@@ -24,7 +26,8 @@
     "SERIAL": "Serial",
     "SERIAL_ERROR": "Please fill in the serial.",
     "NAME": "Name",
-    "NAME_ERROR": "Please fill in the name."
+    "NAME_ERROR": "Please fill in the name.",
+    "COORDINATOR": "Coordinator"
   },
   "OPENSM_AUTHORS": "the OpenSM authors",
   "USER": {

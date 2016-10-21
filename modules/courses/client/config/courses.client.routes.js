@@ -35,7 +35,27 @@
           roles: ['admin'],
           pageTitle: 'Create a course'
         }
+      })
+      .state('admin.manage.courses.view', {
+        url: '/:courseId',
+        templateUrl: 'modules/courses/client/views/view-course.client.view.html',
+        controller: 'CoursesController',
+        controllerAs: 'vm',
+        resolve: {
+          courseResolve: getCourse
+        },
+        data: {
+          pageTitle: '{{courseResolve.serial}} — {{courseResolve.name}}'
+        }
       });
+  }
+
+  getCourse.$inject = ['$stateParams', 'CoursesService'];
+
+  function getCourse($stateParams, CoursesService) {
+    return CoursesService.get({
+      courseId: $stateParams.courseId
+    }).$promise;
   }
 
   newCourse.$inject = ['CoursesService'];

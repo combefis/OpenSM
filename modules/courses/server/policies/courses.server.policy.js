@@ -17,6 +17,9 @@ exports.invokeRolesPolicies = function () {
     allows: [{
       resources: '/api/courses',
       permissions: '*'
+    }, {
+      resources: '/api/courses/:courseId',
+      permissions: '*'
     }]
   }]);
 };

@@ -29,7 +29,7 @@
         .catch(errorCallback);
 
       function successCallback(res) {
-        $state.go('courses.view', {
+        $state.go('admin.manage.courses.view', {
           courseId: res._id
         });
       }
