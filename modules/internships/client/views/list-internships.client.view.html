@@ -5,7 +5,7 @@
 
   <div ng-if="vm.internships.$resolved">
     <ol class="breadcrumb">
-      <li class="active"><a ui-sref="admin.manage.rooms.list" ng-bind="'ROOM.ROOMS' | translate"></a></li>
+      <li class="active"><a ui-sref="admin.manage.internships.list" ng-bind="'INTERNSHIP.INTERNSHIPS' | translate"></a></li>
     </ol>
 
     <h2 ng-bind="'INTERNSHIP.INTERNSHIPS' | translate"></h2>
@@ -16,11 +16,11 @@
           <a ui-sref="admin.manage.rooms.create" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> {{'INTERNSHIP.CREATE' | translate}}</a>
         </div>
 
-        <div class="list-group" ng-if="vm.rooms.length">
-          <a ng-repeat="room in vm.rooms" ui-sref="admin.manage.rooms.view({ roomId: room._id })" class="list-group-item" ng-bind="room.id"></a>
+        <div class="list-group" ng-if="vm.internships.length">
+          <a ng-repeat="internship in vm.internships" ui-sref="admin.manage.internships.view({ internshipStudent: internship._id })" class="list-group-item" ng-bind="internship.student"></a>
         </div>
 
-        <div class="alert alert-warning" ng-if="!vm.rooms.length" ng-bind="'ROOM.NO_ROOM' | translate"></div>
+        <div class="alert alert-warning" ng-if="!vm.internships.length" ng-bind="'INTERNSHIP.NO_INTERNSHIP' | translate"></div>
       </div>
 
       <div class="col-md-3">
