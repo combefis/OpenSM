@@ -16,11 +16,11 @@
       })
       .state('admin.manage.internships.list', {
         url: '',
-        templateUrl: 'modules/rooms/client/views/list-rooms.client.view.html',
-        controller: 'internshipsListController',
+        templateUrl: 'modules/internships/client/views/list-internships.client.view.html',
+        controller: 'InternshipsListController',
         controllerAs: 'vm',
         data: {
-          pageTitle: 'internships list'
+          pageTitle: 'Internships list'
         }
       });
   }

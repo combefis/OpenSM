@@ -8,7 +8,7 @@
   InternshipsService.$inject = ['$resource'];
 
   function InternshipsService($resource) {
-    var Internship = $resource('api/internships');
+    var Internships = $resource('api/internships');
 
     return Internships;
   }
