@@ -29,6 +29,19 @@
     "NAME_ERROR": "Please fill in the name.",
     "COORDINATOR": "Coordinator"
   },
+  "EXAMSESSION": {
+    "EXAMSESSIONS": "Exam sessions",
+    "NO_EXAMSESSION": "No exam sessions yet.",
+    "NB_EXAMSESSIONS": "Number of exam sessions",
+    "CREATE": "Create an exam session",
+    "NAME": "Name",
+    "NAME_ERROR": "Please fill in the name.",
+    "DESCRIPTION": "Description",
+    "FROM": "From",
+    "FROM_ERROR": "Please fill in the start date.",
+    "TO": "To",
+    "TO_ERROR": "Please fill in the end date."
+  },
   "OPENSM_AUTHORS": "the OpenSM authors",
   "USER": {
     "USERNAME": "Username",

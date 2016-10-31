@@ -1,0 +1,51 @@
+<section>
+  <div ng-if="vm.examsession._id && !vm.examsession.$resolved" class="loading">
+    <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> {{'LOADING' | translate}}
+  </div>
+
+  <div ng-if="!vm.examsession._id || vm.examsession.$resolved">
+    <ol class="breadcrumb">
+      <li class="active"><a ui-sref="admin.manage.examsessions.list" ng-bind="'EXAMSESSION.EXAMSESSIONS' | translate"></a></li>
+    </ol>
+
+    <h2>{{vm.examsession._id ? 'EXAMSESSION.EDIT' : 'EXAMSESSION.CREATE' | translate}}</h2>
+
+    <div class="col-md-12">
+      <form name="vm.form.examsessionForm" class="form-horizontal" ng-submit="vm.save(vm.form.examsessionForm.$valid)" novalidate>
+        <fieldset>
+          <div class="form-group" show-errors>
+            <label class="control-label" for="serial" ng-bind="'EXAMSESSION.NAME' | translate"></label>
+            <input name="name" type="text" ng-model="vm.examsession.name" id="name" class="form-control" placeholder="{{'EXAMSESSION.NAME' | translate}}" required />
+            <div ng-messages="vm.form.examsessionForm.name.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'EXAMSESSION.NAME_ERROR' | translate"></p>
+            </div>
+          </div>
+          <div class="form-group" show-errors>
+            <label class="control-label" for="description" ng-bind="'EXAMSESSION.DESCRIPTION' | translate"></label>
+            <textarea name="description" ng-model="vm.examsession.description" id="description" class="form-control" cols="30" rows="5" placeholder="{{'EXAMSESSION.DESCRIPTION' | translate}}"></textarea>
+          </div>
+          <div class="form-group" show-errors>
+            <label class="control-label" for="from" ng-bind="'EXAMSESSION.FROM' | translate"></label>
+            <input name="from" type="text" ng-model="vm.examsession.from" id="from" class="form-control" placeholder="{{'EXAMSESSION.FROM' | translate}}" required />
+            <div ng-messages="vm.form.examsessionForm.from.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'EXAMSESSION.FROM_ERROR' | translate"></p>
+            </div>
+          </div>
+          <div class="form-group" show-errors>
+            <label class="control-label" for="to" ng-bind="'EXAMSESSION.TO' | translate"></label>
+            <input name="to" type="text" ng-model="vm.examsession.to" id="to" class="form-control" placeholder="{{'EXAMSESSION.TO' | translate}}" required />
+            <div ng-messages="vm.form.examsessionForm.to.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'EXAMSESSION.TO_ERROR' | translate"></p>
+            </div>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary">{{vm.course._id ? 'GENERAL.UPDATE' : 'GENERAL.CREATE' | translate}}</button>
+          </div>
+          <div ng-show="vm.error" class="text-danger">
+            <strong ng-bind="vm.error"></strong>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</section>
