@@ -40,7 +40,9 @@
     "START": "Start date",
     "START_ERROR": "Please fill in the start date.",
     "END": "End date",
-    "END_ERROR": "Please fill in the end date."
+    "END_ERROR": "Please fill in the end date.",
+    "FROM": "From",
+    "TO": "To"
   },
   "OPENSM_AUTHORS": "the OpenSM authors",
   "USER": {

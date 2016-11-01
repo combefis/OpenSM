@@ -55,7 +55,7 @@ exports.read = function (req, res) {
  * List of exam sessions
  */
 exports.list = function (req, res) {
-  ExamSession.find({ 'academicyear': req.session.academicyear }).exec(function (err, examsessions) {
+  ExamSession.find({ 'academicyear': req.session.academicyear }).sort({ start: 1 }).exec(function (err, examsessions) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
