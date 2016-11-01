@@ -52,6 +52,27 @@ exports.read = function (req, res) {
 };
 
 /**
+ * Update an exam session
+ */
+exports.update = function (req, res) {
+  var examsession = req.examsession;
+
+  examsession.name = req.body.name;
+  examsession.description = req.body.description;
+  examsession.start = req.body.start;
+  examsession.end = req.body.end;
+
+  examsession.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+    res.json(examsession);
+  });
+};
+
+/**
  * List of exam sessions
  */
 exports.list = function (req, res) {

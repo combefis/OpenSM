@@ -34,6 +34,7 @@
     "NO_EXAMSESSION": "No exam sessions yet.",
     "NB_EXAMSESSIONS": "Number of exam sessions",
     "CREATE": "Create an exam session",
+    "EDIT": "Edit the exam session",
     "NAME": "Name",
     "NAME_ERROR": "Please fill in the name.",
     "DESCRIPTION": "Description",

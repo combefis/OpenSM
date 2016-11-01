@@ -9,7 +9,7 @@
 
   function ExamSessionsService($resource) {
     var ExamSession = $resource('api/examsessions/:examsessionId', {
-      examsessionsId: '@_id'
+      examsessionId: '@_id'
     }, {
       update: {
         method: 'PUT'

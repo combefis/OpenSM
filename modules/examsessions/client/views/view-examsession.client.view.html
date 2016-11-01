@@ -13,16 +13,11 @@
 
     <div class="row">
       <div class="col-md-9">
-        <dl>
-          <dt ng-bind="'EXAMSESSION.NAME' | translate"></dt>
-          <dd ng-bind="vm.examsession.name"></dd>
-          <dt ng-bind="'EXAMSESSION.DESCRIPTION' | translate"></dt>
-          <dd ng-bind="vm.examsession.description"></dd>
-          <dt ng-bind="'EXAMSESSION.START' | translate"></dt>
-          <dd ng-bind="vm.examsession.start"></dd>
-          <dt ng-bind="'EXAMSESSION.END' | translate"></dt>
-          <dd ng-bind="vm.examsession.end"></dd>
-        </dl>
+        <div class="action-box">
+          <a ui-sref="admin.manage.examsessions.edit({examsessionId: vm.examsession._id})" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> {{'EXAMSESSION.EDIT' | translate}}</a>
+        </div>
+
+        <div ng-if="vm.examsession.description" ng-bind="vm.examsession.description"></div>
       </div>
 
       <div class="col-md-3">
@@ -30,8 +25,10 @@
           <div class="panel-heading"><h3 class="panel-title" ng-bind="'INFORMATIONS' | translate"></h3></div>
           <div class="panel-body">
             <dl>
-              <dt ng-bind="'EXAMSESSION.NAME' | translate"></dt>
-              <dd ng-bind="vm.examsession.name"></dd>
+              <dt ng-bind="'EXAMSESSION.START' | translate"></dt>
+              <dd ng-bind="vm.examsession.start | amDateFormat:'ddd D MMM YYYY'"></dd>
+              <dt ng-bind="'EXAMSESSION.END' | translate"></dt>
+              <dd ng-bind="vm.examsession.end | amDateFormat:'ddd D MMM YYYY'"></dd>
             </dl>
           </div>
         </div>
