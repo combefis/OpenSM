@@ -7,7 +7,8 @@ module.exports = {
         // bower:css
         'public/lib/bootstrap/dist/css/bootstrap.min.css',
         'public/lib/bootstrap/dist/css/bootstrap-theme.min.css',
-        'public/lib/nya-bootstrap-select/dist/css/nya-bs-select.min.css'
+        'public/lib/nya-bootstrap-select/dist/css/nya-bs-select.min.css',
+        'public/lib/angular-bootstrap-datetimepicker/src/css/datetimepicker.css'
         // endbower
       ],
       js: [
@@ -22,6 +23,12 @@ module.exports = {
         'public/lib/angular-file-upload/dist/angular-file-upload.min.js',
         'public/lib/owasp-password-strength-test/owasp-password-strength-test.js',
         'public/lib/nya-bootstrap-select/dist/js/nya-bs-select.min.js',
+        'public/lib/moment/min/moment-with-locales.min.js',
+        'public/lib/angular-moment/angular-moment.min.js',
+        'public/lib/angular-bootstrap-datetimepicker/src/js/datetimepicker.js',
+        'public/lib/angular-bootstrap-datetimepicker/src/js/datetimepicker.templates.js',
+        'public/lib/jquery/dist/jquery.min.js',
+        'public/lib/bootstrap/dist/js/bootstrap.min.js',
         'public/lib/angular-translate/angular-translate.min.js',
         'public/lib/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js',
         'public/lib/angular-translate-storage-cookie/angular-translate-storage-cookie.min.js',
