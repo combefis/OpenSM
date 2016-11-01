@@ -25,17 +25,17 @@
             <textarea name="description" ng-model="vm.examsession.description" id="description" class="form-control" cols="30" rows="5" placeholder="{{'EXAMSESSION.DESCRIPTION' | translate}}"></textarea>
           </div>
           <div class="form-group" show-errors>
-            <label class="control-label" for="from" ng-bind="'EXAMSESSION.FROM' | translate"></label>
-            <input name="from" type="text" ng-model="vm.examsession.from" id="from" class="form-control" placeholder="{{'EXAMSESSION.FROM' | translate}}" required />
-            <div ng-messages="vm.form.examsessionForm.from.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'EXAMSESSION.FROM_ERROR' | translate"></p>
+            <label class="control-label" for="start" ng-bind="'EXAMSESSION.START' | translate"></label>
+            <input name="start" type="text" ng-model="vm.examsession.start" id="start" class="form-control" placeholder="{{'EXAMSESSION.START' | translate}}" required />
+            <div ng-messages="vm.form.examsessionForm.start.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'EXAMSESSION.START_ERROR' | translate"></p>
             </div>
           </div>
           <div class="form-group" show-errors>
-            <label class="control-label" for="to" ng-bind="'EXAMSESSION.TO' | translate"></label>
-            <input name="to" type="text" ng-model="vm.examsession.to" id="to" class="form-control" placeholder="{{'EXAMSESSION.TO' | translate}}" required />
-            <div ng-messages="vm.form.examsessionForm.to.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'EXAMSESSION.TO_ERROR' | translate"></p>
+            <label class="control-label" for="end" ng-bind="'EXAMSESSION.END' | translate"></label>
+            <input name="end" type="text" ng-model="vm.examsession.end" id="end" class="form-control" placeholder="{{'EXAMSESSION.END' | translate}}" required />
+            <div ng-messages="vm.form.examsessionForm.end.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'EXAMSESSION.END_ERROR' | translate"></p>
             </div>
           </div>
           <div class="form-group">

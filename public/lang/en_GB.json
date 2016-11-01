@@ -37,10 +37,10 @@
     "NAME": "Name",
     "NAME_ERROR": "Please fill in the name.",
     "DESCRIPTION": "Description",
-    "FROM": "From",
-    "FROM_ERROR": "Please fill in the start date.",
-    "TO": "To",
-    "TO_ERROR": "Please fill in the end date."
+    "START": "Start date",
+    "START_ERROR": "Please fill in the start date.",
+    "END": "End date",
+    "END_ERROR": "Please fill in the end date."
   },
   "OPENSM_AUTHORS": "the OpenSM authors",
   "USER": {

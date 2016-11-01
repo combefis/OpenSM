@@ -20,11 +20,11 @@ var ExamSessionSchema = new Schema({
     default: '',
     trim: true
   },
-  from: {
+  start: {
     type: Date,
     required: 'Please fill in the start date of the exam session.'
   },
-  to: {
+  end: {
     type: Date,
     required: 'Please fill in the end date of the exam session.'
   },
