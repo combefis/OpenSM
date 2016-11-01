@@ -4,6 +4,7 @@
  * Module dependencies
  */
 var path = require('path'),
+  moment = require('moment'),
   mongoose = require('mongoose'),
   ExamSession = mongoose.model('ExamSession'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
@@ -16,6 +17,21 @@ exports.create = function (req, res) {
   examsession.user = req.user;
   examsession.academicyear = 2016;
 
+  // Check data
+  var errorMsg = '';
+  if (moment(examsession.start).isSameOrBefore(moment.now())) {
+    errorMsg = 'Start date must be in the future.';
+  } else if (moment(examsession.end).isBefore(moment(examsession.start))) {
+    errorMsg = 'End date must be after start date.';
+  }
+
+  if (errorMsg !== '') {
+    return res.status(400).send({
+      message: errorMsg
+    });
+  }
+
+  // Save the exam session
   examsession.save(function (err) {
     if (err) {
       return res.status(400).send({
