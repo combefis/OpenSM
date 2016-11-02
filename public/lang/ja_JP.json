@@ -1,0 +1,58 @@
+{
+  "AUTHENTICATION": {
+    "SIGN_IN": "ログイン",
+    "REGISTER": "新規取得",
+    "FORGOT_PASSWORD": "パスワードをお忘れですか?"
+  },
+  "BY": "に依り",
+  "GENERAL": {
+    "ACADEMICYEAR": "年学",
+    "CREATE": "作ります",
+    "EDIT": "編集",
+    "UPDATE": "更新"
+  },
+  "HOME": {
+    "LEAD": "OpenSMプラットフォームへようこそ!",
+    "INTRO": "This is your access point to learn how to code and to directly train the newly learned concepts with interactive exercises, intelligent feedbacks and a customised learning experience.",
+    "OR": "or"
+  },
+  "INFORMATIONS": "Informations",
+  "LOADING": "Loading...",
+  "COURSE": {
+    "COURSES": "Courses",
+    "NO_COURSE": "No courses yet.",
+    "NB_COURSES": "Number of courses",
+    "CREATE": "Create a course",
+    "SERIAL": "Serial",
+    "SERIAL_ERROR": "Please fill in the serial.",
+    "NAME": "Name",
+    "NAME_ERROR": "Please fill in the name.",
+    "COORDINATOR": "Coordinator"
+  },
+  "EXAMSESSION": {
+    "EXAMSESSIONS": "Exam sessions",
+    "NO_EXAMSESSION": "No exam sessions yet.",
+    "NB_EXAMSESSIONS": "Number of exam sessions",
+    "CREATE": "Create an exam session",
+    "EDIT": "Edit the exam session",
+    "NAME": "Name",
+    "NAME_ERROR": "Please fill in the name.",
+    "DESCRIPTION": "Description",
+    "START": "Start date",
+    "START_ERROR": "Please fill in the start date.",
+    "END": "End date",
+    "END_ERROR": "Please fill in the end date.",
+    "FROM": "From",
+    "TO": "To",
+    "NO_DESCRIPTION": "No description.",
+    "PLANNING": "Planning",
+    "NO_EXAM": "No exam in this session."
+  },
+  "OPENSM_AUTHORS": "OpenSMの開発者",
+  "USER": {
+    "USERNAME": "利用者名",
+    "USERNAME_ERROR": "入力に何らかの問題があります。",
+    "PASSWORD": "パスワード",
+    "PASSWORD_ERROR": "入力に何らかの問題があります。"
+  }
+}
