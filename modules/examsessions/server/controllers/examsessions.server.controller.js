@@ -9,6 +9,19 @@ var path = require('path'),
   ExamSession = mongoose.model('ExamSession'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
+/*
+ * Check whether an exam session is valid
+ */
+function checkData (examsession) {
+  if (moment(examsession.start).isSameOrBefore(moment.now())) {
+    return 'Start date must be in the future.';
+  }
+  if (moment(examsession.end).isBefore(moment(examsession.start))) {
+    return 'End date must be after start date.';
+  }
+  return '';
+}
+
 /**
  * Create an exam session
  */
@@ -18,13 +31,7 @@ exports.create = function (req, res) {
   examsession.academicyear = 2016;
 
   // Check data
-  var errorMsg = '';
-  if (moment(examsession.start).isSameOrBefore(moment.now())) {
-    errorMsg = 'Start date must be in the future.';
-  } else if (moment(examsession.end).isBefore(moment(examsession.start))) {
-    errorMsg = 'End date must be after start date.';
-  }
-
+  var errorMsg = checkData(examsession);
   if (errorMsg !== '') {
     return res.status(400).send({
       message: errorMsg
@@ -61,6 +68,14 @@ exports.update = function (req, res) {
   examsession.description = req.body.description;
   examsession.start = req.body.start;
   examsession.end = req.body.end;
+
+  // Check data
+  var errorMsg = checkData(examsession);
+  if (errorMsg !== '') {
+    return res.status(400).send({
+      message: errorMsg
+    });
+  }
 
   examsession.save(function (err) {
     if (err) {

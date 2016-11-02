@@ -33,6 +33,12 @@
         .catch(errorCallback);
 
       function successCallback(res) {
+        // Clear form fields
+        vm.examsession.name = '';
+        vm.examsession.description = '';
+        vm.examsession.start = null;
+        vm.examsession.end = null;
+
         $state.go('admin.manage.examsessions.view', {
           examsessionId: res._id
         });
