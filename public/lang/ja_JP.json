@@ -4,7 +4,7 @@
     "REGISTER": "新規取得",
     "FORGOT_PASSWORD": "パスワードをお忘れですか?"
   },
-  "BY": "ニ依り",
+  "BY": "に依り",
   "GENERAL": {
     "ACADEMICYEAR": "年学",
     "CREATE": "作ります",
@@ -12,7 +12,7 @@
     "UPDATE": "更新"
   },
   "HOME": {
-    "LEAD": "プラットフォームへようこそ!",
+    "LEAD": "OpenSMプラットフォームへようこそ!",
     "INTRO": "This is your access point to learn how to code and to directly train the newly learned concepts with interactive exercises, intelligent feedbacks and a customised learning experience.",
     "OR": "or"
   },
