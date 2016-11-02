@@ -20,7 +20,7 @@
         controller: 'InternshipsListController',
         controllerAs: 'vm',
         data: {
-          pageTitle: 'Internships list'
+          pageTitle: 'Internships'
         }
       });
   }

@@ -17,8 +17,7 @@ exports.list = function (req, res) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
-    } else {
-      res.json(internships);
     }
+    res.json(internships);
   });
 };
