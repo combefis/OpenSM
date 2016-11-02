@@ -6,9 +6,14 @@ var mongoose = require('mongoose'),
 
 
 // Internship Schema
-var intershipSchema = new Schema({
-  student: { type: Number, required: true },
-  master: { type: String },
+var IntershipSchema = new Schema({
+  student: {
+    type: Number,
+    required: true
+  },
+  master: {
+    type: String
+  },
   supervisor: {
     teacher: String,
     status: String
@@ -27,7 +32,6 @@ var intershipSchema = new Schema({
       },
       validatorApproval: Boolean
     }
-
   },
   convention: {
     validation: Boolean
@@ -68,4 +72,4 @@ var intershipSchema = new Schema({
   finalPoints: { type: Number }
 });
 
-mongoose.model('Internship', intershipSchema);
+mongoose.model('Internship', IntershipSchema);
