@@ -18,6 +18,11 @@
         </div>
 
         <div ng-if="vm.examsession.description" ng-bind="vm.examsession.description"></div>
+        <div ng-if="!vm.examsession.description" ng-bind="'EXAMSESSION.NO_DESCRIPTION' | translate"></div>
+
+        <h3 ng-bind="'EXAMSESSION.PLANNING' | translate"></h3>
+
+        <div ng-bind="'EXAMSESSION.NO_EXAM' | translate"></div>
       </div>
 
       <div class="col-md-3">

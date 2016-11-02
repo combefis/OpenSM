@@ -43,7 +43,10 @@
     "END": "End date",
     "END_ERROR": "Please fill in the end date.",
     "FROM": "From",
-    "TO": "To"
+    "TO": "To",
+    "NO_DESCRIPTION": "No description.",
+    "PLANNING": "Planning",
+    "NO_EXAM": "No exam in this session."
   },
   "OPENSM_AUTHORS": "the OpenSM authors",
   "USER": {
