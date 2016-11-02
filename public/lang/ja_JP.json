@@ -4,7 +4,7 @@
     "REGISTER": "新規取得",
     "FORGOT_PASSWORD": "パスワードをお忘れですか?"
   },
-  "BY": "ニ依り",
+  "BY": "に依り",
   "GENERAL": {
     "ACADEMICYEAR": "年学",
     "CREATE": "作ります",
@@ -25,7 +25,7 @@
     "CREATE": "Create a course",
     "SERIAL": "Serial",
     "SERIAL_ERROR": "Please fill in the serial.",
-    "NAME": "Name",
+    "NAME": "名",
     "NAME_ERROR": "Please fill in the name.",
     "COORDINATOR": "Coordinator"
   },
