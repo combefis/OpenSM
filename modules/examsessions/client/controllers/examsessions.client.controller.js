@@ -16,6 +16,10 @@
     vm.form = {};
     vm.save = save;
 
+    // Convert start and end dates to Date objects
+    vm.examsession.start = vm.examsession.start ? new Date(vm.examsession.start) : null;
+    vm.examsession.end = vm.examsession.end ? new Date(vm.examsession.end) : null;
+
     // Save exam session
     function save(isValid) {
       if (!isValid) {
