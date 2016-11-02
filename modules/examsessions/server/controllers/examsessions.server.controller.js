@@ -97,7 +97,7 @@ exports.examsessionByID = function (req, res, next, id) {
     });
   }
 
-  ExamSession.findById(id).exec(function (err, examsession) {
+  ExamSession.findById(id, 'name description start end').exec(function (err, examsession) {
     if (err) {
       return next(err);
     }
