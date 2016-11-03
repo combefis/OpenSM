@@ -58,7 +58,7 @@ exports.update = function (req, res) {
  * List of rooms
  */
 exports.list = function (req, res) {
-  Room.find('code name').exec(function (err, rooms) {
+  Room.find('code name').sort({ code: 1 }).exec(function (err, rooms) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
