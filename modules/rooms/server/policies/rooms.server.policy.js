@@ -17,6 +17,9 @@ exports.invokeRolesPolicies = function () {
     allows: [{
       resources: '/api/rooms',
       permissions: '*'
+    }, {
+      resources: '/api/rooms/:roomId',
+      permissions: '*'
     }]
   }]);
 };

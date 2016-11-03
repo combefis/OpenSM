@@ -9,5 +9,13 @@ var roomsPolicy = require('../policies/rooms.server.policy'),
 module.exports = function (app) {
   // Rooms collection routes
   app.route('/api/rooms').all(roomsPolicy.isAllowed)
-    .get(rooms.list);
+    .get(rooms.list)
+    .post(rooms.create);
+
+  // Single room routes
+  app.route('/api/rooms/:roomId').all(roomsPolicy.isAllowed)
+    .get(rooms.read);
+
+  // Finish by binding the room middleware
+  app.param('roomId', rooms.roomByID);
 };

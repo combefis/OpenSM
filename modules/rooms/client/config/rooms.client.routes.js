@@ -22,6 +22,45 @@
         data: {
           pageTitle: 'Rooms list'
         }
+      })
+      .state('admin.manage.rooms.create', {
+        url: '/create',
+        templateUrl: 'modules/rooms/client/views/form-room.client.view.html',
+        controller: 'RoomsController',
+        controllerAs: 'vm',
+        resolve: {
+          roomResolve: newRoom
+        },
+        data: {
+          roles: ['admin'],
+          pageTitle: 'Create a room'
+        }
+      })
+      .state('admin.manage.rooms.view', {
+        url: '/:roomId',
+        templateUrl: 'modules/rooms/client/views/view-room.client.view.html',
+        controller: 'RoomsController',
+        controllerAs: 'vm',
+        resolve: {
+          roomResolve: getRoom
+        },
+        data: {
+          pageTitle: '{{roomResolve.id}}'
+        }
       });
+  }
+
+  getRoom.$inject = ['$stateParams', 'RoomsService'];
+
+  function getRoom($stateParams, RoomsService) {
+    return RoomsService.get({
+      roomId: $stateParams.roomId
+    }).$promise;
+  }
+
+  newRoom.$inject = ['RoomsService'];
+
+  function newRoom(RoomsService) {
+    return new RoomsService();
   }
 }());
