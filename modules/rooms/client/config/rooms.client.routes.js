@@ -47,6 +47,19 @@
         data: {
           pageTitle: '{{roomResolve.id}}'
         }
+      })
+      .state('admin.manage.rooms.edit', {
+        url: '/:roomId/edit',
+        templateUrl: 'modules/rooms/client/views/form-room.client.view.html',
+        controller: 'RoomsController',
+        controllerAs: 'vm',
+        resolve: {
+          roomResolve: getRoom
+        },
+        data: {
+          roles: ['admin'],
+          pageTitle: 'Edit a room'
+        }
       });
   }
 

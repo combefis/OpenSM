@@ -14,7 +14,8 @@ module.exports = function (app) {
 
   // Single room routes
   app.route('/api/rooms/:roomId').all(roomsPolicy.isAllowed)
-    .get(rooms.read);
+    .get(rooms.read)
+    .put(rooms.update);
 
   // Finish by binding the room middleware
   app.param('roomId', rooms.roomByID);

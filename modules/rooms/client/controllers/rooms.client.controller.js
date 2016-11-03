@@ -30,7 +30,7 @@
 
       function successCallback(res) {
         // Clear form fields
-        vm.room.id = '';
+        vm.room.code = '';
         vm.room.name = '';
 
         $state.go('admin.manage.rooms.view', {

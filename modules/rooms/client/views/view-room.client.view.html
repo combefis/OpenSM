@@ -6,10 +6,10 @@
   <div ng-if="vm.room.$resolved">
     <ol class="breadcrumb">
       <li><a ui-sref="admin.manage.rooms.list" ng-bind="'ROOM.ROOMS' | translate"></a></li>
-      <li class="active"><a ui-sref="admin.manage.rooms.view({roomId: vm.room._id})">{{vm.room.id}}</a></li>
+      <li class="active"><a ui-sref="admin.manage.rooms.view({roomId: vm.room._id})">{{vm.room.code}}</a></li>
     </ol>
 
-    <h2>{{vm.room.id}}</h2>
+    <h2>{{vm.room.code}}</h2>
 
     <div class="row">
       <div class="col-md-9">
@@ -23,8 +23,8 @@
           <div class="panel-heading"><h3 class="panel-title" ng-bind="'INFORMATIONS' | translate"></h3></div>
           <div class="panel-body">
             <dl>
-              <dt ng-bind="'ROOM.NAME' | translate"></dt>
-              <dd ng-bind="vm.room.name"></dd>
+              <dt ng-if="vm.room.name" ng-bind="'ROOM.NAME' | translate"></dt>
+              <dd ng-if="vm.room.name" ng-bind="vm.room.name"></dd>
             </dl>
           </div>
         </div>
