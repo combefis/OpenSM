@@ -11,7 +11,7 @@ var path = require('path'),
 /**
  * List of rooms
  */
-exports.list = function (req, res) {
+exports.listAll = function (req, res) {
   Internship.find().exec(function (err, internships) {
     if (err) {
       return res.status(400).send({
@@ -19,5 +19,17 @@ exports.list = function (req, res) {
       });
     }
     res.json(internships);
+  });
+};
+
+
+exports.list = function (req, res) {
+  Internship.find({ 'student': req.user }).exec(function (err, myInternships) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+    res.json(myInternships);
   });
 };

@@ -14,6 +14,7 @@
         url: '/internships',
         template: '<ui-view/>'
       })
+
       .state('admin.manage.internships.list', {
         url: '',
         templateUrl: 'modules/internships/client/views/list-internships.client.view.html',
@@ -21,6 +22,16 @@
         controllerAs: 'vm',
         data: {
           pageTitle: 'Internships'
+        }
+      })
+
+      .state('internships', {
+        url: '/internships',
+        templateUrl: 'modules/internships/client/views/list-studentInternships.client.view.html',
+        controller: 'MyInternshipsListController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'My internships'
         }
       });
   }

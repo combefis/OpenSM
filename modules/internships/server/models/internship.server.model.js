@@ -8,8 +8,8 @@ var mongoose = require('mongoose'),
 // Internship Schema
 var IntershipSchema = new Schema({
   student: {
-    type: Number,
-    required: true
+    type: Schema.ObjectId,
+    ref: 'User'
   },
   master: {
     type: String

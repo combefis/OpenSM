@@ -18,8 +18,16 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/internships',
       permissions: '*'
     }]
-  }]);
+  }, {
+    roles: ['student'],
+    allows: [{
+      resources: '/api/myinternships',
+      permissions: '*'
+    }]
+  }
+  ]);
 };
+
 
 /**
  * Check if internships policy allows
