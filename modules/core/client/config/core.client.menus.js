@@ -8,6 +8,13 @@
   menuConfig.$inject = ['menuService'];
 
   function menuConfig(menuService) {
+    menuService.addMenuItem('topbar', {
+      title: 'Dashboard',
+      state: 'dashboard',
+      type: 'dropdown',
+      roles: ['student']
+    });
+
     menuService.addMenu('account', {
       roles: ['user']
     });
