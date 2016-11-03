@@ -16,6 +16,25 @@
         <div class="action-box">
           <a ui-sref="admin.manage.rooms.edit({roomId: vm.room._id})" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> {{'ROOM.EDIT' | translate}}</a>
         </div>
+
+        <uib-tabset>
+          <uib-tab heading="{{'INFORMATIONS' | translate}}">
+            <div>
+              <dl>
+                <dt ng-bind="'ROOM.CODE' | translate"></dt>
+                <dd ng-bind="vm.room.code"></dd>
+                <dt ng-bind="'ROOM.NAME' | translate"></dt>
+                <dd ng-bind="vm.room.name"></dd>
+              </dl>
+            </div>
+          </uib-tab>
+          <uib-tab heading="{{'ROOM.PICTURES' | translate}}">
+            <div ng-if="!vm.room.pictures" ng-bind="'ROOM.NO_PICTURES' | translate"></div>
+          </uib-tab>
+          <uib-tab heading="{{'ROOM.MAP' | translate}}">
+            <div ng-if="!vm.room.map" ng-bind="'ROOM.NO_MAP' | translate"></div>
+          </uib-tab>
+        </uib-tabset>
       </div>
 
       <div class="col-md-3">
