@@ -17,7 +17,7 @@
 
     menuService.addSubMenuItem('topbar', 'dashboard', {
       title: 'My internships',
-      state: 'internships',
+      state: 'internships.list',
       roles: ['student']
     });
   }

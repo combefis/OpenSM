@@ -25,14 +25,31 @@
         }
       })
 
-      .state('internships', {
-        url: '/internships',
+    .state('internships', {
+      abstract: true,
+      url: '/internships',
+      template: '<ui-view/>'
+    })
+      .state('internships.list', {
+        url: '',
         templateUrl: 'modules/internships/client/views/list-studentInternships.client.view.html',
         controller: 'MyInternshipsListController',
         controllerAs: 'vm',
         data: {
           pageTitle: 'My internships'
         }
-      });
+      })
+
+      .state('internships.create', {
+        url: '/create',
+        templateUrl: 'modules/internships/client/views/createInternship.client.view.html',
+        /* controller: 'MyInternshipsListController',
+        controllerAs: 'vm',
+        */
+        data: {
+          pageTitle: 'Create internship'
+        }
+      })
+      ;
   }
 }());

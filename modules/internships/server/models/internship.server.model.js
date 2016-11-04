@@ -12,25 +12,46 @@ var IntershipSchema = new Schema({
     ref: 'User'
   },
   master: {
-    type: String
+    type: Schema.ObjectId,
+    ref: 'User'
   },
   supervisor: {
-    teacher: String,
-    status: String
+    type: Schema.ObjectId,
+    ref: 'User'
   },
   proposition: {
     theme: String,
     domain: String,
-    location: String,
     description: {
       description: String,
       subjectApproval: {
-        consultedTeacher: String,
+        consultedTeacher: {
+          type: Schema.ObjectId,
+          ref: 'User'
+        },
         consultedTeacherApproval: Boolean,
         unitChiefApproval: Boolean,
         masterApproval: Boolean
       },
       validatorApproval: Boolean
+    }
+  },
+  enterprise: {
+    name: String,
+    domain: String,
+    address: {
+      street: String,
+      number: Number,
+      postalCode: Number,
+      city: String,
+      country: String
+    },
+    phoneNumber: Number,
+    fax: Number,
+    mail: String,
+    Representative: {
+      name: String,
+      position: String
     }
   },
   convention: {
