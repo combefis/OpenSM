@@ -22,7 +22,7 @@
           </div>
           <div class="form-group" show-errors>
             <label class="control-label" for="name" ng-bind="'COURSE.NAME' | translate"></label>
-            <input name="name" type="text" ng-model="vm.course.name" id="course" class="form-control" placeholder="{{'COURSE.NAME' | translate}}" required />
+            <input name="name" type="text" ng-model="vm.course.name" id="name" class="form-control" placeholder="{{'COURSE.NAME' | translate}}" required />
             <div ng-messages="vm.form.courseForm.name.$error" role="alert">
               <p class="help-block error-text" ng-message="required" ng-bind="'COURSE.NAME_ERROR' | translate"></p>
             </div>
