@@ -1,4 +1,17 @@
 {
+  "ACTIVITY": {
+    "ACTIVITIES": "Activities",
+    "NO_ACTIVITY": "No activities yet.",
+    "NB_ACTIVITIES": "Number of activities",
+    "CREATE": "Create an activity",
+    "EDIT": "Edit the activity",
+    "CODE": "Code",
+    "CODE_ERROR": "Please fill in the code.",
+    "NAME": "Name",
+    "NAME_ERROR": "Please fill in the name.",
+    "TEACHERS": "Teachers",
+    "TEACHER_ERROR": "Please select at least one teacher."
+  },
   "AUTHENTICATION": {
     "SIGN_IN": "Sign in",
     "REGISTER": "register",
