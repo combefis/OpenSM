@@ -49,6 +49,17 @@
     "NO_EXAM": "No exam in this session."
   },
   "OPENSM_AUTHORS": "the OpenSM authors",
+  "ROOM": {
+    "ROOMS": "Rooms",
+    "NO_ROOM": "No rooms yet.",
+    "NB_ROOMS": "Number of rooms",
+    "CREATE": "Create a room",
+    "EDIT": "Edit the room",
+    "CODE": "Code",
+    "CODE_ERROR": "Please fill in the code.",
+    "NAME": "Name",
+    "NAME_ERROR": "Please fill in the name."
+  },
   "USER": {
     "USERNAME": "Username",
     "USERNAME_ERROR": "Please fill in your username.",

@@ -10,10 +10,11 @@ var mongoose = require('mongoose'),
  * Room Schema
  */
 var RoomSchema = new Schema({
-  id: {
+  code: {
     type: String,
-    required: 'Please fill in an id.',
-    trim: true
+    required: 'Please fill in the code.',
+    trim: true,
+    unique: true
   },
   name: {
     type: String,

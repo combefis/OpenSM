@@ -17,7 +17,7 @@
         </div>
 
         <div class="list-group" ng-if="vm.rooms.length">
-          <a ng-repeat="room in vm.rooms" ui-sref="admin.manage.rooms.view({ roomId: room._id })" class="list-group-item" ng-bind="room.id"></a>
+          <a ng-repeat="room in vm.rooms" ui-sref="admin.manage.rooms.view({ roomId: room._id })" class="list-group-item"><b>{{room.code}}</b><span ng-if="room.name"><br /><small><i>{{room.name}}</i></small></span></a>
         </div>
 
         <div class="alert alert-warning" ng-if="!vm.rooms.length" ng-bind="'ROOM.NO_ROOM' | translate"></div>

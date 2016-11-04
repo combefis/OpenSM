@@ -36,8 +36,8 @@ module.exports = {
     p3p: 'ABCDEF',
     xssProtection: true
   },
-  logo: 'modules/core/client/img/pythia-logo.png',
-  favicon: 'modules/core/client/img/pythia-favicon.png',
+  logo: 'modules/core/client/img/opensm-logo.png',
+  favicon: 'modules/core/client/img/opensm-favicon.png',
   uploads: {
     profileUpload: {
       dest: './modules/users/client/img/profile/uploads/', // Profile upload destination path

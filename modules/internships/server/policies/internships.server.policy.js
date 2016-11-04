@@ -9,23 +9,20 @@ var acl = require('acl');
 acl = new acl(new acl.memoryBackend());
 
 /**
- * Invoke rooms permissions
+ * Invoke internships permissions
  */
 exports.invokeRolesPolicies = function () {
   acl.allow([{
     roles: ['admin'],
     allows: [{
-      resources: '/api/rooms',
-      permissions: '*'
-    }, {
-      resources: '/api/rooms/:roomId',
+      resources: '/api/internships',
       permissions: '*'
     }]
   }]);
 };
 
 /**
- * Check if rooms policy allows
+ * Check if internships policy allows
  */
 exports.isAllowed = function (req, res, next) {
   var roles = (req.user) ? req.user.roles : ['guest'];
