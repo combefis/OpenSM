@@ -54,7 +54,6 @@ exports.list = function (req, res) {
  * Course middleware
  */
 exports.courseByID = function (req, res, next, id) {
-
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
       message: 'Course is invalid'

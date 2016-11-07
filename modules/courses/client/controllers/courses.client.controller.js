@@ -38,7 +38,7 @@
 
       function successCallback(res) {
         // Clear form fields
-        vm.course.serial = '';
+        vm.course.code = '';
         vm.course.name = '';
         vm.course.coordinator = {};
 

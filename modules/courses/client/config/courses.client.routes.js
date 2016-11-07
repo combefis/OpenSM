@@ -45,7 +45,7 @@
           courseResolve: getCourse
         },
         data: {
-          pageTitle: '{{courseResolve.serial}} — {{courseResolve.name}}'
+          pageTitle: '{{courseResolve.code}} — {{courseResolve.name}}'
         }
       });
   }

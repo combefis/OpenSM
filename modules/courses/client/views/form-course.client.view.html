@@ -14,10 +14,10 @@
       <form name="vm.form.courseForm" class="form-horizontal" ng-submit="vm.save(vm.form.courseForm.$valid)" novalidate>
         <fieldset>
           <div class="form-group" show-errors>
-            <label class="control-label" for="serial" ng-bind="'COURSE.SERIAL' | translate"></label>
-            <input name="serial" type="text" ng-model="vm.course.serial" id="serial" class="form-control" placeholder="{{'COURSE.SERIAL' | translate}}" required />
-            <div ng-messages="vm.form.courseForm.serial.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'COURSE.SERIAL_REQUIRED_ERROR' | translate"></p>
+            <label class="control-label" for="code" ng-bind="'COURSE.CODE' | translate"></label>
+            <input name="code" type="text" ng-model="vm.course.code" id="code" class="form-control" placeholder="{{'COURSE.CODE' | translate}}" required />
+            <div ng-messages="vm.form.courseForm.code.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'COURSE.CODE_REQUIRED_ERROR' | translate"></p>
             </div>
           </div>
           <div class="form-group" show-errors>
