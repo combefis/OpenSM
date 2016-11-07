@@ -37,10 +37,12 @@
     "NB_COURSES": "Number of courses",
     "CREATE": "Create a course",
     "SERIAL": "Serial",
-    "SERIAL_ERROR": "Please fill in the serial.",
+    "SERIAL_REQUIRED_ERROR": "Please fill in the serial.",
     "NAME": "Name",
-    "NAME_ERROR": "Please fill in the name.",
-    "COORDINATOR": "Coordinator"
+    "NAME_REQUIRED_ERROR": "Please fill in the name.",
+    "COORDINATOR": "Coordinator",
+    "COORDINATOR_MISSING_ERROR": "Please select the coordinator.",
+    "COORDINATOR_TOOMUCH_ERROR": "Please select only one coordinator."
   },
   "EXAMSESSION": {
     "EXAMSESSIONS": "Exam sessions",

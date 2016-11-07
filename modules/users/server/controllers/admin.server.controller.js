@@ -74,7 +74,7 @@ exports.list = function (req, res) {
  * List of teachers
  */
 exports.listTeachers = function (req, res) {
-  User.find({ 'roles': 'teacher' }, 'username').exec(function (err, teachers) {
+  User.find({ 'roles': 'teacher' }, 'displayName').exec(function (err, teachers) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)

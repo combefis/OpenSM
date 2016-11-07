@@ -1,9 +1,9 @@
 <section>
-  <div ng-if="vm.course._id && !vm.course.$resolved" class="loading">
+  <div ng-if="(vm.course._id && !vm.course.$resolved) || !vm.formReady" class="loading">
     <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> {{'LOADING' | translate}}
   </div>
 
-  <div ng-if="!vm.course._id || vm.course.$resolved">
+  <div ng-if="(!vm.course._id || vm.course.$resolved) && vm.formReady">
     <ol class="breadcrumb">
       <li class="active"><a ui-sref="admin.manage.courses.list" ng-bind="'COURSE.COURSES' | translate"></a></li>
     </ol>
@@ -17,14 +17,24 @@
             <label class="control-label" for="serial" ng-bind="'COURSE.SERIAL' | translate"></label>
             <input name="serial" type="text" ng-model="vm.course.serial" id="serial" class="form-control" placeholder="{{'COURSE.SERIAL' | translate}}" required />
             <div ng-messages="vm.form.courseForm.serial.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'COURSE.SERIAL_ERROR' | translate"></p>
+              <p class="help-block error-text" ng-message="required" ng-bind="'COURSE.SERIAL_REQUIRED_ERROR' | translate"></p>
             </div>
           </div>
           <div class="form-group" show-errors>
             <label class="control-label" for="name" ng-bind="'COURSE.NAME' | translate"></label>
             <input name="name" type="text" ng-model="vm.course.name" id="name" class="form-control" placeholder="{{'COURSE.NAME' | translate}}" required />
             <div ng-messages="vm.form.courseForm.name.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'COURSE.NAME_ERROR' | translate"></p>
+              <p class="help-block error-text" ng-message="required" ng-bind="'COURSE.NAME_REQUIRED_ERROR' | translate"></p>
+            </div>
+          </div>
+          <div class="form-group" show-errors>
+            <label class="control-label" for="coordinator" ng-bind="'COURSE.COORDINATOR' | translate"></label>
+            <tags-input name="coordinator" type="text" ng-model="vm.course.coordinator" add-on-blur="false" add-from-autocomplete-only="true" display-property="displayName" replace-spaces-with-dashes="false" id="coordinator" placeholder="{{'COURSE.COORDINATOR' | translate}}" min-tags="1" max-tags="1">
+              <auto-complete source="vm.loadTeachers($query)" min-length="0"></auto-complete>
+            </tags-input>
+            <div ng-messages="vm.form.courseForm.coordinator.$error" role="alert">
+              <p class="help-block error-text" ng-message="minTags" ng-bind="'COURSE.COORDINATOR_MISSING_ERROR' | translate"></p>
+              <p class="help-block error-text" ng-message="maxTags" ng-bind="'COURSE.COORDINATOR_TOOMUCH_ERROR' | translate"></p>
             </div>
           </div>
           <div class="form-group">

@@ -14,7 +14,7 @@ var path = require('path'),
 exports.create = function (req, res) {
   var course = new Course(req.body);
   course.user = req.user;
-  course.coordinator = req.user;
+  course.coordinator = req.body.coordinator[0];
   course.academicyear = 2016;
 
   course.save(function (err) {
