@@ -8,7 +8,9 @@ module.exports = {
         'public/lib/bootstrap/dist/css/bootstrap.css',
         'public/lib/bootstrap/dist/css/bootstrap-theme.css',
         'public/lib/nya-bootstrap-select/dist/css/nya-bs-select.css',
-        'public/lib/angular-bootstrap-datetimepicker/src/css/datetimepicker.css'
+        'public/lib/angular-bootstrap-datetimepicker/src/css/datetimepicker.css',
+        'public/lib/ng-tags-input/ng-tags-input.css',
+        'public/lib/ng-tags-input/ng-tags-input.bootstrap.css'
         // endbower
       ],
       js: [
@@ -27,6 +29,7 @@ module.exports = {
         'public/lib/angular-moment/angular-moment.js',
         'public/lib/angular-bootstrap-datetimepicker/src/js/datetimepicker.js',
         'public/lib/angular-bootstrap-datetimepicker/src/js/datetimepicker.templates.js',
+        'public/lib/ng-tags-input/ng-tags-input.js',
         'public/lib/jquery/dist/jquery.js',
         'public/lib/bootstrap/dist/js/bootstrap.js',
         'public/lib/angular-translate/angular-translate.js',
