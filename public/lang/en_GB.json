@@ -45,6 +45,7 @@
     "COORDINATOR_MISSING_ERROR": "Please select the coordinator.",
     "COORDINATOR_TOOMUCH_ERROR": "Please select only one coordinator.",
     "DESCRIPTION": "Description",
+    "NO_DESCRIPTION": "No description.",
     "ACTIVITIES": "Activities",
     "ADD_ACTIVITIES": "Add an activity",
     "NO_ACTIVITY": "No activities."
