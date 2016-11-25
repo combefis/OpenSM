@@ -16,6 +16,14 @@
         <div class="action-box">
           <a ui-sref="admin.manage.courses.edit({courseId: vm.course._id})" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> {{'COURSE.EDIT' | translate}}</a>
         </div>
+
+        <h3 ng-bind="'COURSE.ACTIVITIES' | translate"></h3>
+
+        <div class="list-group" ng-if="vm.course.activities.length">
+          <a ng-repeat="activity in vm.course.activities" ui-sref="admin.manage.activities.view({ activityId: activity._id })" class="list-group-item">{{activity.code}} — <i>{{activity.name}}</i></a>
+        </div>
+
+        <p ng-if="!vm.course.activities.length" ng-bind="'COURSE.NO_ACTIVITY' | translate"></p>
       </div>
 
       <div class="col-md-3">

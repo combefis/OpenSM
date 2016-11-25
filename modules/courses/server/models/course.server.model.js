@@ -26,6 +26,13 @@ var CourseSchema = new Schema({
     ref: 'User',
     required: 'Please fill in the coordinator of the course.'
   },
+  activities: {
+    type: [{
+      type: Schema.ObjectId,
+      ref: 'Activity'
+    }],
+    default: []
+  },
   academicyear: {
     type: Number
   },

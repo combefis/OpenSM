@@ -43,7 +43,10 @@
     "NAME_REQUIRED_ERROR": "Please fill in the name.",
     "COORDINATOR": "Coordinator",
     "COORDINATOR_MISSING_ERROR": "Please select the coordinator.",
-    "COORDINATOR_TOOMUCH_ERROR": "Please select only one coordinator."
+    "COORDINATOR_TOOMUCH_ERROR": "Please select only one coordinator.",
+    "ACTIVITIES": "Activities",
+    "ADD_ACTIVITIES": "Add an activity",
+    "NO_ACTIVITY": "No activities."
   },
   "EXAMSESSION": {
     "EXAMSESSIONS": "Exam sessions",

@@ -16,18 +16,28 @@
     vm.form = {};
     vm.save = save;
     vm.loadTeachers = loadTeachers;
-    vm.formReady = false;
+    vm.loadActivities = loadActivities;
+    vm.isFormReady = isFormReady;
 
     // The coordinator must be a list for the tags-input
     if (vm.course.coordinator) {
       vm.course.coordinator = [vm.course.coordinator];
     }
 
+    var tagsInputListsLoaded = [false, false];
+
     // Load the list of teachers for the tags-input
     var teachersList = [];
     $http.get('/api/teachers').success(function(data, status, headers, config) {
       teachersList = data;
-      vm.formReady = true;
+      tagsInputListsLoaded[0] = true;
+    });
+
+    // Load the list of activities for the tags-input
+    var activitiesList = [];
+    $http.get('/api/activities').success(function(data, status, headers, config) {
+      activitiesList = data;
+      tagsInputListsLoaded[1] = true;
     });
 
     // Save course
@@ -61,6 +71,16 @@
     // Generate list of teachers
     function loadTeachers(query) {
       return $filter('filter')(teachersList, query);
+    }
+
+    // Generate list of activities
+    function loadActivities(query) {
+      return $filter('filter')(activitiesList, query);
+    }
+
+    // Test whether the form is ready to be displayed and used
+    function isFormReady() {
+      return tagsInputListsLoaded.every(function(data) {return data;});
     }
   }
 }());
