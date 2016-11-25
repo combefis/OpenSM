@@ -17,6 +17,8 @@
           <a ui-sref="admin.manage.courses.edit({courseId: vm.course._id})" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> {{'COURSE.EDIT' | translate}}</a>
         </div>
 
+        <p ng-if="vm.course.description" ng-bind="vm.course.description"></p>
+
         <h3 ng-bind="'COURSE.ACTIVITIES' | translate"></h3>
 
         <div class="list-group" ng-if="vm.course.activities.length">

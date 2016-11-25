@@ -57,6 +57,8 @@
         vm.course.code = '';
         vm.course.name = '';
         vm.course.coordinator = [];
+        vm.course.description = '';
+        vm.course.activities = [];
 
         $state.go('admin.manage.courses.view', {
           courseId: res._id

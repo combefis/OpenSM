@@ -45,6 +45,7 @@ exports.update = function (req, res) {
   course.code = req.body.code;
   course.name = req.body.name;
   course.coordinator = req.body.coordinator[0];
+  course.description = req.body.description;
   course.activities = req.body.activities;
 
   course.save(function (err) {
@@ -81,7 +82,7 @@ exports.courseByID = function (req, res, next, id) {
     });
   }
 
-  Course.findById(id, 'code name coordinator activities')
+  Course.findById(id, 'code name coordinator description activities')
   .populate('coordinator', 'displayName')
   .populate('activities', 'code name')
   .exec(function (err, course) {
