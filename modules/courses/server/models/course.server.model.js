@@ -13,7 +13,8 @@ var CourseSchema = new Schema({
   code: {
     type: String,
     required: 'Please fill in the code of the course.',
-    trim: true
+    trim: true,
+    unique: true
   },
   name: {
     type: String,
