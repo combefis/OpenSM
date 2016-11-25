@@ -37,6 +37,26 @@ exports.read = function (req, res) {
 };
 
 /**
+ * Update a course
+ */
+exports.update = function (req, res) {
+  var course = req.course;
+
+  course.code = req.body.code;
+  course.name = req.body.name;
+  course.coordinator = req.body.coordinator[0];
+
+  course.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+    res.json(course);
+  });
+};
+
+/**
  * List of courses
  */
 exports.list = function (req, res) {
@@ -60,7 +80,7 @@ exports.courseByID = function (req, res, next, id) {
     });
   }
 
-  Course.findById(id).exec(function (err, course) {
+  Course.findById(id).populate('coordinator', 'displayName').exec(function (err, course) {
     if (err) {
       return next(err);
     }

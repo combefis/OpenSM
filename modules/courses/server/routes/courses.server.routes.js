@@ -14,7 +14,8 @@ module.exports = function (app) {
 
   // Single course routes
   app.route('/api/courses/:courseId').all(coursesPolicy.isAllowed)
-    .get(courses.read);
+    .get(courses.read)
+    .put(courses.update);
 
   // Finish by binding the course middleware
   app.param('courseId', courses.courseByID);

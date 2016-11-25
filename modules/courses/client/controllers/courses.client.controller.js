@@ -18,6 +18,12 @@
     vm.loadTeachers = loadTeachers;
     vm.formReady = false;
 
+    // The coordinator must be a list for the tags-input
+    if (vm.course.coordinator) {
+      vm.course.coordinator = [vm.course.coordinator];
+    }
+
+    // Load the list of teachers for the tags-input
     var teachersList = [];
     $http.get('/api/teachers').success(function(data, status, headers, config) {
       teachersList = data;
@@ -40,7 +46,7 @@
         // Clear form fields
         vm.course.code = '';
         vm.course.name = '';
-        vm.course.coordinator = {};
+        vm.course.coordinator = [];
 
         $state.go('admin.manage.courses.view', {
           courseId: res._id

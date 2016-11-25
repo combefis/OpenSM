@@ -36,6 +36,7 @@
     "NO_COURSE": "No courses yet.",
     "NB_COURSES": "Number of courses",
     "CREATE": "Create a course",
+    "EDIT": "Edit the course",
     "CODE": "Code",
     "CODE_REQUIRED_ERROR": "Please fill in the code.",
     "NAME": "Name",

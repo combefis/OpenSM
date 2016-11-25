@@ -13,16 +13,9 @@
 
     <div class="row">
       <div class="col-md-9">
-        <dl>
-          <dt ng-bind="'COURSE.CODE' | translate"></dt>
-          <dd ng-bind="vm.course.code"></dd>
-          <dt ng-bind="'COURSE.NAME' | translate"></dt>
-          <dd ng-bind="vm.course.name"></dd>
-          <dt ng-bind="'COURSE.COORDINATOR' | translate"></dt>
-          <dd ng-bind="vm.course.coordinator"></dd>
-          <dt ng-bind="'GENERAL.ACADEMICYEAR' | translate"></dt>
-          <dd ng-bind="vm.course.academicyear"></dd>
-        </dl>
+        <div class="action-box">
+          <a ui-sref="admin.manage.courses.edit({courseId: vm.course._id})" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> {{'COURSE.EDIT' | translate}}</a>
+        </div>
       </div>
 
       <div class="col-md-3">
@@ -30,8 +23,8 @@
           <div class="panel-heading"><h3 class="panel-title" ng-bind="'INFORMATIONS' | translate"></h3></div>
           <div class="panel-body">
             <dl>
-              <dt ng-bind="'COURSE.CODE' | translate"></dt>
-              <dd ng-bind="vm.course.code"></dd>
+              <dt ng-bind="'COURSE.COORDINATOR' | translate"></dt>
+              <dd ng-bind="vm.course.coordinator[0].displayName"></dd>
             </dl>
           </div>
         </div>

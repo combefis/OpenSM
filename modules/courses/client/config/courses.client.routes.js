@@ -47,6 +47,19 @@
         data: {
           pageTitle: '{{courseResolve.code}} — {{courseResolve.name}}'
         }
+      })
+      .state('admin.manage.courses.edit', {
+        url: '/:courseId/edit',
+        templateUrl: 'modules/courses/client/views/form-course.client.view.html',
+        controller: 'CoursesController',
+        controllerAs: 'vm',
+        resolve: {
+          courseResolve: getCourse
+        },
+        data: {
+          roles: ['admin'],
+          pageTitle: 'Edit a course'
+        }
       });
   }
 
