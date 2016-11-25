@@ -7,8 +7,8 @@
     <ol class="breadcrumb">
       <li><a ui-sref="admin.manage.rooms.list" ng-bind="'ROOM.ROOMS' | translate"></a></li>
       <li ng-if="!vm.room._id" class="active"><a ui-sref="admin.manage.rooms.create" ng-bind="'GENERAL.CREATE' | translate"></a></li>
-      <li ng-if="vm.room._id"><a ui-sref="admin.manage.rooms.view({roomId: vm.room._id})" ng-bind="vm.room.code"></a></li>
-      <li ng-if="vm.room._id" class="active"><a ui-sref="admin.manage.rooms.edit({roomId: vm.room._id})" ng-bind="'GENERAL.EDIT' | translate"></a></li>
+      <li ng-if="vm.room._id"><a ui-sref="admin.manage.rooms.view({roomCode: vm.room.code})" ng-bind="vm.room.code"></a></li>
+      <li ng-if="vm.room._id" class="active"><a ui-sref="admin.manage.rooms.edit({roomCode: vm.room.code})" ng-bind="'GENERAL.EDIT' | translate"></a></li>
     </ol>
 
     <h2>{{vm.room._id ? 'ROOM.EDIT' : 'ROOM.CREATE' | translate}}</h2>

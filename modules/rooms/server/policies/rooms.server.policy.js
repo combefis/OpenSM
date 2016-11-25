@@ -18,7 +18,7 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/rooms',
       permissions: '*'
     }, {
-      resources: '/api/rooms/:roomId',
+      resources: '/api/rooms/:roomCode',
       permissions: '*'
     }]
   }]);

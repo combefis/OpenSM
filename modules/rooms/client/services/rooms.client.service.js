@@ -8,8 +8,8 @@
   RoomsService.$inject = ['$resource'];
 
   function RoomsService($resource) {
-    var Room = $resource('api/rooms/:roomId', {
-      roomId: '@_id'
+    var Room = $resource('api/rooms/:roomCode', {
+      roomCode: ''
     }, {
       update: {
         method: 'PUT'

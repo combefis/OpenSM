@@ -13,10 +13,10 @@ module.exports = function (app) {
     .post(rooms.create);
 
   // Single room routes
-  app.route('/api/rooms/:roomId').all(roomsPolicy.isAllowed)
+  app.route('/api/rooms/:roomCode').all(roomsPolicy.isAllowed)
     .get(rooms.read)
     .put(rooms.update);
 
   // Finish by binding the room middleware
-  app.param('roomId', rooms.roomByID);
+  app.param('roomCode', rooms.roomByCode);
 };

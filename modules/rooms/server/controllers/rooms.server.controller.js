@@ -71,20 +71,14 @@ exports.list = function (req, res) {
 /**
  * Room middleware
  */
-exports.roomByID = function (req, res, next, id) {
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).send({
-      message: 'Room is invalid'
-    });
-  }
-
-  Room.findById(id, 'code name').exec(function (err, room) {
+exports.roomByCode = function (req, res, next, code) {
+  Room.findOne({ 'code': code }, 'code name').exec(function (err, room) {
     if (err) {
       return next(err);
     }
     if (!room) {
       return res.status(404).send({
-        message: 'No room with that identifier has been found.'
+        message: 'No room with that code has been found.'
       });
     }
     req.room = room;

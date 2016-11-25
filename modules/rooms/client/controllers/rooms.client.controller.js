@@ -34,7 +34,7 @@
         vm.room.name = '';
 
         $state.go('admin.manage.rooms.view', {
-          roomId: res._id
+          roomCode: res.code
         });
       }
 
