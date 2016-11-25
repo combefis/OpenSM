@@ -5,7 +5,10 @@
 
   <div ng-if="(!vm.course._id || vm.course.$resolved) && vm.isFormReady()">
     <ol class="breadcrumb">
-      <li class="active"><a ui-sref="admin.manage.courses.list" ng-bind="'COURSE.COURSES' | translate"></a></li>
+      <li><a ui-sref="admin.manage.courses.list" ng-bind="'COURSE.COURSES' | translate"></a></li>
+      <li ng-if="!vm.course._id" class="active"><a ui-sref="admin.manage.courses.create" ng-bind="'GENERAL.CREATE' | translate"></a></li>
+      <li ng-if="vm.course._id"><a ui-sref="admin.manage.courses.view({courseId: vm.course._id})">{{vm.course.code}} — {{vm.course.name}}</a></li>
+      <li ng-if="vm.course._id" class="active"><a ui-sref="admin.manage.courses.edit({courseId: vm.course._id})" ng-bind="'GENERAL.EDIT' | translate"></a></li>
     </ol>
 
     <h2>{{vm.course._id ? 'COURSE.EDIT' : 'COURSE.CREATE' | translate}}</h2>
