@@ -15,6 +15,8 @@ var path = require('path'),
 exports.create = function (req, res) {
   var exam = new Exam(req.body);
   exam.user = req.user;
+  exam.course = req.body.course[0];
+  exam.examsession = req.body.examsession[0];
   exam.academicyear = 2016;
 
   // Save the exam

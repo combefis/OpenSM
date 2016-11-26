@@ -24,6 +24,24 @@
     "EDIT": "Edit",
     "UPDATE": "Update"
   },
+  "EXAM": {
+    "EXAMS": "Exams",
+    "NO_EXAM": "No exams yet.",
+    "NB_EXAMS": "Number of exams",
+    "CREATE": "Create an exam",
+    "TITLE": "Title",
+    "TITLE_ERROR": "Please fill in the title.",
+    "COURSE": "Course",
+    "COURSE_MISSING_ERROR": "Please select the course.",
+    "COURSE_TOOMUCH_ERROR": "Please select only one course.",
+    "EXAMSESSION": "Exam session",
+    "EXAMSESSION_MISSING_ERROR": "Please select the exam session.",
+    "EXAMSESSION_TOOMUCH_ERROR": "Please select only one exam session.",
+    "DATE": "Date",
+    "DATE_ERROR": "Please fill in the date.",
+    "DURATION": "Duration",
+    "DURATION_ERROR": "Please fill in the duration."
+  },
   "HOME": {
     "LEAD": "Welcome on the OpenSM platform!",
     "INTRO": "This is your access point to learn how to code and to directly train the newly learned concepts with interactive exercises, intelligent feedbacks and a customised learning experience.",
