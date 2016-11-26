@@ -22,7 +22,11 @@
 
         <h3 ng-bind="'EXAMSESSION.PLANNING' | translate"></h3>
 
-        <div ng-bind="'EXAMSESSION.NO_EXAM' | translate"></div>
+        <div class="list-group" ng-if="vm.examsession.exams.length">
+          <a ng-repeat="exam in vm.examsession.exams | orderBy: 'date'" ui-sref="admin.manage.exams.view({ examId: exam._id })" class="list-group-item"><b>{{exam.title}}</b><br /><small><i>{{exam.date | amDateFormat:'ddd D MMM YYYY'}}</i></small></a>
+        </div>
+
+        <div ng-if="!vm.examsession.exams.length" ng-bind="'EXAMSESSION.NO_EXAM' | translate"></div>
       </div>
 
       <div class="col-md-3">

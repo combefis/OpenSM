@@ -105,14 +105,15 @@ exports.list = function (req, res) {
  * Exam session middleware
  */
 exports.examsessionByID = function (req, res, next, id) {
-
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
       message: 'Exam session is invalid'
     });
   }
 
-  ExamSession.findById(id, 'name description start end').exec(function (err, examsession) {
+  ExamSession.findById(id, 'name description start end exams')
+  .populate('exams', 'title date')
+  .exec(function (err, examsession) {
     if (err) {
       return next(err);
     }

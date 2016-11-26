@@ -28,6 +28,13 @@ var ExamSessionSchema = new Schema({
     type: Date,
     required: 'Please fill in the end date of the exam session.'
   },
+  exams: {
+    type: [{
+      type: Schema.ObjectId,
+      ref: 'Exam'
+    }],
+    default: []
+  },
   academicyear: {
     type: Number
   },

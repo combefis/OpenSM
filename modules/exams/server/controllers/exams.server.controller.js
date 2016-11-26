@@ -7,6 +7,7 @@ var path = require('path'),
   moment = require('moment'),
   mongoose = require('mongoose'),
   Exam = mongoose.model('Exam'),
+  ExamSession = mongoose.model('ExamSession'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
 /**
@@ -19,14 +20,33 @@ exports.create = function (req, res) {
   exam.examsession = req.body.examsession[0];
   exam.academicyear = 2016;
 
-  // Save the exam
-  exam.save(function (err) {
-    if (err) {
+  // Load the exam session
+  ExamSession.findById(exam.examsession).exec(function (err, examsession) {
+    if (err || !examsession) {
       return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
+        message: 'Impossible to find the exam session.'
       });
     }
-    res.json(exam);
+
+    // Save the exam
+    exam.save(function (err) {
+      if (err) {
+        return res.status(400).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      }
+
+      // Add the exam to the exam session
+      examsession.exams.push(exam);
+      examsession.save(function (err) {
+        if (err) {
+          return res.status(400).send({
+            message: 'Impossible to update the exam session.'
+          });
+        }
+        res.json(exam);
+      });
+    });
   });
 };
 
