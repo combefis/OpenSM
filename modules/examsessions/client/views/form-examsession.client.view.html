@@ -17,7 +17,7 @@
       <form name="vm.form.examsessionForm" class="form-horizontal" ng-submit="vm.save(vm.form.examsessionForm.$valid)" novalidate>
         <fieldset>
           <div class="form-group" show-errors>
-            <label class="control-label" for="serial" ng-bind="'EXAMSESSION.NAME' | translate"></label>
+            <label class="control-label" for="name" ng-bind="'EXAMSESSION.NAME' | translate"></label>
             <input name="name" type="text" ng-model="vm.examsession.name" id="name" class="form-control" placeholder="{{'EXAMSESSION.NAME' | translate}}" required />
             <div ng-messages="vm.form.examsessionForm.name.$error" role="alert">
               <p class="help-block error-text" ng-message="required" ng-bind="'EXAMSESSION.NAME_ERROR' | translate"></p>
