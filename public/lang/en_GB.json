@@ -29,6 +29,7 @@
     "NO_EXAM": "No exams yet.",
     "NB_EXAMS": "Number of exams",
     "CREATE": "Create an exam",
+    "EDIT": "Edit the exam",
     "TITLE": "Title",
     "TITLE_ERROR": "Please fill in the title.",
     "COURSE": "Course",

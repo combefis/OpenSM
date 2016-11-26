@@ -43,6 +43,9 @@
       tagsInputListsLoaded[1] = true;
     });
 
+    // Convert date to Date object
+    vm.exam.date = vm.exam.date ? new Date(vm.exam.date) : null;
+
     // Save exam
     function save(isValid) {
       if (!isValid) {

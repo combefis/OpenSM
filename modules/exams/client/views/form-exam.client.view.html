@@ -7,12 +7,12 @@
     <ol class="breadcrumb">
       <li><a ui-sref="admin.manage.exams.list" ng-bind="'EXAM.EXAMS' | translate"></a></li>
       <li ng-if="!vm.exam._id" class="active"><a ui-sref="admin.manage.exams.create" ng-bind="'GENERAL.CREATE' | translate"></a></li>
-      <li ng-if="vm.exam._id"><a ui-sref="admin.manage.exams.view({examId: vm.exam._id})" ng-bind="vm.exam.name"></a></li>
+      <li ng-if="vm.exam._id"><a ui-sref="admin.manage.exams.view({examId: vm.exam._id})" ng-bind="vm.exam.title"></a></li>
       <li ng-if="vm.exam._id" class="active"><a ui-sref="admin.manage.exams.edit({examId: vm.exam._id})" ng-bind="'GENERAL.EDIT' | translate"></a></li>
     </ol>
 
     <h2>{{vm.exam._id ? 'EXAM.EDIT' : 'EXAM.CREATE' | translate}}</h2>
-{{vm.exam}}
+
     <div class="col-md-12">
       <form name="vm.form.examForm" class="form-horizontal" ng-submit="vm.save(vm.form.examForm.$valid)" novalidate>
         <fieldset>

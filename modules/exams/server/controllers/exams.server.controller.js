@@ -46,8 +46,8 @@ exports.update = function (req, res) {
   var exam = req.exam;
 
   exam.title = req.body.title;
-  exam.course = req.body.course;
-  exam.examsession = req.body.examsession;
+  exam.course = req.body.course[0];
+  exam.examsession = req.body.examsession[0];
   exam.date = req.body.date;
   exam.duration = req.body.duration;
 
@@ -85,7 +85,10 @@ exports.examByID = function (req, res, next, id) {
     });
   }
 
-  Exam.findById(id, 'title course examsession date duration').exec(function (err, exam) {
+  Exam.findById(id, 'title course examsession date duration')
+  .populate('course', 'code')
+  .populate('examsession', 'name')
+  .exec(function (err, exam) {
     if (err) {
       return next(err);
     }
