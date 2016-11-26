@@ -10,6 +10,19 @@ var path = require('path'),
   ExamSession = mongoose.model('ExamSession'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
+/*
+ * Check whether an exam is valid
+ */
+function checkData (exam) {
+  if (!moment(exam.date).isBetween(exam.examsession.start, exam.examsession.end, 'day', '[]')) {
+    return 'Exam date must be between the start and end dates of the exam session.';
+  }
+  if (exam.duration <= 0) {
+    return 'Exam duration must be positive.';
+  }
+  return '';
+}
+
 /**
  * Create an exam
  */
@@ -25,6 +38,15 @@ exports.create = function (req, res) {
     if (err || !examsession) {
       return res.status(400).send({
         message: 'Impossible to find the exam session.'
+      });
+    }
+
+    // Check data
+    exam.examsession = examsession;
+    var errorMsg = checkData(exam);
+    if (errorMsg !== '') {
+      return res.status(400).send({
+        message: errorMsg
       });
     }
 
