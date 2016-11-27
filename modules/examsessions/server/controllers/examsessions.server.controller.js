@@ -41,7 +41,7 @@ exports.create = function (req, res) {
   // Save the exam session
   examsession.save(function (err) {
     if (err) {
-      return res.status(400).send({
+      return res.status(422).send({
         message: errorHandler.getErrorMessage(err)
       });
     }
@@ -87,13 +87,38 @@ exports.update = function (req, res) {
   });
 };
 
+/*
+ * Delete an exam session
+ */
+exports.delete = function (req, res) {
+  var examsession = req.examsession;
+
+  // Check if can be deleted
+  if (examsession.exams.length) {
+    return res.status(400).send({
+      message: 'Cannot delete an exam session with exams'
+    });
+  }
+
+  examsession.remove(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+    res.json(examsession);
+  });
+};
+
 /**
  * List of exam sessions
  */
 exports.list = function (req, res) {
-  ExamSession.find({ 'academicyear': req.session.academicyear }).sort({ start: 1 }).exec(function (err, examsessions) {
+  ExamSession.find({ 'academicyear': req.session.academicyear }, 'name start end')
+  .sort({ start: 1 })
+  .exec(function (err, examsessions) {
     if (err) {
-      return res.status(400).send({
+      return res.status(422).send({
         message: errorHandler.getErrorMessage(err)
       });
     }

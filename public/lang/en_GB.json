@@ -21,7 +21,8 @@
     "ACADEMICYEAR": "Academic year",
     "CREATE": "Create",
     "EDIT": "Edit",
-    "UPDATE": "Update"
+    "UPDATE": "Update",
+    "DELETE": "Delete"
   },
   "EXAM": {
     "EXAMS": "Exams",

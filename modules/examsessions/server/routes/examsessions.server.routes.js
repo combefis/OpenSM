@@ -15,7 +15,8 @@ module.exports = function (app) {
   // Single exam session routes
   app.route('/api/examsessions/:examsessionId').all(examsessionsPolicy.isAllowed)
     .get(examsessions.read)
-    .put(examsessions.update);
+    .put(examsessions.update)
+    .delete(examsessions.delete);
 
   // Finish by binding the exam session middleware
   app.param('examsessionId', examsessions.examsessionByID);
