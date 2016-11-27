@@ -1,12 +1,14 @@
 <section ng-controller="LoginController as vm">
-  <h2>OpenSM</h2>
-  <div class="row">
+  <h2 ng-if="!vm.authentication.user">OpenSM</h2>
+  <h2 ng-if="vm.authentication.user" ng-bind="'DASHBOARD.DASHBOARD' | translate"></h2>
+
+  <div class="row" ng-if="!vm.authentication.user">
     <div class="col-md-7">
       <p class="lead" ng-bind="'HOME.LEAD' | translate"></p>
       <p ng-bind="'HOME.INTRO' | translate"></p>
     </div>
     <div class="col-md-2"></div>
-    <div class="col-md-3" ng-if="!vm.authentication.user">
+    <div class="col-md-3">
       <form name="vm.signinForm" ng-submit="vm.signin(vm.signinForm.$valid)" class="signin" novalidate autocomplete="off">
         <fieldset>
           <div class="form-group" show-errors>
@@ -36,6 +38,31 @@
           </alert>
         </fieldset>
       </form>
+    </div>
+  </div>
+
+  <div class="row" ng-if="vm.authentication.user">
+    <div class="col-md-8">
+      <div class="panel panel-default">
+        <div class="panel-heading"><h3 class="panel-title" ng-bind="'DASHBOARD.MANAGE' | translate"></h3></div>
+        <div class="panel-body">
+          <ul>
+            <li><a ui-sref="admin.manage.activities.list" ng-bind="'ACTIVITY.ACTIVITIES' | translate"></a></li>
+            <li><a ui-sref="admin.manage.courses.list" ng-bind="'COURSE.COURSES' | translate"></a></li>
+            <li><a ui-sref="admin.manage.exams.list" ng-bind="'EXAM.EXAMS' | translate"></a></li>
+            <li><a ui-sref="admin.manage.examsessions.list" ng-bind="'EXAMSESSION.EXAMSESSIONS' | translate"></a></li>
+            <li><a ui-sref="admin.manage.internships.list" ng-bind="'INTERNSHIP.INTERNSHIPS' | translate"></a></li>
+            <li><a ui-sref="admin.manage.rooms.list" ng-bind="'ROOM.ROOMS' | translate"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-heading"><h3 class="panel-title" ng-bind="'DASHBOARD.ANNOUNCEMENT' | translate"></h3></div>
+        <div class="panel-body">
+        </div>
+      </div>
     </div>
   </div>
 </section>

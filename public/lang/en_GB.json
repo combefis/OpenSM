@@ -16,6 +16,11 @@
     "FORGOT_PASSWORD": "Forgot your password?"
   },
   "BY": "By",
+  "DASHBOARD": {
+    "DASHBOARD": "Dashboard",
+    "MANAGE": "Manage",
+    "ANNOUNCEMENT": "Annoucement"
+  },
   "GENERAL": {
     "ACADEMICYEAR": "Academic year",
     "CREATE": "Create",
@@ -96,5 +101,8 @@
     "USERNAME_ERROR": "Please fill in your username.",
     "PASSWORD": "Password",
     "PASSWORD_ERROR": "Please fill in your password."
+  },
+  "INTERNSHIP": {
+    "INTERNSHIPS": "Internships"
   }
 }
