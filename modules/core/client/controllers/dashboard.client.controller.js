@@ -3,15 +3,16 @@
 
   angular
     .module('core')
-    .controller('LoginController', LoginController);
+    .controller('DashboardController', DashboardController);
 
-  LoginController.$inject = ['$scope', '$state', '$http', '$location', 'Authentication'];
+  DashboardController.$inject = ['$scope', '$state', '$http', '$location', 'Authentication'];
 
-  function LoginController($scope, $state, $http, $location, Authentication) {
+  function DashboardController($scope, $state, $http, $location, Authentication) {
     var vm = this;
 
     vm.authentication = Authentication;
     vm.signin = signin;
+    vm.hasAnyRole = hasAnyRole;
 
     // Get an eventual error defined in the URL query string:
     vm.error = $location.search().err;
@@ -33,6 +34,12 @@
         $state.go($state.previous.state.name || 'home', $state.previous.params);
       }).error(function (response) {
         vm.error = response.message;
+      });
+    }
+
+    function hasAnyRole(roles) {
+      return roles.some(function(element, index, array) {
+        return vm.authentication.user.roles.includes(element);
       });
     }
   }

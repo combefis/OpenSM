@@ -1,4 +1,4 @@
-<section ng-controller="LoginController as vm">
+<section ng-controller="DashboardController as vm">
   <h2 ng-if="!vm.authentication.user">OpenSM</h2>
   <h2 ng-if="vm.authentication.user" ng-bind="'DASHBOARD.DASHBOARD' | translate"></h2>
 
@@ -43,8 +43,8 @@
 
   <div class="row" ng-if="vm.authentication.user">
     <div class="col-md-8">
-      <div class="panel panel-default">
-        <div class="panel-heading"><h3 class="panel-title" ng-bind="'DASHBOARD.MANAGE' | translate"></h3></div>
+      <div class="panel panel-default" ng-if="vm.hasAnyRole(['admin'])">
+        <div class="panel-heading"><h3 class="panel-title" ng-bind="'DASHBOARD.ADMIN' | translate"></h3></div>
         <div class="panel-body">
           <ul>
             <li><a ui-sref="admin.manage.activities.list" ng-bind="'ACTIVITY.ACTIVITIES' | translate"></a></li>
