@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('exams.routes')
+    .module('exams.admin.routes')
     .config(routeConfig);
 
   routeConfig.$inject = ['$stateProvider'];
