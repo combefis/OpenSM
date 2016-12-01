@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('exams')
+    .module('exams.admin')
     .run(menuConfig);
 
   menuConfig.$inject = ['menuService'];
