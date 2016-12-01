@@ -2,12 +2,12 @@
   'use strict';
 
   angular
-    .module('examsessions')
-    .controller('ExamSessionsController', ExamSessionsController);
+    .module('examsessions.admin')
+    .controller('ExamSessionsAdminController', ExamSessionsAdminController);
 
-  ExamSessionsController.$inject = ['$scope', '$state', 'examsessionResolve', '$window', 'Authentication', 'Notification'];
+  ExamSessionsAdminController.$inject = ['$scope', '$state', 'examsessionResolve', '$window', 'Authentication', 'Notification'];
 
-  function ExamSessionsController($scope, $state, examsession, $window, Authentication, Notification) {
+  function ExamSessionsAdminController($scope, $state, examsession, $window, Authentication, Notification) {
     var vm = this;
 
     vm.examsession = examsession;
@@ -28,7 +28,7 @@
       }
 
       function onSuccess(examsession) {
-        $state.go('manage.examsessions.list');
+        $state.go('admin.manage.examsessions.list');
         Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> Exam session deleted successfully!' });
       }
 
@@ -57,7 +57,7 @@
         vm.examsession.start = null;
         vm.examsession.end = null;
 
-        $state.go('manage.examsessions.view', {
+        $state.go('admin.manage.examsessions.view', {
           examsessionId: res._id
         });
       }

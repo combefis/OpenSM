@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('examsessions')
+    .module('examsessions.admin')
     .controller('ExamSessionsListController', ExamSessionsListController);
 
   ExamSessionsListController.$inject = ['ExamSessionsService'];
