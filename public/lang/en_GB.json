@@ -16,19 +16,29 @@
     "FORGOT_PASSWORD": "Forgot your password?"
   },
   "BY": "By",
+  "COURSE": {
+    "COURSES": "Courses",
+    "NO_COURSE": "No courses yet.",
+    "NB_COURSES": "Number of courses",
+    "CODE": "Code",
+    "CODE_REQUIRED_ERROR": "Please fill in the code.",
+    "NAME": "Name",
+    "NAME_REQUIRED_ERROR": "Please fill in the name.",
+    "COORDINATOR": "Coordinator",
+    "COORDINATOR_MISSING_ERROR": "Please select the coordinator.",
+    "COORDINATOR_TOOMUCH_ERROR": "Please select only one coordinator.",
+    "DESCRIPTION": "Description",
+    "NO_DESCRIPTION": "No description.",
+    "ACTIVITIES": "Activities",
+    "ADD_ACTIVITIES": "Add an activity",
+    "NO_ACTIVITY": "No activities."
+  },
   "DASHBOARD": {
     "DASHBOARD": "Dashboard",
     "ADMIN": "Administration",
     "MANAGE": "Manage",
     "EXAMS": "Exams",
     "ANNOUNCEMENT": "Annoucement"
-  },
-  "GENERAL": {
-    "ACADEMICYEAR": "Academic year",
-    "CREATE": "Create",
-    "EDIT": "Edit",
-    "UPDATE": "Update",
-    "DELETE": "Delete"
   },
   "EXAM": {
     "EXAMS": "Exams",
@@ -46,30 +56,6 @@
     "DATE_ERROR": "Please fill in the date.",
     "DURATION": "Duration",
     "DURATION_ERROR": "Please fill in the duration."
-  },
-  "HOME": {
-    "LEAD": "Welcome on the OpenSM platform!",
-    "INTRO": "This is your access point to learn how to code and to directly train the newly learned concepts with interactive exercises, intelligent feedbacks and a customised learning experience.",
-    "OR": "or"
-  },
-  "INFORMATIONS": "Informations",
-  "LOADING": "Loading...",
-  "COURSE": {
-    "COURSES": "Courses",
-    "NO_COURSE": "No courses yet.",
-    "NB_COURSES": "Number of courses",
-    "CODE": "Code",
-    "CODE_REQUIRED_ERROR": "Please fill in the code.",
-    "NAME": "Name",
-    "NAME_REQUIRED_ERROR": "Please fill in the name.",
-    "COORDINATOR": "Coordinator",
-    "COORDINATOR_MISSING_ERROR": "Please select the coordinator.",
-    "COORDINATOR_TOOMUCH_ERROR": "Please select only one coordinator.",
-    "DESCRIPTION": "Description",
-    "NO_DESCRIPTION": "No description.",
-    "ACTIVITIES": "Activities",
-    "ADD_ACTIVITIES": "Add an activity",
-    "NO_ACTIVITY": "No activities."
   },
   "EXAMSESSION": {
     "EXAMSESSIONS": "Exam sessions",
@@ -89,6 +75,23 @@
     "PLANNING": "Planning",
     "NO_EXAM": "No exam in this session."
   },
+  "GENERAL": {
+    "ACADEMICYEAR": "Academic year",
+    "CREATE": "Create",
+    "EDIT": "Edit",
+    "UPDATE": "Update",
+    "DELETE": "Delete"
+  },
+  "HOME": {
+    "LEAD": "Welcome on the OpenSM platform!",
+    "INTRO": "Blabla.",
+    "OR": "or"
+  },
+  "INFORMATIONS": "Informations",
+  "INTERNSHIP": {
+    "INTERNSHIPS": "Internships"
+  },
+  "LOADING": "Loading...",
   "OPENSM_AUTHORS": "the OpenSM authors",
   "ROOM": {
     "ROOMS": "Rooms",
@@ -104,8 +107,5 @@
     "USERNAME_ERROR": "Please fill in your username.",
     "PASSWORD": "Password",
     "PASSWORD_ERROR": "Please fill in your password."
-  },
-  "INTERNSHIP": {
-    "INTERNSHIPS": "Internships"
   }
 }

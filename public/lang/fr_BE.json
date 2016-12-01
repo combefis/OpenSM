@@ -1,45 +1,111 @@
 {
+  "ACTIVITY": {
+    "ACTIVITIES": "Activités",
+    "NO_ACTIVITY": "Aucune activité.",
+    "NB_ACTIVITIES": "Nombre d'activités",
+    "CODE": "Code",
+    "CODE_ERROR": "Veuillez spécifier le code.",
+    "NAME": "Nom",
+    "NAME_ERROR": "Veuillez spécifier le nom.",
+    "TEACHERS": "Enseignants",
+    "TEACHER_ERROR": "Veuillez spécifier au moins un enseignant."
+  },
   "AUTHENTICATION": {
-    "SIGN_IN": "Se connecter",
+    "SIGN_IN": "Connexion",
     "REGISTER": "s'inscrire",
-    "FORGOT_PASSWORD": "Mot de passe oublié?"
+    "FORGOT_PASSWORD": "Mot de passe oublié ?"
   },
   "BY": "Par",
+  "COURSE": {
+    "COURSES": "Cours",
+    "NO_COURSE": "Aucun cours.",
+    "NB_COURSES": "Nombre de cours",
+    "CODE": "Code",
+    "CODE_REQUIRED_ERROR": "Veuillez spécifier le code.",
+    "NAME": "Nom",
+    "NAME_REQUIRED_ERROR": "Veuillez spécifier le nom.",
+    "COORDINATOR": "Coordinateur",
+    "COORDINATOR_MISSING_ERROR": "Veuillez spécifier le coordinateur.",
+    "COORDINATOR_TOOMUCH_ERROR": "Veuillez ne spécifier qu'un seul coordinateur.",
+    "DESCRIPTION": "Description",
+    "NO_DESCRIPTION": "Pas de description.",
+    "ACTIVITIES": "Activités",
+    "ADD_ACTIVITIES": "Ajouter une activité",
+    "NO_ACTIVITY": "Pas d'activité."
+  },
+  "DASHBOARD": {
+    "DASHBOARD": "Tableau de bord",
+    "ADMIN": "Administration",
+    "MANAGE": "Gestion",
+    "EXAMS": "Examens",
+    "ANNOUNCEMENT": "Annonces"
+  },
+  "EXAM": {
+    "EXAMS": "Examens",
+    "NO_EXAM": "Aucun examen.",
+    "NB_EXAMS": "Nombre d'examens",
+    "TITLE": "Titre",
+    "TITLE_ERROR": "Veuillez spécifier le titre.",
+    "COURSE": "Cours",
+    "COURSE_MISSING_ERROR": "Veuillez spécifier le cours.",
+    "COURSE_TOOMUCH_ERROR": "Veuillez ne spécifier qu'un seul cours.",
+    "EXAMSESSION": "Session d'examens",
+    "EXAMSESSION_MISSING_ERROR": "Veuillez spécifier la session d'examens.",
+    "EXAMSESSION_TOOMUCH_ERROR": "Veuillez ne spécifier qu'une seule session d'examens.",
+    "DATE": "Date",
+    "DATE_ERROR": "Veuillez spécifier la date.",
+    "DURATION": "Durée",
+    "DURATION_ERROR": "Veuillez spécifier la durée."
+  },
+  "EXAMSESSION": {
+    "EXAMSESSIONS": "Sessions d'examens",
+    "CREATE": "Créer une session d'examen",
+    "NO_EXAMSESSION": "Aucune session d'examens.",
+    "NB_EXAMSESSIONS": "Nombre de sessions d'examens",
+    "NAME": "Nom",
+    "NAME_ERROR": "Veuillez spécifier le nom.",
+    "DESCRIPTION": "Description",
+    "START": "Date de début",
+    "START_ERROR": "Veuillez spécifier la date de début.",
+    "END": "Date de fin",
+    "END_ERROR": "Veuillez spécifier la date de fin.",
+    "FROM": "De",
+    "TO": "À",
+    "NO_DESCRIPTION": "Pas de description.",
+    "PLANNING": "Planning",
+    "NO_EXAM": "Aucun examen dans cette session."
+  },
   "GENERAL": {
+    "ACADEMICYEAR": "Année académique",
     "CREATE": "Créer",
-    "EDIT": "Modifier"
+    "EDIT": "Éditer",
+    "UPDATE": "Mettre à jour",
+    "DELETE": "Supprimer"
   },
   "HOME": {
-    "LEAD": "Bienvenue sur la plateforme Pythia !",
-    "INTRO": "Il s'agit de votre point d'accès pour apprendre comment coder et pour tester directement les nouveaux concepts appris avec des exercices interactifs, des feedbacks intelligents et une expérience d'apprentissage personnalisée.",
+    "LEAD": "Bienvenue sur la plateforme OpenSM !",
+    "INTRO": "Blabla.",
     "OR": "ou"
   },
   "INFORMATIONS": "Informations",
-  "LOADING": "Chargement...",
-  "PROBLEM": {
-    "PROBLEMS": "Problèmes",
-    "NO_PROBLEM": "Encore aucun problème.",
-    "NB_PROBLEMS": "Nombre de problèmes",
-    "CREATE": "Créer un problème",
-    "NAME": "Nom",
-    "NAME_ERROR": "Veuillez compléter le nom.",
-    "TYPE": "Type",
-    "GENERIC_TYPE": "Générique",
-    "UNIT_TESTING_TYPE": "Basé sur des tests unitaires",
-    "QCM_TYPE": "Choix multiples",
-    "TYPE_ERROR": "Veuillez choisir le type.",
-    "DESCRIPTION": "Description",
-    "DESCRIPTION_ERROR": "Veuillez compléter la description.",
-    "POINTS": "Points",
-    "MAX_SUBMISSIONS": "Nombre maximum de soumissions",
-    "CONFIG": "Configuration",
-    "NO_CONFIG": "Pas de configuration."
+  "INTERNSHIP": {
+    "INTERNSHIPS": "Stages"
   },
+  "LOADING": "Chargement...",
   "OPENSM_AUTHORS": "les auteurs de OpenSM",
+  "ROOM": {
+    "ROOMS": "Salles",
+    "NO_ROOM": "Aucune salle.",
+    "NB_ROOMS": "Nombre de salle",
+    "CODE": "Code",
+    "CODE_ERROR": "Veuillez spécifier le code.",
+    "NAME": "Nom",
+    "NAME_ERROR": "Veuillez spécifier le nom."
+  },
   "USER": {
     "USERNAME": "Nom d'utilisateur",
-    "USERNAME_PASSWORD": "Veuillez compléter votre nom d'utilisateur.",
+    "USERNAME_ERROR": "Veuillez spécifier le nom d'utilisateur.",
     "PASSWORD": "Mot de passe",
-    "PASSWORD_ERROR": "Veuillez compléter votre mot de passe."
+    "PASSWORD_ERROR": "Veuillez spécifier le mot de passe."
   }
 }
