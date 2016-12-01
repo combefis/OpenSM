@@ -12,7 +12,14 @@
       title: 'Dashboard',
       state: 'dashboard',
       type: 'dropdown',
-      roles: ['student']
+      roles: ['user']
+    });
+
+    menuService.addMenuItem('topbar', {
+      title: 'Manage',
+      state: 'manage',
+      type: 'dropdown',
+      roles: ['manager.exams']
     });
 
     menuService.addMenu('account', {
