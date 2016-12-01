@@ -72,6 +72,7 @@
   },
   "EXAMSESSION": {
     "EXAMSESSIONS": "Exam sessions",
+    "CREATE": "Create an exam session",
     "NO_EXAMSESSION": "No exam sessions yet.",
     "NB_EXAMSESSIONS": "Number of exam sessions",
     "NAME": "Name",

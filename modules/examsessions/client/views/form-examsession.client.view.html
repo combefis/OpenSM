@@ -11,7 +11,7 @@
       <li ng-if="vm.examsession._id" class="active"><a ui-sref="admin.manage.examsessions.edit({examsessionId: vm.examsession._id})" ng-bind="'GENERAL.EDIT' | translate"></a></li>
     </ol>
 
-    <h2>{{vm.examsession._id ? 'EXAMSESSION.EDIT' : 'EXAMSESSION.CREATE' | translate}}</h2>
+    <h2><span ng-if="vm.examsession._id" ng-bind="vm.examsession.name"></span><span ng-if="!vm.examsession._id" ng-bind="'EXAMSESSION.CREATE' | translate"></span></h2>
 
     <div class="col-md-12">
       <form name="vm.form.examsessionForm" class="form-horizontal" ng-submit="vm.save(vm.form.examsessionForm.$valid)" novalidate>

@@ -2,12 +2,12 @@
   'use strict';
 
   angular
-    .module('examsessions')
-    .controller('ExamSessionsListController', ExamSessionsListController);
+    .module('examsessions.admin')
+    .controller('ExamSessionsListAdminController', ExamSessionsListAdminController);
 
-  ExamSessionsListController.$inject = ['ExamSessionsService'];
+  ExamSessionsListAdminController.$inject = ['ExamSessionsService'];
 
-  function ExamSessionsListController(ExamSessionsService) {
+  function ExamSessionsListAdminController(ExamSessionsService) {
     var vm = this;
 
     vm.examsessions = ExamSessionsService.query();

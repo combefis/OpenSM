@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('examsessions.routes')
+    .module('examsessions.admin.routes')
     .config(routeConfig);
 
   routeConfig.$inject = ['$stateProvider'];
@@ -17,7 +17,7 @@
       .state('admin.manage.examsessions.list', {
         url: '',
         templateUrl: 'modules/examsessions/client/views/list-examsessions.client.view.html',
-        controller: 'ExamSessionsListController',
+        controller: 'ExamSessionsListAdminController',
         controllerAs: 'vm',
         data: {
           pageTitle: 'Exam sessions'
@@ -26,7 +26,7 @@
       .state('admin.manage.examsessions.create', {
         url: '/create',
         templateUrl: 'modules/examsessions/client/views/form-examsession.client.view.html',
-        controller: 'ExamSessionsController',
+        controller: 'ExamSessionsAdminController',
         controllerAs: 'vm',
         resolve: {
           examsessionResolve: newExamSession
@@ -39,7 +39,7 @@
       .state('admin.manage.examsessions.view', {
         url: '/:examsessionId',
         templateUrl: 'modules/examsessions/client/views/view-examsession.client.view.html',
-        controller: 'ExamSessionsController',
+        controller: 'ExamSessionsAdminController',
         controllerAs: 'vm',
         resolve: {
           examsessionResolve: getExamSession
@@ -51,7 +51,7 @@
       .state('admin.manage.examsessions.edit', {
         url: '/:examsessionId/edit',
         templateUrl: 'modules/examsessions/client/views/form-examsession.client.view.html',
-        controller: 'ExamSessionsController',
+        controller: 'ExamSessionsAdminController',
         controllerAs: 'vm',
         resolve: {
           examsessionResolve: getExamSession
