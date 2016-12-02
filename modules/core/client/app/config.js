@@ -1,7 +1,7 @@
 (function (window) {
   'use strict';
 
-  var applicationModuleName = 'pythia-lms';
+  var applicationModuleName = 'opensm';
 
   var service = {
     applicationEnvironment: window.env,
