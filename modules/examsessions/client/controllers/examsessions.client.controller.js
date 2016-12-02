@@ -11,6 +11,7 @@
     var vm = this;
 
     vm.examsession = examsession;
+    vm.examsessionname = examsession.name;
     vm.authentication = Authentication;
     vm.error = null;
     vm.form = {};
