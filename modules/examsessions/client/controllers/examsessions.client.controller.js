@@ -5,9 +5,9 @@
     .module('examsessions')
     .controller('ExamSessionsController', ExamSessionsController);
 
-  ExamSessionsController.$inject = ['$scope', '$state', 'examsessionResolve', '$window', 'Authentication', 'Notification'];
+  ExamSessionsController.$inject = ['$scope', '$state', 'examsessionResolve', '$window', 'Authentication', 'Notification', '$filter'];
 
-  function ExamSessionsController($scope, $state, examsession, $window, Authentication, Notification) {
+  function ExamSessionsController($scope, $state, examsession, $window, Authentication, Notification, $filter) {
     var vm = this;
 
     vm.examsession = examsession;
@@ -29,7 +29,7 @@
 
       function onSuccess(examsession) {
         $state.go('manage.examsessions.list');
-        Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> Exam session deleted successfully!' });
+        Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAMSESSION.SUCCESSFUL_DELETE') });
       }
 
       function onError(errorResponse) {

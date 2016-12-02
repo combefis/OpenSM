@@ -72,7 +72,8 @@
     "TO": "À",
     "NO_DESCRIPTION": "Pas de description.",
     "PLANNING": "Planning",
-    "NO_EXAM": "Aucun examen dans cette session."
+    "NO_EXAM": "Aucun examen dans cette session.",
+    "SUCCESSFUL_DELETE": "Session d'examens supprimée avec succès !"
   },
   "GENERAL": {
     "ACADEMICYEAR": "Année académique",

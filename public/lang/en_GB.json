@@ -72,7 +72,8 @@
     "TO": "To",
     "NO_DESCRIPTION": "No description.",
     "PLANNING": "Planning",
-    "NO_EXAM": "No exam in this session."
+    "NO_EXAM": "No exam in this session.",
+    "SUCCESSFUL_DELETE": "Exam session deleted successfully!"
   },
   "GENERAL": {
     "ACADEMICYEAR": "Academic year",
