@@ -3,11 +3,11 @@
 
   angular
     .module('examsessions.admin')
-    .controller('ExamSessionsListController', ExamSessionsListController);
+    .controller('ExamSessionsListAdminController', ExamSessionsListAdminController);
 
-  ExamSessionsListController.$inject = ['ExamSessionsService'];
+  ExamSessionsListAdminController.$inject = ['ExamSessionsService'];
 
-  function ExamSessionsListController(ExamSessionsService) {
+  function ExamSessionsListAdminController(ExamSessionsService) {
     var vm = this;
 
     vm.examsessions = ExamSessionsService.query();
