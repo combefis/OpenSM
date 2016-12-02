@@ -12,6 +12,10 @@
 
     <div class="row">
       <div class="col-md-12">
+        <div class="action-box" ng-if="cvm.hasAnyRole(['manager.exams'])">
+          <a ui-sref="manage.examsessions.create" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> {{'GENERAL.CREATE' | translate}}</a>
+        </div>
+
         <div class="list-group" ng-if="vm.examsessions.length">
           <a ng-repeat="examsession in vm.examsessions" ui-sref="manage.examsessions.view({ examsessionId: examsession._id })" class="list-group-item"><b>{{examsession.name}}</b><br /><small><i>{{'EXAMSESSION.FROM' | translate}} {{examsession.start | amDateFormat:'ddd D MMM YYYY'}} {{'EXAMSESSION.TO' | translate}} {{examsession.end | amDateFormat:'ddd D MMM YYYY'}}</i></small></a>
         </div>

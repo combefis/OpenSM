@@ -20,6 +20,7 @@
         controller: 'ExamSessionsListAdminController',
         controllerAs: 'vm',
         data: {
+          roles: ['admin'],
           pageTitle: 'Exam sessions'
         }
       })
@@ -45,6 +46,7 @@
           examsessionResolve: getExamSession
         },
         data: {
+          roles: ['admin'],
           pageTitle: '{{examsessionResolve.name}}'
         }
       })

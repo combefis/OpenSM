@@ -12,11 +12,17 @@
     <h2>{{vm.examsession.name}}</h2>
 
     <div class="row">
-      <div class="col-md-9">
+      <div class="col-md-12">
         <div ng-if="vm.examsession.description" ng-bind="vm.examsession.description"></div>
-        <div ng-if="!vm.examsession.description" ng-bind="'EXAMSESSION.NO_DESCRIPTION' | translate"></div>
 
         <h3 ng-bind="'EXAMSESSION.PLANNING' | translate"></h3>
+
+        <p>
+          <b ng-bind="'EXAMSESSION.FROM' | translate"></b>
+          <span ng-bind="vm.examsession.start | amDateFormat:'ddd D MMM YYYY'"></span><br />
+          <b ng-bind="'EXAMSESSION.TO' | translate"></b>
+          <span ng-bind="vm.examsession.end | amDateFormat:'ddd D MMM YYYY'"></span>
+        </p>
 
         <div ng-if="vm.examsession.exams.length">
           <ul class="list-group">
@@ -25,20 +31,6 @@
         </div>
 
         <div ng-if="!vm.examsession.exams.length" ng-bind="'EXAMSESSION.NO_EXAM' | translate"></div>
-      </div>
-
-      <div class="col-md-3">
-        <div class="panel panel-info">
-          <div class="panel-heading"><h3 class="panel-title" ng-bind="'INFORMATIONS' | translate"></h3></div>
-          <div class="panel-body">
-            <dl>
-              <dt ng-bind="'EXAMSESSION.START' | translate"></dt>
-              <dd ng-bind="vm.examsession.start | amDateFormat:'ddd D MMM YYYY'"></dd>
-              <dt ng-bind="'EXAMSESSION.END' | translate"></dt>
-              <dd ng-bind="vm.examsession.end | amDateFormat:'ddd D MMM YYYY'"></dd>
-            </dl>
-          </div>
-        </div>
       </div>
     </div>
 </div>

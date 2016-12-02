@@ -25,7 +25,7 @@ exports.invokeRolesPolicies = function () {
     roles: ['manager.exams'],
     allows: [{
       resources: '/api/examsessions',
-      permissions: ['get']
+      permissions: ['get', 'post']
     }, {
       resources: '/api/examsessions/:examsessionId',
       permissions: ['get']

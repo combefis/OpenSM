@@ -20,7 +20,21 @@
         controller: 'ExamSessionsListController',
         controllerAs: 'vm',
         data: {
+          roles: ['manager.exams'],
           pageTitle: 'Exam sessions'
+        }
+      })
+      .state('manage.examsessions.create', {
+        url: '/create',
+        templateUrl: 'modules/examsessions/client/views/form-examsession.client.view.html',
+        controller: 'ExamSessionsController',
+        controllerAs: 'vm',
+        resolve: {
+          examsessionResolve: newExamSession
+        },
+        data: {
+          roles: ['manager.exams'],
+          pageTitle: 'Create an exam session'
         }
       })
       .state('manage.examsessions.view', {
@@ -32,6 +46,7 @@
           examsessionResolve: getExamSession
         },
         data: {
+          roles: ['manager.exams'],
           pageTitle: '{{examsessionResolve.name}}'
         }
       });
