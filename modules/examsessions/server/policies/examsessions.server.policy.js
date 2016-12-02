@@ -28,7 +28,7 @@ exports.invokeRolesPolicies = function () {
       permissions: ['get', 'post']
     }, {
       resources: '/api/examsessions/:examsessionId',
-      permissions: ['get']
+      permissions: ['get', 'put', 'delete']
     }]
   }]);
 };
