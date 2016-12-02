@@ -2,12 +2,12 @@
   'use strict';
 
   angular
-    .module('exams')
-    .controller('ExamsController', ExamsController);
+    .module('exams.admin')
+    .controller('ExamsAdminController', ExamsAdminController);
 
-  ExamsController.$inject = ['$scope', '$state', '$http', 'examResolve', '$window', 'Authentication', '$filter'];
+  ExamsAdminController.$inject = ['$scope', '$state', '$http', 'examResolve', '$window', 'Authentication', '$filter'];
 
-  function ExamsController($scope, $state, $http, exam, $window, Authentication, $filter) {
+  function ExamsAdminController($scope, $state, $http, exam, $window, Authentication, $filter) {
     var vm = this;
 
     vm.exam = exam;

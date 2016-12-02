@@ -16,17 +16,18 @@
       })
       .state('admin.manage.exams.list', {
         url: '',
-        templateUrl: 'modules/exams/client/views/list-exams.client.view.html',
-        controller: 'ExamsListController',
+        templateUrl: 'modules/exams/client/views/admin/list-exams.client.view.html',
+        controller: 'ExamsListAdminController',
         controllerAs: 'vm',
         data: {
+          roles: ['admin'],
           pageTitle: 'Exams'
         }
       })
       .state('admin.manage.exams.create', {
         url: '/create',
-        templateUrl: 'modules/exams/client/views/form-exam.client.view.html',
-        controller: 'ExamsController',
+        templateUrl: 'modules/exams/client/views/admin/form-exam.client.view.html',
+        controller: 'ExamsAdminController',
         controllerAs: 'vm',
         resolve: {
           examResolve: newExam
@@ -38,20 +39,21 @@
       })
       .state('admin.manage.exams.view', {
         url: '/:examId',
-        templateUrl: 'modules/exams/client/views/view-exam.client.view.html',
-        controller: 'ExamsController',
+        templateUrl: 'modules/exams/client/views/admin/view-exam.client.view.html',
+        controller: 'ExamsAdminController',
         controllerAs: 'vm',
         resolve: {
           examResolve: getExam
         },
         data: {
+          roles: ['admin'],
           pageTitle: '{{examResolve.title}}'
         }
       })
       .state('admin.manage.exams.edit', {
         url: '/:examId/edit',
-        templateUrl: 'modules/exams/client/views/form-exam.client.view.html',
-        controller: 'ExamsController',
+        templateUrl: 'modules/exams/client/views/admin/form-exam.client.view.html',
+        controller: 'ExamsAdminController',
         controllerAs: 'vm',
         resolve: {
           examResolve: getExam

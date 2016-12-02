@@ -41,6 +41,7 @@
   },
   "EXAM": {
     "EXAMS": "Exams",
+    "CREATE": "Create an exam",
     "NO_EXAM": "No exams yet.",
     "NB_EXAMS": "Number of exams",
     "TITLE": "Title",
