@@ -5,9 +5,9 @@
     .module('exams')
     .controller('ExamsController', ExamsController);
 
-  ExamsController.$inject = ['$scope', '$state', '$http', 'examResolve', '$window', 'Authentication', '$filter', '$stateParams'];
+  ExamsController.$inject = ['$scope', '$state', '$http', 'examResolve', '$window', 'Authentication', '$filter', '$stateParams', 'Notification'];
 
-  function ExamsController($scope, $state, $http, exam, $window, Authentication, $filter, $stateParams) {
+  function ExamsController($scope, $state, $http, exam, $window, Authentication, $filter, $stateParams, Notification) {
     var vm = this;
 
     vm.exam = exam;
@@ -62,9 +62,10 @@
         vm.exam.date = null;
         vm.exam.duration = 0;
 
-        $state.go('admin.manage.exams.view', {
+        $state.go('manage.exams.view', {
           examId: res._id
         });
+        Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAMSESSION.SUCCESSFUL_EXAMADD') });
       }
 
       function errorCallback(res) {

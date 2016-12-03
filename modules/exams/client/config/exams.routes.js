@@ -21,6 +21,19 @@
           roles: ['manager.exams'],
           pageTitle: 'Create an exam'
         }
+      })
+      .state('manage.examsessions.viewexam', {
+        url: '/:examsessionId/exams/:examId',
+        templateUrl: 'modules/exams/client/views/view-exam.client.view.html',
+        controller: 'ExamsAdminController',
+        controllerAs: 'vm',
+        resolve: {
+          examResolve: getExam
+        },
+        data: {
+          roles: ['manager.exams'],
+          pageTitle: '{{examResolve.title}}'
+        }
       });
   }
 

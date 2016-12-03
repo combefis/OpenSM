@@ -76,7 +76,8 @@
     "PLANNING": "Planning",
     "NO_EXAM": "No exam in this session.",
     "SUCCESSFUL_DELETE": "Exam session deleted successfully!",
-    "ADD_EXAM": "Add an exam"
+    "ADD_EXAM": "Add an exam",
+    "SUCCESSFUL_EXAMADD": "Exam added successfully!"
   },
   "GENERAL": {
     "ACADEMICYEAR": "Academic year",

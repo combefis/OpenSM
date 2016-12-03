@@ -5,9 +5,9 @@
     .module('examsessions.admin')
     .controller('ExamSessionsAdminController', ExamSessionsAdminController);
 
-  ExamSessionsAdminController.$inject = ['$scope', '$state', 'examsessionResolve', '$window', 'Authentication', 'Notification'];
+  ExamSessionsAdminController.$inject = ['$scope', '$state', 'examsessionResolve', '$window', 'Authentication', 'Notification', '$filter'];
 
-  function ExamSessionsAdminController($scope, $state, examsession, $window, Authentication, Notification) {
+  function ExamSessionsAdminController($scope, $state, examsession, $window, Authentication, Notification, $filter) {
     var vm = this;
 
     vm.examsession = examsession;

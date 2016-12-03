@@ -55,7 +55,8 @@
     "DATE": "Date",
     "DATE_ERROR": "Veuillez spécifier la date.",
     "DURATION": "Durée",
-    "DURATION_ERROR": "Veuillez spécifier la durée."
+    "DURATION_ERROR": "Veuillez spécifier la durée.",
+    "EXAMSESSION_SUMMARY": "Ajout d'un examen à la session de {{name}} qui se déroule du",
   },
   "EXAMSESSION": {
     "EXAMSESSIONS": "Sessions d'examens",
@@ -76,7 +77,7 @@
     "NO_EXAM": "Aucun examen dans cette session.",
     "SUCCESSFUL_DELETE": "Session d'examens supprimée avec succès !",
     "ADD_EXAM": "Ajouter un examen",
-    "EXAMSESSION_SUMMARY": "Ajout d'un examen à la session de {{name}} qui se déroule du"
+    "SUCCESSFUL_EXAMADD": "Examen ajouté avec succès !"
   },
   "GENERAL": {
     "ACADEMICYEAR": "Année académique",

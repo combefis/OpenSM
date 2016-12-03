@@ -26,6 +26,9 @@ exports.invokeRolesPolicies = function () {
     allows: [{
       resources: '/api/exams',
       permissions: ['post']
+    }, {
+      resources: '/api/exams/:examId',
+      permissions: ['get']
     }]
   }]);
 };
