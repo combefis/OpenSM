@@ -34,7 +34,7 @@
     });
 
     // Load the exam session
-    $http.get('/api/examsessions/' + $stateParams.examsessionId).success(function(data, status, headers, config) {
+    $http.get('/api/examsessions/' + $stateParams.examsessionCode).success(function(data, status, headers, config) {
       vm.examsession = data;
     });
 
@@ -55,6 +55,7 @@
         .catch(errorCallback);
 
       function successCallback(res) {
+        var code = vm.exam.examsession.code;
         // Clear form fields
         vm.exam.title = '';
         vm.exam.course = [];
@@ -62,7 +63,8 @@
         vm.exam.date = null;
         vm.exam.duration = 0;
 
-        $state.go('manage.exams.view', {
+        $state.go('manage.examsessions.viewexam', {
+          examsessionCode: code,
           examId: res._id
         });
         Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAMSESSION.SUCCESSFUL_EXAMADD') });

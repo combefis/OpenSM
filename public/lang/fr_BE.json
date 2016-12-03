@@ -63,6 +63,8 @@
     "CREATE": "Créer une session d'examen",
     "NO_EXAMSESSION": "Aucune session d'examens.",
     "NB_EXAMSESSIONS": "Nombre de sessions d'examens",
+    "CODE": "Code",
+    "CODE_ERROR": "Veuillez spécifier le code.",
     "NAME": "Nom",
     "NAME_ERROR": "Veuillez spécifier le nom.",
     "DESCRIPTION": "Description",

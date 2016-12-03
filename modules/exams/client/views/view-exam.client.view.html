@@ -5,8 +5,9 @@
 
   <div ng-if="vm.exam.$resolved">
     <ol class="breadcrumb">
-      <li><a ui-sref="admin.manage.exams.list" ng-bind="'EXAM.EXAMS' | translate"></a></li>
-      <li class="active"><a ui-sref="admin.manage.exams.view({examId: vm.exam._id})">{{vm.exam.title}}</a></li>
+      <li><a ui-sref="manage.examsessions.list" ng-bind="'EXAMSESSION.EXAMSESSIONS' | translate"></a></li>
+      <li><a ui-sref="manage.examsessions.view({ examsessionCode: vm.exam.examsession[0].code })">{{vm.exam.examsession[0].code}}</a></li>
+      <li class="active"><a ui-sref="manage.examsessions.viewexam({ examsessionCode: vm.exam.examsession[0].code, examId: vm.exam._id })">{{vm.exam.title}}</a></li>
     </ol>
 
     <h2>{{vm.exam.title}}</h2>

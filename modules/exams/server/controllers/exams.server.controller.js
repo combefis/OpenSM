@@ -129,7 +129,7 @@ exports.examByID = function (req, res, next, id) {
 
   Exam.findById(id, 'title course examsession date duration')
   .populate('course', 'code')
-  .populate('examsession', 'name')
+  .populate('examsession', 'code name')
   .exec(function (err, exam) {
     if (err) {
       return next(err);

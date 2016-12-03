@@ -7,8 +7,8 @@
     <ol class="breadcrumb">
       <li><a ui-sref="admin.manage.examsessions.list" ng-bind="'EXAMSESSION.EXAMSESSIONS' | translate"></a></li>
       <li ng-if="!vm.examsession._id" class="active"><a ui-sref="admin.manage.examsessions.create" ng-bind="'GENERAL.CREATE' | translate"></a></li>
-      <li ng-if="vm.examsession._id"><a ui-sref="admin.manage.examsessions.view({examsessionId: vm.examsession._id})" ng-bind="vm.examsessionname"></a></li>
-      <li ng-if="vm.examsession._id" class="active"><a ui-sref="admin.manage.examsessions.edit({examsessionId: vm.examsession._id})" ng-bind="'GENERAL.EDIT' | translate"></a></li>
+      <li ng-if="vm.examsession._id"><a ui-sref="admin.manage.examsessions.view({ examsessionCode: vm.examsession.code })" ng-bind="vm.examsession.code"></a></li>
+      <li ng-if="vm.examsession._id" class="active"><a ui-sref="admin.manage.examsessions.edit({ examsessionCode: vm.examsession.code })" ng-bind="'GENERAL.EDIT' | translate"></a></li>
     </ol>
 
     <h2><span ng-if="vm.examsession._id" ng-bind="vm.examsessionname"></span><span ng-if="!vm.examsession._id" ng-bind="'EXAMSESSION.CREATE' | translate"></span></h2>
@@ -17,13 +17,20 @@
       <form name="vm.form.examsessionForm" class="form-horizontal" ng-submit="vm.save(vm.form.examsessionForm.$valid)" novalidate>
         <fieldset>
           <div class="form-group" show-errors>
+            <label class="control-label" for="code" ng-bind="'EXAMSESSION.CODE' | translate"></label>
+            <input name="code" type="text" ng-model="vm.examsession.code" id="code" class="form-control" placeholder="{{'EXAMSESSION.CODE' | translate}}" required ng-disabled="vm.examsession._id" />
+            <div ng-messages="vm.form.examsessionForm.code.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'EXAMSESSION.CODE_ERROR' | translate"></p>
+            </div>
+          </div>
+          <div class="form-group" show-errors>
             <label class="control-label" for="name" ng-bind="'EXAMSESSION.NAME' | translate"></label>
             <input name="name" type="text" ng-model="vm.examsession.name" id="name" class="form-control" placeholder="{{'EXAMSESSION.NAME' | translate}}" required />
             <div ng-messages="vm.form.examsessionForm.name.$error" role="alert">
               <p class="help-block error-text" ng-message="required" ng-bind="'EXAMSESSION.NAME_ERROR' | translate"></p>
             </div>
           </div>
-          <div class="form-group" show-errors>
+          <div class="form-group">
             <label class="control-label" for="description" ng-bind="'EXAMSESSION.DESCRIPTION' | translate"></label>
             <textarea name="description" ng-model="vm.examsession.description" id="description" class="form-control" cols="30" rows="5" placeholder="{{'EXAMSESSION.DESCRIPTION' | translate}}"></textarea>
           </div>

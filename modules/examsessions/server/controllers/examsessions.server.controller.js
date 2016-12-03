@@ -64,6 +64,7 @@ exports.read = function (req, res) {
 exports.update = function (req, res) {
   var examsession = req.examsession;
 
+  examsession.code = req.body.code;
   examsession.name = req.body.name;
   examsession.description = req.body.description;
   examsession.start = req.body.start;
@@ -114,7 +115,7 @@ exports.delete = function (req, res) {
  * List of exam sessions
  */
 exports.list = function (req, res) {
-  ExamSession.find({ 'academicyear': req.session.academicyear }, 'name start end')
+  ExamSession.find({ 'academicyear': req.session.academicyear }, 'code name start end')
   .sort({ start: 1 })
   .exec(function (err, examsessions) {
     if (err) {
@@ -129,14 +130,8 @@ exports.list = function (req, res) {
 /**
  * Exam session middleware
  */
-exports.examsessionByID = function (req, res, next, id) {
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).send({
-      message: 'Exam session is invalid'
-    });
-  }
-
-  ExamSession.findById(id, 'name description start end exams')
+exports.examsessionByCode = function (req, res, next, code) {
+  ExamSession.findOne({ 'code': code }, 'code name description start end exams')
   .populate('exams', 'title date')
   .exec(function (err, examsession) {
     if (err) {

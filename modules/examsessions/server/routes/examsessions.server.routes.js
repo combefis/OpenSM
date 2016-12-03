@@ -13,11 +13,11 @@ module.exports = function (app) {
     .post(examsessions.create);
 
   // Single exam session routes
-  app.route('/api/examsessions/:examsessionId').all(examsessionsPolicy.isAllowed)
+  app.route('/api/examsessions/:examsessionCode').all(examsessionsPolicy.isAllowed)
     .get(examsessions.read)
     .put(examsessions.update)
     .delete(examsessions.delete);
 
   // Finish by binding the exam session middleware
-  app.param('examsessionId', examsessions.examsessionByID);
+  app.param('examsessionCode', examsessions.examsessionByCode);
 };

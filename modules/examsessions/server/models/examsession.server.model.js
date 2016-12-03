@@ -10,6 +10,12 @@ var mongoose = require('mongoose'),
  * ExamSession Schema
  */
 var ExamSessionSchema = new Schema({
+  code: {
+    type: String,
+    required: 'Please fill in the code of the exam session.',
+    trim: true,
+    unique: true
+  },
   name: {
     type: String,
     required: 'Please fill in the name of the exam session.',

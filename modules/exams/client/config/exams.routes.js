@@ -10,7 +10,7 @@
   function routeConfig($stateProvider) {
     $stateProvider
       .state('manage.examsessions.addexam', {
-        url: '/:examsessionId/addexam',
+        url: '/:examsessionCode/addexam',
         templateUrl: 'modules/exams/client/views/form-exam.client.view.html',
         controller: 'ExamsController',
         controllerAs: 'vm',
@@ -23,7 +23,7 @@
         }
       })
       .state('manage.examsessions.viewexam', {
-        url: '/:examsessionId/exams/:examId',
+        url: '/:examsessionCode/exams/:examId',
         templateUrl: 'modules/exams/client/views/view-exam.client.view.html',
         controller: 'ExamsAdminController',
         controllerAs: 'vm',

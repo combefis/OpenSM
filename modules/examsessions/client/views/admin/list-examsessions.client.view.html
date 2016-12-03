@@ -17,7 +17,7 @@
         </div>
 
         <div class="list-group" ng-if="vm.examsessions.length">
-          <a ng-repeat="examsession in vm.examsessions" ui-sref="admin.manage.examsessions.view({ examsessionId: examsession._id })" class="list-group-item"><b>{{examsession.name}}</b><br /><small><i>{{'EXAMSESSION.FROM' | translate}} {{examsession.start | amDateFormat:'ddd D MMM YYYY'}} {{'EXAMSESSION.TO' | translate}} {{examsession.end | amDateFormat:'ddd D MMM YYYY'}}</i></small></a>
+          <a ng-repeat="examsession in vm.examsessions" ui-sref="admin.manage.examsessions.view({ examsessionCode: examsession.code })" class="list-group-item"><b>{{examsession.code}}</b> – {{examsession.name}}<br /><small><i>{{'EXAMSESSION.FROM' | translate}} {{examsession.start | amDateFormat:'ddd D MMM YYYY'}} {{'EXAMSESSION.TO' | translate}} {{examsession.end | amDateFormat:'ddd D MMM YYYY'}}</i></small></a>
         </div>
 
         <div class="alert alert-warning" ng-if="!vm.examsessions.length" ng-bind="'EXAMSESSION.NO_EXAMSESSION' | translate"></div>
