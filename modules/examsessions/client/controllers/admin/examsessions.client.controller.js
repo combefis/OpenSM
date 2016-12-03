@@ -30,7 +30,7 @@
 
       function onSuccess(examsession) {
         $state.go('admin.manage.examsessions.list');
-        Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> Exam session deleted successfully!' });
+        Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAMSESSION.SUCCESSFUL_DELETE') });
       }
 
       function onError(errorResponse) {
