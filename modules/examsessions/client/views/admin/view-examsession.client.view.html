@@ -39,6 +39,8 @@
               <dd ng-bind="vm.examsession.start | amDateFormat:'ddd D MMM YYYY'"></dd>
               <dt ng-bind="'EXAMSESSION.END' | translate"></dt>
               <dd ng-bind="vm.examsession.end | amDateFormat:'ddd D MMM YYYY'"></dd>
+              <dt ng-bind="'EXAMSESSION.NB_EXAMS' | translate"></dt>
+              <dd ng-bind="vm.examsession.exams.length"></dd>
             </dl>
           </div>
         </div>

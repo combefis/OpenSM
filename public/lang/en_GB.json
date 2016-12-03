@@ -79,7 +79,8 @@
     "NO_EXAM": "No exam in this session.",
     "SUCCESSFUL_DELETE": "Exam session deleted successfully!",
     "ADD_EXAM": "Add an exam",
-    "SUCCESSFUL_EXAMADD": "Exam added successfully!"
+    "SUCCESSFUL_EXAMADD": "Exam added successfully!",
+    "NB_EXAMS": "Number of exams"
   },
   "GENERAL": {
     "ACADEMICYEAR": "Academic year",
