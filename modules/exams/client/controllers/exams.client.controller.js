@@ -63,9 +63,8 @@
         vm.exam.date = null;
         vm.exam.duration = 0;
 
-        $state.go('manage.examsessions.viewexam', {
-          examsessionCode: code,
-          examId: res._id
+        $state.go('manage.examsessions.view', {
+          examsessionCode: code
         });
         Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAMSESSION.SUCCESSFUL_EXAMADD') });
       }
