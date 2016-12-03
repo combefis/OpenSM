@@ -55,7 +55,8 @@
     "DATE": "Date",
     "DATE_ERROR": "Please fill in the date.",
     "DURATION": "Duration",
-    "DURATION_ERROR": "Please fill in the duration."
+    "DURATION_ERROR": "Please fill in the duration.",
+    "EXAMSESSION_SUMMARY": "Addition of an exam to the session of {{name}} which takes place from"
   },
   "EXAMSESSION": {
     "EXAMSESSIONS": "Exam sessions",
@@ -70,11 +71,12 @@
     "END": "End date",
     "END_ERROR": "Please fill in the end date.",
     "FROM": "From",
-    "TO": "To",
+    "TO": "to",
     "NO_DESCRIPTION": "No description.",
     "PLANNING": "Planning",
     "NO_EXAM": "No exam in this session.",
-    "SUCCESSFUL_DELETE": "Exam session deleted successfully!"
+    "SUCCESSFUL_DELETE": "Exam session deleted successfully!",
+    "ADD_EXAM": "Add an exam"
   },
   "GENERAL": {
     "ACADEMICYEAR": "Academic year",

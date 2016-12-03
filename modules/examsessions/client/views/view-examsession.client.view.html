@@ -18,16 +18,15 @@
           <a ng-click="vm.remove()" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> {{'GENERAL.DELETE' | translate}}</a>
         </div>
 
+        <p><span ng-bind="'EXAMSESSION.FROM' | translate"></span> <i ng-bind="vm.examsession.start | amDateFormat:'ddd D MMM YYYY'"></i> <span ng-bind="'EXAMSESSION.TO' | translate"></span> <i ng-bind="vm.examsession.end | amDateFormat:'ddd D MMM YYYY'"></i>.</p>
+
         <div ng-if="vm.examsession.description" ng-bind="vm.examsession.description"></div>
 
         <h3 ng-bind="'EXAMSESSION.PLANNING' | translate"></h3>
 
-        <p>
-          <b ng-bind="'EXAMSESSION.FROM' | translate"></b>
-          <span ng-bind="vm.examsession.start | amDateFormat:'ddd D MMM YYYY'"></span><br />
-          <b ng-bind="'EXAMSESSION.TO' | translate"></b>
-          <span ng-bind="vm.examsession.end | amDateFormat:'ddd D MMM YYYY'"></span>
-        </p>
+        <div class="action-box" ng-if="cvm.hasAnyRole(['manager.exams'])">
+          <a ui-sref="manage.examsessions.addexam({examsessionId: vm.examsession._id})" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> {{'EXAMSESSION.ADD_EXAM' | translate}}</a>
+        </div>
 
         <div ng-if="vm.examsession.exams.length">
           <ul class="list-group">

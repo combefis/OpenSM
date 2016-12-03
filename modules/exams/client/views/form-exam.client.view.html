@@ -5,13 +5,17 @@
 
   <div ng-if="(!vm.exam._id || vm.exam.$resolved) && vm.isFormReady()">
     <ol class="breadcrumb">
-      <li><a ui-sref="admin.manage.exams.list" ng-bind="'EXAM.EXAMS' | translate"></a></li>
-      <li ng-if="!vm.exam._id" class="active"><a ui-sref="admin.manage.exams.create" ng-bind="'GENERAL.CREATE' | translate"></a></li>
+      <li><a ui-sref="manage.examsessions.list" ng-bind="'EXAMSESSION.EXAMSESSIONS' | translate"></a></li>
+      <li class="active"><a ui-sref="manage.examsessions.view({examsessionId: vm.examsession._id})">{{vm.examsession.name}}</a></li>
+
+      <li ng-if="!vm.exam._id" class="active"><a ui-sref="manage.examsessions.addexam({exam})" ng-bind="'EXAMSESSION.ADD_EXAM' | translate"></a></li>
       <li ng-if="vm.exam._id"><a ui-sref="admin.manage.exams.view({examId: vm.exam._id})" ng-bind="vm.exam.title"></a></li>
       <li ng-if="vm.exam._id" class="active"><a ui-sref="admin.manage.exams.edit({examId: vm.exam._id})" ng-bind="'GENERAL.EDIT' | translate"></a></li>
     </ol>
 
-    <h2><span ng-if="vm.exam._id" ng-bind="vm.exam.title"></span><span ng-if="!vm.exam._id" ng-bind="'EXAM.CREATE' | translate"></span></h2>
+    <h2><span ng-if="vm.exam._id" ng-bind="vm.exam.title"></span><span ng-if="!vm.exam._id" ng-bind="'EXAMSESSION.ADD_EXAM' | translate"></span></h2>
+
+    <p><span ng-bind="'EXAM.EXAMSESSION_SUMMARY' | translate:{name: vm.examsession.name}"></span> <i>{{vm.examsession.start | amDateFormat: 'ddd D MMM YYYY'}}</i> au <i>{{vm.examsession.end | amDateFormat: 'ddd D MMM YYYY'}}</i>.</p>
 
     <div class="col-md-12">
       <form name="vm.form.examForm" class="form-horizontal" ng-submit="vm.save(vm.form.examForm.$valid)" novalidate>
@@ -31,16 +35,6 @@
             <div ng-messages="vm.form.examForm.course.$error" role="alert">
               <p class="help-block error-text" ng-message="minTags" ng-bind="'EXAM.COURSE_MISSING_ERROR' | translate"></p>
               <p class="help-block error-text" ng-message="maxTags" ng-bind="'EXAM.COURSE_TOOMUCH_ERROR' | translate"></p>
-            </div>
-          </div>
-          <div class="form-group" show-errors>
-            <label class="control-label" for="examsession" ng-bind="'EXAM.EXAMSESSION' | translate"></label>
-            <tags-input name="examsession" type="text" ng-model="vm.exam.examsession" add-on-blur="false" add-from-autocomplete-only="true" display-property="name" replace-spaces-with-dashes="false" id="examsession" placeholder="{{'EXAM.EXAMSESSION' | translate}}" min-tags="1" max-tags="1">
-              <auto-complete source="vm.loadExamSessions($query)" min-length="0"></auto-complete>
-            </tags-input>
-            <div ng-messages="vm.form.examForm.examsession.$error" role="alert">
-              <p class="help-block error-text" ng-message="minTags" ng-bind="'EXAM.EXAMSESSION_MISSING_ERROR' | translate"></p>
-              <p class="help-block error-text" ng-message="maxTags" ng-bind="'EXAM.EXAMSESSION_TOOMUCH_ERROR' | translate"></p>
             </div>
           </div>
           <div class="form-group" show-errors>

@@ -21,6 +21,12 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/courses/:courseId',
       permissions: '*'
     }]
+  }, {
+    roles: ['manager.exams'],
+    allows: [{
+      resources: '/api/courses',
+      permissions: ['get']
+    }]
   }]);
 };
 

@@ -69,12 +69,14 @@
     "START_ERROR": "Veuillez spécifier la date de début.",
     "END": "Date de fin",
     "END_ERROR": "Veuillez spécifier la date de fin.",
-    "FROM": "De",
-    "TO": "À",
+    "FROM": "Du",
+    "TO": "au",
     "NO_DESCRIPTION": "Pas de description.",
     "PLANNING": "Planning",
     "NO_EXAM": "Aucun examen dans cette session.",
-    "SUCCESSFUL_DELETE": "Session d'examens supprimée avec succès !"
+    "SUCCESSFUL_DELETE": "Session d'examens supprimée avec succès !",
+    "ADD_EXAM": "Ajouter un examen",
+    "EXAMSESSION_SUMMARY": "Ajout d'un examen à la session de {{name}} qui se déroule du"
   },
   "GENERAL": {
     "ACADEMICYEAR": "Année académique",
