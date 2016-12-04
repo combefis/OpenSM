@@ -6,14 +6,13 @@
   <div ng-if="(!vm.exam._id || vm.exam.$resolved) && vm.isFormReady()">
     <ol class="breadcrumb">
       <li><a ui-sref="manage.examsessions.list" ng-bind="'EXAMSESSION.EXAMSESSIONS' | translate"></a></li>
-      <li class="active"><a ui-sref="manage.examsessions.view({ examsessionCode: vm.examsession.code })">{{vm.examsession.code}}</a></li>
+      <li><a ui-sref="manage.examsessions.view({ examsessionCode: vm.examsession.code })">{{vm.examsession.code}}</a></li>
       <li ng-if="!vm.exam._id" class="active"><a ui-sref="manage.examsessions.addexam({ examsessionCode: vm.examsession.code })" ng-bind="'EXAMSESSION.ADD_EXAM' | translate"></a></li>
-      
-      <li ng-if="vm.exam._id"><a ui-sref="manage.exams.view({ examId: vm.exam._id })" ng-bind="vm.exam.title"></a></li>
-      <li ng-if="vm.exam._id" class="active"><a ui-sref="manage.exams.edit({examId: vm.exam._id})" ng-bind="'GENERAL.EDIT' | translate"></a></li>
+      <li ng-if="vm.exam._id"><a ui-sref="manage.examsessions.viewexam({ examsessionCode: vm.examsession.code, examId: vm.exam._id })" ng-bind="vm.examtitle"></a></li>
+      <li ng-if="vm.exam._id" class="active"><a ui-sref="manage.examsessions.editexam({ examsessionCode: vm.examsession.code, examId: vm.exam._id })" ng-bind="'GENERAL.EDIT' | translate"></a></li>
     </ol>
 
-    <h2><span ng-if="vm.exam._id" ng-bind="vm.exam.title"></span><span ng-if="!vm.exam._id" ng-bind="'EXAMSESSION.ADD_EXAM' | translate"></span></h2>
+    <h2><span ng-if="vm.exam._id" ng-bind="vm.examtitle"></span><span ng-if="!vm.exam._id" ng-bind="'EXAMSESSION.ADD_EXAM' | translate"></span></h2>
 
     <p><span ng-bind="'EXAM.EXAMSESSION_SUMMARY' | translate:{name: vm.examsession.name}"></span> <i>{{vm.examsession.start | amDateFormat: 'ddd D MMM YYYY'}}</i> au <i>{{vm.examsession.end | amDateFormat: 'ddd D MMM YYYY'}}</i>.</p>
 

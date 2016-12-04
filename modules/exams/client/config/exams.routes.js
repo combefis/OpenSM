@@ -34,6 +34,19 @@
           roles: ['manager.exams'],
           pageTitle: '{{examResolve.title}}'
         }
+      })
+      .state('manage.examsessions.editexam', {
+        url: '/:examsessionCode/exams/:examId/edit',
+        templateUrl: 'modules/exams/client/views/form-exam.client.view.html',
+        controller: 'ExamsController',
+        controllerAs: 'vm',
+        resolve: {
+          examResolve: getExam
+        },
+        data: {
+          roles: ['manager.exams'],
+          pageTitle: 'Edit an exam'
+        }
       });
   }
 

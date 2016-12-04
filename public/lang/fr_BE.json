@@ -56,7 +56,8 @@
     "DATE_ERROR": "Veuillez spécifier la date.",
     "DURATION": "Durée",
     "DURATION_ERROR": "Veuillez spécifier la durée.",
-    "EXAMSESSION_SUMMARY": "Ajout d'un examen à la session de {{name}} qui se déroule du",
+    "EXAMSESSION_SUMMARY": "Examen de la session de \"{{name}}\" qui se déroule du",
+    "SUCCESSFUL_UPDATE": "Examen mis à jour avec succès !",
     "SUCCESSFUL_DELETE": "Examen supprimé avec succès !"
   },
   "EXAMSESSION": {

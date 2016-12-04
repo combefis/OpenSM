@@ -56,7 +56,8 @@
     "DATE_ERROR": "Please fill in the date.",
     "DURATION": "Duration",
     "DURATION_ERROR": "Please fill in the duration.",
-    "EXAMSESSION_SUMMARY": "Addition of an exam to the session of {{name}} which takes place from",
+    "EXAMSESSION_SUMMARY": "Exam of the session of \"{{name}}\" which takes place from",
+    "SUCCESSFUL_UPDATE": "Exam updated successfully!",
     "SUCCESSFUL_DELETE": "Exam deleted successfully!"
   },
   "EXAMSESSION": {

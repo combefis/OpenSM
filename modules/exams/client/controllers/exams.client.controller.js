@@ -11,6 +11,7 @@
     var vm = this;
 
     vm.exam = exam;
+    vm.examtitle = exam.title;
     vm.examsession = null;
     vm.authentication = Authentication;
     vm.error = null;
@@ -19,6 +20,8 @@
     vm.save = save;
     vm.loadCourses = loadCourses;
     vm.isFormReady = isFormReady;
+
+    var examId = exam._id;
 
     // The course and exam session must be a list for the tags-input
     if (vm.exam.course) {
@@ -52,7 +55,6 @@
         $state.go('manage.examsessions.view', {
           examsessionCode: vm.examsession.code
         });
-        console.log('BEEEEEE');
         Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAM.SUCCESSFUL_DELETE') });
       }
 
@@ -84,10 +86,17 @@
         vm.exam.date = null;
         vm.exam.duration = 0;
 
-        $state.go('manage.examsessions.view', {
-          examsessionCode: code
-        });
-        Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAMSESSION.SUCCESSFUL_EXAMADD') });
+        if (!examId) {
+          $state.go('manage.examsessions.view', {
+            examsessionCode: code
+          });
+        } else {
+          $state.go('manage.examsessions.viewexam', {
+            examsessionCode: code,
+            examId: examId
+          });
+        }
+        Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')(examId ? 'EXAM.SUCCESSFUL_UPDATE' : 'EXAMSESSION.SUCCESSFUL_EXAMADD') });
       }
 
       function errorCallback(res) {

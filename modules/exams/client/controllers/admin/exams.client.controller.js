@@ -11,6 +11,7 @@
     var vm = this;
 
     vm.exam = exam;
+    vm.examtitle = exam.title;
     vm.authentication = Authentication;
     vm.error = null;
     vm.form = {};
@@ -19,6 +20,8 @@
     vm.loadCourses = loadCourses;
     vm.loadExamSessions = loadExamSessions;
     vm.isFormReady = isFormReady;
+
+    var examId = exam._id;
 
     // The course and exam session must be a list for the tags-input
     if (vm.exam.course) {
@@ -87,6 +90,7 @@
         $state.go('admin.manage.exams.view', {
           examId: res._id
         });
+        Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')(examId ? 'EXAM.SUCCESSFUL_UPDATE' : 'EXAMSESSION.SUCCESSFUL_EXAMADD') });
       }
 
       function errorCallback(res) {
