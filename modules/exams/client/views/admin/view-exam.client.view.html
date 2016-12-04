@@ -20,13 +20,13 @@
 
         <uib-tabset>
           <uib-tab heading="{{'EXAM.STUDENTS' | translate}}">
-            <div ng-if="!vm.exam.students" ng-bind="'EXAM.NO_STUDENTS' | translate"></div>
+            <div ng-if="!vm.exam.registrations.length" ng-bind="'EXAM.NO_STUDENTS' | translate"></div>
           </uib-tab>
           <uib-tab heading="{{'EXAM.COPIES' | translate}}">
-            <div ng-if="!vm.exam.copies" ng-bind="'EXAM.NO_COPIES' | translate"></div>
+            <div ng-if="!vm.exam.copies.length" ng-bind="'EXAM.NO_COPIES' | translate"></div>
           </uib-tab>
           <uib-tab heading="{{'EXAM.ROOMS' | translate}}">
-            <div ng-if="!vm.exam.rooms" ng-bind="'EXAM.NO_ROOMS' | translate"></div>
+            <div ng-if="!vm.exam.rooms.length" ng-bind="'EXAM.NO_ROOMS' | translate"></div>
           </uib-tab>
         </uib-tabset>
       </div>
@@ -36,10 +36,14 @@
           <div class="panel-heading"><h3 class="panel-title" ng-bind="'INFORMATIONS' | translate"></h3></div>
           <div class="panel-body">
             <dl>
+              <dt ng-bind="'EXAM.COURSE' | translate"></dt>
+              <dd ng-bind="vm.exam.course[0].code"></dd>
               <dt ng-bind="'EXAM.EXAMSESSION' | translate"></dt>
               <dd ng-bind="vm.exam.examsession[0].name"></dd>
               <dt ng-bind="'EXAM.DATE' | translate"></dt>
               <dd ng-bind="vm.exam.date | amDateFormat:'ddd D MMM YYYY HH:mm'"></dd>
+              <dt ng-bind="'EXAM.DURATION' | translate"></dt>
+              <dd ng-bind="vm.exam.duration"></dd>
             </dl>
           </div>
         </div>

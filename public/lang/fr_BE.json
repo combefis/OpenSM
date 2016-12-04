@@ -58,7 +58,13 @@
     "DURATION_ERROR": "Veuillez spécifier la durée.",
     "EXAMSESSION_SUMMARY": "Examen de la session de \"{{name}}\" qui se déroule du",
     "SUCCESSFUL_UPDATE": "Examen mis à jour avec succès !",
-    "SUCCESSFUL_DELETE": "Examen supprimé avec succès !"
+    "SUCCESSFUL_DELETE": "Examen supprimé avec succès !",
+    "STUDENTS": "Étudiants",
+    "NO_STUDENTS": "Pas d'étudiants inscrits.",
+    "COPIES": "Copies",
+    "NO_COPIES": "Pas de copies chargées.",
+    "ROOMS": "Locaux",
+    "NO_ROOMS": "Pas de locaux attribués."
   },
   "EXAMSESSION": {
     "EXAMSESSIONS": "Sessions d'examens",
@@ -103,9 +109,9 @@
   "LOADING": "Chargement...",
   "OPENSM_AUTHORS": "les auteurs de OpenSM",
   "ROOM": {
-    "ROOMS": "Salles",
-    "NO_ROOM": "Aucune salle.",
-    "NB_ROOMS": "Nombre de salle",
+    "ROOMS": "Locaux",
+    "NO_ROOM": "Aucun local.",
+    "NB_ROOMS": "Nombre de locaux",
     "CODE": "Code",
     "CODE_ERROR": "Veuillez spécifier le code.",
     "NAME": "Nom",
