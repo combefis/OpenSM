@@ -15,7 +15,8 @@ module.exports = function (app) {
   // Single exam routes
   app.route('/api/exams/:examId').all(examsPolicy.isAllowed)
     .get(exams.read)
-    .put(exams.update);
+    .put(exams.update)
+    .delete(exams.delete);
 
   // Finish by binding the exam middleware
   app.param('examId', exams.examByID);

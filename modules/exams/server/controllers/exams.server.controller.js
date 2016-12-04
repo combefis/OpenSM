@@ -103,6 +103,45 @@ exports.update = function (req, res) {
   });
 };
 
+/*
+ * Delete an exam
+ */
+exports.delete = function (req, res) {
+  var exam = req.exam;
+
+  // Load the exam session
+  ExamSession.findById(exam.examsession).exec(function (err, examsession) {
+    if (err || !examsession) {
+      return res.status(400).send({
+        message: 'Impossible to find the exam session.'
+      });
+    }
+
+    // Remove the exam from the exam session
+    var i = examsession.exams.findIndex(function (element) {
+      return element.toString() === exam._id.toString();
+    });
+    examsession.exams.splice(i, 1);
+    examsession.save(function (err) {
+      if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      }
+
+      exam.remove(function (err) {
+        if (err) {
+          return res.status(422).send({
+            message: errorHandler.getErrorMessage(err)
+          });
+        }
+
+        res.json(exam);
+      });
+    });
+  });
+};
+
 /**
  * List of exams
  */

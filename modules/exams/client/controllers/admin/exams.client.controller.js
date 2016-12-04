@@ -5,15 +5,16 @@
     .module('exams.admin')
     .controller('ExamsAdminController', ExamsAdminController);
 
-  ExamsAdminController.$inject = ['$scope', '$state', '$http', 'examResolve', '$window', 'Authentication', '$filter'];
+  ExamsAdminController.$inject = ['$scope', '$state', '$http', 'examResolve', '$window', 'Authentication', 'Notification', '$filter'];
 
-  function ExamsAdminController($scope, $state, $http, exam, $window, Authentication, $filter) {
+  function ExamsAdminController($scope, $state, $http, exam, $window, Authentication, Notification, $filter) {
     var vm = this;
 
     vm.exam = exam;
     vm.authentication = Authentication;
     vm.error = null;
     vm.form = {};
+    vm.remove = remove;
     vm.save = save;
     vm.loadCourses = loadCourses;
     vm.loadExamSessions = loadExamSessions;
@@ -45,6 +46,23 @@
 
     // Convert date to Date object
     vm.exam.date = vm.exam.date ? new Date(vm.exam.date) : null;
+
+    // Remove existing exam
+    function remove() {
+      if ($window.confirm('Are you sure you want to delete this exam?')) {
+        vm.exam.$remove({ examId: exam._id }, onSuccess, onError);
+      }
+
+      function onSuccess(examsession) {
+        $state.go('admin.manage.exams.list');
+        Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAM.SUCCESSFUL_DELETE') });
+      }
+
+      function onError(errorResponse) {
+        var error = errorResponse.data;
+        Notification.error({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + error.message });
+      }
+    }
 
     // Save exam
     function save(isValid) {
