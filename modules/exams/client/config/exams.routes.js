@@ -25,7 +25,7 @@
       .state('manage.examsessions.viewexam', {
         url: '/:examsessionCode/exams/:examId',
         templateUrl: 'modules/exams/client/views/view-exam.client.view.html',
-        controller: 'ExamsAdminController',
+        controller: 'ExamsController',
         controllerAs: 'vm',
         resolve: {
           examResolve: getExam

@@ -15,6 +15,7 @@
     vm.authentication = Authentication;
     vm.error = null;
     vm.form = {};
+    vm.remove = remove;
     vm.save = save;
     vm.loadCourses = loadCourses;
     vm.isFormReady = isFormReady;
@@ -40,6 +41,26 @@
 
     // Convert date to Date object
     vm.exam.date = vm.exam.date ? new Date(vm.exam.date) : null;
+
+    // Remove existing exam
+    function remove() {
+      if ($window.confirm('Are you sure you want to delete this exam?')) {
+        vm.exam.$remove({ examId: exam._id }, onSuccess, onError);
+      }
+
+      function onSuccess(examsession) {
+        $state.go('manage.examsessions.view', {
+          examsessionCode: vm.examsession.code
+        });
+        console.log('BEEEEEE');
+        Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAM.SUCCESSFUL_DELETE') });
+      }
+
+      function onError(errorResponse) {
+        var error = errorResponse.data;
+        Notification.error({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + error.message });
+      }
+    }
 
     // Save exam
     function save(isValid) {
