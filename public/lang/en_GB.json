@@ -63,6 +63,7 @@
     "NO_STUDENTS": "No registered students.",
     "COPIES": "Copies",
     "NO_COPIES": "No uploaded exam copies.",
+    "ADD_COPY": "Add a copy",
     "ROOMS": "Rooms",
     "NO_ROOMS": "No affected rooms."
   },

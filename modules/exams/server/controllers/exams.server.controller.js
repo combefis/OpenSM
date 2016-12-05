@@ -185,6 +185,24 @@ exports.addRoom = function (req, res) {
 };
 
 /**
+ * Add a copy to an exam
+ */
+exports.addCopy = function (req, res) {
+  var exam = req.exam;
+
+  // Add the copy to the exam and save it
+  exam.copies.push({});
+  exam.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+    res.json(exam.copies);
+  });
+};
+
+/**
  * Exam middleware
  */
 exports.examByID = function (req, res, next, id) {

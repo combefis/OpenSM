@@ -21,6 +21,8 @@ module.exports = function (app) {
   // Exam update routes
   app.route('/api/exams/:examId/addroom').all(examsPolicy.isAllowed)
     .post(exams.addRoom);
+  app.route('/api/exams/:examId/addcopy').all(examsPolicy.isAllowed)
+    .post(exams.addCopy);
 
   // Finish by binding the exam middleware
   app.param('examId', exams.examByID);

@@ -23,6 +23,7 @@
     vm.loadExamSessions = loadExamSessions;
     vm.isFormReady = isFormReady;
     vm.addRoom = addRoom;
+    vm.addCopy = addCopy;
 
     var examId = exam._id;
 
@@ -132,6 +133,14 @@
       $http.post('/api/exams/' + vm.exam._id + '/addroom', { 'roomCode': vm.selectedRoom.code })
       .then(function(response) {
         vm.exam.rooms = response.data;
+      });
+    }
+
+    // Add a copy to the exam
+    function addCopy() {
+      $http.post('/api/exams/' + vm.exam._id + '/addcopy')
+      .then(function(response) {
+        vm.exam.copies = response.data;
       });
     }
   }
