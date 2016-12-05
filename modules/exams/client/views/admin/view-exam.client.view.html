@@ -29,7 +29,7 @@
             <div class="pull-right" data-ng-if="! exam.ready">
               <form class="form-inline">
                 <input type="text" placeholder="{{'ROOM.ROOM' | translate}}" ng-model="vm.selectedRoom" uib-typeahead="room as room.code for room in vm.rooms | filter:$viewValue | limitTo:8" class="form-control">
-                <button ng-click="vm.addRoom()" class="btn btn-primary" ng-bind="'EXAM.ADD_ROOM' | translate"></button>
+                <button ng-click="vm.addRoom()" class="btn btn-primary" ng-bind="'GENERAL.ADD' | translate"></button>
               </form>
             </div>
             <div class="clearfix" ng-if="vm.exam.rooms.length">

@@ -64,8 +64,7 @@
     "COPIES": "Copies",
     "NO_COPIES": "Pas de copies chargées.",
     "ROOMS": "Locaux",
-    "NO_ROOMS": "Pas de locaux attribués.",
-    "ADD_ROOM": "Ajouter le local"
+    "NO_ROOMS": "Pas de locaux attribués."
   },
   "EXAMSESSION": {
     "EXAMSESSIONS": "Sessions d'examens",
@@ -96,7 +95,8 @@
     "CREATE": "Créer",
     "EDIT": "Éditer",
     "UPDATE": "Mettre à jour",
-    "DELETE": "Supprimer"
+    "DELETE": "Supprimer",
+    "ADD": "Ajouter"
   },
   "HOME": {
     "LEAD": "Bienvenue sur la plateforme OpenSM !",

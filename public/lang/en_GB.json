@@ -64,8 +64,7 @@
     "COPIES": "Copies",
     "NO_COPIES": "No uploaded exam copies.",
     "ROOMS": "Rooms",
-    "NO_ROOMS": "No affected rooms.",
-    "ADD_ROOM": "Add the room"
+    "NO_ROOMS": "No affected rooms."
   },
   "EXAMSESSION": {
     "EXAMSESSIONS": "Exam sessions",
@@ -96,7 +95,8 @@
     "CREATE": "Create",
     "EDIT": "Edit",
     "UPDATE": "Update",
-    "DELETE": "Delete"
+    "DELETE": "Delete",
+    "ADD": "Add"
   },
   "HOME": {
     "LEAD": "Welcome on the OpenSM platform!",
