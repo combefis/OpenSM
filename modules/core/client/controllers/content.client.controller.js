@@ -12,11 +12,20 @@
 
     vm.authentication = Authentication;
     vm.hasAnyRole = hasAnyRole;
+    vm.getNumber = getNumber;
 
-    function hasAnyRole(roles) {
+    function hasAnyRole (roles) {
       return roles.some(function(element, index, array) {
         return vm.authentication.user.roles.includes(element);
       });
+    }
+
+    function getNumber (n) {
+      var tab = [];
+      for (var i = 0; i < n; i++) {
+        tab.push(i);
+      }
+      return tab;
     }
   }
 }());
