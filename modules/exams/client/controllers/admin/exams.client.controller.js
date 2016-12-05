@@ -130,7 +130,7 @@
 
     // Add a room to the exam
     function addRoom() {
-      $http.post('/api/exams/' + vm.exam._id + '/addroom', { 'roomCode': vm.selectedRoom.code })
+      $http.post('/api/exams/' + vm.exam._id + '/room', { 'roomCode': vm.selectedRoom.code })
       .then(function(response) {
         vm.selectedRoom = undefined;
         vm.exam.rooms = response.data;
@@ -139,7 +139,7 @@
 
     // Add a copy to the exam
     function addCopy() {
-      $http.post('/api/exams/' + vm.exam._id + '/addcopy')
+      $http.post('/api/exams/' + vm.exam._id + '/copy')
       .then(function(response) {
         vm.exam.copies = response.data;
       });

@@ -21,10 +21,10 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/exams/:examId',
       permissions: '*'
     }, {
-      resources: '/api/exams/:examId/addroom',
+      resources: '/api/exams/:examId/room',
       permissions: ['post']
     }, {
-      resources: '/api/exams/:examId/addcopy',
+      resources: '/api/exams/:examId/copy',
       permissions: ['post']
     }]
   }, {

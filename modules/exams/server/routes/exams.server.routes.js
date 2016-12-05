@@ -19,9 +19,9 @@ module.exports = function (app) {
     .delete(exams.delete);
 
   // Exam update routes
-  app.route('/api/exams/:examId/addroom').all(examsPolicy.isAllowed)
+  app.route('/api/exams/:examId/room').all(examsPolicy.isAllowed)
     .post(exams.addRoom);
-  app.route('/api/exams/:examId/addcopy').all(examsPolicy.isAllowed)
+  app.route('/api/exams/:examId/copy').all(examsPolicy.isAllowed)
     .post(exams.addCopy);
 
   // Finish by binding the exam middleware
