@@ -23,12 +23,18 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/teachers',
       permissions: '*'
+    }, {
+      resources: '/api/students',
+      permissions: '*'
     }]
   }, {
     roles: ['manager'],
     allows: [{
       resources: '/api/teachers',
-      permissions: 'get'
+      permissions: ['get']
+    }, {
+      resources: '/api/students',
+      permissions: ['get']
     }]
   }]);
 };

@@ -85,6 +85,20 @@ exports.listTeachers = function (req, res) {
 };
 
 /**
+ * List of students
+ */
+exports.listStudents = function (req, res) {
+  User.find({ 'roles': 'teacher' }, 'displayName').exec(function (err, teachers) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+    res.json(teachers);
+  });
+};
+
+/**
  * User middleware
  */
 exports.userByID = function (req, res, next, id) {

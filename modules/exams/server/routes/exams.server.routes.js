@@ -18,6 +18,10 @@ module.exports = function (app) {
     .put(exams.update)
     .delete(exams.delete);
 
+  // Exam update routes
+  app.route('/api/exams/:examId/addroom').all(examsPolicy.isAllowed)
+    .post(exams.addRoom);
+
   // Finish by binding the exam middleware
   app.param('examId', exams.examByID);
 };

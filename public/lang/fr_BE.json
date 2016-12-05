@@ -64,7 +64,8 @@
     "COPIES": "Copies",
     "NO_COPIES": "Pas de copies chargées.",
     "ROOMS": "Locaux",
-    "NO_ROOMS": "Pas de locaux attribués."
+    "NO_ROOMS": "Pas de locaux attribués.",
+    "ADD_ROOM": "Ajouter le local"
   },
   "EXAMSESSION": {
     "EXAMSESSIONS": "Sessions d'examens",
@@ -115,7 +116,8 @@
     "CODE": "Code",
     "CODE_ERROR": "Veuillez spécifier le code.",
     "NAME": "Nom",
-    "NAME_ERROR": "Veuillez spécifier le nom."
+    "NAME_ERROR": "Veuillez spécifier le nom.",
+    "ROOM": "Local"
   },
   "USER": {
     "USERNAME": "Nom d'utilisateur",

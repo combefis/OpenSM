@@ -17,9 +17,12 @@
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
+    vm.students = null;
+    vm.rooms = null;
     vm.loadCourses = loadCourses;
     vm.loadExamSessions = loadExamSessions;
     vm.isFormReady = isFormReady;
+    vm.addRoom = addRoom;
 
     var examId = exam._id;
 
@@ -45,6 +48,17 @@
     $http.get('/api/examsessions').success(function(data, status, headers, config) {
       examsessionsList = data;
       tagsInputListsLoaded[1] = true;
+    });
+
+    // Load the list of students for the registrations
+    $http.get('/api/students').success(function(data, status, headers, config) {
+      vm.students = data;
+    });
+
+    // Load the list of rooms for the rooms
+    var roomsList = [];
+    $http.get('/api/rooms').success(function(data, status, headers, config) {
+      vm.rooms = data;
     });
 
     // Convert date to Date object
@@ -111,6 +125,15 @@
     // Test whether the form is ready to be displayed and used
     function isFormReady() {
       return tagsInputListsLoaded.every(function(data) {return data;});
+    }
+
+    // Add a room to the exam
+    function addRoom() {
+      $http.post('/api/exams/' + vm.exam._id + '/addroom', { 'roomCode': vm.selectedRoom.code })
+      .then(function(data, status, headers, config) {
+        console.log('Okay');
+        // TODO...
+      });
     }
   }
 }());

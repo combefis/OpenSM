@@ -20,6 +20,9 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/exams/:examId',
       permissions: '*'
+    }, {
+      resources: '/api/exams/:examId/addroom',
+      permissions: ['post']
     }]
   }, {
     roles: ['manager.exams'],

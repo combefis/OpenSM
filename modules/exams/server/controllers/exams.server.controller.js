@@ -8,6 +8,7 @@ var path = require('path'),
   mongoose = require('mongoose'),
   Exam = mongoose.model('Exam'),
   ExamSession = mongoose.model('ExamSession'),
+  Room = mongoose.model('Room'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
 /*
@@ -157,6 +158,33 @@ exports.list = function (req, res) {
 };
 
 /**
+ * Add a room to an exam
+ */
+exports.addRoom = function (req, res) {
+  var exam = req.exam;
+
+  // Find the room to add
+  Room.findOne({ 'code': req.body.roomCode }, 'code name').exec(function (err, room) {
+    if (err || !room) {
+      return res.status(404).send({
+        message: 'No room with that code has been found.'
+      });
+    }
+
+    // Add the room to the exam and save it
+    exam.rooms.push(room);
+    exam.save(function (err) {
+      if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      }
+      res.json(exam);
+    });
+  });
+};
+
+/**
  * Exam middleware
  */
 exports.examByID = function (req, res, next, id) {
@@ -166,9 +194,10 @@ exports.examByID = function (req, res, next, id) {
     });
   }
 
-  Exam.findById(id, 'title course examsession date duration')
+  Exam.findById(id, 'title course examsession date duration registrations copies rooms')
   .populate('course', 'code')
   .populate('examsession', 'code name')
+  .populate('rooms', 'code')
   .exec(function (err, exam) {
     if (err) {
       return next(err);

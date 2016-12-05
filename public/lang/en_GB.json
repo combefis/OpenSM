@@ -64,7 +64,8 @@
     "COPIES": "Copies",
     "NO_COPIES": "No uploaded exam copies.",
     "ROOMS": "Rooms",
-    "NO_ROOMS": "No affected rooms."
+    "NO_ROOMS": "No affected rooms.",
+    "ADD_ROOM": "Add the room"
   },
   "EXAMSESSION": {
     "EXAMSESSIONS": "Exam sessions",
@@ -115,7 +116,8 @@
     "CODE": "Code",
     "CODE_ERROR": "Please fill in the code.",
     "NAME": "Name",
-    "NAME_ERROR": "Please fill in the name."
+    "NAME_ERROR": "Please fill in the name.",
+    "ROOM": "Room"
   },
   "USER": {
     "USERNAME": "Username",
