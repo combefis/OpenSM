@@ -132,6 +132,7 @@
     function addRoom() {
       $http.post('/api/exams/' + vm.exam._id + '/addroom', { 'roomCode': vm.selectedRoom.code })
       .then(function(response) {
+        vm.selectedRoom = undefined;
         vm.exam.rooms = response.data;
       });
     }
