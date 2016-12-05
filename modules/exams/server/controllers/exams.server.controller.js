@@ -179,7 +179,7 @@ exports.addRoom = function (req, res) {
           message: errorHandler.getErrorMessage(err)
         });
       }
-      res.json(exam);
+      res.json(exam.rooms);
     });
   });
 };
@@ -197,7 +197,7 @@ exports.examByID = function (req, res, next, id) {
   Exam.findById(id, 'title course examsession date duration registrations copies rooms')
   .populate('course', 'code')
   .populate('examsession', 'code name')
-  .populate('rooms', 'code')
+  .populate('rooms', 'code name')
   .exec(function (err, exam) {
     if (err) {
       return next(err);

@@ -130,9 +130,8 @@
     // Add a room to the exam
     function addRoom() {
       $http.post('/api/exams/' + vm.exam._id + '/addroom', { 'roomCode': vm.selectedRoom.code })
-      .then(function(data, status, headers, config) {
-        console.log('Okay');
-        // TODO...
+      .then(function(response) {
+        vm.exam.rooms = response.data;
       });
     }
   }

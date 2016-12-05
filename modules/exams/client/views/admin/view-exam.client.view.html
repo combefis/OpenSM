@@ -35,7 +35,7 @@
             <div class="clearfix" ng-if="vm.exam.rooms.length">
               <uib-tabset>
                 <uib-tab ng-repeat="room in vm.exam.rooms" heading="{{room.code}}">
-                  <p>Blabla.</p>
+                  <h3 ng-bind="room.name"></h3>
                 </uib-tab>
               </uib-tabset>
             </div>
