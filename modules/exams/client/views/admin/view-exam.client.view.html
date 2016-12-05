@@ -26,20 +26,22 @@
             <div ng-if="!vm.exam.copies.length" ng-bind="'EXAM.NO_COPIES' | translate"></div>
           </uib-tab>
           <uib-tab heading="{{'EXAM.ROOMS' | translate}}">
-            <div class="pull-right" data-ng-if="! exam.ready">
-              <form class="form-inline">
-                <input type="text" placeholder="{{'ROOM.ROOM' | translate}}" ng-model="vm.selectedRoom" uib-typeahead="room as room.code for room in vm.rooms | filter:$viewValue | limitTo:8" class="form-control">
-                <button ng-click="vm.addRoom()" class="btn btn-primary" ng-bind="'GENERAL.ADD' | translate"></button>
-              </form>
+            <div class="clearfix">
+              <div class="pull-right" data-ng-if="! exam.ready">
+                <form class="form-inline">
+                  <input type="text" placeholder="{{'ROOM.ROOM' | translate}}" ng-model="vm.selectedRoom" uib-typeahead="room as room.code for room in vm.rooms | filter:$viewValue | limitTo:8" class="form-control">
+                  <button ng-click="vm.addRoom()" class="btn btn-primary" ng-bind="'GENERAL.ADD' | translate"></button>
+                </form>
+              </div>
             </div>
-            <div class="clearfix" ng-if="vm.exam.rooms.length">
+            <div ng-if="vm.exam.rooms.length">
               <uib-tabset>
                 <uib-tab ng-repeat="room in vm.exam.rooms" heading="{{room.code}}">
                   <h3 ng-bind="room.name"></h3>
                 </uib-tab>
               </uib-tabset>
             </div>
-            <div class="clearfix" ng-if="!vm.exam.rooms.length" ng-bind="'EXAM.NO_ROOMS' | translate"></div>
+            <div ng-if="!vm.exam.rooms.length" ng-bind="'EXAM.NO_ROOMS' | translate"></div>
           </uib-tab>
         </uib-tabset>
       </div>
