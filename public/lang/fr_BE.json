@@ -64,6 +64,7 @@
     "COPIES": "Copies",
     "NO_COPIES": "Pas de copies chargées.",
     "ADD_COPY": "Ajouter une copie",
+    "COPY": "Copie",
     "ROOMS": "Locaux",
     "NO_ROOMS": "Pas de locaux attribués."
   },

@@ -203,6 +203,24 @@ exports.addCopy = function (req, res) {
 };
 
 /**
+ * Remove a copy of an exam
+ */
+exports.deleteCopy = function (req, res) {
+  var exam = req.exam;
+
+  // Remove the copy from the exam and save it
+  exam.copies.splice(req.params.i, 1);
+  exam.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+    res.json(exam.copies);
+  });
+};
+
+/**
  * Exam middleware
  */
 exports.examByID = function (req, res, next, id) {

@@ -32,7 +32,10 @@
             </div>
             <div ng-if="vm.exam.copies.length">
               <ul class="list-group">
-                <li class="list-group-item" ng-repeat="i in cvm.getNumber(vm.exam.copies.length) track by $index">{{i+1}} Blabla.</li>
+                <li class="list-group-item" ng-repeat="i in cvm.getNumber(vm.exam.copies.length) track by $index">
+                  <b>{{'EXAM.COPY' | translate}} {{i+1}}</b>
+                  <button ng-click="vm.removeCopy(i)" class="btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+                </li>
               </ul>
             </div>
             <div ng-if="!vm.exam.copies.length" ng-bind="'EXAM.NO_COPIES' | translate"></div>

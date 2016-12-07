@@ -23,6 +23,8 @@ module.exports = function (app) {
     .post(exams.addRoom);
   app.route('/api/exams/:examId/copy').all(examsPolicy.isAllowed)
     .post(exams.addCopy);
+  app.route('/api/exams/:examId/copy/:i').all(examsPolicy.isAllowed)
+    .delete(exams.deleteCopy);
 
   // Finish by binding the exam middleware
   app.param('examId', exams.examByID);

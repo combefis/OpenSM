@@ -24,6 +24,7 @@
     vm.isFormReady = isFormReady;
     vm.addRoom = addRoom;
     vm.addCopy = addCopy;
+    vm.removeCopy = removeCopy;
 
     var examId = exam._id;
 
@@ -140,6 +141,14 @@
     // Add a copy to the exam
     function addCopy() {
       $http.post('/api/exams/' + vm.exam._id + '/copy')
+      .then(function(response) {
+        vm.exam.copies = response.data;
+      });
+    }
+
+    // Remove a copy of the exam
+    function removeCopy(i) {
+      $http.delete('/api/exams/' + vm.exam._id + '/copy/' + i)
       .then(function(response) {
         vm.exam.copies = response.data;
       });

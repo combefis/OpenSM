@@ -64,6 +64,7 @@
     "COPIES": "Copies",
     "NO_COPIES": "No uploaded exam copies.",
     "ADD_COPY": "Add a copy",
+    "COPY": "Copy",
     "ROOMS": "Rooms",
     "NO_ROOMS": "No affected rooms."
   },
