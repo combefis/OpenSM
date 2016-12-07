@@ -30,6 +30,7 @@ module.exports = {
         'public/lib/angular-moment/angular-moment.min.js',
         'public/lib/angular-bootstrap-datetimepicker/src/js/datetimepicker.js',
         'public/lib/angular-bootstrap-datetimepicker/src/js/datetimepicker.templates.js',
+        'public/lib/ng-file-upload/ng-file-upload.min.js',
         'public/lib/ng-tags-input/ng-tags-input.min.js',
         'public/lib/jquery/dist/jquery.min.js',
         'public/lib/bootstrap/dist/js/bootstrap.min.js',
