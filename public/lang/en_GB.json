@@ -64,7 +64,9 @@
     "COPIES": "Copies",
     "NO_COPIES": "No uploaded exam copies.",
     "ADD_COPY": "Add a copy",
-    "COPY": "Copy",
+    "COPY": "Questionnaire",
+    "COPY_NOT_UPLOADED": "Questionnaire not uploaded yet.",
+    "FILE_UPLOADED_ON": "File uploaded on",
     "ROOMS": "Rooms",
     "NO_ROOMS": "No affected rooms."
   },

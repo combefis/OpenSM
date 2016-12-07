@@ -4,6 +4,7 @@
  * Module dependencies
  */
 var path = require('path'),
+  fs = require('fs-extra'),
   moment = require('moment'),
   mongoose = require('mongoose'),
   Exam = mongoose.model('Exam'),
@@ -219,6 +220,56 @@ exports.deleteCopy = function (req, res) {
       });
     }
     res.json(exam.copies);
+  });
+};
+
+/**
+ * Upload a copy of an exam
+ */
+exports.uploadCopy = function (req, res) {
+  var exam = req.exam;
+
+  // Create exam directory if not existing yet
+  var dest = path.dirname(require.main.filename) + '/copies/' + exam._id;
+  fs.ensureDir(dest, function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+
+    // Copy the uploaded file in the exam directory
+    var file = req.files.file;
+    dest += '/' + path.basename(file.path);
+    fs.copy(file.path, dest, function (err) {
+      if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      }
+
+      // Delete uploaded file
+      try {
+        fs.removeSync(file.path);
+      } catch (err) {
+        console.log('Error while deleting uploaded file.');
+      }
+
+      // Update the copy of the exam and save it
+      var copy = exam.copies[req.params.i];
+      copy.name = path.basename(file.path);
+      copy.created = new Date();
+      copy.user = req.user;
+
+      exam.save(function (err) {
+        if (err) {
+          return res.status(422).send({
+            message: errorHandler.getErrorMessage(err)
+          });
+        }
+        res.json(exam.copies);
+      });
+    });
   });
 };
 

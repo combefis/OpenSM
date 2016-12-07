@@ -5,9 +5,9 @@
     .module('exams.admin')
     .controller('ExamsAdminController', ExamsAdminController);
 
-  ExamsAdminController.$inject = ['$scope', '$state', '$http', 'examResolve', '$window', 'Authentication', 'Notification', '$filter'];
+  ExamsAdminController.$inject = ['$scope', '$state', '$http', 'examResolve', '$window', 'Authentication', 'Notification', '$filter', 'Upload'];
 
-  function ExamsAdminController($scope, $state, $http, exam, $window, Authentication, Notification, $filter) {
+  function ExamsAdminController($scope, $state, $http, exam, $window, Authentication, Notification, $filter, Upload) {
     var vm = this;
 
     vm.exam = exam;
@@ -17,14 +17,25 @@
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
+
+    // Auto-completion for tags-input
     vm.students = null;
     vm.rooms = null;
     vm.loadCourses = loadCourses;
     vm.loadExamSessions = loadExamSessions;
     vm.isFormReady = isFormReady;
+
+    // Rooms management
+    vm.getLetter = getLetter;
     vm.addRoom = addRoom;
+
+    // Copies management
+    var nbCopies = vm.exam.copies.length;
+    vm.uploading = Array.apply(null, new Array(nbCopies)).map(function(x, i) { return false; });
+    vm.progressValue = Array.apply(null, new Array(nbCopies)).map(function(x, i) { return null; });
     vm.addCopy = addCopy;
     vm.removeCopy = removeCopy;
+    vm.uploadCopy = uploadCopy;
 
     var examId = exam._id;
 
@@ -129,6 +140,11 @@
       return tagsInputListsLoaded.every(function(data) {return data;});
     }
 
+    // Convert an integer to a letter 1 => A, 2 => B...
+    function getLetter (i) {
+      return String.fromCharCode(64 + i);
+    }
+
     // Add a room to the exam
     function addRoom() {
       $http.post('/api/exams/' + vm.exam._id + '/room', { 'roomCode': vm.selectedRoom.code })
@@ -151,6 +167,30 @@
       $http.delete('/api/exams/' + vm.exam._id + '/copy/' + i)
       .then(function(response) {
         vm.exam.copies = response.data;
+      });
+    }
+
+    // Upload a copy for the exam
+    function uploadCopy(file, i) {
+      vm.uploading[i] = true;
+      vm.progressValue[i] = 0;
+      Upload.upload({
+        url: '/api/exams/' + vm.exam._id + '/copy/' + i + '/upload',
+        data: {
+          file: file,
+          index: i,
+          username: vm.authentication.user
+        }
+      }).then(function (resp) {
+        console.log('Success');
+        vm.uploading[i] = false;
+        vm.progressValue[i] = null;
+      }, function (resp) {
+        console.log('Error');
+        vm.uploading[i] = false;
+        vm.progressValue[i] = null;
+      }, function (evt) {
+        vm.progressValue[i] = parseInt(100.0 * evt.loaded / evt.total, 10);
       });
     }
   }

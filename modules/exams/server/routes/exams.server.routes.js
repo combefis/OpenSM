@@ -4,7 +4,8 @@
  * Module dependencies
  */
 var examsPolicy = require('../policies/exams.server.policy'),
-  exams = require('../controllers/exams.server.controller');
+  exams = require('../controllers/exams.server.controller'),
+  multiparty = require('connect-multiparty');
 
 module.exports = function (app) {
   // Exams collection routes
@@ -25,6 +26,8 @@ module.exports = function (app) {
     .post(exams.addCopy);
   app.route('/api/exams/:examId/copy/:i').all(examsPolicy.isAllowed)
     .delete(exams.deleteCopy);
+  app.route('/api/exams/:examId/copy/:i/upload').all(examsPolicy.isAllowed).all(multiparty())
+    .post(exams.uploadCopy);
 
   // Finish by binding the exam middleware
   app.param('examId', exams.examByID);

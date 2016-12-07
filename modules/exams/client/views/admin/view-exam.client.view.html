@@ -32,9 +32,15 @@
             </div>
             <div ng-if="vm.exam.copies.length">
               <ul class="list-group">
-                <li class="list-group-item" ng-repeat="i in cvm.getNumber(vm.exam.copies.length) track by $index">
-                  <b>{{'EXAM.COPY' | translate}} {{i+1}}</b>
-                  <button ng-click="vm.removeCopy(i)" class="btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+                <li class="list-group-item" ng-repeat="i in cvm.getNumber(vm.exam.copies.length)">
+                  <div class="pull-right">
+                    <button type="file" ngf-select="vm.uploadCopy($file, i)" accept="application/pdf" ngf-allow-dir="false" ngf-max-files="1" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span></button>
+                    <button ng-click="vm.removeCopy(i)" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+                  </div>
+                  <div><b>{{'EXAM.COPY' | translate}} {{vm.getLetter(i+1)}}</b></div>
+                  <div ng-if="vm.exam.copies[i].name">{{'EXAM.FILE_UPLOADED_ON' | translate}} <i>{{vm.exam.copies[i].created | amDateFormat:'ddd D MMM YYYY HH:mm'}}</i></div>
+                  <div ng-if="!vm.exam.copies[i].name" ng-bind="'EXAM.COPY_NOT_UPLOADED' | translate"></div>
+                  <uib-progressbar ng-if="vm.progressValue[i]" class="progress-striped active" animate="true" max="100" value="vm.progressValue[i]" type="success"><i>{{vm.progressValue[i]}} %</i></uib-progressbar>
                 </li>
               </ul>
             </div>

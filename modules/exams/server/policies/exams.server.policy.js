@@ -15,19 +15,14 @@ exports.invokeRolesPolicies = function () {
   acl.allow([{
     roles: ['admin'],
     allows: [{
-      resources: '/api/exams',
-      permissions: '*'
-    }, {
-      resources: '/api/exams/:examId',
-      permissions: '*'
-    }, {
-      resources: '/api/exams/:examId/room',
-      permissions: '*'
-    }, {
-      resources: '/api/exams/:examId/copy',
-      permissions: '*'
-    }, {
-      resources: '/api/exams/:examId/copy/:i',
+      resources: [
+        '/api/exams',
+        '/api/exams/:examId',
+        '/api/exams/:examId/room',
+        '/api/exams/:examId/copy',
+        '/api/exams/:examId/copy/:i',
+        '/api/exams/:examId/copy/:i/upload'
+      ],
       permissions: '*'
     }]
   }, {

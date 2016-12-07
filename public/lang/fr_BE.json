@@ -64,7 +64,9 @@
     "COPIES": "Copies",
     "NO_COPIES": "Pas de copies chargées.",
     "ADD_COPY": "Ajouter une copie",
-    "COPY": "Copie",
+    "COPY": "Questionnaire",
+    "COPY_NOT_UPLOADED": "Questionnaire pas encore chargé.",
+    "FILE_UPLOADED_ON": "Fichier chargé le",
     "ROOMS": "Locaux",
     "NO_ROOMS": "Pas de locaux attribués."
   },
