@@ -191,7 +191,9 @@ exports.addCopy = function (req, res) {
   var exam = req.exam;
 
   // Add the copy to the exam and save it
-  exam.copies.push('COPY');
+  exam.copies.push({
+    user: req.user
+  });
   exam.save(function (err) {
     if (err) {
       return res.status(422).send({
