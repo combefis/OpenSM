@@ -181,16 +181,16 @@
           index: i,
           username: vm.authentication.user
         }
-      }).then(function (resp) {
-        console.log('Success');
+      }).then(function (response) {
         vm.uploading[i] = false;
         vm.progressValue[i] = null;
-      }, function (resp) {
+        vm.exam.copies = response.data;
+      }, function (response) {
         console.log('Error');
         vm.uploading[i] = false;
         vm.progressValue[i] = null;
-      }, function (evt) {
-        vm.progressValue[i] = parseInt(100.0 * evt.loaded / evt.total, 10);
+      }, function (event) {
+        vm.progressValue[i] = parseInt(100.0 * event.loaded / event.total, 10);
       });
     }
   }

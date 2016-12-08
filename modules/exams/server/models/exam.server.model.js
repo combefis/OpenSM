@@ -48,6 +48,10 @@ var ExamSchema = new Schema({
         type: Boolean,
         default: false
       },
+      origname: {
+        type: String,
+        default: null
+      },
       created: {
         type: Date,
         default: Date.now

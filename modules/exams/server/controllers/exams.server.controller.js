@@ -258,6 +258,7 @@ exports.uploadCopy = function (req, res) {
       // Update the copy of the exam and save it
       var copy = exam.copies[req.params.i];
       copy.name = path.basename(file.path);
+      copy.origname = path.basename(file.originalFilename);
       copy.created = new Date();
       copy.user = req.user;
 
