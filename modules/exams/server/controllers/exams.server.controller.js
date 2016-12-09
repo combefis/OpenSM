@@ -222,11 +222,13 @@ exports.deleteCopy = function (req, res) {
     }
 
     // Delete the copy from the disk
-    var file = path.dirname(require.main.filename) + '/copies/' + exam._id + '/' + copy.name;
-    try {
-      fs.removeSync(file);
-    } catch (err) {
-      console.log('Error while deleting copy file.');
+    if (copy.name) {
+      var file = path.dirname(require.main.filename) + '/copies/' + exam._id + '/' + copy.name;
+      try {
+        fs.removeSync(file);
+      } catch (err) {
+        console.log('Error while deleting copy file.');
+      }
     }
 
     res.json(exam.copies);
