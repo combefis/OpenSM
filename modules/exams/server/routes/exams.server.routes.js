@@ -26,6 +26,8 @@ module.exports = function (app) {
   // Exam rooms routes
   app.route('/api/exams/:examId/room').all(examsPolicy.isAllowed)
     .post(exams.addRoom);
+  app.route('/api/exams/:examId/room/:i').all(examsPolicy.isAllowed)
+    .delete(exams.deleteRoom);
 
   // Exam copies routes
   app.route('/api/exams/:examId/copy').all(examsPolicy.isAllowed)

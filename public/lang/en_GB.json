@@ -69,7 +69,8 @@
     "COPY_SUCCESSFUL_DELETE": "Questionnaire deleted successfully!",
     "FILE_UPLOADED_ON": "File uploaded on",
     "ROOMS": "Rooms",
-    "NO_ROOMS": "No affected rooms."
+    "NO_ROOMS": "No affected rooms.",
+    "ROOM_SUCCESSFUL_DELETE": "Room deleted successfully!"
   },
   "EXAMSESSION": {
     "EXAMSESSIONS": "Exam sessions",

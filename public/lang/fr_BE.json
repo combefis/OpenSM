@@ -69,7 +69,8 @@
     "COPY_SUCCESSFUL_DELETE": "Questionnaire supprimé avec succès !",
     "FILE_UPLOADED_ON": "Fichier chargé le",
     "ROOMS": "Locaux",
-    "NO_ROOMS": "Pas de locaux attribués."
+    "NO_ROOMS": "Pas de locaux attribués.",
+    "ROOM_SUCCESSFUL_DELETE": "Local supprimé avec succès !"
   },
   "EXAMSESSION": {
     "EXAMSESSIONS": "Sessions d'examens",

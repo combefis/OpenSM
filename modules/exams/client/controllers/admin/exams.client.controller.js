@@ -31,6 +31,7 @@
     // Rooms management
     vm.getLetter = getLetter;
     vm.addRoom = addRoom;
+    vm.removeRoom = removeRoom;
 
     // Copies management
     var nbCopies = vm.exam.copies.length;
@@ -171,6 +172,21 @@
         vm.selectedRoom = undefined;
         vm.exam.rooms = response.data;
       });
+    }
+
+    // Remove a room of the exam
+    function removeRoom(i) {
+      if ($window.confirm('Are you sure you want to delete this room?')) {
+        var room = vm.exam.rooms[i];
+
+        $http.delete('/api/exams/' + vm.exam._id + '/room/' + i)
+        .then(function(response) {
+          vm.exam.rooms = response.data;
+          vm.rooms.push(room);
+
+          Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAM.ROOM_SUCCESSFUL_DELETE') });
+        });
+      }
     }
 
     // Add a copy to the exam

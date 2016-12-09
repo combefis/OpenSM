@@ -214,6 +214,25 @@ exports.addRoom = function (req, res) {
 };
 
 /**
+ * Remove a room of an exam
+ */
+exports.deleteRoom = function (req, res) {
+  var exam = req.exam;
+
+  // Remove the room from the exam and save it
+  exam.rooms.splice(req.params.i, 1);
+  exam.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+
+    res.json(exam.rooms);
+  });
+};
+
+/**
  * Add a copy to an exam
  */
 exports.addCopy = function (req, res) {
@@ -262,7 +281,6 @@ exports.deleteCopy = function (req, res) {
     res.json(exam.copies);
   });
 };
-
 
 /**
  * Download a copy of an exam

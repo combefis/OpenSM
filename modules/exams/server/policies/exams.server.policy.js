@@ -20,6 +20,7 @@ exports.invokeRolesPolicies = function () {
         '/api/exams/:examId',
         '/api/exams/:examId/student',
         '/api/exams/:examId/room',
+        '/api/exams/:examId/room/:i',
         '/api/exams/:examId/copy',
         '/api/exams/:examId/copy/:i',
         '/api/exams/:examId/copy/:i/download',
