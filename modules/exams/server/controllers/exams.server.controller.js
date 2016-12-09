@@ -146,6 +146,23 @@ exports.delete = function (req, res) {
 };
 
 /**
+ * Validate an exam
+ */
+exports.validate = function (req, res) {
+  var exam = req.exam;
+
+  exam.ready = true;
+  exam.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+    res.json(exam);
+  });
+};
+
+/**
  * List of exams
  */
 exports.list = function (req, res) {
@@ -380,7 +397,7 @@ exports.examByID = function (req, res, next, id) {
     });
   }
 
-  Exam.findById(id, 'title course examsession date duration registrations copies rooms')
+  Exam.findById(id, 'title course examsession date duration registrations copies rooms ready')
   .populate('course', 'code')
   .populate('examsession', 'code name')
   .populate('rooms', 'code name')

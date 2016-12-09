@@ -71,7 +71,10 @@
     "FILE_UPLOADED_ON": "Fichier chargé le",
     "ROOMS": "Locaux",
     "NO_ROOMS": "Pas de locaux attribués.",
-    "ROOM_SUCCESSFUL_DELETE": "Local supprimé avec succès !"
+    "ROOM_SUCCESSFUL_DELETE": "Local supprimé avec succès !",
+    "VALIDATE": "Valider",
+    "STATE": "État",
+    "VALIDATED": "Validé"
   },
   "EXAMSESSION": {
     "EXAMSESSIONS": "Sessions d'examens",

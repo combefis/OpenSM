@@ -17,6 +17,7 @@
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
+    vm.validate = validate;
 
     // Auto-completion for tags-input
     vm.students = null;
@@ -96,6 +97,16 @@
 
     // Convert date to Date object
     vm.exam.date = vm.exam.date ? new Date(vm.exam.date) : null;
+
+    // Validate exam
+    function validate() {
+      if ($window.confirm('Are you sure you want to validate this exam?')) {
+        $http.post('/api/exams/' + vm.exam._id + '/validate')
+        .then(function(response) {
+          vm.exam = response.data;
+        });
+      }
+    }
 
     // Remove existing exam
     function remove() {

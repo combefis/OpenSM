@@ -71,7 +71,10 @@
     "FILE_UPLOADED_ON": "File uploaded on",
     "ROOMS": "Rooms",
     "NO_ROOMS": "No affected rooms.",
-    "ROOM_SUCCESSFUL_DELETE": "Room deleted successfully!"
+    "ROOM_SUCCESSFUL_DELETE": "Room deleted successfully!",
+    "VALIDATE": "Validate",
+    "STATE": "State",
+    "VALIDATED": "Validated"
   },
   "EXAMSESSION": {
     "EXAMSESSIONS": "Exam sessions",

@@ -76,6 +76,10 @@ var ExamSchema = new Schema({
   academicyear: {
     type: Number
   },
+  ready: {
+    type: Boolean,
+    default: false
+  },
   created: {
     type: Date,
     default: Date.now
