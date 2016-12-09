@@ -66,6 +66,7 @@
     "ADD_COPY": "Ajouter une copie",
     "COPY": "Questionnaire",
     "COPY_NOT_UPLOADED": "Questionnaire pas encore chargé.",
+    "COPY_SUCCESSFUL_DELETE": "Questionnaire supprimé avec succès !",
     "FILE_UPLOADED_ON": "Fichier chargé le",
     "ROOMS": "Locaux",
     "NO_ROOMS": "Pas de locaux attribués."

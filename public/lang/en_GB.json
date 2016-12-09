@@ -66,6 +66,7 @@
     "ADD_COPY": "Add a copy",
     "COPY": "Questionnaire",
     "COPY_NOT_UPLOADED": "Questionnaire not uploaded yet.",
+    "COPY_SUCCESSFUL_DELETE": "Questionnaire deleted successfully!",
     "FILE_UPLOADED_ON": "File uploaded on",
     "ROOMS": "Rooms",
     "NO_ROOMS": "No affected rooms."

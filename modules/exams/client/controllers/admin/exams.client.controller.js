@@ -171,10 +171,14 @@
 
     // Remove a copy of the exam
     function removeCopy(i) {
-      $http.delete('/api/exams/' + vm.exam._id + '/copy/' + i)
-      .then(function(response) {
-        vm.exam.copies = response.data;
-      });
+      if ($window.confirm('Are you sure you want to delete this questionnaire?')) {
+        $http.delete('/api/exams/' + vm.exam._id + '/copy/' + i)
+        .then(function(response) {
+          vm.exam.copies = response.data;
+
+          Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAM.COPY_SUCCESSFUL_DELETE') });
+        });
+      }
     }
 
     // Upload a copy for the exam
