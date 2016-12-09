@@ -223,6 +223,25 @@ exports.deleteCopy = function (req, res) {
   });
 };
 
+
+/**
+ * Download a copy of an exam
+ */
+exports.downloadCopy = function (req, res) {
+  var exam = req.exam;
+
+  var file = path.dirname(require.main.filename) + '/copies/' + exam._id + '/' + exam.copies[req.params.i].name;
+  fs.readFile(file, function (err, content) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+    res.writeHead('200', { 'Content-Type': 'application/pdf' });
+    res.end(content);
+  });
+};
+
 /**
  * Upload a copy of an exam
  */

@@ -26,6 +26,8 @@ module.exports = function (app) {
     .post(exams.addCopy);
   app.route('/api/exams/:examId/copy/:i').all(examsPolicy.isAllowed)
     .delete(exams.deleteCopy);
+  app.route('/api/exams/:examId/copy/:i/download').all(examsPolicy.isAllowed)
+    .get(exams.downloadCopy);
   app.route('/api/exams/:examId/copy/:i/upload').all(examsPolicy.isAllowed).all(multiparty())
     .post(exams.uploadCopy);
 
