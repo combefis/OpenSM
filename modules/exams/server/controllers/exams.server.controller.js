@@ -401,7 +401,7 @@ exports.examByID = function (req, res, next, id) {
   .populate('course', 'code')
   .populate('examsession', 'code name')
   .populate('rooms', 'code name')
-  .populate('registrations', 'displayName')
+  .populate('registrations', 'displayName username')
   .exec(function (err, exam) {
     if (err) {
       return next(err);
