@@ -38,6 +38,29 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/exams/:examId',
       permissions: ['get', 'put', 'delete']
+    }, {
+      resources: '/api/exams/:examId/validate',
+      permissions: ['post']
+    }, {
+      resources: [
+        '/api/exams/:examId/student',
+        '/api/exams/:examId/room',
+        '/api/exams/:examId/copy'
+      ],
+      permissions: ['post']
+    }, {
+      resources: [
+        '/api/exams/:examId/student/:i',
+        '/api/exams/:examId/room/:i',
+        '/api/exams/:examId/copy/:i'
+      ],
+      permissions: ['delete']
+    }, {
+      resources: '/api/exams/:examId/copy/:i/download',
+      permissions: ['get']
+    }, {
+      resources: '/api/exams/:examId/copy/:i/upload',
+      permissions: ['post']
     }]
   }]);
 };

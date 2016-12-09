@@ -21,6 +21,12 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/rooms/:roomCode',
       permissions: '*'
     }]
+  }, {
+    roles: ['manager.exams'],
+    allows: [{
+      resources: '/api/rooms',
+      permissions: ['get']
+    }]
   }]);
 };
 

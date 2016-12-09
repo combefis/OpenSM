@@ -20,17 +20,17 @@
     vm.validate = validate;
 
     // Auto-completion for tags-input
-    vm.students = null;
-    vm.rooms = null;
     vm.loadCourses = loadCourses;
     vm.loadExamSessions = loadExamSessions;
     vm.isFormReady = isFormReady;
 
     // Students management
+    vm.students = null;
     vm.addStudent = addStudent;
     vm.removeStudent = removeStudent;
 
     // Rooms management
+    vm.rooms = null;
     vm.getLetter = getLetter;
     vm.addRoom = addRoom;
     vm.removeRoom = removeRoom;
