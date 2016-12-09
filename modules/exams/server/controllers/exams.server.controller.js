@@ -210,6 +210,7 @@ exports.addCopy = function (req, res) {
  */
 exports.deleteCopy = function (req, res) {
   var exam = req.exam;
+  var copy = exam.copies[req.params.i];
 
   // Remove the copy from the exam and save it
   exam.copies.splice(req.params.i, 1);
@@ -219,6 +220,15 @@ exports.deleteCopy = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     }
+
+    // Delete the copy from the disk
+    var file = path.dirname(require.main.filename) + '/copies/' + exam._id + '/' + copy.name;
+    try {
+      fs.removeSync(file);
+    } catch (err) {
+      console.log('Error while deleting copy file.');
+    }
+
     res.json(exam.copies);
   });
 };
