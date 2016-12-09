@@ -20,6 +20,7 @@
         controller: 'CoursesListAdminController',
         controllerAs: 'vm',
         data: {
+          roles: ['admin'],
           pageTitle: 'Courses'
         }
       })
@@ -45,6 +46,7 @@
           courseResolve: getCourse
         },
         data: {
+          roles: ['admin'],
           pageTitle: '{{courseResolve.code}} — {{courseResolve.name}}'
         }
       })

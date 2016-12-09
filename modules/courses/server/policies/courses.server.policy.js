@@ -27,6 +27,15 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/courses',
       permissions: ['get']
     }]
+  }, {
+    roles: ['teacher'],
+    allows: [{
+      resources: [
+        '/api/courses',
+        '/api/courses/:courseCode'
+      ],
+      permissions: ['get']
+    }]
   }]);
 };
 

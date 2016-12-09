@@ -1,0 +1,23 @@
+<section>
+  <div ng-if="!vm.courses.$resolved" class="loading">
+    <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> {{'LOADING' | translate}}
+  </div>
+
+  <div ng-if="vm.courses.$resolved">
+    <ol class="breadcrumb">
+      <li class="active"><a ui-sref="courses.list" ng-bind="'COURSE.COURSES' | translate"></a></li>
+    </ol>
+
+    <h2 ng-bind="'COURSE.COURSES' | translate"></h2>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="list-group" ng-if="vm.courses.length">
+          <a ng-repeat="course in vm.courses" ui-sref="courses.view({ courseCode: course.code })" class="list-group-item"><b>{{course.code}}</b><br /><i>{{course.name}}</i></a>
+        </div>
+
+        <div class="alert alert-warning" ng-if="!vm.courses.length" ng-bind="'COURSE.NO_COURSE' | translate"></div>
+      </div>
+    </div>
+  </div>
+</section>
