@@ -153,11 +153,16 @@
 
     // Add a student to the exam
     function addStudent() {
-      $http.post('/api/exams/' + vm.exam._id + '/student', { 'studentUsername': vm.selectedStudent.username })
-      .then(function(response) {
-        vm.selectedStudent = undefined;
-        vm.exam.registrations = response.data;
-      });
+      if (vm.selectedStudent) {
+        $http.post('/api/exams/' + vm.exam._id + '/student', { 'studentUsername': vm.selectedStudent.username })
+        .then(function(response) {
+          vm.students.splice(vm.students.findIndex(function (element) {
+            return element.username === vm.selectedStudent.username;
+          }), 1);
+          vm.selectedStudent = undefined;
+          vm.exam.registrations = response.data;
+        });
+      }
     }
 
     // Convert an integer to a letter 1 => A, 2 => B...
