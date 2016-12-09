@@ -14,7 +14,7 @@
 
     <div class="row">
       <div class="col-md-12">
-        <div class="action-box" ng-if="cvm.hasAnyRole(['manager.exams'])">
+        <div class="action-box" ng-if="!vm.exam.ready && cvm.hasAnyRole(['manager.exams'])">
           <a ui-sref="manage.examsessions.editexam({ examsessionCode: vm.exam.examsession.code, examId: vm.exam._id })" class="btn btn-success"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> {{'GENERAL.EDIT' | translate}}</a>
           <a ng-click="vm.remove()" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> {{'GENERAL.DELETE' | translate}}</a>
           <a ng-click="vm.validate()" class="btn btn-primary"><span class="glyphicon glyphicon-ok
@@ -23,7 +23,7 @@
 
         <uib-tabset>
           <uib-tab heading="{{'EXAM.STUDENTS' | translate}}">
-            <div class="clearfix">
+            <div ng-if="!vm.exam.ready" class="clearfix">
               <div class="pull-right">
                 <form class="form-inline right-form">
                   <input type="text" placeholder="{{'STUDENT.STUDENT' | translate}}" ng-model="vm.selectedStudent" uib-typeahead="student as student.displayName for student in vm.students | filter: $viewValue | limitTo: 8" class="form-control">
@@ -34,7 +34,7 @@
             <div ng-if="vm.exam.registrations.length">
               <ul class="list-group">
                 <li class="list-group-item" ng-repeat="i in cvm.getNumber(vm.exam.registrations.length)">
-                  <div class="pull-right">
+                  <div ng-if="!vm.exam.ready" class="pull-right">
                     <button ng-click="vm.removeStudent(i)" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
                   </div>
                   <div><b>{{i+1}} {{vm.exam.registrations[i].displayName}}</b></div>
@@ -44,7 +44,7 @@
             <div ng-if="!vm.exam.registrations.length" ng-bind="'EXAM.NO_STUDENTS' | translate"></div>
           </uib-tab>
           <uib-tab heading="{{'EXAM.COPIES' | translate}}">
-            <div class="clearfix">
+            <div ng-if="!vm.exam.ready" class="clearfix">
               <div class="pull-right">
                 <form class="form-inline right-form">
                   <button ng-click="vm.addCopy()" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> {{'EXAM.ADD_COPY' | translate}}</button>
@@ -54,7 +54,7 @@
             <div ng-if="vm.exam.copies.length">
               <ul class="list-group">
                 <li class="list-group-item" ng-repeat="i in cvm.getNumber(vm.exam.copies.length)">
-                  <div class="pull-right">
+                  <div ng-if="!vm.exam.ready" class="pull-right">
                     <button type="file" ngf-select="vm.uploadCopy($file, i)" accept="application/pdf" ngf-allow-dir="false" ngf-max-files="1" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span></button>
                     <button ng-click="vm.removeCopy(i)" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
                   </div>
@@ -71,7 +71,7 @@
             <div ng-if="!vm.exam.copies.length" ng-bind="'EXAM.NO_COPIES' | translate"></div>
           </uib-tab>
           <uib-tab heading="{{'EXAM.ROOMS' | translate}}">
-            <div class="clearfix">
+            <div ng-if="!vm.exam.ready" class="clearfix">
               <div class="pull-right">
                 <form class="form-inline right-form">
                   <input type="text" placeholder="{{'ROOM.ROOM' | translate}}" ng-model="vm.selectedRoom" uib-typeahead="room as room.code for room in vm.rooms | filter: $viewValue | limitTo: 8" class="form-control">
@@ -82,7 +82,7 @@
             <div ng-if="vm.exam.rooms.length">
               <uib-tabset>
                 <uib-tab ng-repeat="i in cvm.getNumber(vm.exam.rooms.length)" heading="{{vm.exam.rooms[i].code}}">
-                  <div class="pull-right">
+                  <div ng-if="!vm.exam.ready" class="pull-right">
                     <button ng-click="vm.removeRoom(i)" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
                   </div>
                   <div>

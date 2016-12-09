@@ -158,7 +158,7 @@ exports.validate = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     }
-    res.json(exam);
+    res.json(exam.ready);
   });
 };
 
