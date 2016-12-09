@@ -25,6 +25,9 @@
     vm.loadExamSessions = loadExamSessions;
     vm.isFormReady = isFormReady;
 
+    // Students management
+    vm.addStudent = addStudent;
+
     // Rooms management
     vm.getLetter = getLetter;
     vm.addRoom = addRoom;
@@ -145,6 +148,15 @@
     // Test whether the form is ready to be displayed and used
     function isFormReady() {
       return tagsInputListsLoaded.every(function(data) {return data;});
+    }
+
+    // Add a student to the exam
+    function addStudent() {
+      $http.post('/api/exams/' + vm.exam._id + '/student', { 'studentUsername': vm.selectedStudent.username })
+      .then(function(response) {
+        vm.selectedStudent = undefined;
+        vm.exam.registrations = response.data;
+      });
     }
 
     // Convert an integer to a letter 1 => A, 2 => B...

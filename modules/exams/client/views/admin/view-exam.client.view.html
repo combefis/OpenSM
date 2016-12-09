@@ -20,6 +20,21 @@
 
         <uib-tabset>
           <uib-tab heading="{{'EXAM.STUDENTS' | translate}}">
+            <div class="clearfix">
+              <div class="pull-right">
+                <form class="form-inline right-form">
+                  <input type="text" placeholder="{{'STUDENT.STUDENT' | translate}}" ng-model="vm.selectedStudent" uib-typeahead="student as student.displayName for student in vm.students | filter: $viewValue | limitTo: 8" class="form-control">
+                  <button ng-click="vm.addStudent()" class="btn btn-primary" ng-bind="'GENERAL.ADD' | translate"></button>
+                </form>
+              </div>
+            </div>
+            <div ng-if="vm.exam.registrations.length">
+              <ul class="list-group">
+                <li class="list-group-item" ng-repeat="i in cvm.getNumber(vm.exam.registrations.length)">
+                  <div><b>{{i+1}} {{vm.exam.registrations[i].displayName}}</b></div>
+                </li>
+              </ul>
+            </div>
             <div ng-if="!vm.exam.registrations.length" ng-bind="'EXAM.NO_STUDENTS' | translate"></div>
           </uib-tab>
           <uib-tab heading="{{'EXAM.COPIES' | translate}}">
@@ -53,7 +68,7 @@
             <div class="clearfix">
               <div class="pull-right">
                 <form class="form-inline right-form">
-                  <input type="text" placeholder="{{'ROOM.ROOM' | translate}}" ng-model="vm.selectedRoom" uib-typeahead="room as room.code for room in vm.rooms | filter:$viewValue | limitTo:8" class="form-control">
+                  <input type="text" placeholder="{{'ROOM.ROOM' | translate}}" ng-model="vm.selectedRoom" uib-typeahead="room as room.code for room in vm.rooms | filter: $viewValue | limitTo: 8" class="form-control">
                   <button ng-click="vm.addRoom()" class="btn btn-primary" ng-bind="'GENERAL.ADD' | translate"></button>
                 </form>
               </div>

@@ -9,6 +9,7 @@ var path = require('path'),
   mongoose = require('mongoose'),
   Exam = mongoose.model('Exam'),
   ExamSession = mongoose.model('ExamSession'),
+  User = mongoose.model('User'),
   Room = mongoose.model('Room'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
@@ -155,6 +156,33 @@ exports.list = function (req, res) {
       });
     }
     res.json(exams);
+  });
+};
+
+/**
+ * Add a student to an exam
+ */
+exports.addStudent = function (req, res) {
+  var exam = req.exam;
+
+  // Find the student to add
+  User.findOne({ 'username': req.body.studentUsername }, 'username displayName').exec(function (err, student) {
+    if (err || !student) {
+      return res.status(404).send({
+        message: 'No student with that username has been found.'
+      });
+    }
+
+    // Add the student to the exam and save it
+    exam.registrations.push(student);
+    exam.save(function (err) {
+      if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      }
+      res.json(exam.registrations);
+    });
   });
 };
 
@@ -319,6 +347,7 @@ exports.examByID = function (req, res, next, id) {
   .populate('course', 'code')
   .populate('examsession', 'code name')
   .populate('rooms', 'code name')
+  .populate('registrations', 'displayName')
   .exec(function (err, exam) {
     if (err) {
       return next(err);

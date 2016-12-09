@@ -18,6 +18,7 @@ exports.invokeRolesPolicies = function () {
       resources: [
         '/api/exams',
         '/api/exams/:examId',
+        '/api/exams/:examId/student',
         '/api/exams/:examId/room',
         '/api/exams/:examId/copy',
         '/api/exams/:examId/copy/:i',

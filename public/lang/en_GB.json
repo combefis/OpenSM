@@ -124,6 +124,9 @@
     "NAME_ERROR": "Please fill in the name.",
     "ROOM": "Room"
   },
+  "STUDENT": {
+    "STUDENT": "Student"
+  },
   "USER": {
     "USERNAME": "Username",
     "USERNAME_ERROR": "Please fill in your username.",

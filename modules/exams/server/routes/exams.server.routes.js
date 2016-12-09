@@ -19,9 +19,15 @@ module.exports = function (app) {
     .put(exams.update)
     .delete(exams.delete);
 
-  // Exam update routes
+  // Exam students routes
+  app.route('/api/exams/:examId/student').all(examsPolicy.isAllowed)
+    .post(exams.addStudent);
+
+  // Exam rooms routes
   app.route('/api/exams/:examId/room').all(examsPolicy.isAllowed)
     .post(exams.addRoom);
+
+  // Exam copies routes
   app.route('/api/exams/:examId/copy').all(examsPolicy.isAllowed)
     .post(exams.addCopy);
   app.route('/api/exams/:examId/copy/:i').all(examsPolicy.isAllowed)
