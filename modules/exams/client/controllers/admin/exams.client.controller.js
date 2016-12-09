@@ -69,9 +69,16 @@
     });
 
     // Load the list of rooms for the rooms
-    var roomsList = [];
     $http.get('/api/rooms').success(function(data, status, headers, config) {
       vm.rooms = data;
+
+      // Remove already selected rooms
+      vm.exam.rooms.forEach(function (element) {
+        var code = element.code;
+        vm.rooms.splice(vm.rooms.findIndex(function (element) {
+          return element.code === code;
+        }), 1);
+      });
     });
 
     // Convert date to Date object
