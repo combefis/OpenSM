@@ -187,6 +187,25 @@ exports.addStudent = function (req, res) {
 };
 
 /**
+ * Delete a student of an exam
+ */
+exports.deleteStudent = function (req, res) {
+  var exam = req.exam;
+
+  // Remove the student from the exam and save it
+  exam.registrations.splice(req.params.i, 1);
+  exam.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+
+    res.json(exam.registrations);
+  });
+};
+
+/**
  * Add a room to an exam
  */
 exports.addRoom = function (req, res) {

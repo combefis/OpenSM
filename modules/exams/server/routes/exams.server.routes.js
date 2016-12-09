@@ -22,6 +22,8 @@ module.exports = function (app) {
   // Exam students routes
   app.route('/api/exams/:examId/student').all(examsPolicy.isAllowed)
     .post(exams.addStudent);
+  app.route('/api/exams/:examId/student/:i').all(examsPolicy.isAllowed)
+    .delete(exams.deleteStudent);
 
   // Exam rooms routes
   app.route('/api/exams/:examId/room').all(examsPolicy.isAllowed)

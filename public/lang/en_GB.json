@@ -61,6 +61,7 @@
     "SUCCESSFUL_DELETE": "Exam deleted successfully!",
     "STUDENTS": "Students",
     "NO_STUDENTS": "No registered students.",
+    "STUDENT_SUCCESSFUL_DELETE": "Student deleted successfully!",
     "COPIES": "Copies",
     "NO_COPIES": "No uploaded exam copies.",
     "ADD_COPY": "Add a copy",

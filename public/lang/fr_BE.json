@@ -61,6 +61,7 @@
     "SUCCESSFUL_DELETE": "Examen supprimé avec succès !",
     "STUDENTS": "Étudiants",
     "NO_STUDENTS": "Pas d'étudiants inscrits.",
+    "STUDENT_SUCCESSFUL_DELETE": "Étudiant supprimé avec succès !",
     "COPIES": "Copies",
     "NO_COPIES": "Pas de copies chargées.",
     "ADD_COPY": "Ajouter une copie",

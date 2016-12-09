@@ -27,6 +27,7 @@
 
     // Students management
     vm.addStudent = addStudent;
+    vm.removeStudent = removeStudent;
 
     // Rooms management
     vm.getLetter = getLetter;
@@ -161,6 +162,21 @@
           }), 1);
           vm.selectedStudent = undefined;
           vm.exam.registrations = response.data;
+        });
+      }
+    }
+
+    // Remove a student of the exam
+    function removeStudent(i) {
+      if ($window.confirm('Are you sure you want to delete this student?')) {
+        var student = vm.exam.registrations[i];
+
+        $http.delete('/api/exams/' + vm.exam._id + '/student/' + i)
+        .then(function(response) {
+          vm.students.push(student);
+          vm.exam.registrations = response.data;
+
+          Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAM.STUDENT_SUCCESSFUL_DELETE') });
         });
       }
     }
