@@ -71,6 +71,14 @@
     // Load the list of students for the registrations
     $http.get('/api/students').success(function(data, status, headers, config) {
       vm.students = data;
+
+      // Remove already selected students
+      vm.exam.registrations.forEach(function (element) {
+        var username = element.username;
+        vm.students.splice(vm.students.findIndex(function (element) {
+          return element.username === username;
+        }), 1);
+      });
     });
 
     // Load the list of rooms for the rooms
