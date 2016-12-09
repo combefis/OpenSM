@@ -15,10 +15,10 @@ exports.invokeRolesPolicies = function () {
   acl.allow([{
     roles: ['admin'],
     allows: [{
-      resources: '/api/courses',
-      permissions: '*'
-    }, {
-      resources: '/api/courses/:courseId',
+      resources: [
+        '/api/courses',
+        '/api/courses/:courseCode'
+      ],
       permissions: '*'
     }]
   }, {

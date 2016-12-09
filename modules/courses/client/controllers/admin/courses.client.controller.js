@@ -53,6 +53,7 @@
         .catch(errorCallback);
 
       function successCallback(res) {
+        var code = vm.course.code;
         // Clear form fields
         vm.course.code = '';
         vm.course.name = '';
@@ -61,7 +62,7 @@
         vm.course.activities = [];
 
         $state.go('admin.manage.courses.view', {
-          courseId: res._id
+          courseCode: code
         });
       }
 

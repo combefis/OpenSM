@@ -17,7 +17,7 @@
         </div>
 
         <div class="list-group" ng-if="vm.courses.length">
-          <a ng-repeat="course in vm.courses" ui-sref="admin.manage.courses.view({ courseId: course._id })" class="list-group-item"><b>{{course.code}}</b><br /><i>{{course.name}}</i></a>
+          <a ng-repeat="course in vm.courses" ui-sref="admin.manage.courses.view({ courseCode: course.code })" class="list-group-item"><b>{{course.code}}</b><br /><i>{{course.name}}</i></a>
         </div>
 
         <div class="alert alert-warning" ng-if="!vm.courses.length" ng-bind="'COURSE.NO_COURSE' | translate"></div>

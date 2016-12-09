@@ -8,8 +8,8 @@
   CoursesService.$inject = ['$resource'];
 
   function CoursesService($resource) {
-    var Course = $resource('api/courses/:courseId', {
-      courseId: '@_id'
+    var Course = $resource('api/courses/:courseCode', {
+      courseCode: ''
     }, {
       update: {
         method: 'PUT'

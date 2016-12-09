@@ -75,14 +75,8 @@ exports.list = function (req, res) {
 /**
  * Course middleware
  */
-exports.courseByID = function (req, res, next, id) {
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).send({
-      message: 'Course is invalid'
-    });
-  }
-
-  Course.findById(id, 'code name coordinator description activities')
+exports.courseByCode = function (req, res, next, code) {
+  Course.findOne({ 'code': code }, 'code name coordinator description activities')
   .populate('coordinator', 'displayName')
   .populate('activities', 'code name')
   .exec(function (err, course) {

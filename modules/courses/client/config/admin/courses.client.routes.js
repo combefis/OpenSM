@@ -37,7 +37,7 @@
         }
       })
       .state('admin.manage.courses.view', {
-        url: '/:courseId',
+        url: '/:courseCode',
         templateUrl: 'modules/courses/client/views/admin/view-course.client.view.html',
         controller: 'CoursesAdminController',
         controllerAs: 'vm',
@@ -49,7 +49,7 @@
         }
       })
       .state('admin.manage.courses.edit', {
-        url: '/:courseId/edit',
+        url: '/:courseCode/edit',
         templateUrl: 'modules/courses/client/views/admin/form-course.client.view.html',
         controller: 'CoursesAdminController',
         controllerAs: 'vm',
@@ -67,7 +67,7 @@
 
   function getCourse($stateParams, CoursesService) {
     return CoursesService.get({
-      courseId: $stateParams.courseId
+      courseCode: $stateParams.courseCode
     }).$promise;
   }
 
