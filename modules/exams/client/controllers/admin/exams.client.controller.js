@@ -167,11 +167,16 @@
 
     // Add a room to the exam
     function addRoom() {
-      $http.post('/api/exams/' + vm.exam._id + '/room', { 'roomCode': vm.selectedRoom.code })
-      .then(function(response) {
-        vm.selectedRoom = undefined;
-        vm.exam.rooms = response.data;
-      });
+      if (vm.selectedRoom) {
+        $http.post('/api/exams/' + vm.exam._id + '/room', { 'roomCode': vm.selectedRoom.code })
+        .then(function(response) {
+          vm.rooms.splice(vm.rooms.findIndex(function (element) {
+            return element.code === vm.selectedRoom.code;
+          }), 1);
+          vm.selectedRoom = undefined;
+          vm.exam.rooms = response.data;
+        });
+      }
     }
 
     // Remove a room of the exam
@@ -181,8 +186,8 @@
 
         $http.delete('/api/exams/' + vm.exam._id + '/room/' + i)
         .then(function(response) {
-          vm.exam.rooms = response.data;
           vm.rooms.push(room);
+          vm.exam.rooms = response.data;
 
           Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAM.ROOM_SUCCESSFUL_DELETE') });
         });
