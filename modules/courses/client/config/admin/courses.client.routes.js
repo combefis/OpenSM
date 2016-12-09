@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('courses.routes')
+    .module('courses.admin.routes')
     .config(routeConfig);
 
   routeConfig.$inject = ['$stateProvider'];
@@ -16,8 +16,8 @@
       })
       .state('admin.manage.courses.list', {
         url: '',
-        templateUrl: 'modules/courses/client/views/list-courses.client.view.html',
-        controller: 'CoursesListController',
+        templateUrl: 'modules/courses/client/views/admin/list-courses.client.view.html',
+        controller: 'CoursesListAdminController',
         controllerAs: 'vm',
         data: {
           pageTitle: 'Courses'
@@ -25,8 +25,8 @@
       })
       .state('admin.manage.courses.create', {
         url: '/create',
-        templateUrl: 'modules/courses/client/views/form-course.client.view.html',
-        controller: 'CoursesController',
+        templateUrl: 'modules/courses/client/views/admin/form-course.client.view.html',
+        controller: 'CoursesAdminController',
         controllerAs: 'vm',
         resolve: {
           courseResolve: newCourse
@@ -38,8 +38,8 @@
       })
       .state('admin.manage.courses.view', {
         url: '/:courseId',
-        templateUrl: 'modules/courses/client/views/view-course.client.view.html',
-        controller: 'CoursesController',
+        templateUrl: 'modules/courses/client/views/admin/view-course.client.view.html',
+        controller: 'CoursesAdminController',
         controllerAs: 'vm',
         resolve: {
           courseResolve: getCourse
@@ -50,8 +50,8 @@
       })
       .state('admin.manage.courses.edit', {
         url: '/:courseId/edit',
-        templateUrl: 'modules/courses/client/views/form-course.client.view.html',
-        controller: 'CoursesController',
+        templateUrl: 'modules/courses/client/views/admin/form-course.client.view.html',
+        controller: 'CoursesAdminController',
         controllerAs: 'vm',
         resolve: {
           courseResolve: getCourse

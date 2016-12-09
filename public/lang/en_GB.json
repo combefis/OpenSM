@@ -18,6 +18,7 @@
   "BY": "By",
   "COURSE": {
     "COURSES": "Courses",
+    "CREATE": "Create a course",
     "NO_COURSE": "No courses yet.",
     "NB_COURSES": "Number of courses",
     "CODE": "Code",

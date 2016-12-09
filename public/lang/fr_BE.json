@@ -18,6 +18,7 @@
   "BY": "Par",
   "COURSE": {
     "COURSES": "Cours",
+    "CREATE": "Créer un cours",
     "NO_COURSE": "Aucun cours.",
     "NB_COURSES": "Nombre de cours",
     "CODE": "Code",
