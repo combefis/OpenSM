@@ -27,7 +27,7 @@
 
     function createOrUpdate(room) {
       if (room._id) {
-        return room.$update(onSuccess, onError);
+        return room.$update({ roomCode: room.code }, onSuccess, onError);
       }
       return room.$save(onSuccess, onError);
 

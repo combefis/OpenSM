@@ -27,7 +27,7 @@
 
     function createOrUpdate(course) {
       if (course._id) {
-        return course.$update(onSuccess, onError);
+        return course.$update({ courseCode: course.code }, onSuccess, onError);
       }
       return course.$save(onSuccess, onError);
 
