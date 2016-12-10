@@ -5,9 +5,9 @@
     .module('activities')
     .controller('ActivitiesController', ActivitiesController);
 
-  ActivitiesController.$inject = ['$scope', '$state', '$http', 'activityResolve', '$window', 'Authentication', '$filter'];
+  ActivitiesController.$inject = ['$scope', '$state', '$http', 'activityResolve', '$window', 'Authentication', 'Notification', '$filter'];
 
-  function ActivitiesController($scope, $state, $http, activity, $window, Authentication, $filter) {
+  function ActivitiesController($scope, $state, $http, activity, $window, Authentication, Notification, $filter) {
     var vm = this;
 
     vm.activity = activity;
@@ -18,6 +18,8 @@
     vm.save = save;
     vm.loadTeachers = loadTeachers;
     vm.isFormReady = isFormReady;
+
+    var activityId = activity._id;
 
     var tagsInputListsLoaded = [false];
 
@@ -41,9 +43,14 @@
         .catch(errorCallback);
 
       function successCallback(res) {
-        $state.go('admin.manage.activities.view', {
-          activityCode: res.code
-        });
+        if (activityId) {
+          $state.go('admin.manage.activities.view', {
+            activityCode: res.code
+          });
+        } else {
+          $state.go('admin.manage.activities.list');
+        }
+        Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')(activityId ? 'ACTIVITY.SUCCESSFUL_UPDATE' : 'ACTIVITY.SUCCESSFUL_CREATION', { code: res.code }) });
       }
 
       function errorCallback(res) {

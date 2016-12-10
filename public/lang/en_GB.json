@@ -12,7 +12,9 @@
     "ADD_TEACHER": "Add a teacher",
     "TEACHER_MISSING_ERROR": "Please select at least one teacher.",
     "DESCRIPTION": "Description",
-    "NO_DESCRIPTION": "No description."
+    "NO_DESCRIPTION": "No description.",
+    "SUCCESSFUL_CREATION": "The activity {{code}} has been successfully created!",
+    "SUCCESSFUL_UPDATE": "The activity {{code}} has been successfully updated!"
   },
   "AUTHENTICATION": {
     "SIGN_IN": "Sign in",

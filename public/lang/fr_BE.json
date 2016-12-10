@@ -13,6 +13,8 @@
     "TEACHER_MISSING_ERROR": "Veuillez spécifier au moins un enseignant.",
     "DESCRIPTION": "Description",
     "NO_DESCRIPTION": "Pas de description.",
+    "SUCCESSFUL_CREATION": "L'activité {{code}} a été créée avec succès !",
+    "SUCCESSFUL_UPDATE": "L'activité {{code}} a été mise à jour avec succès !"
   },
   "AUTHENTICATION": {
     "SIGN_IN": "Connexion",
