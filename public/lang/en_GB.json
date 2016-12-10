@@ -38,7 +38,9 @@
     "NO_DESCRIPTION": "No description.",
     "ACTIVITIES": "Activities",
     "ADD_ACTIVITIES": "Add an activity",
-    "NO_ACTIVITY": "No activities."
+    "NO_ACTIVITY": "No activities.",
+    "SUCCESSFUL_CREATION": "The course {{code}} has been successfully created!",
+    "SUCCESSFUL_UPDATE": "The course {{code}} has been successfully updated!"
   },
   "DASHBOARD": {
     "DASHBOARD": "Dashboard",

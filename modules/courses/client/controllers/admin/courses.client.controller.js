@@ -5,9 +5,9 @@
     .module('courses.admin')
     .controller('CoursesAdminController', CoursesAdminController);
 
-  CoursesAdminController.$inject = ['$scope', '$state', '$http', 'courseResolve', '$window', 'Authentication', '$filter'];
+  CoursesAdminController.$inject = ['$scope', '$state', '$http', 'courseResolve', '$window', 'Authentication', 'Notification', '$filter'];
 
-  function CoursesAdminController($scope, $state, $http, course, $window, Authentication, $filter) {
+  function CoursesAdminController($scope, $state, $http, course, $window, Authentication, Notification, $filter) {
     var vm = this;
 
     vm.course = course;
@@ -18,6 +18,8 @@
     vm.loadTeachers = loadTeachers;
     vm.loadActivities = loadActivities;
     vm.isFormReady = isFormReady;
+
+    var courseId = course._id;
 
     // The coordinator must be a list for the tags-input
     if (vm.course.coordinator) {
@@ -61,9 +63,14 @@
         vm.course.description = '';
         vm.course.activities = [];
 
-        $state.go('admin.manage.courses.view', {
-          courseCode: code
-        });
+        if (courseId) {
+          $state.go('admin.manage.courses.view', {
+            courseCode: code
+          });
+        } else {
+          $state.go('admin.manage.courses.list');
+        }
+        Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')(courseId ? 'COURSE.SUCCESSFUL_UPDATE' : 'COURSE.SUCCESSFUL_CREATION', { code: code }) });
       }
 
       function errorCallback(res) {
