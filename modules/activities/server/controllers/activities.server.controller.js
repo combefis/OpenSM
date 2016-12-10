@@ -75,14 +75,8 @@ exports.list = function (req, res) {
 /**
  * Activity middleware
  */
-exports.activityByID = function (req, res, next, id) {
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).send({
-      message: 'Activity is invalid'
-    });
-  }
-
-  Activity.findById(id, 'code name teachers').exec(function (err, activity) {
+exports.activityByCode = function (req, res, next, code) {
+  Activity.findOne({ code: code }, 'code name teachers').exec(function (err, activity) {
     if (err) {
       return next(err);
     }

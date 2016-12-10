@@ -13,10 +13,10 @@ module.exports = function (app) {
     .post(activities.create);
 
   // Single activity routes
-  app.route('/api/activities/:activityId').all(activitiesPolicy.isAllowed)
+  app.route('/api/activities/:activityCode').all(activitiesPolicy.isAllowed)
     .get(activities.read)
     .put(activities.update);
 
   // Finish by binding the activity middleware
-  app.param('activityId', activities.activityByID);
+  app.param('activityCode', activities.activityByCode);
 };

@@ -37,7 +37,7 @@
         }
       })
       .state('admin.manage.activities.view', {
-        url: '/:activityId',
+        url: '/:activityCode',
         templateUrl: 'modules/activities/client/views/view-activity.client.view.html',
         controller: 'ActivitiesController',
         controllerAs: 'vm',
@@ -49,7 +49,7 @@
         }
       })
       .state('admin.manage.activities.edit', {
-        url: '/:activityId/edit',
+        url: '/:activityCode/edit',
         templateUrl: 'modules/activities/client/views/form-activity.client.view.html',
         controller: 'ActivitiesController',
         controllerAs: 'vm',
@@ -67,7 +67,7 @@
 
   function getActivity($stateParams, ActivitiesService) {
     return ActivitiesService.get({
-      activityId: $stateParams.activityId
+      activityCode: $stateParams.activityCode
     }).$promise;
   }
 

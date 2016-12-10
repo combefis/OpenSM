@@ -18,7 +18,7 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/activities',
       permissions: '*'
     }, {
-      resources: '/api/activities/:activityId',
+      resources: '/api/activities/:activityCode',
       permissions: '*'
     }]
   }]);

@@ -30,7 +30,7 @@
 
       function successCallback(res) {
         $state.go('admin.manage.activities.view', {
-          activityId: res._id
+          activityCode: res.code
         });
       }
 

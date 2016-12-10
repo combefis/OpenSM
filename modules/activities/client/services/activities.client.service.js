@@ -8,8 +8,8 @@
   ActivitiesService.$inject = ['$resource'];
 
   function ActivitiesService($resource) {
-    var Activity = $resource('api/activities/:activityId', {
-      activityId: '@_id'
+    var Activity = $resource('api/activities/:activityCode', {
+      activityCode: ''
     }, {
       update: {
         method: 'PUT'
@@ -27,7 +27,7 @@
 
     function createOrUpdate(activity) {
       if (activity._id) {
-        return activity.$update(onSuccess, onError);
+        return activity.$update({ activityCode: activity.code }, onSuccess, onError);
       }
       return activity.$save(onSuccess, onError);
 
