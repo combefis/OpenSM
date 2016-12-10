@@ -37,7 +37,8 @@
     "DASHBOARD": "Tableau de bord",
     "ADMIN": "Administration",
     "MANAGE": "Gestion",
-    "ANNOUNCEMENT": "Annonces"
+    "ANNOUNCEMENT": "Annonces",
+    "WORK": "仕事"
   },
   "EXAM": {
     "EXAMS": "Examens",
@@ -104,7 +105,7 @@
   },
   "HOME": {
     "LEAD": "OpenSMプラットフォームへようこそ!",
-    "INTRO": "Blabla.",
+    "INTRO": "ブラブラ.",
     "OR": "又は"
   },
   "INFORMATIONS": "弘報",
