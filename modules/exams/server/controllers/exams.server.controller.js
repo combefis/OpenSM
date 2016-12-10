@@ -6,6 +6,8 @@
 var path = require('path'),
   fs = require('fs-extra'),
   moment = require('moment'),
+  process = require('process'),
+  child_process = require('child_process'),
   mongoose = require('mongoose'),
   Exam = mongoose.model('Exam'),
   ExamSession = mongoose.model('ExamSession'),
@@ -24,6 +26,17 @@ function checkData (exam) {
     return 'Exam duration must be positive.';
   }
   return '';
+}
+
+/*
+ * Convert an integer to a letter (1 => A, 2 => B...)
+ */
+function getNumber (n) {
+  var tab = [];
+  for (var i = 0; i < n; i++) {
+    tab.push(i);
+  }
+  return tab;
 }
 
 /**
@@ -324,16 +337,60 @@ exports.deleteCopy = function (req, res) {
 exports.downloadCopy = function (req, res) {
   var exam = req.exam;
 
+  // Original uploaded file
   var file = path.dirname(require.main.filename) + '/copies/' + exam._id + '/' + exam.copies[req.params.i].name;
-  fs.readFile(file, function (err, content) {
-    if (err) {
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
+
+  // Download original file
+  if (req.query.orig) {
+    if (!req.user.roles.includes('admin')) {
+      return res.status(403).json({
+        message: 'User is not authorized'
       });
     }
-    res.writeHead('200', { 'Content-Type': 'application/pdf' });
-    res.end(content);
-  });
+
+    fs.readFile(file, function (err, content) {
+      if (err) {
+        return res.status(400).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      }
+
+      res.writeHead('200', { 'Content-Type': 'application/pdf' });
+      res.end(content);
+    });
+  // Generate and download the exam file
+  } else {
+    // Open and fill the chosen template
+    var template = path.dirname(require.main.filename) + '/templates/basic-template.tex';
+    var filename = exam.course.code + '_copy_' + getNumber(req.params.i + 1);
+    var content = fs.readFileSync(template, { flag: 'r', encoding: 'utf8' });
+    content = content.replace(/!filepath!/g, file);
+
+    var dest = path.dirname(require.main.filename) + '/copies/' + exam._id + '/' + filename + '.tex';
+    fs.writeFileSync(dest, content, { flag: 'w', encoding: 'utf8' });
+
+    // Compile the .tex file
+    process.chdir(path.dirname(dest));
+    child_process.execFile('pdflatex', [path.basename(dest)], function (err, stdout, stderr) {
+      if (err) {
+        return res.status(400).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      }
+
+      var pdffile = path.dirname(require.main.filename) + '/copies/' + exam._id + '/' + filename + '.pdf';
+      fs.readFile(pdffile, function (err, content) {
+        if (err) {
+          return res.status(400).send({
+            message: errorHandler.getErrorMessage(err)
+          });
+        }
+
+        res.writeHead('200', { 'Content-Type': 'application/pdf' });
+        res.end(content);
+      });
+    });
+  }
 };
 
 /**

@@ -55,11 +55,12 @@
                 <li class="list-group-item" ng-repeat="i in cvm.getNumber(vm.exam.copies.length)">
                   <div class="pull-right">
                     <button type="file" ngf-select="vm.uploadCopy($file, i)" accept="application/pdf" ngf-allow-dir="false" ngf-max-files="1" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span></button>
+                    <a href="/api/exams/{{vm.exam._id}}/copy/{{i}}/download" target="_blank" class="btn btn-default btn-xs" ng-disabled="!vm.exam.copies[i].name && !vm.uploading[i]"><span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span></a>
                     <button ng-click="vm.removeCopy(i)" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
                   </div>
                   <div><b>{{'EXAM.COPY' | translate}} {{vm.getLetter(i+1)}}</b></div>
                   <div ng-if="vm.exam.copies[i].name && !vm.uploading[i]">
-                    <a href="/api/exams/{{vm.exam._id}}/copy/{{i}}/download" ng-bind="vm.exam.copies[i].origname"></a><br/>
+                    <a href="/api/exams/{{vm.exam._id}}/copy/{{i}}/download?orig=true" target="_blank" ng-bind="vm.exam.copies[i].origname"></a><br/>
                     <small>{{'EXAM.FILE_UPLOADED_ON' | translate}} <i>{{vm.exam.copies[i].created | amDateFormat:'ddd D MMM YYYY HH:mm'}}</i></small>
                   </div>
                   <div ng-if="!vm.exam.copies[i].name && !vm.uploading[i]" ng-bind="'EXAM.COPY_NOT_UPLOADED' | translate"></div>
@@ -101,9 +102,9 @@
           <div class="panel-body">
             <dl>
               <dt ng-bind="'EXAM.COURSE' | translate"></dt>
-              <dd ng-bind="vm.exam.course[0].code"></dd>
+              <dd ng-bind="vm.exam.course.code"></dd>
               <dt ng-bind="'EXAM.EXAMSESSION' | translate"></dt>
-              <dd ng-bind="vm.exam.examsession[0].name"></dd>
+              <dd ng-bind="vm.exam.examsession.name"></dd>
               <dt ng-bind="'EXAM.DATE' | translate"></dt>
               <dd ng-bind="vm.exam.date | amDateFormat:'ddd D MMM YYYY HH:mm'"></dd>
               <dt ng-bind="'EXAM.DURATION' | translate"></dt>

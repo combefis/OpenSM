@@ -33,6 +33,7 @@
     vm.addCopy = addCopy;
     vm.removeCopy = removeCopy;
     vm.uploadCopy = uploadCopy;
+    vm.downloadCopy = downloadCopy;
 
     // Load the list of students for the registrations
     $http.get('/api/students').success(function(data, status, headers, config) {
@@ -174,6 +175,15 @@
         vm.progressValue[i] = null;
       }, function (event) {
         vm.progressValue[i] = parseInt(100.0 * event.loaded / event.total, 10);
+      });
+    }
+
+    // Download a copy of the exam
+    function downloadCopy(i) {
+      console.log('Downloading the copy...');
+
+      $http.get('/api/exams/' + vm.exam._id + '/copy/' + i + '/download?generate=true').success(function(data, status, headers, config) {
+        console.log('Oké ! Fait !');
       });
     }
   }
