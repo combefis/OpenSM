@@ -11,6 +11,7 @@
     var vm = this;
 
     vm.activity = activity;
+    vm.activityname = activity.name;
     vm.authentication = Authentication;
     vm.error = null;
     vm.form = {};

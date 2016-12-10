@@ -44,6 +44,7 @@ exports.update = function (req, res) {
   activity.code = req.body.code;
   activity.name = req.body.name;
   activity.teachers = req.body.teachers;
+  activity.description = req.body.description;
 
   activity.save(function (err) {
     if (err) {
@@ -59,8 +60,8 @@ exports.update = function (req, res) {
  * List of activities
  */
 exports.list = function (req, res) {
-  Activity.find({ academicyear: req.session.academicyear })
-  .populate('teachers', 'displayName')
+  Activity.find({ academicyear: req.session.academicyear }, 'code name teachers')
+  .populate('teachers', 'firstname lastname')
   .sort({ code: 1 })
   .exec(function (err, activities) {
     if (err) {
@@ -76,7 +77,9 @@ exports.list = function (req, res) {
  * Activity middleware
  */
 exports.activityByCode = function (req, res, next, code) {
-  Activity.findOne({ code: code }, 'code name teachers').exec(function (err, activity) {
+  Activity.findOne({ code: code }, 'code name teachers description')
+  .populate('teachers', 'firstname lastname displayName')
+  .exec(function (err, activity) {
     if (err) {
       return next(err);
     }

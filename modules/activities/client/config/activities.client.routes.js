@@ -20,6 +20,7 @@
         controller: 'ActivitiesListController',
         controllerAs: 'vm',
         data: {
+          roles: ['admin'],
           pageTitle: 'Activities'
         }
       })
@@ -45,6 +46,7 @@
           activityResolve: getActivity
         },
         data: {
+          roles: ['admin'],
           pageTitle: '{{activityResolve.code}} — {{activityResolve.name}}'
         }
       })

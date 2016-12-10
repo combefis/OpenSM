@@ -10,7 +10,9 @@
     "NAME_ERROR": "Veuillez spécifier le nom.",
     "TEACHERS": "Enseignants",
     "ADD_TEACHER": "Ajouter un enseignant",
-    "TEACHER_MISSING_ERROR": "Veuillez spécifier au moins un enseignant."
+    "TEACHER_MISSING_ERROR": "Veuillez spécifier au moins un enseignant.",
+    "DESCRIPTION": "Description",
+    "NO_DESCRIPTION": "Pas de description.",
   },
   "AUTHENTICATION": {
     "SIGN_IN": "Connexion",

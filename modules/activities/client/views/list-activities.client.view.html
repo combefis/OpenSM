@@ -12,14 +12,14 @@
 
     <div class="row">
       <div class="col-md-9">
-        <div class="action-box">
+        <div class="action-box" ng-if="cvm.hasAnyRole(['admin'])">
           <a ui-sref="admin.manage.activities.create" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> {{'GENERAL.CREATE' | translate}}</a>
         </div>
 
         <div class="list-group" ng-if="vm.activities.length">
           <a ng-repeat="activity in vm.activities" ui-sref="admin.manage.activities.view({ activityCode: activity.code })" class="list-group-item">
             <b>{{activity.code}}</b> — <i>{{activity.name}}</i><br />
-            <small><span ng-repeat="teacher in activity.teachers" ng-bind="teacher.displayName + ($last ? '' : ', ')"></span></small>
+            <small><span ng-repeat="teacher in activity.teachers | orderBy: '+lastname'" ng-bind="teacher.firstname + ' ' + teacher.lastname + ($last ? '' : ', ')"></span></small>
           </a>
         </div>
 

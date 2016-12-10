@@ -10,7 +10,9 @@
     "NAME_ERROR": "Please fill in the name.",
     "TEACHERS": "Teachers",
     "ADD_TEACHER": "Add a teacher",
-    "TEACHER_MISSING_ERROR": "Please select at least one teacher."
+    "TEACHER_MISSING_ERROR": "Please select at least one teacher.",
+    "DESCRIPTION": "Description",
+    "NO_DESCRIPTION": "No description."
   },
   "AUTHENTICATION": {
     "SIGN_IN": "Sign in",
