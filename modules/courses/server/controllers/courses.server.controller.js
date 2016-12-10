@@ -62,14 +62,54 @@ exports.update = function (req, res) {
  * List of courses
  */
 exports.list = function (req, res) {
-  Course.find({ 'academicyear': req.session.academicyear }).exec(function (err, courses) {
-    if (err) {
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
+  if (!req.query.filter) {
+    return res.status(422).send({
+      message: 'Missing filter.'
+    });
+  }
+
+  switch (req.query.filter) {
+    // Load all the courses
+    case 'all':
+      Course.find({ 'academicyear': req.session.academicyear }).exec(function (err, courses) {
+        if (err) {
+          return res.status(400).send({
+            message: errorHandler.getErrorMessage(err)
+          });
+        }
+        res.json(courses);
       });
-    }
-    res.json(courses);
-  });
+      break;
+
+    case 'teacher':
+      Course.find({ 'academicyear': req.session.academicyear })
+      .populate('activities', 'teachers')
+      .exec(function (err, courses) {
+        if (err) {
+          return res.status(400).send({
+            message: errorHandler.getErrorMessage(err)
+          });
+        }
+        var teacherCourses = [];
+        courses.forEach(function (course) {
+          if (course.coordinator.equals(req.user.id)) {
+            teacherCourses.push(course);
+          } else {
+            // Check if teacher not in one of the activities
+            course.activities.forEach(function (activity) {
+              if (activity.teachers.some(function (element) { return element.equals(req.user.id); })) {
+                teacherCourses.push(course);
+              }
+            });
+          }
+        });
+        res.json(teacherCourses);
+      });
+      break;
+
+    default:
+      res.json([]);
+  }
 };
 
 /**

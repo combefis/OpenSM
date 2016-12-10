@@ -10,6 +10,6 @@
   function CoursesListAdminController(CoursesService) {
     var vm = this;
 
-    vm.courses = CoursesService.query();
+    vm.courses = CoursesService.query({ filter: 'all' });
   }
 }());
