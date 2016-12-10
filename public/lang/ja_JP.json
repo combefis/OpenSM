@@ -3,7 +3,7 @@
     "ACTIVITIES": "Activités",
     "NO_ACTIVITY": "Aucune activité.",
     "NB_ACTIVITIES": "Nombre d'activités",
-    "CODE": "Code",
+    "CODE": "コデ",
     "CODE_ERROR": "Veuillez spécifier le code.",
     "NAME": "Nom",
     "NAME_ERROR": "Veuillez spécifier le nom.",
@@ -20,7 +20,7 @@
     "COURSES": "講座",
     "NO_COURSE": "Aucun cours.",
     "NB_COURSES": "Nombre de cours",
-    "CODE": "Code",
+    "CODE": "コデ",
     "CODE_REQUIRED_ERROR": "Veuillez spécifier le code.",
     "NAME": "名詞",
     "NAME_REQUIRED_ERROR": "Veuillez spécifier le nom.",
@@ -46,7 +46,7 @@
     "NB_EXAMS": "Nombre d'examens",
     "TITLE": "Titre",
     "TITLE_ERROR": "Veuillez spécifier le titre.",
-    "COURSE": "Cours",
+    "COURSE": "クラス",
     "COURSE_MISSING_ERROR": "Veuillez spécifier le cours.",
     "COURSE_TOOMUCH_ERROR": "Veuillez ne spécifier qu'un seul cours.",
     "EXAMSESSION": "Session d'examens",
@@ -75,7 +75,7 @@
     "CREATE": "Créer une session d'examen",
     "NO_EXAMSESSION": "Aucune session d'examens.",
     "NB_EXAMSESSIONS": "Nombre de sessions d'examens",
-    "CODE": "Code",
+    "CODE": "コデ",
     "CODE_ERROR": "Veuillez spécifier le code.",
     "NAME": "Nom",
     "NAME_ERROR": "Veuillez spécifier le nom.",
@@ -99,8 +99,8 @@
     "CREATE": "作ります",
     "EDIT": "編集",
     "UPDATE": "更新",
-    "DELETE": "Supprimer",
-    "ADD": "Ajouter"
+    "DELETE": "除く",
+    "ADD": "加える"
   },
   "HOME": {
     "LEAD": "OpenSMプラットフォームへようこそ!",
@@ -114,14 +114,14 @@
   "LOADING": "荷積み...",
   "OPENSM_AUTHORS": "OpenSMの開発者",
   "ROOM": {
-    "ROOMS": "Locaux",
+    "ROOMS": "教室",
     "NO_ROOM": "Aucun local.",
     "NB_ROOMS": "Nombre de locaux",
-    "CODE": "Code",
+    "CODE": "コデ",
     "CODE_ERROR": "Veuillez spécifier le code.",
     "NAME": "Nom",
     "NAME_ERROR": "Veuillez spécifier le nom.",
-    "ROOM": "Local"
+    "ROOM": "教室"
   },
   "USER": {
     "USERNAME": "利用者名",
