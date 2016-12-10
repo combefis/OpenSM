@@ -60,7 +60,9 @@ exports.update = function (req, res) {
  * List of activities
  */
 exports.list = function (req, res) {
-  Activity.find({ 'academicyear': req.session.academicyear }).exec(function (err, activities) {
+  Activity.find({ 'academicyear': req.session.academicyear })
+  .populate('teachers', 'displayName')
+  .exec(function (err, activities) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)

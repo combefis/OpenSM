@@ -17,7 +17,10 @@
         </div>
 
         <div class="list-group" ng-if="vm.activities.length">
-          <a ng-repeat="activity in vm.activities" ui-sref="admin.manage.activities.view({ activityId: activity._id })" class="list-group-item">{{activity.code}} — <i>{{activity.name}}</i></a>
+          <a ng-repeat="activity in vm.activities" ui-sref="admin.manage.activities.view({ activityId: activity._id })" class="list-group-item">
+            <b>{{activity.code}}</b> — <i>{{activity.name}}</i><br />
+            <small><span ng-repeat="teacher in activity.teachers" ng-bind="teacher.displayName + ($last ? '' : ', ')"></span></small>
+          </a>
         </div>
 
         <div class="alert alert-warning" ng-if="!vm.activities.length" ng-bind="'ACTIVITY.NO_ACTIVITY' | translate"></div>
