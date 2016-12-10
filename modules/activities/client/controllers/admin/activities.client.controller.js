@@ -43,14 +43,21 @@
         .catch(errorCallback);
 
       function successCallback(res) {
+        var code = vm.activity.code;
+        // Clear form fields
+        vm.activity.code = '';
+        vm.activity.name = '';
+        vm.activity.teachers = [];
+        vm.activity.description = '';
+
         if (activityId) {
           $state.go('admin.manage.activities.view', {
-            activityCode: res.code
+            activityCode: code
           });
         } else {
           $state.go('admin.manage.activities.list');
         }
-        Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')(activityId ? 'ACTIVITY.SUCCESSFUL_UPDATE' : 'ACTIVITY.SUCCESSFUL_CREATION', { code: res.code }) });
+        Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')(activityId ? 'ACTIVITY.SUCCESSFUL_UPDATE' : 'ACTIVITY.SUCCESSFUL_CREATION', { code: code }) });
       }
 
       function errorCallback(res) {
