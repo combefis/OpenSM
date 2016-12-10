@@ -5,9 +5,9 @@
     .module('activities')
     .controller('ActivitiesController', ActivitiesController);
 
-  ActivitiesController.$inject = ['$scope', '$state', 'activityResolve', '$window', 'Authentication'];
+  ActivitiesController.$inject = ['$scope', '$state', '$http', 'activityResolve', '$window', 'Authentication', '$filter'];
 
-  function ActivitiesController($scope, $state, activity, $window, Authentication) {
+  function ActivitiesController($scope, $state, $http, activity, $window, Authentication, $filter) {
     var vm = this;
 
     vm.activity = activity;
@@ -15,6 +15,17 @@
     vm.error = null;
     vm.form = {};
     vm.save = save;
+    vm.loadTeachers = loadTeachers;
+    vm.isFormReady = isFormReady;
+
+    var tagsInputListsLoaded = [false];
+
+    // Load the list of teachers for the tags-input
+    var teachersList = [];
+    $http.get('/api/teachers').success(function(data, status, headers, config) {
+      teachersList = data;
+      tagsInputListsLoaded[0] = true;
+    });
 
     // Save activity
     function save(isValid) {
@@ -37,6 +48,16 @@
       function errorCallback(res) {
         vm.error = res.data.message;
       }
+    }
+
+    // Generate list of teachers
+    function loadTeachers(query) {
+      return $filter('filter')(teachersList, query);
+    }
+
+    // Test whether the form is ready to be displayed and used
+    function isFormReady() {
+      return tagsInputListsLoaded.every(function(data) {return data;});
     }
   }
 }());

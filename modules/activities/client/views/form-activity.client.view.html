@@ -30,8 +30,17 @@
               <p class="help-block error-text" ng-message="required" ng-bind="'ACTIVITY.NAME_ERROR' | translate"></p>
             </div>
           </div>
+          <div class="form-group" show-errors>
+            <label class="control-label" for="teachers" ng-bind="'ACTIVITY.TEACHERS' | translate"></label>
+            <tags-input name="teacher" type="text" ng-model="vm.activity.teachers" add-on-blur="false" add-from-autocomplete-only="true" display-property="displayName" replace-spaces-with-dashes="false" id="teachers" placeholder="{{'ACTIVITY.ADD_TEACHER' | translate}}" min-tags="1">
+              <auto-complete source="vm.loadTeachers($query)" min-length="0"></auto-complete>
+            </tags-input>
+            <div ng-messages="vm.form.courseForm.teachers.$error" role="alert">
+              <p class="help-block error-text" ng-message="minTags" ng-bind="'ACTIVITY.TEACHER_MISSING_ERROR' | translate"></p>
+            </div>
+          </div>
           <div class="form-group">
-            <button type="submit" class="btn btn-primary">{{vm.activity._id ? 'GENERAL.UPDATE' : 'GENERAL.CREATE' | translate}}</button>
+            <button type="submit" class="btn btn-primary" ng-bind="vm.activity._id ? 'GENERAL.UPDATE' : 'GENERAL.CREATE' | translate"></button>
           </div>
           <div ng-show="vm.error" class="text-danger">
             <strong ng-bind="vm.error"></strong>

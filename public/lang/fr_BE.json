@@ -1,6 +1,7 @@
 {
   "ACTIVITY": {
     "ACTIVITIES": "Activités",
+    "CREATE": "Créer une activité",
     "NO_ACTIVITY": "Aucune activité.",
     "NB_ACTIVITIES": "Nombre d'activités",
     "CODE": "Code",
@@ -8,7 +9,8 @@
     "NAME": "Nom",
     "NAME_ERROR": "Veuillez spécifier le nom.",
     "TEACHERS": "Enseignants",
-    "TEACHER_ERROR": "Veuillez spécifier au moins un enseignant."
+    "ADD_TEACHER": "Ajouter un enseignant",
+    "TEACHER_MISSING_ERROR": "Veuillez spécifier au moins un enseignant."
   },
   "AUTHENTICATION": {
     "SIGN_IN": "Connexion",

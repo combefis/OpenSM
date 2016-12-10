@@ -1,6 +1,7 @@
 {
   "ACTIVITY": {
     "ACTIVITIES": "Activities",
+    "CREATE": "Create an activity",
     "NO_ACTIVITY": "No activities yet.",
     "NB_ACTIVITIES": "Number of activities",
     "CODE": "Code",
@@ -8,7 +9,8 @@
     "NAME": "Name",
     "NAME_ERROR": "Please fill in the name.",
     "TEACHERS": "Teachers",
-    "TEACHER_ERROR": "Please select at least one teacher."
+    "ADD_TEACHER": "Add a teacher",
+    "TEACHER_MISSING_ERROR": "Please select at least one teacher."
   },
   "AUTHENTICATION": {
     "SIGN_IN": "Sign in",
