@@ -35,6 +35,7 @@
       suffix: '.json'
     });
     $translateProvider.preferredLanguage('en_GB');
+    $translateProvider.fallbackLanguage('en_GB');
     $translateProvider.useLocalStorage();
   }
 
