@@ -24,8 +24,8 @@
 
         <div class="list-group" ng-if="vm.course.activities.length">
           <a ng-repeat="activity in vm.course.activities | orderBy: '+code'" ui-sref="admin.manage.activities.view({ activityCode: activity.code })" class="list-group-item">
-            <b>{{activity.code}}</b> — <i>{{activity.name}}</i><br/>
-            <small><span ng-repeat="teacher in activity.teachers | orderBy: '+lastname'" ng-bind="teacher.firstname + ' ' + teacher.lastname + ($last ? '' : ', ')"></span></small>
+            <b>{{activity.code}}</b> — {{activity.name}}<br/>
+            <i><small><span ng-repeat="teacher in activity.teachers | orderBy: '+lastname'" ng-bind="teacher.firstname + ' ' + teacher.lastname + ($last ? '' : ', ')"></span></small></i>
           </a>
         </div>
 

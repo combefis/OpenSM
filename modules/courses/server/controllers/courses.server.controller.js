@@ -85,8 +85,10 @@ exports.list = function (req, res) {
       break;
 
     case 'teacher':
-      Course.find({ 'academicyear': req.session.academicyear })
+      Course.find({ 'academicyear': req.session.academicyear }, 'code name coordinator activities')
+      .populate('coordinator', 'displayName')
       .populate('activities', 'teachers')
+      .sort({ code: 1 })
       .exec(function (err, courses) {
         if (err) {
           return res.status(400).send({

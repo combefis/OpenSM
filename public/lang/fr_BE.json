@@ -47,7 +47,8 @@
     "DASHBOARD": "Tableau de bord",
     "ADMIN": "Administration",
     "MANAGE": "Gestion",
-    "ANNOUNCEMENT": "Annonces"
+    "ANNOUNCEMENT": "Annonces",
+    "WORK": "Travail"
   },
   "EXAM": {
     "EXAMS": "Examens",

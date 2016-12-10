@@ -6,10 +6,10 @@
   <div ng-if="vm.course.$resolved">
     <ol class="breadcrumb">
       <li><a ui-sref="courses.list" ng-bind="'COURSE.COURSES' | translate"></a></li>
-      <li class="active"><a ui-sref="courses.view({ courseCode: vm.course.code })">{{vm.course.code}} — {{vm.course.name}}</a></li>
+      <li class="active"><a ui-sref="courses.view({ courseCode: vm.course.code })" ng-bind="vm.course.code"></a></li>
     </ol>
 
-    <h2>{{vm.course.code}} — {{vm.course.name}}</h2>
+    <h2 ng-bind="vm.course.name"></h2>
 
     <div class="row">
       <div class="col-md-12">
@@ -19,7 +19,10 @@
         <h3 ng-bind="'COURSE.ACTIVITIES' | translate"></h3>
 
         <ul class="list-group" ng-if="vm.course.activities.length">
-          <li class="list-group-item" ng-repeat="activity in vm.course.activities">{{activity.code}} — <i>{{activity.name}}</i></li>
+          <li class="list-group-item" ng-repeat="activity in vm.course.activities | orderBy: '+code'">
+            <b>{{activity.code}}</b> — {{activity.name}}<br/>
+            <small><i><span ng-repeat="teacher in activity.teachers | orderBy: '+lastname'" ng-bind="teacher.firstname + ' ' + teacher.lastname + ($last ? '' : ', ')"></span></i></small>
+          </li>
         </ul>
 
         <p ng-if="!vm.course.activities.length" ng-bind="'COURSE.NO_ACTIVITY' | translate"></p>

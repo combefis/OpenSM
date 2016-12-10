@@ -47,7 +47,8 @@
     "DASHBOARD": "Dashboard",
     "ADMIN": "Administration",
     "MANAGE": "Manage",
-    "ANNOUNCEMENT": "Annoucement"
+    "ANNOUNCEMENT": "Annoucement",
+    "WORK": "Work"
   },
   "EXAM": {
     "EXAMS": "Exams",
