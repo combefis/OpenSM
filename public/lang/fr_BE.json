@@ -39,6 +39,7 @@
     "ACTIVITIES": "Activités",
     "ADD_ACTIVITIES": "Ajouter une activité",
     "NO_ACTIVITY": "Pas d'activité.",
+    "NB_ACTIVITIES": "@:ACTIVITY.NB_ACTIVITIES",
     "SUCCESSFUL_CREATION": "Le cours {{code}} a été créé avec succès !",
     "SUCCESSFUL_UPDATE": "Le cours {{code}} a été mis à jour avec succès !"
   },

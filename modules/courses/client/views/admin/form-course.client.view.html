@@ -7,18 +7,18 @@
     <ol class="breadcrumb">
       <li><a ui-sref="admin.manage.courses.list" ng-bind="'COURSE.COURSES' | translate"></a></li>
       <li ng-if="!vm.course._id" class="active"><a ui-sref="admin.manage.courses.create" ng-bind="'GENERAL.CREATE' | translate"></a></li>
-      <li ng-if="vm.course._id"><a ui-sref="admin.manage.courses.view({ courseCode: vm.course.code })">{{vm.course.code}} — {{vm.course.name}}</a></li>
+      <li ng-if="vm.course._id"><a ui-sref="admin.manage.courses.view({ courseCode: vm.course.code })" ng-bind="vm.course.code"></a></li>
       <li ng-if="vm.course._id" class="active"><a ui-sref="admin.manage.courses.edit({ courseCode: vm.course.code })" ng-bind="'GENERAL.EDIT' | translate"></a></li>
     </ol>
 
-    <h2>{{vm.course._id ? 'COURSE.EDIT' : 'COURSE.CREATE' | translate}}</h2>
+    <h2><span ng-if="vm.course._id" ng-bind="vm.coursename"></span><span ng-if="!vm.course._id" ng-bind="'COURSE.CREATE' | translate"></span></h2>
 
     <div class="col-md-12">
       <form name="vm.form.courseForm" class="form-horizontal" ng-submit="vm.save(vm.form.courseForm.$valid)" novalidate>
         <fieldset>
           <div class="form-group" show-errors>
             <label class="control-label" for="code" ng-bind="'COURSE.CODE' | translate"></label>
-            <input name="code" type="text" ng-model="vm.course.code" id="code" class="form-control" placeholder="{{'COURSE.CODE' | translate}}" required />
+            <input name="code" type="text" ng-model="vm.course.code" id="code" class="form-control" placeholder="{{'COURSE.CODE' | translate}}" required ng-disabled="vm.course._id" />
             <div ng-messages="vm.form.courseForm.code.$error" role="alert">
               <p class="help-block error-text" ng-message="required" ng-bind="'COURSE.CODE_REQUIRED_ERROR' | translate"></p>
             </div>

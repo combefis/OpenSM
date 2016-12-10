@@ -11,6 +11,7 @@
     var vm = this;
 
     vm.course = course;
+    vm.coursename = course.name;
     vm.authentication = Authentication;
     vm.error = null;
     vm.form = {};

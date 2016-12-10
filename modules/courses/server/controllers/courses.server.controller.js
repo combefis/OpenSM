@@ -71,7 +71,10 @@ exports.list = function (req, res) {
   switch (req.query.filter) {
     // Load all the courses
     case 'all':
-      Course.find({ 'academicyear': req.session.academicyear }).exec(function (err, courses) {
+      Course.find({ 'academicyear': req.session.academicyear }, 'code name coordinator')
+      .populate('coordinator', 'displayName')
+      .sort({ code: 1 })
+      .exec(function (err, courses) {
         if (err) {
           return res.status(400).send({
             message: errorHandler.getErrorMessage(err)
@@ -118,7 +121,7 @@ exports.list = function (req, res) {
 exports.courseByCode = function (req, res, next, code) {
   Course.findOne({ 'code': code }, 'code name coordinator description activities')
   .populate('coordinator', 'displayName')
-  .populate('activities', 'code name')
+  .populate('activities', 'code name teachers')
   .exec(function (err, course) {
     if (err) {
       return next(err);
@@ -128,7 +131,15 @@ exports.courseByCode = function (req, res, next, code) {
         message: 'No course with that identifier has been found.'
       });
     }
-    req.course = course;
-    next();
+
+    Course.populate(course, { path: 'activities.teachers', select: 'firstname lastname displayName', model: 'User' }, function (err, course) {
+      if (err || !course) {
+        return res.status(404).send({
+          message: 'Error while retrieving information about the course.'
+        });
+      }
+      req.course = course;
+      next();
+    });
   });
 };
