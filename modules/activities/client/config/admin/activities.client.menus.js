@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('activities')
+    .module('activities.admin')
     .run(menuConfig);
 
   menuConfig.$inject = ['menuService'];

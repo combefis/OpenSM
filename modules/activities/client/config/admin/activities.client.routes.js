@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('activities.routes')
+    .module('activities.admin.routes')
     .config(routeConfig);
 
   routeConfig.$inject = ['$stateProvider'];
@@ -16,8 +16,8 @@
       })
       .state('admin.manage.activities.list', {
         url: '',
-        templateUrl: 'modules/activities/client/views/list-activities.client.view.html',
-        controller: 'ActivitiesListController',
+        templateUrl: 'modules/activities/client/views/admin/list-activities.client.view.html',
+        controller: 'ActivitiesListAdminController',
         controllerAs: 'vm',
         data: {
           roles: ['admin'],
@@ -26,8 +26,8 @@
       })
       .state('admin.manage.activities.create', {
         url: '/create',
-        templateUrl: 'modules/activities/client/views/form-activity.client.view.html',
-        controller: 'ActivitiesController',
+        templateUrl: 'modules/activities/client/views/admin/form-activity.client.view.html',
+        controller: 'ActivitiesAdminController',
         controllerAs: 'vm',
         resolve: {
           activityResolve: newActivity
@@ -39,8 +39,8 @@
       })
       .state('admin.manage.activities.view', {
         url: '/:activityCode',
-        templateUrl: 'modules/activities/client/views/view-activity.client.view.html',
-        controller: 'ActivitiesController',
+        templateUrl: 'modules/activities/client/views/admin/view-activity.client.view.html',
+        controller: 'ActivitiesAdminController',
         controllerAs: 'vm',
         resolve: {
           activityResolve: getActivity
@@ -52,8 +52,8 @@
       })
       .state('admin.manage.activities.edit', {
         url: '/:activityCode/edit',
-        templateUrl: 'modules/activities/client/views/form-activity.client.view.html',
-        controller: 'ActivitiesController',
+        templateUrl: 'modules/activities/client/views/admin/form-activity.client.view.html',
+        controller: 'ActivitiesAdminController',
         controllerAs: 'vm',
         resolve: {
           activityResolve: getActivity

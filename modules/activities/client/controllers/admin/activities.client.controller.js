@@ -2,12 +2,12 @@
   'use strict';
 
   angular
-    .module('activities')
-    .controller('ActivitiesController', ActivitiesController);
+    .module('activities.admin')
+    .controller('ActivitiesAdminController', ActivitiesAdminController);
 
-  ActivitiesController.$inject = ['$scope', '$state', '$http', 'activityResolve', '$window', 'Authentication', 'Notification', '$filter'];
+  ActivitiesAdminController.$inject = ['$scope', '$state', '$http', 'activityResolve', '$window', 'Authentication', 'Notification', '$filter'];
 
-  function ActivitiesController($scope, $state, $http, activity, $window, Authentication, Notification, $filter) {
+  function ActivitiesAdminController($scope, $state, $http, activity, $window, Authentication, Notification, $filter) {
     var vm = this;
 
     vm.activity = activity;
