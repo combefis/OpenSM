@@ -62,13 +62,9 @@ exports.update = function (req, res) {
  * List of courses
  */
 exports.list = function (req, res) {
-  if (!req.query.filter) {
-    return res.status(422).send({
-      message: 'Missing filter.'
-    });
-  }
+  var filter = req.query.filter ? req.query.filter : 'all';
 
-  switch (req.query.filter) {
+  switch (filter) {
     // Load all the courses
     case 'all':
       Course.find({ 'academicyear': req.session.academicyear }, 'code name coordinator')

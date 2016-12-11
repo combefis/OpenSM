@@ -34,7 +34,7 @@
 
     // Load the list of courses for the tags-input
     var coursesList = [];
-    $http.get('/api/courses?filter=all').success(function(data, status, headers, config) {
+    $http.get('/api/courses').success(function(data, status, headers, config) {
       coursesList = data;
       tagsInputListsLoaded[0] = true;
     });

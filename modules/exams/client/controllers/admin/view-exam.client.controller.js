@@ -13,6 +13,7 @@
     vm.exam = exam;
     vm.examtitle = exam.title;
     vm.authentication = Authentication;
+    vm.remove = remove;
     vm.validate = validate;
 
     // Students management
@@ -60,6 +61,23 @@
         }), 1);
       });
     });
+
+    // Remove existing exam
+    function remove() {
+      if ($window.confirm('Are you sure you want to delete this exam?')) {
+        vm.exam.$remove({ examId: exam._id }, onSuccess, onError);
+      }
+
+      function onSuccess(examsession) {
+        $state.go('admin.manage.exams.list');
+        Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAM.SUCCESSFUL_DELETE') });
+      }
+
+      function onError(errorResponse) {
+        var error = errorResponse.data;
+        Notification.error({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + error.message });
+      }
+    }
 
     // Validate exam
     function validate() {
