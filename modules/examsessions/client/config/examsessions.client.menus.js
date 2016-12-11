@@ -12,7 +12,7 @@
     menuService.addSubMenuItem('topbar', 'dashboard', {
       title: 'Exam sessions',
       state: 'examsessions.list',
-      roles: ['teacher']
+      roles: ['teacher', 'printer']
     });
   }
 }());

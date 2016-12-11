@@ -31,7 +31,7 @@ exports.invokeRolesPolicies = function () {
       permissions: ['get', 'put', 'delete']
     }]
   }, {
-    roles: ['teacher'],
+    roles: ['teacher', 'printer'],
     allows: [{
       resources: [
         '/api/examsessions',

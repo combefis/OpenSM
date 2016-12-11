@@ -20,7 +20,7 @@
         controller: 'ExamSessionsListController',
         controllerAs: 'vm',
         data: {
-          roles: ['teacher'],
+          roles: ['teacher', 'printer'],
           pageTitle: 'Exam sessions'
         }
       })
@@ -33,7 +33,7 @@
           examsessionResolve: getExamSession
         },
         data: {
-          roles: ['teacher'],
+          roles: ['teacher', 'printer'],
           pageTitle: '{{examsessionResolve.name}}'
         }
       });
