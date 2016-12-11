@@ -17,6 +17,10 @@ module.exports = function (app) {
     .get(rooms.read)
     .put(rooms.update);
 
+  // Room map routes
+  app.route('/api/rooms/:roomCode/map').all(roomsPolicy.isAllowed)
+    .get(rooms.getMap);
+
   // Finish by binding the room middleware
   app.param('roomCode', rooms.roomByCode);
 };
