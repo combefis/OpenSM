@@ -22,8 +22,8 @@
             <div ng-if="!vm.room.picture" ng-bind="'ROOM.NO_PICTURES' | translate"></div>
           </uib-tab>
           <uib-tab heading="{{'ROOM.MAP' | translate}}">
-            <div ng-if="vm.room.map" ng-init="vm.drawMap()">
-              <canvas id="roomMap"></canvas>
+            <div ng-if="vm.room.map">
+              <canvas draw-map="vm.room"></canvas>
             </div>
             <div ng-if="!vm.room.map" ng-bind="'ROOM.NO_MAP' | translate"></div>
           </uib-tab>
