@@ -79,6 +79,15 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/exams/:examId/copy/:i/upload',
       permissions: ['post']
     }]
+  }, {
+    roles: ['printer'],
+    allows: [{
+      resources: [
+        '/api/exams/:examId',
+        '/api/exams/:examId/copy/:i/download'
+      ],
+      permissions: ['get']
+    }]
   }]);
 };
 

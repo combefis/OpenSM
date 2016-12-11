@@ -18,7 +18,7 @@
           examResolve: getExam
         },
         data: {
-          roles: ['teacher'],
+          roles: ['teacher', 'printer'],
           pageTitle: '{{examResolve.title}}'
         }
       });
