@@ -9,7 +9,7 @@
       <li class="active"><a ui-sref="admin.manage.rooms.view({roomCode: vm.room.code})">{{vm.room.code}}</a></li>
     </ol>
 
-    <h2>{{vm.room.code}}</h2>
+    <h2 ng-bind="vm.room.code"></h2>
 
     <div class="row">
       <div class="col-md-9">
@@ -22,7 +22,7 @@
             <div ng-if="!vm.room.picture" ng-bind="'ROOM.NO_PICTURES' | translate"></div>
           </uib-tab>
           <uib-tab heading="{{'ROOM.MAP' | translate}}">
-            <div ng-if="vm.room.map" ng-init="vm.loadMap()">
+            <div ng-if="vm.room.map" ng-init="vm.drawMap()">
               <canvas id="roomMap"></canvas>
             </div>
             <div ng-if="!vm.room.map" ng-bind="'ROOM.NO_MAP' | translate"></div>

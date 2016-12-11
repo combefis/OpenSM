@@ -72,25 +72,6 @@ exports.list = function (req, res) {
   });
 };
 
-/*
- * Get the map of a room
- */
-exports.getMap = function (req, res) {
-  var room = req.room;
-  var file = path.dirname(require.main.filename) + '/rooms/' + room._id + '/map.json';
-
-  fs.readFile(file, function (err, content) {
-    if (err) {
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
-      });
-    }
-
-    res.writeHead('200', { 'Content-Type': 'application/json' });
-    res.end(content);
-  });
-};
-
 /**
  * Room middleware
  */

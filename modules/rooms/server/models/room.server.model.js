@@ -29,8 +29,8 @@ var RoomSchema = new Schema({
     default: false
   },
   map: {
-    type: Boolean,
-    default: false
+    type: Schema.Types.Mixed,
+    default: null
   },
   created: {
     type: Date,
