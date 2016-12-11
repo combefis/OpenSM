@@ -15,7 +15,6 @@
     vm.authentication = Authentication;
     vm.error = null;
     vm.form = {};
-    vm.remove = remove;
     vm.save = save;
 
     // Auto-completion for tags-input
@@ -52,23 +51,6 @@
     // Convert date to Date object
     vm.exam.date = vm.exam.date ? new Date(vm.exam.date) : null;
 
-    // Remove existing exam
-    function remove() {
-      if ($window.confirm('Are you sure you want to delete this exam?')) {
-        vm.exam.$remove({ examId: exam._id }, onSuccess, onError);
-      }
-
-      function onSuccess(examsession) {
-        $state.go('admin.manage.exams.list');
-        Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAM.SUCCESSFUL_DELETE') });
-      }
-
-      function onError(errorResponse) {
-        var error = errorResponse.data;
-        Notification.error({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + error.message });
-      }
-    }
-
     // Save exam
     function save(isValid) {
       if (!isValid) {
@@ -82,6 +64,7 @@
         .catch(errorCallback);
 
       function successCallback(res) {
+        var title = vm.exam.title;
         // Clear form fields
         vm.exam.title = '';
         vm.exam.course = [];
@@ -89,10 +72,14 @@
         vm.exam.date = null;
         vm.exam.duration = 0;
 
-        $state.go('admin.manage.exams.view', {
-          examId: res._id
-        });
-        Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')(examId ? 'EXAM.SUCCESSFUL_UPDATE' : 'EXAMSESSION.SUCCESSFUL_EXAMADD') });
+        if (examId) {
+          $state.go('admin.manage.exams.view', {
+            examId: res._id
+          });
+        } else {
+          $state.go('admin.manage.exams.list');
+        }
+        Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')(examId ? 'EXAM.SUCCESSFUL_UPDATE' : 'EXAM.SUCCESSFUL_CREATION', { title: title }) });
       }
 
       function errorCallback(res) {

@@ -16,7 +16,6 @@
     vm.authentication = Authentication;
     vm.error = null;
     vm.form = {};
-    vm.remove = remove;
     vm.save = save;
 
     // Auto-completion for tags-input
@@ -47,25 +46,6 @@
     // Convert date to Date object
     vm.exam.date = vm.exam.date ? new Date(vm.exam.date) : null;
 
-    // Remove existing exam
-    function remove() {
-      if ($window.confirm('Are you sure you want to delete this exam?')) {
-        vm.exam.$remove({ examId: exam._id }, onSuccess, onError);
-      }
-
-      function onSuccess(examsession) {
-        $state.go('manage.examsessions.view', {
-          examsessionCode: vm.examsession.code
-        });
-        Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAM.SUCCESSFUL_DELETE') });
-      }
-
-      function onError(errorResponse) {
-        var error = errorResponse.data;
-        Notification.error({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + error.message });
-      }
-    }
-
     // Save exam
     function save(isValid) {
       if (!isValid) {
@@ -81,6 +61,7 @@
 
       function successCallback(res) {
         var code = vm.exam.examsession.code;
+        var title = vm.exam.title;
         // Clear form fields
         vm.exam.title = '';
         vm.exam.course = [];
@@ -98,7 +79,7 @@
             examId: examId
           });
         }
-        Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')(examId ? 'EXAM.SUCCESSFUL_UPDATE' : 'EXAMSESSION.SUCCESSFUL_EXAMADD') });
+        Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')(examId ? 'EXAM.SUCCESSFUL_UPDATE' : 'EXAMSESSION.SUCCESSFUL_EXAMADD', { title: title, code: code }) });
       }
 
       function errorCallback(res) {

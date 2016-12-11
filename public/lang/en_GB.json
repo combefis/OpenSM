@@ -13,8 +13,8 @@
     "TEACHER_MISSING_ERROR": "Please select at least one teacher.",
     "DESCRIPTION": "Description",
     "NO_DESCRIPTION": "No description.",
-    "SUCCESSFUL_CREATION": "The activity {{code}} has been successfully created!",
-    "SUCCESSFUL_UPDATE": "The activity {{code}} has been successfully updated!"
+    "SUCCESSFUL_CREATION": "The activity \"{{code}}\" has been successfully created!",
+    "SUCCESSFUL_UPDATE": "The activity \"{{code}}\" has been successfully updated!"
   },
   "AUTHENTICATION": {
     "SIGN_IN": "Sign in",
@@ -40,8 +40,8 @@
     "ADD_ACTIVITIES": "Add an activity",
     "NO_ACTIVITY": "No activities.",
     "NB_ACTIVITIES": "@:ACTIVITY.NB_ACTIVITIES",
-    "SUCCESSFUL_CREATION": "The course {{code}} has been successfully created!",
-    "SUCCESSFUL_UPDATE": "The course {{code}} has been successfully updated!"
+    "SUCCESSFUL_CREATION": "The course \"{{code}}\" has been successfully created!",
+    "SUCCESSFUL_UPDATE": "The course \"{{code}}\" has been successfully updated!"
   },
   "DASHBOARD": {
     "DASHBOARD": "Dashboard",
@@ -68,7 +68,8 @@
     "DURATION": "Duration",
     "DURATION_ERROR": "Please fill in the duration.",
     "EXAMSESSION_SUMMARY": "Exam of the session of \"{{name}}\" which takes place from",
-    "SUCCESSFUL_UPDATE": "Exam updated successfully!",
+    "SUCCESSFUL_CREATION": "The exam \"{{title}}\" has been successfully created!",
+    "SUCCESSFUL_UPDATE": "The exam \"{{title}}\" has been successfully updated!",
     "SUCCESSFUL_DELETE": "Exam deleted successfully!",
     "STUDENTS": "Students",
     "NO_STUDENTS": "No registered students.",
@@ -108,7 +109,7 @@
     "NO_EXAM": "No exam in this session.",
     "SUCCESSFUL_DELETE": "Exam session deleted successfully!",
     "ADD_EXAM": "Add an exam",
-    "SUCCESSFUL_EXAMADD": "Exam added successfully!",
+    "SUCCESSFUL_EXAMADD": "The exam \"{{title}}\" has been successfully added to the \"{{code}}\" session!",
     "NB_EXAMS": "Number of exams"
   },
   "GENERAL": {

@@ -68,7 +68,8 @@
     "DURATION": "Durée",
     "DURATION_ERROR": "Veuillez spécifier la durée.",
     "EXAMSESSION_SUMMARY": "Examen de la session de \"{{name}}\" qui se déroule du",
-    "SUCCESSFUL_UPDATE": "Examen mis à jour avec succès !",
+    "SUCCESSFUL_CREATION": "L'examen \"{{title}}\" a été créé avec succès !",
+    "SUCCESSFUL_UPDATE": "L'examen \"{{title}}\" a été mis à jour avec succès !",
     "SUCCESSFUL_DELETE": "Examen supprimé avec succès !",
     "STUDENTS": "Étudiants",
     "NO_STUDENTS": "Pas d'étudiants inscrits.",
@@ -108,7 +109,7 @@
     "NO_EXAM": "Aucun examen dans cette session.",
     "SUCCESSFUL_DELETE": "Session d'examens supprimée avec succès !",
     "ADD_EXAM": "Ajouter un examen",
-    "SUCCESSFUL_EXAMADD": "Examen ajouté avec succès !",
+    "SUCCESSFUL_EXAMADD": "L'examen \"{{title}}\" a été ajouté avec succès à la session \"{code}\" !",
     "NB_EXAMS": "Nombre d'examens"
   },
   "GENERAL": {
