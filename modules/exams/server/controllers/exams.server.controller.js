@@ -471,7 +471,7 @@ exports.examByID = function (req, res, next, id) {
   Exam.findById(id, 'title course examsession date duration registrations copies rooms ready')
   .populate('course', 'code name')
   .populate('examsession', 'code name')
-  .populate('rooms', 'code name')
+  .populate('rooms', 'code name nbseats map')
   .populate('registrations', 'displayName username')
   .exec(function (err, exam) {
     if (err) {

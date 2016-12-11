@@ -59,6 +59,13 @@
                 <uib-tab ng-repeat="i in cvm.getNumber(vm.exam.rooms.length)" heading="{{vm.exam.rooms[i].code}}">
                   <div>
                     <h3 ng-bind="vm.exam.rooms[i].name"></h3>
+                    <div ng-if="vm.exam.rooms[i].map">
+                      <canvas draw-map="vm.exam.rooms[i]"></canvas>
+                    </div>
+                    <div ng-if="!vm.exam.rooms[i].map" ng-bind="'ROOM.NO_MAP' | translate"></div>
+
+                    <h4 ng-bind="'EXAM.ROOM_CONFIGURATION' | translate"></h4>
+                    <div ng-bind="'EXAM.ROOM_SEATS_SUMMARY' | translate: { seats: 0, nbseats: vm.exam.rooms[i].nbseats }"></div>
                   </div>
                 </uib-tab>
               </uib-tabset>

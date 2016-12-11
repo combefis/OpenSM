@@ -84,6 +84,8 @@
     "ROOMS": "Locaux",
     "NO_ROOMS": "Pas de locaux attribués.",
     "ROOM_SUCCESSFUL_DELETE": "Local supprimé avec succès !",
+    "ROOM_CONFIGURATION": "Configuration du local",
+    "ROOM_SEATS_SUMMARY": "Sélection de {{seats}} sièges sur un total de {{nbseats}}.",
     "VALIDATE": "Valider",
     "STATE": "État",
     "VALIDATED": "Validé"

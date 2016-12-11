@@ -84,6 +84,8 @@
     "ROOMS": "Rooms",
     "NO_ROOMS": "No affected rooms.",
     "ROOM_SUCCESSFUL_DELETE": "Room deleted successfully!",
+    "ROOM_CONFIGURATION": "Room configuration",
+    "ROOM_SEATS_SUMMARY": "Selected {{seats}} seats from a total of {{nbseats}}.",
     "VALIDATE": "Validate",
     "STATE": "State",
     "VALIDATED": "Validated"
