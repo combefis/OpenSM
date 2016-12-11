@@ -12,3 +12,4 @@ config/env/local-*.js
 # OpenSM assets
 ===============
 copies/
+rooms/
