@@ -10,7 +10,6 @@
 \usepackage{fancyhdr}
 \usepackage{forloop}
 \usepackage{ifthen}
-\usepackage{desclist}
 \usepackage{grffile}
 
 \setlength{\oddsidemargin}{1.5cm}
@@ -39,18 +38,8 @@ Matricule : !matricule! & & (!duration! minutes) \\
 \pagestyle{fancy}
 
 \begin{document}
-	%%% Title page
-%	\thispagestyle{plain}
-	
-%	\begin{desclist}{\sf\bfseries}{}[\hspace{2.5cm}]
-%		\item[Name] !filename!
-%		\item[Pages] \pdfximage{!filepath!}\the\pdflastximagepages
-%		\item[Generated on] !gendate!
-%	\end{desclist}
-	
 	\pdfximage{!filepath!}
 	%%% Questions
-%	\setcounter{page}{0}
 	\centering
 	\newcounter{p}
 	\forloop{p}{1}{\value{p} < \numexpr\the\pdflastximagepages+1}{
