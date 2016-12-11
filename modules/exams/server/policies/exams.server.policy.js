@@ -62,6 +62,28 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/exams/:examId/copy/:i/upload',
       permissions: ['post']
     }]
+  }, {
+    roles: ['teacher'],
+    allows: [{
+      resources: '/api/exams/:examId',
+      permissions: ['get']
+    }, {
+      resources: [
+        '/api/exams/:examId/copy'
+      ],
+      permissions: ['post']
+    }, {
+      resources: [
+        '/api/exams/:examId/copy/:i'
+      ],
+      permissions: ['delete']
+    }, {
+      resources: '/api/exams/:examId/copy/:i/download',
+      permissions: ['get']
+    }, {
+      resources: '/api/exams/:examId/copy/:i/upload',
+      permissions: ['post']
+    }]
   }]);
 };
 

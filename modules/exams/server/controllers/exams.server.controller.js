@@ -338,7 +338,7 @@ exports.downloadCopy = function (req, res) {
 
   // Download original file
   if (req.query.orig) {
-    if (!req.user.roles.includes('admin')) {
+    if (!(req.user.roles.includes('admin') || req.user.roles.includes('teacher'))) {
       return res.status(403).json({
         message: 'User is not authorized'
       });
@@ -356,11 +356,26 @@ exports.downloadCopy = function (req, res) {
     });
   // Generate and download the exam file
   } else {
-    // Open and fill the chosen template
+    // Open the chosen template
     var template = path.dirname(require.main.filename) + '/templates/basic-template.tex';
     var filename = exam.examsession.code + '_' + exam.course.code + '_copy_' + getLetter(parseInt(req.params.i, 10) + 1);
     var content = fs.readFileSync(template, { flag: 'r', encoding: 'utf8' });
     content = content.replace(/!filepath!/g, file);
+
+    // Fill the variables in the template
+    content = content.replace(/!classement!/g, '1');
+    content = content.replace(/!courseid!/g, exam.course.code);
+    content = content.replace(/!coursename!/g, exam.course.name);
+    content = content.replace(/!datetime!/g, moment(exam.date).format('DD/MM/YYYY HH:mm'));
+    content = content.replace(/!date!/g, moment(exam.date).format('DD/MM/YYYY'));
+    content = content.replace(/!duration!/g, exam.duration);
+    content = content.replace(/!firstname!/g, req.user.firstname);
+    content = content.replace(/!globalorder!/g, '1');
+    content = content.replace(/!lastname!/g, req.user.lastname);
+    content = content.replace(/!matricule!/g, req.user.username);
+    content = content.replace(/!room!/g, 'XXX');
+    content = content.replace(/!seatnumber!/g, '1');
+    content = content.replace(/!serie!/g, getLetter(parseInt(req.params.i, 10) + 1));
 
     var dest = path.dirname(require.main.filename) + '/copies/' + exam._id + '/' + filename + '.tex';
     fs.writeFileSync(dest, content, { flag: 'w', encoding: 'utf8' });
@@ -454,7 +469,7 @@ exports.examByID = function (req, res, next, id) {
   }
 
   Exam.findById(id, 'title course examsession date duration registrations copies rooms ready')
-  .populate('course', 'code')
+  .populate('course', 'code name')
   .populate('examsession', 'code name')
   .populate('rooms', 'code name')
   .populate('registrations', 'displayName username')

@@ -23,7 +23,6 @@
 
     // Rooms management
     vm.rooms = null;
-    vm.getLetter = getLetter;
     vm.addRoom = addRoom;
     vm.removeRoom = removeRoom;
 
@@ -31,6 +30,7 @@
     var nbCopies = vm.exam.copies.length;
     vm.uploading = Array.apply(null, new Array(nbCopies)).map(function(x, i) { return false; });
     vm.progressValue = Array.apply(null, new Array(nbCopies)).map(function(x, i) { return null; });
+    vm.getLetter = getLetter;
     vm.addCopy = addCopy;
     vm.removeCopy = removeCopy;
     vm.uploadCopy = uploadCopy;
