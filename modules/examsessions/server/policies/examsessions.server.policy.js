@@ -15,10 +15,10 @@ exports.invokeRolesPolicies = function () {
   acl.allow([{
     roles: ['admin'],
     allows: [{
-      resources: '/api/examsessions',
-      permissions: '*'
-    }, {
-      resources: '/api/examsessions/:examsessionCode',
+      resources: [
+        '/api/examsessions',
+        '/api/examsessions/:examsessionCode'
+      ],
       permissions: '*'
     }]
   }, {
@@ -29,6 +29,15 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/examsessions/:examsessionCode',
       permissions: ['get', 'put', 'delete']
+    }]
+  }, {
+    roles: ['teacher'],
+    allows: [{
+      resources: [
+        '/api/examsessions',
+        '/api/examsessions/:examsessionCode'
+      ],
+      permissions: ['get']
     }]
   }]);
 };

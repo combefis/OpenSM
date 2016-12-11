@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('examsessions.routes')
+    .module('examsessions.manager.routes')
     .config(routeConfig);
 
   routeConfig.$inject = ['$stateProvider'];
@@ -16,8 +16,8 @@
       })
       .state('manage.examsessions.list', {
         url: '',
-        templateUrl: 'modules/examsessions/client/views/list-examsessions.client.view.html',
-        controller: 'ExamSessionsListController',
+        templateUrl: 'modules/examsessions/client/views/manager/list-examsessions.client.view.html',
+        controller: 'ExamSessionsListManagerController',
         controllerAs: 'vm',
         data: {
           roles: ['manager.exams'],
@@ -26,8 +26,8 @@
       })
       .state('manage.examsessions.create', {
         url: '/create',
-        templateUrl: 'modules/examsessions/client/views/form-examsession.client.view.html',
-        controller: 'ExamSessionsController',
+        templateUrl: 'modules/examsessions/client/views/manager/form-examsession.client.view.html',
+        controller: 'ExamSessionsManagerController',
         controllerAs: 'vm',
         resolve: {
           examsessionResolve: newExamSession
@@ -39,8 +39,8 @@
       })
       .state('manage.examsessions.view', {
         url: '/:examsessionCode',
-        templateUrl: 'modules/examsessions/client/views/view-examsession.client.view.html',
-        controller: 'ExamSessionsController',
+        templateUrl: 'modules/examsessions/client/views/manager/view-examsession.client.view.html',
+        controller: 'ExamSessionsManagerController',
         controllerAs: 'vm',
         resolve: {
           examsessionResolve: getExamSession
@@ -52,8 +52,8 @@
       })
       .state('manage.examsessions.edit', {
         url: '/:examsessionCode/edit',
-        templateUrl: 'modules/examsessions/client/views/form-examsession.client.view.html',
-        controller: 'ExamSessionsController',
+        templateUrl: 'modules/examsessions/client/views/manager/form-examsession.client.view.html',
+        controller: 'ExamSessionsManagerController',
         controllerAs: 'vm',
         resolve: {
           examsessionResolve: getExamSession
