@@ -29,14 +29,10 @@ function checkData (exam) {
 }
 
 /*
- * Convert an integer to a letter (1 => A, 2 => B...)
+ * Convert an integer to a letter 1 => A, 2 => B...
  */
-function getNumber (n) {
-  var tab = [];
-  for (var i = 0; i < n; i++) {
-    tab.push(i);
-  }
-  return tab;
+function getLetter (i) {
+  return String.fromCharCode(64 + i);
 }
 
 /**
@@ -362,23 +358,26 @@ exports.downloadCopy = function (req, res) {
   } else {
     // Open and fill the chosen template
     var template = path.dirname(require.main.filename) + '/templates/basic-template.tex';
-    var filename = exam.course.code + '_copy_' + getNumber(req.params.i + 1);
+    var filename = exam.examsession.code + '_' + exam.course.code + '_copy_' + getLetter(parseInt(req.params.i, 10) + 1);
     var content = fs.readFileSync(template, { flag: 'r', encoding: 'utf8' });
     content = content.replace(/!filepath!/g, file);
 
     var dest = path.dirname(require.main.filename) + '/copies/' + exam._id + '/' + filename + '.tex';
     fs.writeFileSync(dest, content, { flag: 'w', encoding: 'utf8' });
 
+    // Remove previous files
+    var pdffile = path.dirname(require.main.filename) + '/copies/' + exam._id + '/' + filename + '.pdf';
+    fs.removeSync(pdffile);
+
     // Compile the .tex file
     process.chdir(path.dirname(dest));
-    child_process.execFile('pdflatex', [path.basename(dest)], function (err, stdout, stderr) {
+    child_process.execFile('pdflatex', ['-interaction=nonstopmode', path.basename(dest)], function (err, stdout, stderr) {
       if (err) {
         return res.status(400).send({
           message: errorHandler.getErrorMessage(err)
         });
       }
 
-      var pdffile = path.dirname(require.main.filename) + '/copies/' + exam._id + '/' + filename + '.pdf';
       fs.readFile(pdffile, function (err, content) {
         if (err) {
           return res.status(400).send({

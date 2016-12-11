@@ -180,11 +180,7 @@
 
     // Download a copy of the exam
     function downloadCopy(i) {
-      console.log('Downloading the copy...');
-
-      $http.get('/api/exams/' + vm.exam._id + '/copy/' + i + '/download?generate=true').success(function(data, status, headers, config) {
-        console.log('Oké ! Fait !');
-      });
+      $window.open('/api/exams/' + vm.exam._id + '/copy/' + i + '/download');
     }
   }
 }());

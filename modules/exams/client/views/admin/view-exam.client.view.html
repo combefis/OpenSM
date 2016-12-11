@@ -55,7 +55,7 @@
                 <li class="list-group-item" ng-repeat="i in cvm.getNumber(vm.exam.copies.length)">
                   <div class="pull-right">
                     <button type="file" ngf-select="vm.uploadCopy($file, i)" accept="application/pdf" ngf-allow-dir="false" ngf-max-files="1" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span></button>
-                    <a href="/api/exams/{{vm.exam._id}}/copy/{{i}}/download" target="_blank" class="btn btn-default btn-xs" ng-disabled="!vm.exam.copies[i].name && !vm.uploading[i]"><span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span></a>
+                    <button ng-click="vm.downloadCopy(i)" class="btn btn-default btn-xs" ng-disabled="!vm.exam.copies[i].name && !vm.uploading[i]"><span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span></button>
                     <button ng-click="vm.removeCopy(i)" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
                   </div>
                   <div><b>{{'EXAM.COPY' | translate}} {{vm.getLetter(i+1)}}</b></div>
