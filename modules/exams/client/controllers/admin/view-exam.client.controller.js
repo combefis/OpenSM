@@ -97,8 +97,11 @@
           vm.students.splice(vm.students.findIndex(function (element) {
             return element.username === vm.selectedStudent.username;
           }), 1);
+          var username = vm.selectedStudent.username;
           vm.selectedStudent = undefined;
           vm.exam.registrations = response.data;
+
+          Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAM.STUDENT_SUCCESSFUL_ADD', { username: username }) });
         });
       }
     }
@@ -113,7 +116,7 @@
           vm.students.push(student);
           vm.exam.registrations = response.data;
 
-          Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAM.STUDENT_SUCCESSFUL_DELETE') });
+          Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAM.STUDENT_SUCCESSFUL_DELETE', { username: student.username }) });
         });
       }
     }
@@ -131,8 +134,11 @@
           vm.rooms.splice(vm.rooms.findIndex(function (element) {
             return element.code === vm.selectedRoom.code;
           }), 1);
+          var code = vm.selectedRoom.code;
           vm.selectedRoom = undefined;
           vm.exam.rooms = response.data;
+
+          Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAM.ROOM_SUCCESSFUL_ADD', { code: code }) });
         });
       }
     }
@@ -147,7 +153,7 @@
           vm.rooms.push(room);
           vm.exam.rooms = response.data;
 
-          Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAM.ROOM_SUCCESSFUL_DELETE') });
+          Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAM.ROOM_SUCCESSFUL_DELETE', { code: room.code }) });
         });
       }
     }
