@@ -6,10 +6,10 @@
   <div ng-if="vm.examsession.$resolved">
     <ol class="breadcrumb">
       <li><a ui-sref="admin.manage.examsessions.list" ng-bind="'EXAMSESSION.EXAMSESSIONS' | translate"></a></li>
-      <li class="active"><a ui-sref="admin.manage.examsessions.view({ examsessionCode: vm.examsession.code })">{{vm.examsession.code}}</a></li>
+      <li class="active"><a ui-sref="admin.manage.examsessions.view({ examsessionCode: vm.examsession.code })" ng-bind="vm.examsession.code"></a></li>
     </ol>
 
-    <h2>{{vm.examsession.name}}</h2>
+    <h2 ng-bind="vm.examsession.name"></h2>
 
     <div class="row">
       <div class="col-md-9">
