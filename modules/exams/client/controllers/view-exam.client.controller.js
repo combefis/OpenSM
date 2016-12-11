@@ -35,6 +35,7 @@
     vm.addCopy = addCopy;
     vm.removeCopy = removeCopy;
     vm.uploadCopy = uploadCopy;
+    vm.downloadCopy = downloadCopy;
 
     // Load the exam session
     $http.get('/api/examsessions/' + $stateParams.examsessionCode).success(function(data, status, headers, config) {
@@ -201,6 +202,11 @@
       }, function (event) {
         vm.progressValue[i] = parseInt(100.0 * event.loaded / event.total, 10);
       });
+    }
+
+    // Download a copy of the exam
+    function downloadCopy(i) {
+      $window.open('/api/exams/' + vm.exam._id + '/copy/' + i + '/download');
     }
   }
 }());
