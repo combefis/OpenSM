@@ -2,12 +2,12 @@
   'use strict';
 
   angular
-    .module('exams')
-    .controller('ViewExamController', ViewExamController);
+    .module('exams.manager')
+    .controller('ViewExamManagerController', ViewExamManagerController);
 
-  ViewExamController.$inject = ['$scope', '$state', '$http', 'examResolve', '$window', 'Authentication', '$stateParams', 'Notification', '$filter', 'Upload'];
+  ViewExamManagerController.$inject = ['$scope', '$state', '$http', 'examResolve', '$window', 'Authentication', '$stateParams', 'Notification', '$filter', 'Upload'];
 
-  function ViewExamController($scope, $state, $http, exam, $window, Authentication, $stateParams, Notification, $filter, Upload) {
+  function ViewExamManagerController($scope, $state, $http, exam, $window, Authentication, $stateParams, Notification, $filter, Upload) {
     var vm = this;
 
     vm.exam = exam;

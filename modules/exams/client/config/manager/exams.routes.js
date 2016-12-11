@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('exams.routes')
+    .module('exams.manager.routes')
     .config(routeConfig);
 
   routeConfig.$inject = ['$stateProvider'];
@@ -11,8 +11,8 @@
     $stateProvider
       .state('manage.examsessions.addexam', {
         url: '/:examsessionCode/addexam',
-        templateUrl: 'modules/exams/client/views/form-exam.client.view.html',
-        controller: 'ExamsController',
+        templateUrl: 'modules/exams/client/views/manager/form-exam.client.view.html',
+        controller: 'ExamsManagerController',
         controllerAs: 'vm',
         resolve: {
           examResolve: newExam
@@ -24,8 +24,8 @@
       })
       .state('manage.examsessions.viewexam', {
         url: '/:examsessionCode/exams/:examId',
-        templateUrl: 'modules/exams/client/views/view-exam.client.view.html',
-        controller: 'ViewExamController',
+        templateUrl: 'modules/exams/client/views/manager/view-exam.client.view.html',
+        controller: 'ViewExamManagerController',
         controllerAs: 'vm',
         resolve: {
           examResolve: getExam
@@ -37,8 +37,8 @@
       })
       .state('manage.examsessions.editexam', {
         url: '/:examsessionCode/exams/:examId/edit',
-        templateUrl: 'modules/exams/client/views/form-exam.client.view.html',
-        controller: 'ExamsController',
+        templateUrl: 'modules/exams/client/views/manager/form-exam.client.view.html',
+        controller: 'ExamsManagerController',
         controllerAs: 'vm',
         resolve: {
           examResolve: getExam
