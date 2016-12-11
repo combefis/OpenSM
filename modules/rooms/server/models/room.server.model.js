@@ -12,13 +12,25 @@ var mongoose = require('mongoose'),
 var RoomSchema = new Schema({
   code: {
     type: String,
-    required: 'Please fill in the code.',
+    required: 'Please fill in the code of the room.',
     trim: true,
     unique: true
   },
   name: {
     type: String,
     trim: true
+  },
+  nbseats: {
+    type: Number,
+    required: 'Please fill in the number of seats of the room.'
+  },
+  pictures: {
+    type: Boolean,
+    default: false
+  },
+  map: {
+    type: Boolean,
+    default: false
   },
   created: {
     type: Date,

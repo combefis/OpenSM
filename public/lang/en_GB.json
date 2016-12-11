@@ -133,13 +133,21 @@
   "OPENSM_AUTHORS": "the OpenSM authors",
   "ROOM": {
     "ROOMS": "Rooms",
+    "CREATE": "Create a room",
     "NO_ROOM": "No rooms yet.",
     "NB_ROOMS": "Number of rooms",
     "CODE": "Code",
     "CODE_ERROR": "Please fill in the code.",
     "NAME": "Name",
-    "NAME_ERROR": "Please fill in the name.",
-    "ROOM": "Room"
+    "NB_SEATS": "Number of seats",
+    "NB_SEATS_ERROR": "Please fill in the number of seats.",
+    "ROOM": "Room",
+    "PICTURES": "Pictures",
+    "NO_PICTURES": "No pictures yet.",
+    "MAP": "Map",
+    "NO_MAP": "No map yet.",
+    "SUCCESSFUL_CREATION": "The room \"{{code}}\" has been successfully created!",
+    "SUCCESSFUL_UPDATE": "The room \"{{code}}\" has been successfully updated!"
   },
   "STUDENT": {
     "STUDENT": "Student"

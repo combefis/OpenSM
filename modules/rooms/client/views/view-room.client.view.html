@@ -18,18 +18,8 @@
         </div>
 
         <uib-tabset>
-          <uib-tab heading="{{'INFORMATIONS' | translate}}">
-            <div>
-              <dl>
-                <dt ng-bind="'ROOM.CODE' | translate"></dt>
-                <dd ng-bind="vm.room.code"></dd>
-                <dt ng-bind="'ROOM.NAME' | translate"></dt>
-                <dd ng-bind="vm.room.name"></dd>
-              </dl>
-            </div>
-          </uib-tab>
           <uib-tab heading="{{'ROOM.PICTURES' | translate}}">
-            <div ng-if="!vm.room.pictures" ng-bind="'ROOM.NO_PICTURES' | translate"></div>
+            <div ng-if="!vm.room.picture" ng-bind="'ROOM.NO_PICTURES' | translate"></div>
           </uib-tab>
           <uib-tab heading="{{'ROOM.MAP' | translate}}">
             <div ng-if="!vm.room.map" ng-bind="'ROOM.NO_MAP' | translate"></div>
@@ -42,8 +32,12 @@
           <div class="panel-heading"><h3 class="panel-title" ng-bind="'INFORMATIONS' | translate"></h3></div>
           <div class="panel-body">
             <dl>
+              <dt ng-if="vm.room.name" ng-bind="'ROOM.CODE' | translate"></dt>
+              <dd ng-if="vm.room.name" ng-bind="vm.room.code"></dd>
               <dt ng-if="vm.room.name" ng-bind="'ROOM.NAME' | translate"></dt>
               <dd ng-if="vm.room.name" ng-bind="vm.room.name"></dd>
+              <dt ng-if="vm.room.name" ng-bind="'ROOM.NB_SEATS' | translate"></dt>
+              <dd ng-if="vm.room.name" ng-bind="vm.room.nbseats"></dd>
             </dl>
           </div>
         </div>

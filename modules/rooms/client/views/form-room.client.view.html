@@ -11,27 +11,31 @@
       <li ng-if="vm.room._id" class="active"><a ui-sref="admin.manage.rooms.edit({roomCode: vm.room.code})" ng-bind="'GENERAL.EDIT' | translate"></a></li>
     </ol>
 
-    <h2>{{vm.room._id ? 'ROOM.EDIT' : 'ROOM.CREATE' | translate}}</h2>
+    <h2><span ng-if="vm.room._id" ng-bind="vm.room.code"></span><span ng-if="!vm.room._id" ng-bind="'ROOM.CREATE' | translate"></span></h2>
 
     <div class="col-md-12">
       <form name="vm.form.roomForm" class="form-horizontal" ng-submit="vm.save(vm.form.roomForm.$valid)" novalidate>
         <fieldset>
           <div class="form-group" show-errors>
             <label class="control-label" for="code" ng-bind="'ROOM.CODE' | translate"></label>
-            <input name="code" type="text" ng-model="vm.room.code" id="code" class="form-control" placeholder="{{'ROOM.CODE' | translate}}" required />
+            <input name="code" type="text" ng-model="vm.room.code" id="code" class="form-control" placeholder="{{'ROOM.CODE' | translate}}" required ng-disabled="vm.room._id" />
             <div ng-messages="vm.form.roomForm.code.$error" role="alert">
               <p class="help-block error-text" ng-message="required" ng-bind="'ROOM.CODE_ERROR' | translate"></p>
             </div>
           </div>
-          <div class="form-group" show-errors>
+          <div class="form-group">
             <label class="control-label" for="name" ng-bind="'ROOM.NAME' | translate"></label>
-            <input name="name" type="text" ng-model="vm.room.name" id="name" class="form-control" placeholder="{{'ROOM.NAME' | translate}}" required />
-            <div ng-messages="vm.form.roomForm.name.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'ROOM.NAME_ERROR' | translate"></p>
+            <input name="name" type="text" ng-model="vm.room.name" id="name" class="form-control" placeholder="{{'ROOM.NAME' | translate}}" />
+          </div>
+          <div class="form-group" show-errors>
+            <label class="control-label" for="nbseats" ng-bind="'ROOM.NB_SEATS' | translate"></label>
+            <input name="nbseats" type="number" ng-model="vm.room.nbseats" id="nbseats" class="form-control" placeholder="{{'ROOM.NB_SEATS' | translate}}" required />
+            <div ng-messages="vm.form.roomForm.nbseats.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'ROOM.NB_SEATS_ERROR' | translate"></p>
             </div>
           </div>
           <div class="form-group">
-            <button type="submit" class="btn btn-primary">{{vm.room._id ? 'GENERAL.UPDATE' : 'GENERAL.CREATE' | translate}}</button>
+            <button type="submit" class="btn btn-primary" ng-bind="vm.room._id ? 'GENERAL.UPDATE' : 'GENERAL.CREATE' | translate"></button>
           </div>
           <div ng-show="vm.error" class="text-danger">
             <strong ng-bind="vm.error"></strong>

@@ -43,6 +43,7 @@ exports.update = function (req, res) {
 
   room.code = req.body.code;
   room.name = req.body.name;
+  room.nbseats = req.body.nbseats;
 
   room.save(function (err) {
     if (err) {
@@ -58,7 +59,9 @@ exports.update = function (req, res) {
  * List of rooms
  */
 exports.list = function (req, res) {
-  Room.find('code name').sort({ code: 1 }).exec(function (err, rooms) {
+  Room.find('code name')
+  .sort({ code: 1 })
+  .exec(function (err, rooms) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -72,7 +75,7 @@ exports.list = function (req, res) {
  * Room middleware
  */
 exports.roomByCode = function (req, res, next, code) {
-  Room.findOne({ 'code': code }, 'code name').exec(function (err, room) {
+  Room.findOne({ 'code': code }, 'code name nbseats pictures map').exec(function (err, room) {
     if (err) {
       return next(err);
     }
