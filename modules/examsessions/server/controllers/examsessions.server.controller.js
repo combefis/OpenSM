@@ -132,7 +132,7 @@ exports.list = function (req, res) {
  */
 exports.examsessionByCode = function (req, res, next, code) {
   ExamSession.findOne({ 'code': code }, 'code name description start end exams')
-  .populate('exams', 'title date')
+  .populate('exams', 'title date course')
   .exec(function (err, examsession) {
     if (err) {
       return next(err);
@@ -142,7 +142,15 @@ exports.examsessionByCode = function (req, res, next, code) {
         message: 'No exam session with that identifier has been found.'
       });
     }
-    req.examsession = examsession;
-    next();
+
+    ExamSession.populate(examsession, { path: 'exams.course', select: 'code name', model: 'Course' }, function (err, examsession) {
+      if (err || !examsession) {
+        return res.status(404).send({
+          message: 'Error while retrieving information about the exam session.'
+        });
+      }
+      req.examsession = examsession;
+      next();
+    });
   });
 };

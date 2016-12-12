@@ -24,7 +24,11 @@
         <h3 ng-bind="'EXAMSESSION.PLANNING' | translate"></h3>
 
         <div class="list-group" ng-if="vm.examsession.exams.length">
-          <a ng-repeat="exam in vm.examsession.exams | orderBy: 'date'" ui-sref="admin.manage.exams.view({ examId: exam._id })" class="list-group-item"><b>{{exam.title}}</b><br /><small><i>{{exam.date | amDateFormat:'ddd D MMM YYYY'}}</i></small></a>
+          <a ng-repeat="exam in vm.examsession.exams | orderBy: '+date'" ui-sref="examsessions.viewexam({ examsessionCode: vm.examsession.code, examId: exam._id })" class="list-group-item">
+            <b>{{exam.course.code}} — {{exam.course.name}}</b><br />
+            <i>{{exam.title}}</i><br />
+            <small><i>{{exam.date | amDateFormat:'ddd D MMM YYYY'}}</i></small>
+          </a>
         </div>
 
         <div ng-if="!vm.examsession.exams.length" ng-bind="'EXAMSESSION.NO_EXAM' | translate"></div>
