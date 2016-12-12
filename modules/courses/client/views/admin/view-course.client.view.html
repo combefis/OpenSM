@@ -43,6 +43,8 @@
               <dd ng-bind="vm.course.name"></dd>
               <dt ng-bind="'COURSE.COORDINATOR' | translate"></dt>
               <dd ng-bind="vm.course.coordinator[0].displayName"></dd>
+              <dt ng-bind="'COURSE.TEAM' | translate"></dt>
+              <dd><span ng-repeat="teacher in vm.course.team | orderBy: '+lastname'" ng-bind="teacher.firstname + ' ' + teacher.lastname + ($last ? '' : ', ')"></span></dd>
               <dt ng-bind="'COURSE.NB_ACTIVITIES' | translate"></dt>
               <dd ng-bind="vm.course.activities.length"></dd>
             </dl>

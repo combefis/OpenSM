@@ -48,6 +48,17 @@ exports.update = function (req, res) {
   course.description = req.body.description;
   course.activities = req.body.activities;
 
+  // Compute the team
+  var team = [];
+  course.activities.forEach(function (activity) {
+    activity.teachers.forEach(function (teacher) {
+      if (!team.some(function (element) { return element.equals(teacher); })) {
+        team.push(teacher);
+      }
+    });
+  });
+  course.team = team;
+
   course.save(function (err) {
     if (err) {
       return res.status(422).send({
@@ -67,7 +78,7 @@ exports.list = function (req, res) {
   switch (filter) {
     // Load all the courses
     case 'all':
-      Course.find({ 'academicyear': req.session.academicyear }, 'code name coordinator')
+      Course.find({ academicyear: req.session.academicyear }, 'code name coordinator')
       .populate('coordinator', 'displayName')
       .sort({ code: 1 })
       .exec(function (err, courses) {
@@ -81,7 +92,7 @@ exports.list = function (req, res) {
       break;
 
     case 'teacher':
-      Course.find({ 'academicyear': req.session.academicyear }, 'code name coordinator activities')
+      Course.find({ academicyear: req.session.academicyear }, 'code name coordinator activities')
       .populate('coordinator', 'displayName')
       .populate('activities', 'teachers')
       .sort({ code: 1 })
@@ -117,8 +128,9 @@ exports.list = function (req, res) {
  * Course middleware
  */
 exports.courseByCode = function (req, res, next, code) {
-  Course.findOne({ 'code': code }, 'code name coordinator description activities')
+  Course.findOne({ code: code }, 'code name coordinator team description activities')
   .populate('coordinator', 'displayName')
+  .populate('team', 'firstname lastname displayName')
   .populate('activities', 'code name teachers')
   .exec(function (err, course) {
     if (err) {

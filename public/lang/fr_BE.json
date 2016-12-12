@@ -34,6 +34,7 @@
     "COORDINATOR": "Coordinateur",
     "COORDINATOR_MISSING_ERROR": "Veuillez spécifier le coordinateur.",
     "COORDINATOR_TOOMUCH_ERROR": "Veuillez ne spécifier qu'un seul coordinateur.",
+    "TEAM": "Équipe",
     "DESCRIPTION": "Description",
     "NO_DESCRIPTION": "Pas de description.",
     "ACTIVITIES": "Activités",
