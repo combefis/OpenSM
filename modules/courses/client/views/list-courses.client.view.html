@@ -14,7 +14,7 @@
       <div class="col-md-12">
         <div class="list-group" ng-if="vm.courses.length">
           <a ng-repeat="course in vm.courses" ui-sref="courses.view({ courseCode: course.code })" class="list-group-item">
-            <b>{{course.code}}</b> — {{course.name}}<br/>
+            <b>{{course.code}}</b> — {{course.name}}<br />
             <small><i><span ng-bind="course.coordinator.displayName"></span></i></small>
           </a>
         </div>

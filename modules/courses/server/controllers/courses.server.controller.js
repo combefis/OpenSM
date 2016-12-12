@@ -95,7 +95,7 @@ exports.list = function (req, res) {
   switch (filter) {
     // Load all the courses
     case 'all':
-      Course.find({ academicyear: req.session.academicyear }, 'code name coordinator')
+      Course.find({ academicyear: req.session.academicyear }, 'code name coordinator team')
       .populate('coordinator', 'displayName')
       .sort({ code: 1 })
       .exec(function (err, courses) {
@@ -110,9 +110,8 @@ exports.list = function (req, res) {
       break;
 
     case 'teacher':
-      Course.find({ academicyear: req.session.academicyear }, 'code name coordinator activities')
+      Course.find({ academicyear: req.session.academicyear }, 'code name coordinator team')
       .populate('coordinator', 'displayName')
-      .populate('activities', 'teachers')
       .sort({ code: 1 })
       .exec(function (err, courses) {
         if (err) {
@@ -123,15 +122,8 @@ exports.list = function (req, res) {
 
         var teacherCourses = [];
         courses.forEach(function (course) {
-          if (course.coordinator.equals(req.user.id)) {
+          if (course.coordinator.equals(req.user.id) || course.team.some(function (element) { return element.equals(req.user.id); })) {
             teacherCourses.push(course);
-          } else {
-            // Check if teacher not in one of the activities
-            course.activities.forEach(function (activity) {
-              if (activity.teachers.some(function (element) { return element.equals(req.user.id); })) {
-                teacherCourses.push(course);
-              }
-            });
           }
         });
         res.json(teacherCourses);
