@@ -8,6 +8,21 @@ var path = require('path'),
   Course = mongoose.model('Course'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
+/*
+ * Generate the team of teachers of a course
+ */
+function getTeam (course) {
+  var team = [];
+  course.activities.forEach(function (activity) {
+    activity.teachers.forEach(function (teacher) {
+      if (!team.some(function (element) { return element.equals(teacher); })) {
+        team.push(teacher);
+      }
+    });
+  });
+  return team;
+}
+
 /**
  * Create a course
  */
@@ -17,13 +32,24 @@ exports.create = function (req, res) {
   course.coordinator = req.body.coordinator[0];
   course.academicyear = 2016;
 
-  course.save(function (err) {
-    if (err) {
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
+  // Generate team of teachers
+  Course.populate(course, { path: 'activities', select: 'teachers', model: 'Activity' }, function (err, course) {
+    if (err || !course) {
+      return res.status(404).send({
+        message: 'Error while retrieving information about the course.'
       });
     }
-    res.json(course);
+
+    course.team = getTeam(course);
+    course.save(function (err) {
+      if (err) {
+        return res.status(400).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      }
+
+      res.json(course);
+    });
   });
 };
 
@@ -45,19 +71,9 @@ exports.update = function (req, res) {
   course.code = req.body.code;
   course.name = req.body.name;
   course.coordinator = req.body.coordinator[0];
+  course.team = getTeam(course);
   course.description = req.body.description;
   course.activities = req.body.activities;
-
-  // Compute the team
-  var team = [];
-  course.activities.forEach(function (activity) {
-    activity.teachers.forEach(function (teacher) {
-      if (!team.some(function (element) { return element.equals(teacher); })) {
-        team.push(teacher);
-      }
-    });
-  });
-  course.team = team;
 
   course.save(function (err) {
     if (err) {
@@ -65,6 +81,7 @@ exports.update = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     }
+
     res.json(course);
   });
 };
@@ -87,6 +104,7 @@ exports.list = function (req, res) {
             message: errorHandler.getErrorMessage(err)
           });
         }
+
         res.json(courses);
       });
       break;
@@ -102,6 +120,7 @@ exports.list = function (req, res) {
             message: errorHandler.getErrorMessage(err)
           });
         }
+
         var teacherCourses = [];
         courses.forEach(function (course) {
           if (course.coordinator.equals(req.user.id)) {
@@ -148,6 +167,7 @@ exports.courseByCode = function (req, res, next, code) {
           message: 'Error while retrieving information about the course.'
         });
       }
+
       req.course = course;
       next();
     });
