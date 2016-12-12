@@ -115,7 +115,8 @@
     "SUCCESSFUL_DELETE": "Exam session deleted successfully!",
     "ADD_EXAM": "Add an exam",
     "SUCCESSFUL_EXAMADD": "The exam \"{{title}}\" has been successfully added to the \"{{code}}\" session!",
-    "NB_EXAMS": "Number of exams"
+    "NB_EXAMS": "Number of exams",
+    "SHOW_MY_EXAMS": "Only show my exams"
   },
   "GENERAL": {
     "ACADEMICYEAR": "Academic year",

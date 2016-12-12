@@ -19,8 +19,16 @@
 
         <h3 ng-bind="'EXAMSESSION.PLANNING' | translate"></h3>
 
+        <div class="clearfix">
+          <div class="pull-right">
+            <form class="form-inline right-form">
+              <label><input type="checkbox" ng-model="vm.showMyExams" class="form-control"> {{'EXAMSESSION.SHOW_MY_EXAMS' | translate}}</label>
+            </form>
+          </div>
+        </div>
+
         <div class="list-group" ng-if="vm.examsession.exams.length">
-          <a ng-repeat="exam in vm.examsession.exams | orderBy: '+date'" ui-sref="examsessions.viewexam({ examsessionCode: vm.examsession.code, examId: exam._id })" class="list-group-item">
+          <a ng-repeat="exam in vm.examsession.exams | filter: vm.filterExam | orderBy: '+date'" ui-sref="examsessions.viewexam({ examsessionCode: vm.examsession.code, examId: exam._id })" class="list-group-item">
             <b>{{exam.course.code}} — {{exam.course.name}}</b><br />
             <i>{{exam.title}}</i><br />
             <small><i>{{exam.date | amDateFormat:'ddd D MMM YYYY'}}</i></small>

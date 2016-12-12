@@ -12,5 +12,13 @@
 
     vm.examsession = examsession;
     vm.authentication = Authentication;
+    vm.filterExam = filterExam;
+    vm.showMyExams = true;
+
+    function filterExam (exam) {
+      return !vm.showMyExams || exam.course.team.some(function (element) {
+        return element.username === vm.authentication.user.username;
+      });
+    }
   }
 }());

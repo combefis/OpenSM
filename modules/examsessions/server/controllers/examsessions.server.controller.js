@@ -143,14 +143,23 @@ exports.examsessionByCode = function (req, res, next, code) {
       });
     }
 
-    ExamSession.populate(examsession, { path: 'exams.course', select: 'code name', model: 'Course' }, function (err, examsession) {
+    ExamSession.populate(examsession, { path: 'exams.course', select: 'code name team', model: 'Course' }, function (err, examsession) {
       if (err || !examsession) {
         return res.status(404).send({
           message: 'Error while retrieving information about the exam session.'
         });
       }
-      req.examsession = examsession;
-      next();
+
+      ExamSession.populate(examsession, { path: 'exams.course.team', select: 'username', model: 'User' }, function (err, examsession) {
+        if (err || !examsession) {
+          return res.status(404).send({
+            message: 'Error while retrieving information about the exam session.'
+          });
+        }
+
+        req.examsession = examsession;
+        next();
+      });
     });
   });
 };
