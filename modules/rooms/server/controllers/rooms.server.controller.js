@@ -76,7 +76,7 @@ exports.list = function (req, res) {
  * Room middleware
  */
 exports.roomByCode = function (req, res, next, code) {
-  Room.findOne({ 'code': code }, 'code name nbseats pictures map').exec(function (err, room) {
+  Room.findOne({ 'code': code }, 'code name nbseats pictures map configurations').exec(function (err, room) {
     if (err) {
       return next(err);
     }

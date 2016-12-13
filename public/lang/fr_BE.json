@@ -87,7 +87,7 @@
     "NO_ROOMS": "Pas de locaux attribués.",
     "ROOM_SUCCESSFUL_ADD": "Le local \"{{code}}\" a été ajouté avec succès !",
     "ROOM_SUCCESSFUL_DELETE": "Le local \"{{code}}\" a été supprimé avec succès !",
-    "ROOM_CONFIGURATION": "Configuration du local",
+    "ROOM_CONFIGURATION": "@:ROOM.CONFIGURATION",
     "ROOM_SEATS_SUMMARY": "Sélection de {{seats}} sièges sur un total de {{nbseats}}.",
     "VALIDATE": "Valider",
     "STATE": "État",
@@ -153,7 +153,9 @@
     "MAP": "Plan",
     "NO_MAP": "Pas de plan.",
     "SUCCESSFUL_CREATION": "Le local \"{{code}}\" a été créé avec succès !",
-    "SUCCESSFUL_UPDATE": "Le local \"{{code}}\" a été mis à jour avec succès !"
+    "SUCCESSFUL_UPDATE": "Le local \"{{code}}\" a été mis à jour avec succès !",
+    "CONFIGURATION": "Configuration du local",
+    "CONFIGURATION_CHANGED": "La configuration du local a été changée avec succès !"
   },
   "STUDENT": {
     "STUDENT": "Étudiant"

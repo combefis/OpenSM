@@ -87,7 +87,7 @@
     "NO_ROOMS": "No affected rooms.",
     "ROOM_SUCCESSFUL_ADD": "The room \"{{code}}\" has been successfully added!",
     "ROOM_SUCCESSFUL_DELETE": "The room \"{{code}}\" has been successfully deleted!",
-    "ROOM_CONFIGURATION": "Room configuration",
+    "ROOM_CONFIGURATION": "@:ROOM.CONFIGURATION",
     "ROOM_SEATS_SUMMARY": "Selected {{seats}} seats from a total of {{nbseats}}.",
     "VALIDATE": "Validate",
     "STATE": "State",
@@ -153,7 +153,13 @@
     "MAP": "Map",
     "NO_MAP": "No map yet.",
     "SUCCESSFUL_CREATION": "The room \"{{code}}\" has been successfully created!",
-    "SUCCESSFUL_UPDATE": "The room \"{{code}}\" has been successfully updated!"
+    "SUCCESSFUL_UPDATE": "The room \"{{code}}\" has been successfully updated!",
+    "CONFIGURATION": "Room configuration",
+    "SELECT_CONFIGURATION": "Configuration",
+    "STARTING_SEAT": "Starting seat",
+    "SELECTED_SEATS": "selected seats",
+    "CHANGE_CONFIGURATION": "Changer la configuration",
+    "CONFIGURATION_CHANGED": "The room configuration has been successfully changed!"
   },
   "STUDENT": {
     "STUDENT": "Student"

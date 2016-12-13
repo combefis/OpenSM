@@ -15,15 +15,15 @@
     return directive;
 
     function link(scope, element, attrs) {
-      var room;
+      var configuration;
 
       scope.$watch(attrs.drawMap, function(value) {
-        room = value;
+        configuration = value;
         drawMap();
       });
 
       function drawMap() {
-        var map = room.map;
+        var map = configuration.room.map;
 
         // Setup canvas
         var canvas = element[0];
@@ -58,7 +58,21 @@
               break;
           }
         });
+
+        // Draw the configuration
+        if (configuration.configuration !== null) {
+          var config = configuration.room.configurations[configuration.configuration];
+          for (var j = 0; j < config.seats.length; j++) {
+            var s = map.seats[config.seats[j].seat];
+            context.fillText(getLetter(config.seats[j].serie + 1), s.x, s.y + 15);
+          }
+        }
       }
+    }
+
+    // Convert an integer to a letter 1 => A, 2 => B...
+    function getLetter (i) {
+      return String.fromCharCode(64 + i);
     }
   }
 }());

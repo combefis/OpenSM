@@ -15,6 +15,14 @@
     vm.error = null;
     vm.form = {};
     vm.save = save;
+    vm.configuration = null;
+    vm.startSeat = 1;
+    vm.config = {
+      room: vm.room,
+      configuration: null,
+      startseat: 1
+    };
+    vm.changeConfiguration = changeConfiguration;
 
     var roomId = room._id;
 
@@ -49,6 +57,19 @@
 
       function errorCallback(res) {
         vm.error = res.data.message;
+      }
+    }
+
+    // Change the shown configuration
+    function changeConfiguration() {
+      if (vm.configuration !== null) {
+        vm.config = {
+          room: vm.room,
+          configuration: vm.configuration,
+          startseat: vm.startSeat
+        };
+
+        Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('ROOM.CONFIGURATION_CHANGED') });
       }
     }
   }

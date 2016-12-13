@@ -32,6 +32,38 @@ var RoomSchema = new Schema({
     type: Schema.Types.Mixed,
     default: null
   },
+  configurations: {
+    type: [new Schema({
+      name: {
+        type: String,
+        unique: true
+      },
+      nbseries: {
+        type: Number,
+        default: 1
+      },
+      seats: {
+        type: [new Schema({
+          seat: {
+            type: Number,
+            default: 0
+          },
+          serie: {
+            type: Number,
+            default: 0
+          }
+        }, {
+          id: false,
+          _id: false
+        })],
+        default: []
+      }
+    }, {
+      id: false,
+      _id: false
+    })],
+    default: []
+  },
   created: {
     type: Date,
     default: Date.now

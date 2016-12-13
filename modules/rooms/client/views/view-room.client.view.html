@@ -23,7 +23,31 @@
           </uib-tab>
           <uib-tab heading="{{'ROOM.MAP' | translate}}">
             <div ng-if="vm.room.map">
-              <canvas draw-map="vm.room"></canvas>
+              <canvas draw-map="vm.config"></canvas>
+
+              <div class="row col-md-12">
+                <form class="form-horizontal">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="control-label" for="configuration" ng-bind="'ROOM.SELECT_CONFIGURATION' | translate"></label>
+                      <div class="controls">
+                        <select id="configuration" class="form-control" ng-options="j as vm.room.configurations[j].name for j in cvm.getNumber(vm.room.configurations.length)" ng-model="vm.configuration"></select>
+                        <p class="help-block">({{vm.configuration !== null ? vm.room.configurations[vm.configuration].seats.length : 0}} {{'ROOM.SELECTED_SEATS' | translate}})</p>
+                      </div>
+                      <button type="submit" class="btn btn-primary" ng-click="vm.changeConfiguration()" ng-bind="'ROOM.CHANGE_CONFIGURATION' | translate"></button>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="control-label" for="startseat" ng-bind="'ROOM.STARTING_SEAT' | translate"></label>
+                      <div class="controls">
+                        <input type="number" ng-model="vm.startSeat" id="startseat" class="form-control" >
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="clearfix"></div>
             </div>
             <div ng-if="!vm.room.map" ng-bind="'ROOM.NO_MAP' | translate"></div>
           </uib-tab>
