@@ -20,10 +20,12 @@
     vm.uploading = Array.apply(null, new Array(nbCopies)).map(function(x, i) { return false; });
     vm.progressValue = Array.apply(null, new Array(nbCopies)).map(function(x, i) { return null; });
     vm.getLetter = getLetter;
+    vm.canManageCopies = canManageCopies;
     vm.addCopy = addCopy;
     vm.removeCopy = removeCopy;
     vm.uploadCopy = uploadCopy;
     vm.downloadCopy = downloadCopy;
+    vm.validateCopy = validateCopy;
 
     // Load the exam session
     $http.get('/api/examsessions/' + $stateParams.examsessionCode).success(function(data, status, headers, config) {
@@ -33,6 +35,13 @@
     // Convert an integer to a letter 1 => A, 2 => B...
     function getLetter (i) {
       return String.fromCharCode(64 + i);
+    }
+
+    // Check whether can manage copies
+    function canManageCopies() {
+      return vm.exam.course.team.some(function (element) {
+        return element.username === vm.authentication.user.username;
+      });
     }
 
     // Add a copy to the exam
@@ -82,6 +91,14 @@
     // Download a copy of the exam
     function downloadCopy(i) {
       $window.open('/api/exams/' + vm.exam._id + '/copy/' + i + '/download');
+    }
+
+    // Validate a copy of the exam
+    function validateCopy(i) {
+      $http.post('/api/exams/' + vm.exam._id + '/copy/' + i + '/validate')
+      .then(function(response) {
+        vm.exam.copies = response.data;
+      });
     }
   }
 }());

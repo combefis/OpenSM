@@ -78,6 +78,7 @@ exports.create = function (req, res) {
             message: 'Impossible to update the exam session.'
           });
         }
+
         res.json(exam);
       });
     });
@@ -111,6 +112,7 @@ exports.update = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     }
+
     res.json(exam);
   });
 };
@@ -167,6 +169,7 @@ exports.validate = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     }
+
     res.json(exam.ready);
   });
 };
@@ -181,6 +184,7 @@ exports.list = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     }
+
     res.json(exams);
   });
 };
@@ -207,6 +211,7 @@ exports.addStudent = function (req, res) {
           message: errorHandler.getErrorMessage(err)
         });
       }
+
       res.json(exam.registrations);
     });
   });
@@ -293,6 +298,7 @@ exports.addCopy = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     }
+
     res.json(exam.copies);
   });
 };
@@ -452,9 +458,29 @@ exports.uploadCopy = function (req, res) {
             message: errorHandler.getErrorMessage(err)
           });
         }
+
         res.json(exam.copies);
       });
     });
+  });
+};
+
+/**
+ * Validate a copy of an exam
+ */
+exports.validateCopy = function (req, res) {
+  var exam = req.exam;
+  var copy = exam.copies[req.params.i];
+
+  exam.copies[req.params.i].validated = true;
+  exam.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+
+    res.json(exam.copies);
   });
 };
 
@@ -469,7 +495,7 @@ exports.examByID = function (req, res, next, id) {
   }
 
   Exam.findById(id, 'title course examsession date duration registrations copies rooms ready')
-  .populate('course', 'code name')
+  .populate('course', 'code name team')
   .populate('examsession', 'code name')
   .populate('rooms', 'code name nbseats map')
   .populate('registrations', 'displayName username')
@@ -482,7 +508,16 @@ exports.examByID = function (req, res, next, id) {
         message: 'No exam with that identifier has been found.'
       });
     }
-    req.exam = exam;
-    next();
+
+    Exam.populate(exam, { path: 'course.team', select: 'username', model: 'User' }, function (err, exam) {
+      if (err || !exam) {
+        return res.status(404).send({
+          message: 'Error while retrieving information about the exam.'
+        });
+      }
+
+      req.exam = exam;
+      next();
+    });
   });
 };
