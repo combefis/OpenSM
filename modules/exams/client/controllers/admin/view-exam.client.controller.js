@@ -35,6 +35,7 @@
     vm.removeCopy = removeCopy;
     vm.uploadCopy = uploadCopy;
     vm.downloadCopy = downloadCopy;
+    vm.validateCopy = validateCopy;
 
     // Load the list of students for the registrations
     $http.get('/api/students').success(function(data, status, headers, config) {
@@ -205,6 +206,14 @@
     // Download a copy of the exam
     function downloadCopy(i) {
       $window.open('/api/exams/' + vm.exam._id + '/copy/' + i + '/download');
+    }
+
+    // Validate a copy of the exam
+    function validateCopy(i) {
+      $http.post('/api/exams/' + vm.exam._id + '/copy/' + i + '/validate')
+      .then(function(response) {
+        vm.exam.copies = response.data;
+      });
     }
   }
 }());
