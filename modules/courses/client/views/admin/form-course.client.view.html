@@ -10,7 +10,7 @@
       <li ng-if="vm.course._id"><a ui-sref="admin.manage.courses.view({ courseCode: vm.course.code })" ng-bind="vm.course.code"></a></li>
       <li ng-if="vm.course._id" class="active"><a ui-sref="admin.manage.courses.edit({ courseCode: vm.course.code })" ng-bind="'GENERAL.EDIT' | translate"></a></li>
     </ol>
-{{vm.course.activities}}
+
     <h2><span ng-if="vm.course._id" ng-bind="vm.coursename"></span><span ng-if="!vm.course._id" ng-bind="'COURSE.CREATE' | translate"></span></h2>
 
     <div class="col-md-12">
