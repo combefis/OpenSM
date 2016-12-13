@@ -76,13 +76,25 @@
     "NO_STUDENTS": "Pas d'étudiants inscrits.",
     "STUDENT_SUCCESSFUL_ADD": "L'étudiant \"{{username}}\" a été ajouté avec succès !",
     "STUDENT_SUCCESSFUL_DELETE": "L'étudiant \"{{username}}\" a été supprimé avec succès !",
-    "COPIES": "Copies",
-    "NO_COPIES": "Pas de copies chargées.",
-    "ADD_COPY": "Ajouter une copie",
-    "COPY": "Questionnaire",
-    "COPY_NOT_UPLOADED": "Questionnaire pas encore chargé.",
-    "COPY_SUCCESSFUL_DELETE": "Questionnaire supprimé avec succès !",
-    "FILE_UPLOADED_ON": "Fichier chargé le",
+    "COPY": {
+      "COPIES": "Questionnaires",
+      "NO_COPIES": "Pas de questionnaires chargés.",
+      "COPY": "Questionnaire",
+      "UPLOAD": "Envoyer",
+      "DOWNLOAD": "Télécharger",
+      "VALIDATE": "Valider",
+      "DELETE": "@:GENERAL.DELETE",
+      "ADD": "Ajouter un questionnaire",
+      "NOT_UPLOADED": "Questionnaire pas encore chargé.",
+      "SUCCESSFUL_DELETE": "Questionnaire supprimé avec succès !",
+      "FILE_UPLOADED_ON": "Fichier chargé le"
+    },
+    "ROOM": {
+      "DELETE": "@:GENERAL.DELETE"
+    },
+    "STUDENT": {
+      "DELETE": "@:GENERAL.DELETE"
+    },
     "ROOMS": "Locaux",
     "NO_ROOMS": "Pas de locaux attribués.",
     "ROOM_SUCCESSFUL_ADD": "Le local \"{{code}}\" a été ajouté avec succès !",
@@ -155,6 +167,10 @@
     "SUCCESSFUL_CREATION": "Le local \"{{code}}\" a été créé avec succès !",
     "SUCCESSFUL_UPDATE": "Le local \"{{code}}\" a été mis à jour avec succès !",
     "CONFIGURATION": "Configuration du local",
+    "SELECT_CONFIGURATION": "Configuration",
+    "STARTING_SEAT": "Siège de départ",
+    "SELECTED_SEATS": "sièges sélectionnés",
+    "CHANGE_CONFIGURATION": "Changer la configuration",
     "CONFIGURATION_CHANGED": "La configuration du local a été changée avec succès !"
   },
   "STUDENT": {

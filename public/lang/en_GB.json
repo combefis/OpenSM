@@ -76,13 +76,25 @@
     "NO_STUDENTS": "No registered students.",
     "STUDENT_SUCCESSFUL_ADD": "The student \"{{username}}\" has been successfully added!",
     "STUDENT_SUCCESSFUL_DELETE": "The student \"{{username}}\" has been successfully deleted!",
-    "COPIES": "Copies",
-    "NO_COPIES": "No uploaded exam copies.",
-    "ADD_COPY": "Add a copy",
-    "COPY": "Questionnaire",
-    "COPY_NOT_UPLOADED": "Questionnaire not uploaded yet.",
-    "COPY_SUCCESSFUL_DELETE": "Questionnaire deleted successfully!",
-    "FILE_UPLOADED_ON": "File uploaded on",
+    "COPY": {
+      "COPIES": "Questionnaires",
+      "NO_COPIES": "No uploaded exam copies.",
+      "COPY": "Questionnaire",
+      "UPLOAD": "Upload",
+      "DOWNLOAD": "Donwload",
+      "VALIDATE": "Validate",
+      "DELETE": "@:GENERAL.DELETE",
+      "ADD": "Add a questionnaire",
+      "NOT_UPLOADED": "Questionnaire not uploaded yet.",
+      "SUCCESSFUL_DELETE": "Questionnaire deleted successfully!",
+      "FILE_UPLOADED_ON": "File uploaded on"
+    },
+    "ROOM": {
+      "DELETE": "@:GENERAL.DELETE"
+    },
+    "STUDENT": {
+      "DELETE": "@:GENERAL.DELETE"
+    },
     "ROOMS": "Rooms",
     "NO_ROOMS": "No affected rooms.",
     "ROOM_SUCCESSFUL_ADD": "The room \"{{code}}\" has been successfully added!",
