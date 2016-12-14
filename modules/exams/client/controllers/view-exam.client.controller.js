@@ -27,6 +27,15 @@
     vm.downloadCopy = downloadCopy;
     vm.validateCopy = validateCopy;
 
+    // Room management
+    vm.config = Array.apply(null, new Array(vm.exam.rooms.length)).map(function(x, i) {
+      return {
+        room: vm.exam.rooms[i].room,
+        configuration: vm.exam.rooms[i].configuration,
+        startseat: vm.exam.rooms[i].startseat
+      };
+    });
+
     // Load the exam session
     $http.get('/api/examsessions/' + $stateParams.examsessionCode).success(function(data, status, headers, config) {
       vm.examsession = data;
