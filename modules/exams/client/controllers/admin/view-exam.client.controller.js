@@ -22,16 +22,18 @@
     vm.removeStudent = removeStudent;
 
     // Rooms management
+    var nbRooms = vm.exam.rooms.length;
     vm.rooms = null;
     vm.addRoom = addRoom;
     vm.removeRoom = removeRoom;
-    vm.config = Array.apply(null, new Array(vm.exam.rooms.length)).map(function(x, i) {
+    vm.config = Array.apply(null, new Array(nbRooms)).map(function(x, i) {
       return {
         room: vm.exam.rooms[i].room,
         configuration: vm.exam.rooms[i].configuration,
         startseat: vm.exam.rooms[i].startseat
       };
     });
+    vm.changeConfiguration = changeConfiguration;
 
     // Copies management
     var nbCopies = vm.exam.copies.length;
@@ -146,6 +148,13 @@
           vm.selectedRoom = undefined;
           vm.exam.rooms = response.data;
 
+          var i = vm.exam.rooms.length - 1;
+          vm.config.push({
+            room: vm.exam.rooms[i].room,
+            configuration: vm.exam.rooms[i].configuration,
+            startseat: vm.exam.rooms[i].startseat
+          });
+
           Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAM.ROOM_SUCCESSFUL_ADD', { code: code }) });
         });
       }
@@ -160,6 +169,8 @@
         .then(function(response) {
           vm.rooms.push(room);
           vm.exam.rooms = response.data;
+
+          vm.config.splice(i, 1);
 
           Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAM.ROOM_SUCCESSFUL_DELETE', { code: room.code }) });
         });
@@ -221,6 +232,23 @@
       .then(function(response) {
         vm.exam.copies = response.data;
       });
+    }
+
+    // Change the shown configuration
+    function changeConfiguration(i) {
+      if (vm.exam.rooms[i].configuration !== null) {
+        $http.post('/api/exams/' + vm.exam._id + '/room/' + i + '/configure', { configuration: vm.exam.rooms[i].configuration, startseat: vm.exam.rooms[i].startseat })
+        .then(function(response) {
+          vm.exam.copies = response.data;
+          vm.config[i] = {
+            room: vm.exam.rooms[i].room,
+            configuration: vm.exam.rooms[i].configuration,
+            startseat: vm.exam.rooms[i].configuration.startseat
+          };
+
+          Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('ROOM.CONFIGURATION_CHANGED') });
+        });
+      }
     }
   }
 }());

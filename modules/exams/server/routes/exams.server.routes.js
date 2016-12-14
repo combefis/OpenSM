@@ -32,6 +32,8 @@ module.exports = function (app) {
     .post(exams.addRoom);
   app.route('/api/exams/:examId/room/:i').all(examsPolicy.isAllowed)
     .delete(exams.deleteRoom);
+  app.route('/api/exams/:examId/room/:i/configure').all(examsPolicy.isAllowed)
+    .post(exams.configureRoom);
 
   // Exam copies routes
   app.route('/api/exams/:examId/copy').all(examsPolicy.isAllowed)

@@ -16,7 +16,7 @@
     vm.form = {};
     vm.save = save;
     vm.configuration = null;
-    vm.startSeat = 1;
+    vm.startseat = 1;
     vm.config = {
       room: vm.room,
       configuration: null,
@@ -66,7 +66,7 @@
         vm.config = {
           room: vm.room,
           configuration: vm.configuration,
-          startseat: vm.startSeat
+          startseat: vm.startseat
         };
 
         Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('ROOM.CONFIGURATION_CHANGED') });

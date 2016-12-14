@@ -100,7 +100,6 @@
     "ROOM_SUCCESSFUL_ADD": "Le local \"{{code}}\" a été ajouté avec succès !",
     "ROOM_SUCCESSFUL_DELETE": "Le local \"{{code}}\" a été supprimé avec succès !",
     "ROOM_CONFIGURATION": "@:ROOM.CONFIGURATION",
-    "ROOM_SEATS_SUMMARY": "Sélection de {{seats}} sièges sur un total de {{nbseats}}.",
     "VALIDATE": "Valider",
     "STATE": "État",
     "VALIDATED": "Validé"

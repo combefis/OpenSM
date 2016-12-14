@@ -243,7 +243,7 @@ exports.addRoom = function (req, res) {
   var exam = req.exam;
 
   // Find the room to add
-  Room.findOne({ 'code': req.body.roomCode }, 'code name').exec(function (err, room) {
+  Room.findOne({ 'code': req.body.roomCode }, 'code name nbseats map configuration').exec(function (err, room) {
     if (err || !room) {
       return res.status(404).send({
         message: 'No room with that code has been found.'
@@ -273,6 +273,26 @@ exports.deleteRoom = function (req, res) {
 
   // Remove the room from the exam and save it
   exam.rooms.splice(req.params.i, 1);
+  exam.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+
+    res.json(exam.rooms);
+  });
+};
+
+/**
+ * Configure a room of an exam
+ */
+exports.configureRoom = function (req, res) {
+  var exam = req.exam;
+
+  // Update the configuration of the room of the exam and save it
+  exam.rooms[req.params.i].configuration = req.body.configuration;
+  exam.rooms[req.params.i].startseat = req.body.startseat;
   exam.save(function (err) {
     if (err) {
       return res.status(422).send({
