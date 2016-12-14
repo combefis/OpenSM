@@ -78,10 +78,10 @@
     "STUDENT_SUCCESSFUL_DELETE": "The student \"{{username}}\" has been successfully deleted!",
     "COPY": {
       "COPIES": "Questionnaires",
-      "NO_COPIES": "No uploaded exam copies.",
+      "NO_COPIES": "No uploaded questionnaires.",
       "COPY": "Questionnaire",
       "UPLOAD": "Upload",
-      "DOWNLOAD": "Donwload",
+      "DOWNLOAD": "Download",
       "VALIDATE": "Validate",
       "DELETE": "@:GENERAL.DELETE",
       "ADD": "Add a questionnaire",

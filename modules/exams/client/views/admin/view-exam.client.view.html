@@ -70,7 +70,7 @@
                 </li>
               </ul>
             </div>
-            <div ng-if="!vm.exam.copies.length" ng-bind="'EXAM.NO_COPIES' | translate"></div>
+            <div ng-if="!vm.exam.copies.length" ng-bind="'EXAM.COPY.NO_COPIES' | translate"></div>
           </uib-tab>
           <uib-tab heading="{{'EXAM.ROOMS' | translate}}">
             <div class="clearfix">
@@ -90,7 +90,7 @@
                   <div>
                     <h3 ng-bind="vm.exam.rooms[i].name"></h3>
                     <div ng-if="vm.exam.rooms[i].map">
-                      <canvas draw-map="vm.exam.rooms[i]"></canvas>
+                      <canvas draw-map="vm.config[i]"></canvas>
                     </div>
                     <div ng-if="!vm.exam.rooms[i].map" ng-bind="'ROOM.NO_MAP' | translate"></div>
 
