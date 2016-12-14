@@ -67,10 +67,23 @@ var ExamSchema = new Schema({
     default: []
   },
   rooms: {
-    type: [{
-      type: Schema.ObjectId,
-      ref: 'Room'
-    }],
+    type: [new Schema({
+      room: {
+        type: Schema.ObjectId,
+        ref: 'Room'
+      },
+      configuration: {
+        type: Number,
+        default: null
+      },
+      startseat: {
+        type: Number,
+        default: 1
+      }
+    }, {
+      id: false,
+      _id: false
+    })],
     default: []
   },
   academicyear: {

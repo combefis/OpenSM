@@ -251,7 +251,9 @@ exports.addRoom = function (req, res) {
     }
 
     // Add the room to the exam and save it
-    exam.rooms.push(room);
+    exam.rooms.push({
+      room: room
+    });
     exam.save(function (err) {
       if (err) {
         return res.status(422).send({
@@ -497,7 +499,7 @@ exports.examByID = function (req, res, next, id) {
   Exam.findById(id, 'title course examsession date duration registrations copies rooms ready')
   .populate('course', 'code name team')
   .populate('examsession', 'code name')
-  .populate('rooms', 'code name nbseats map')
+  .populate('rooms.room', 'code name nbseats map configurations')
   .populate('registrations', 'displayName username')
   .exec(function (err, exam) {
     if (err) {

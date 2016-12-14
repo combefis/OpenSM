@@ -25,6 +25,13 @@
     vm.rooms = null;
     vm.addRoom = addRoom;
     vm.removeRoom = removeRoom;
+    vm.config = Array.apply(null, new Array(vm.exam.rooms.length)).map(function(x, i) {
+      return {
+        room: vm.exam.rooms[i].room,
+        configuration: vm.exam.rooms[i].configuration,
+        startseat: vm.exam.rooms[i].startseat
+      };
+    });
 
     // Copies management
     var nbCopies = vm.exam.copies.length;
@@ -56,7 +63,7 @@
 
       // Remove already selected rooms
       vm.exam.rooms.forEach(function (element) {
-        var code = element.code;
+        var code = element.room.code;
         vm.rooms.splice(vm.rooms.findIndex(function (element) {
           return element.code === code;
         }), 1);
@@ -147,7 +154,7 @@
     // Remove a room of the exam
     function removeRoom(i) {
       if ($window.confirm('Are you sure you want to delete this room?')) {
-        var room = vm.exam.rooms[i];
+        var room = vm.exam.rooms[i].room;
 
         $http.delete('/api/exams/' + vm.exam._id + '/room/' + i)
         .then(function(response) {
