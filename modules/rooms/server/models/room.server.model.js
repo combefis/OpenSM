@@ -36,7 +36,7 @@ var RoomSchema = new Schema({
     type: [new Schema({
       name: {
         type: String,
-        unique: true
+        default: 'Default configuration'
       },
       nbseries: {
         type: Number,
