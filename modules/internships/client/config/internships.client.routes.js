@@ -43,8 +43,8 @@
       .state('internships.create', {
         url: '/create',
         templateUrl: 'modules/internships/client/views/createInternship.client.view.html',
-        /* controller: 'MyInternshipsListController',
-        controllerAs: 'vm',
+        controller: 'MyInternshipsController',
+        /*controllerAs: 'vm',
         */
         data: {
           pageTitle: 'Create internship'
@@ -53,3 +53,18 @@
       ;
   }
 }());
+
+
+.state('admin.manage.examsessions.create', {
+        url: '/create',
+        templateUrl: 'modules/examsessions/client/views/form-examsession.client.view.html',
+        controller: 'ExamSessionsController',
+        controllerAs: 'vm',
+        resolve: {
+          examsessionResolve: newExamSession   // 
+        },
+        data: {
+          roles: ['admin'],
+          pageTitle: 'Create an exam session'
+        }
+      })
