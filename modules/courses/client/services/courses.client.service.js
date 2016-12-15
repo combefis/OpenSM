@@ -8,8 +8,8 @@
   CoursesService.$inject = ['$resource'];
 
   function CoursesService($resource) {
-    var Course = $resource('api/courses/:courseId', {
-      courseId: '@_id'
+    var Course = $resource('api/courses/:courseCode', {
+      courseCode: ''
     }, {
       update: {
         method: 'PUT'
@@ -27,7 +27,7 @@
 
     function createOrUpdate(course) {
       if (course._id) {
-        return course.$update(onSuccess, onError);
+        return course.$update({ courseCode: course.code }, onSuccess, onError);
       }
       return course.$save(onSuccess, onError);
 

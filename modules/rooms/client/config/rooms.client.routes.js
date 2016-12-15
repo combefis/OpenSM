@@ -37,7 +37,7 @@
         }
       })
       .state('admin.manage.rooms.view', {
-        url: '/:roomId',
+        url: '/:roomCode',
         templateUrl: 'modules/rooms/client/views/view-room.client.view.html',
         controller: 'RoomsController',
         controllerAs: 'vm',
@@ -45,7 +45,20 @@
           roomResolve: getRoom
         },
         data: {
-          pageTitle: '{{roomResolve.id}}'
+          pageTitle: '{{roomResolve.code}}'
+        }
+      })
+      .state('admin.manage.rooms.edit', {
+        url: '/:roomCode/edit',
+        templateUrl: 'modules/rooms/client/views/form-room.client.view.html',
+        controller: 'RoomsController',
+        controllerAs: 'vm',
+        resolve: {
+          roomResolve: getRoom
+        },
+        data: {
+          roles: ['admin'],
+          pageTitle: 'Edit room {{roomResolve.code}}'
         }
       });
   }
@@ -54,7 +67,7 @@
 
   function getRoom($stateParams, RoomsService) {
     return RoomsService.get({
-      roomId: $stateParams.roomId
+      roomCode: $stateParams.roomCode
     }).$promise;
   }
 

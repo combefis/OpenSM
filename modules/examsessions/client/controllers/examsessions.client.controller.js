@@ -12,41 +12,13 @@
 
     vm.examsession = examsession;
     vm.authentication = Authentication;
-    vm.error = null;
-    vm.form = {};
-    vm.save = save;
+    vm.filterExam = filterExam;
+    vm.showMyExams = true;
 
-    // Convert start and end dates to Date objects
-    vm.examsession.start = vm.examsession.start ? new Date(vm.examsession.start) : null;
-    vm.examsession.end = vm.examsession.end ? new Date(vm.examsession.end) : null;
-
-    // Save exam session
-    function save(isValid) {
-      if (!isValid) {
-        $scope.$broadcast('show-errors-check-validity', 'vm.form.examsessionForm');
-        return false;
-      }
-
-      // Create a new exam session, or update the current instance
-      vm.examsession.createOrUpdate()
-        .then(successCallback)
-        .catch(errorCallback);
-
-      function successCallback(res) {
-        // Clear form fields
-        vm.examsession.name = '';
-        vm.examsession.description = '';
-        vm.examsession.start = null;
-        vm.examsession.end = null;
-
-        $state.go('admin.manage.examsessions.view', {
-          examsessionId: res._id
-        });
-      }
-
-      function errorCallback(res) {
-        vm.error = res.data.message;
-      }
+    function filterExam (exam) {
+      return !vm.showMyExams || exam.course.team.some(function (element) {
+        return element.username === vm.authentication.user.username;
+      });
     }
   }
 }());

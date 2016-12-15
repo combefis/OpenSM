@@ -1,0 +1,49 @@
+\documentclass[a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8x]{inputenc}
+\usepackage{lmodern}
+
+\usepackage{vmargin}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{fancyhdr}
+\usepackage{forloop}
+\usepackage{ifthen}
+\usepackage{grffile}
+
+\setlength{\oddsidemargin}{1.5cm}
+\setlength{\textwidth}{18cm}
+\setlength{\textheight}{23.8cm}
+\setlength{\topmargin}{0.75cm}
+\setlength{\headsep}{0.5cm}
+\setlength{\headheight}{3cm}
+\setlength{\parindent}{0cm}
+
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[C]{\textbf{Classement} : N$^\circ${\Large\oldstylenums{!classement!}} --- \textbf{Auditoire} : !room! (siège !seatnumber!) \\[4mm] {\renewcommand{\arraystretch}{1.5}\begin{tabularx}{\textwidth}{|lXr|}
+\hline
+Nom : \textsc{!lastname!} !firstname! & & !datetime! \\
+Matricule : !matricule! & & (!duration! minutes) \\
+\multicolumn{3}{|c|}{\large\bfseries !courseid! --- !coursename!} \\[2mm]
+\hline
+\end{tabularx}}}
+\fancyhead[LE,RO]{\raisebox{1.6cm}{\LARGE\bf !globalorder!}}
+\fancyfoot[RE,LO]{!date! --- version~!serie!}
+\fancyfoot[C]{Examen !courseid!}
+\fancyfoot[RO,LE]{Page~\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\pagestyle{fancy}
+
+\begin{document}
+	\pdfximage{!filepath!}
+	%%% Questions
+	\centering
+	\newcounter{p}
+	\forloop{p}{1}{\value{p} < \numexpr\the\pdflastximagepages+1}{
+		\clearpage
+		\includegraphics[height=23.3cm,page=\value{p}]{!filepath!}
+	}
+\end{document}

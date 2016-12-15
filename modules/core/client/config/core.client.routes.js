@@ -31,6 +31,14 @@
         url: '/',
         templateUrl: 'modules/core/client/views/home.client.view.html'
       })
+      .state('manage', {
+        abstract: true,
+        url: '/manage',
+        template: '<ui-view/>',
+        data: {
+          roles: ['manager.exams']
+        }
+      })
       .state('not-found', {
         url: '/not-found',
         templateUrl: 'modules/core/client/views/404.client.view.html',

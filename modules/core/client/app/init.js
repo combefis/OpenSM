@@ -10,18 +10,23 @@
     .module(app.applicationModuleName)
     .config(bootstrapConfig);
 
+  bootstrapConfig.$inject = ['$locationProvider', '$httpProvider'];
+
   function bootstrapConfig($locationProvider, $httpProvider) {
-    $locationProvider.html5Mode(true).hashPrefix('!');
+    $locationProvider.html5Mode({
+      enabled: true,
+      requireBase: false
+    }).hashPrefix('!');
 
     $httpProvider.interceptors.push('authInterceptor');
   }
-
-  bootstrapConfig.$inject = ['$locationProvider', '$httpProvider'];
 
   // Configure translation
   angular
     .module(app.applicationModuleName)
     .config(translationConfig);
+
+  translationConfig.$inject = ['$translateProvider'];
 
   function translationConfig($translateProvider) {
     $translateProvider.useSanitizeValueStrategy('escape');
@@ -30,14 +35,16 @@
       suffix: '.json'
     });
     $translateProvider.preferredLanguage('en_GB');
+    $translateProvider.fallbackLanguage('en_GB');
     $translateProvider.useLocalStorage();
   }
 
-  translationConfig.$inject = ['$translateProvider'];
-
+  // Configure language choice menu
   angular
     .module(app.applicationModuleName)
     .controller('LanguageController', languageController);
+
+  languageController.$inject = ['$translate', '$translateLocalStorage'];
 
   function languageController($translate, $translateLocalStorage) {
     var vm = this;
@@ -49,8 +56,6 @@
       $translate.use(lang);
     }
   }
-
-  languageController.$inject = ['$translate', '$translateLocalStorage'];
 
   // Then define the init function for starting up the application
   angular.element(document).ready(init);

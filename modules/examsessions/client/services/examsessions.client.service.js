@@ -8,8 +8,8 @@
   ExamSessionsService.$inject = ['$resource'];
 
   function ExamSessionsService($resource) {
-    var ExamSession = $resource('api/examsessions/:examsessionId', {
-      examsessionId: '@_id'
+    var ExamSession = $resource('api/examsessions/:examsessionCode', {
+      examsessionCode: ''
     }, {
       update: {
         method: 'PUT'
@@ -27,7 +27,7 @@
 
     function createOrUpdate(examsession) {
       if (examsession._id) {
-        return examsession.$update(onSuccess, onError);
+        return examsession.$update({ examsessionCode: examsession.code }, onSuccess, onError);
       }
       return examsession.$save(onSuccess, onError);
 

@@ -41,7 +41,7 @@ exports.create = function (req, res) {
   // Save the exam session
   examsession.save(function (err) {
     if (err) {
-      return res.status(400).send({
+      return res.status(422).send({
         message: errorHandler.getErrorMessage(err)
       });
     }
@@ -64,6 +64,7 @@ exports.read = function (req, res) {
 exports.update = function (req, res) {
   var examsession = req.examsession;
 
+  examsession.code = req.body.code;
   examsession.name = req.body.name;
   examsession.description = req.body.description;
   examsession.start = req.body.start;
@@ -87,13 +88,38 @@ exports.update = function (req, res) {
   });
 };
 
+/*
+ * Delete an exam session
+ */
+exports.delete = function (req, res) {
+  var examsession = req.examsession;
+
+  // Check if can be deleted
+  if (examsession.exams.length) {
+    return res.status(400).send({
+      message: 'Cannot delete an exam session with exams'
+    });
+  }
+
+  examsession.remove(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+    res.json(examsession);
+  });
+};
+
 /**
  * List of exam sessions
  */
 exports.list = function (req, res) {
-  ExamSession.find({ 'academicyear': req.session.academicyear }).sort({ start: 1 }).exec(function (err, examsessions) {
+  ExamSession.find({ 'academicyear': req.session.academicyear }, 'code name start end')
+  .sort({ start: 1 })
+  .exec(function (err, examsessions) {
     if (err) {
-      return res.status(400).send({
+      return res.status(422).send({
         message: errorHandler.getErrorMessage(err)
       });
     }
@@ -104,15 +130,10 @@ exports.list = function (req, res) {
 /**
  * Exam session middleware
  */
-exports.examsessionByID = function (req, res, next, id) {
-
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).send({
-      message: 'Exam session is invalid'
-    });
-  }
-
-  ExamSession.findById(id, 'name description start end').exec(function (err, examsession) {
+exports.examsessionByCode = function (req, res, next, code) {
+  ExamSession.findOne({ 'code': code }, 'code name description start end exams')
+  .populate('exams', 'title date course')
+  .exec(function (err, examsession) {
     if (err) {
       return next(err);
     }
@@ -121,7 +142,24 @@ exports.examsessionByID = function (req, res, next, id) {
         message: 'No exam session with that identifier has been found.'
       });
     }
-    req.examsession = examsession;
-    next();
+
+    ExamSession.populate(examsession, { path: 'exams.course', select: 'code name team', model: 'Course' }, function (err, examsession) {
+      if (err || !examsession) {
+        return res.status(404).send({
+          message: 'Error while retrieving information about the exam session.'
+        });
+      }
+
+      ExamSession.populate(examsession, { path: 'exams.course.team', select: 'username', model: 'User' }, function (err, examsession) {
+        if (err || !examsession) {
+          return res.status(404).send({
+            message: 'Error while retrieving information about the exam session.'
+          });
+        }
+
+        req.examsession = examsession;
+        next();
+      });
+    });
   });
 };

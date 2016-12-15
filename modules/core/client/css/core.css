@@ -5,6 +5,7 @@ h2 {
 }
 h3 {
   font-size: 20px;
+  margin-top: 10px;
 }
 
 section.container {
@@ -82,6 +83,24 @@ a:hover .header-profile-image {
 .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open a:focus {
   color: #FFFFFF;
   background-image: linear-gradient(to bottom, #396B0B 0%, #1A2F07 100%);
+}
+
+/* Tabs */
+.tab-content {
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding: 20px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.075);
+}
+
+.tab-content ul.list-group {
+    margin-bottom: 0px;
+}
+
+/* Forms */
+.right-form {
+  margin-bottom: 15px;
 }
 
 /* Footer */

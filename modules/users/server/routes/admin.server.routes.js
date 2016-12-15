@@ -13,6 +13,10 @@ module.exports = function (app) {
   // Users collection routes
   app.route('/api/users')
     .get(adminPolicy.isAllowed, admin.list);
+  app.route('/api/teachers').all(adminPolicy.isAllowed)
+    .get(admin.listTeachers);
+  app.route('/api/students').all(adminPolicy.isAllowed)
+    .get(admin.listStudents);
 
   // Single user routes
   app.route('/api/users/:userId')

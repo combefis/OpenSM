@@ -10,20 +10,39 @@ var mongoose = require('mongoose'),
  * Course Schema
  */
 var CourseSchema = new Schema({
-  serial: {
+  code: {
     type: String,
-    required: 'Please fill in the serial of the course.',
-    trim: true
+    required: 'Please fill in the code of the course.',
+    trim: true,
+    unique: true
+  },
+  name: {
+    type: String,
+    trim: true,
+    required: 'Please fill in the name of the course.'
   },
   coordinator: {
     type: Schema.ObjectId,
     ref: 'User',
     required: 'Please fill in the coordinator of the course.'
   },
-  name: {
+  team: {
+    type: [{
+      type: Schema.ObjectId,
+      ref: 'User'
+    }],
+    default: []
+  },
+  description: {
     type: String,
-    trim: true,
-    required: 'Please fill in the name of the course.'
+    trim: true
+  },
+  activities: {
+    type: [{
+      type: Schema.ObjectId,
+      ref: 'Activity'
+    }],
+    default: []
   },
   academicyear: {
     type: Number

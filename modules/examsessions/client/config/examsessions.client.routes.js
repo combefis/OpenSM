@@ -9,35 +9,23 @@
 
   function routeConfig($stateProvider) {
     $stateProvider
-      .state('admin.manage.examsessions', {
+      .state('examsessions', {
         abstract: true,
         url: '/examsessions',
         template: '<ui-view/>'
       })
-      .state('admin.manage.examsessions.list', {
+      .state('examsessions.list', {
         url: '',
         templateUrl: 'modules/examsessions/client/views/list-examsessions.client.view.html',
         controller: 'ExamSessionsListController',
         controllerAs: 'vm',
         data: {
+          roles: ['teacher', 'printer'],
           pageTitle: 'Exam sessions'
         }
       })
-      .state('admin.manage.examsessions.create', {
-        url: '/create',
-        templateUrl: 'modules/examsessions/client/views/form-examsession.client.view.html',
-        controller: 'ExamSessionsController',
-        controllerAs: 'vm',
-        resolve: {
-          examsessionResolve: newExamSession
-        },
-        data: {
-          roles: ['admin'],
-          pageTitle: 'Create an exam session'
-        }
-      })
-      .state('admin.manage.examsessions.view', {
-        url: '/:examsessionId',
+      .state('examsessions.view', {
+        url: '/:examsessionCode',
         templateUrl: 'modules/examsessions/client/views/view-examsession.client.view.html',
         controller: 'ExamSessionsController',
         controllerAs: 'vm',
@@ -45,20 +33,8 @@
           examsessionResolve: getExamSession
         },
         data: {
+          roles: ['teacher', 'printer'],
           pageTitle: '{{examsessionResolve.name}}'
-        }
-      })
-      .state('admin.manage.examsessions.edit', {
-        url: '/:examsessionId/edit',
-        templateUrl: 'modules/examsessions/client/views/form-examsession.client.view.html',
-        controller: 'ExamSessionsController',
-        controllerAs: 'vm',
-        resolve: {
-          examsessionResolve: getExamSession
-        },
-        data: {
-          roles: ['admin'],
-          pageTitle: 'Edit an exam session'
         }
       });
   }
@@ -67,7 +43,7 @@
 
   function getExamSession($stateParams, ExamSessionsService) {
     return ExamSessionsService.get({
-      examsessionId: $stateParams.examsessionId
+      examsessionCode: $stateParams.examsessionCode
     }).$promise;
   }
 

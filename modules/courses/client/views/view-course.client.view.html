@@ -5,36 +5,27 @@
 
   <div ng-if="vm.course.$resolved">
     <ol class="breadcrumb">
-      <li><a ui-sref="admin.manage.courses.list" ng-bind="'COURSE.COURSES' | translate"></a></li>
-      <li class="active"><a ui-sref="admin.manage.courses.view({courseId: vm.course._id})">{{vm.course.serial}} — {{vm.course.name}}</a></li>
+      <li><a ui-sref="courses.list" ng-bind="'COURSE.COURSES' | translate"></a></li>
+      <li class="active"><a ui-sref="courses.view({ courseCode: vm.course.code })" ng-bind="vm.course.code"></a></li>
     </ol>
 
-    <h2>{{vm.course.serial}} — {{vm.course.name}}</h2>
+    <h2 ng-bind="vm.course.name"></h2>
 
     <div class="row">
-      <div class="col-md-9">
-        <dl>
-          <dt ng-bind="'COURSE.SERIAL' | translate"></dt>
-          <dd ng-bind="vm.course.serial"></dd>
-          <dt ng-bind="'COURSE.NAME' | translate"></dt>
-          <dd ng-bind="vm.course.name"></dd>
-          <dt ng-bind="'COURSE.COORDINATOR' | translate"></dt>
-          <dd ng-bind="vm.course.coordinator"></dd>
-          <dt ng-bind="'GENERAL.ACADEMICYEAR' | translate"></dt>
-          <dd ng-bind="vm.course.academicyear"></dd>
-        </dl>
-      </div>
+      <div class="col-md-12">
+        <div ng-if="vm.course.description" ng-bind="vm.course.description"></div>
+        <div ng-if="!vm.course.description" ng-bind="'COURSE.NO_DESCRIPTION' | translate"></div>
 
-      <div class="col-md-3">
-        <div class="panel panel-info">
-          <div class="panel-heading"><h3 class="panel-title" ng-bind="'INFORMATIONS' | translate"></h3></div>
-          <div class="panel-body">
-            <dl>
-              <dt ng-bind="'COURSE.SERIAL' | translate"></dt>
-              <dd ng-bind="vm.course.serial"></dd>
-            </dl>
-          </div>
-        </div>
+        <h3 ng-bind="'COURSE.ACTIVITIES' | translate"></h3>
+
+        <ul class="list-group" ng-if="vm.course.activities.length">
+          <li class="list-group-item" ng-repeat="activity in vm.course.activities | orderBy: '+code'">
+            <b>{{activity.code}}</b> — {{activity.name}}<br/>
+            <small><i><span ng-repeat="teacher in activity.teachers | orderBy: '+lastname'" ng-bind="teacher.firstname + ' ' + teacher.lastname + ($last ? '' : ', ')"></span></i></small>
+          </li>
+        </ul>
+
+        <p ng-if="!vm.course.activities.length" ng-bind="'COURSE.NO_ACTIVITY' | translate"></p>
       </div>
     </div>
 </div>

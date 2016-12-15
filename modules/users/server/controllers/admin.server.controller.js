@@ -16,7 +16,7 @@ exports.read = function (req, res) {
 };
 
 /**
- * Update a User
+ * Update a user
  */
 exports.update = function (req, res) {
   var user = req.model;
@@ -56,7 +56,7 @@ exports.delete = function (req, res) {
 };
 
 /**
- * List of Users
+ * List of users
  */
 exports.list = function (req, res) {
   User.find({}, '-salt -password').sort('-created').populate('user', 'displayName').exec(function (err, users) {
@@ -67,6 +67,34 @@ exports.list = function (req, res) {
     }
 
     res.json(users);
+  });
+};
+
+/**
+ * List of teachers
+ */
+exports.listTeachers = function (req, res) {
+  User.find({ 'roles': 'teacher' }, 'username displayName').exec(function (err, teachers) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+    res.json(teachers);
+  });
+};
+
+/**
+ * List of students
+ */
+exports.listStudents = function (req, res) {
+  User.find({ 'roles': 'student' }, 'username displayName').exec(function (err, teachers) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+    res.json(teachers);
   });
 };
 

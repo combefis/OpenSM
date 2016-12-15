@@ -10,6 +10,12 @@ var mongoose = require('mongoose'),
  * ExamSession Schema
  */
 var ExamSessionSchema = new Schema({
+  code: {
+    type: String,
+    required: 'Please fill in the code of the exam session.',
+    trim: true,
+    unique: true
+  },
   name: {
     type: String,
     required: 'Please fill in the name of the exam session.',
@@ -27,6 +33,13 @@ var ExamSessionSchema = new Schema({
   end: {
     type: Date,
     required: 'Please fill in the end date of the exam session.'
+  },
+  exams: {
+    type: [{
+      type: Schema.ObjectId,
+      ref: 'Exam'
+    }],
+    default: []
   },
   academicyear: {
     type: Number

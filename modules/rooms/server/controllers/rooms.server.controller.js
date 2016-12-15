@@ -4,6 +4,7 @@
  * Module dependencies
  */
 var path = require('path'),
+  fs = require('fs-extra'),
   mongoose = require('mongoose'),
   Room = mongoose.model('Room'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
@@ -36,38 +37,52 @@ exports.read = function (req, res) {
 };
 
 /**
+ * Update a room
+ */
+exports.update = function (req, res) {
+  var room = req.room;
+
+  room.code = req.body.code;
+  room.name = req.body.name;
+  room.nbseats = req.body.nbseats;
+
+  room.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+    res.json(room);
+  });
+};
+
+/**
  * List of rooms
  */
 exports.list = function (req, res) {
-  Room.find().exec(function (err, rooms) {
+  Room.find('code name')
+  .sort({ code: 1 })
+  .exec(function (err, rooms) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
-    } else {
-      res.json(rooms);
     }
+    res.json(rooms);
   });
 };
 
 /**
  * Room middleware
  */
-exports.roomByID = function (req, res, next, id) {
-
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).send({
-      message: 'Room is invalid'
-    });
-  }
-
-  Room.findById(id, 'id name').exec(function (err, room) {
+exports.roomByCode = function (req, res, next, code) {
+  Room.findOne({ 'code': code }, 'code name nbseats pictures map configurations').exec(function (err, room) {
     if (err) {
       return next(err);
     }
     if (!room) {
       return res.status(404).send({
-        message: 'No room with that identifier has been found.'
+        message: 'No room with that code has been found.'
       });
     }
     req.room = room;

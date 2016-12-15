@@ -12,7 +12,14 @@
       title: 'Dashboard',
       state: 'dashboard',
       type: 'dropdown',
-      roles: ['student']
+      roles: ['user']
+    });
+
+    menuService.addMenuItem('topbar', {
+      title: 'Manage',
+      state: 'manage',
+      type: 'dropdown',
+      roles: ['manager.exams']
     });
 
     menuService.addMenu('account', {
@@ -39,11 +46,6 @@
     menuService.addSubMenuItem('account', 'settings', {
       title: 'Change Password',
       state: 'settings.password'
-    });
-
-    menuService.addSubMenuItem('account', 'settings', {
-      title: 'Manage Social Accounts',
-      state: 'settings.accounts'
     });
   }
 }());

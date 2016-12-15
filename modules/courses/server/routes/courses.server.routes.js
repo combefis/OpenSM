@@ -13,9 +13,10 @@ module.exports = function (app) {
     .post(courses.create);
 
   // Single course routes
-  app.route('/api/courses/:courseId').all(coursesPolicy.isAllowed)
-    .get(courses.read);
+  app.route('/api/courses/:courseCode').all(coursesPolicy.isAllowed)
+    .get(courses.read)
+    .put(courses.update);
 
   // Finish by binding the course middleware
-  app.param('courseId', courses.courseByID);
+  app.param('courseCode', courses.courseByCode);
 };

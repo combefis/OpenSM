@@ -9,10 +9,10 @@
 
   function menuConfig(menuService) {
     // Add the dropdown list item
-    menuService.addSubMenuItem('topbar', 'admin.manage', {
+    menuService.addSubMenuItem('topbar', 'dashboard', {
       title: 'Exam sessions',
-      state: 'admin.manage.examsessions.list',
-      roles: ['admin']
+      state: 'examsessions.list',
+      roles: ['teacher', 'printer']
     });
   }
 }());

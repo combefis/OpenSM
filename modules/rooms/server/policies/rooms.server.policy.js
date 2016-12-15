@@ -15,11 +15,17 @@ exports.invokeRolesPolicies = function () {
   acl.allow([{
     roles: ['admin'],
     allows: [{
+      resources: [
+        '/api/rooms',
+        '/api/rooms/:roomCode'
+      ],
+      permissions: '*'
+    }]
+  }, {
+    roles: ['manager.exams'],
+    allows: [{
       resources: '/api/rooms',
-      permissions: '*'
-    }, {
-      resources: '/api/rooms/:roomId',
-      permissions: '*'
+      permissions: ['get']
     }]
   }]);
 };
@@ -35,15 +41,13 @@ exports.isAllowed = function (req, res, next) {
     if (err) {
       // An authorization error occurred
       return res.status(500).send('Unexpected authorization error');
-    } else {
-      if (isAllowed) {
-        // Access granted! Invoke next middleware
-        return next();
-      } else {
-        return res.status(403).json({
-          message: 'User is not authorized'
-        });
-      }
     }
+    if (isAllowed) {
+      // Access granted! Invoke next middleware
+      return next();
+    }
+    return res.status(403).json({
+      message: 'User is not authorized'
+    });
   });
 };
