@@ -19,7 +19,7 @@
 
         <h3 ng-bind="'EXAMSESSION.PLANNING' | translate"></h3>
 
-        <div class="clearfix">
+        <div class="clearfix" ng-if="cvm.hasAnyRole(['teacher'])">
           <div class="pull-right">
             <form class="form-inline right-form">
               <label><input type="checkbox" ng-model="vm.showMyExams" class="form-control"> {{'EXAMSESSION.SHOW_MY_EXAMS' | translate}}</label>

@@ -13,7 +13,7 @@
     vm.examsession = examsession;
     vm.authentication = Authentication;
     vm.filterExam = filterExam;
-    vm.showMyExams = true;
+    vm.showMyExams = vm.authentication.user.roles.includes('teacher');
 
     function filterExam (exam) {
       return !vm.showMyExams || exam.course.team.some(function (element) {
