@@ -33,6 +33,7 @@
         startseat: vm.exam.rooms[i].startseat
       };
     });
+    vm.changeConfiguration = changeConfiguration;
 
     // Copies management
     vm.getLetter = getLetter;
@@ -147,6 +148,13 @@
           vm.selectedRoom = undefined;
           vm.exam.rooms = response.data;
 
+          var i = vm.exam.rooms.length - 1;
+          vm.config.push({
+            room: vm.exam.rooms[i].room,
+            configuration: vm.exam.rooms[i].configuration,
+            startseat: vm.exam.rooms[i].startseat
+          });
+
           Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAM.ROOM_SUCCESSFUL_ADD', { code: code }) });
         });
       }
@@ -155,14 +163,33 @@
     // Remove a room of the exam
     function removeRoom(i) {
       if ($window.confirm('Are you sure you want to delete this room?')) {
-        var room = vm.exam.rooms[i];
+        var room = vm.exam.rooms[i].room;
 
         $http.delete('/api/exams/' + vm.exam._id + '/room/' + i)
         .then(function(response) {
           vm.rooms.push(room);
           vm.exam.rooms = response.data;
 
+          vm.config.splice(i, 1);
+
           Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAM.ROOM_SUCCESSFUL_DELETE', { code: room.code }) });
+        });
+      }
+    }
+
+    // Change the shown configuration
+    function changeConfiguration(i) {
+      if (vm.exam.rooms[i].configuration !== null) {
+        $http.post('/api/exams/' + vm.exam._id + '/room/' + i + '/configure', { configuration: vm.exam.rooms[i].configuration, startseat: vm.exam.rooms[i].startseat })
+        .then(function(response) {
+          vm.exam.copies = response.data;
+          vm.config[i] = {
+            room: vm.exam.rooms[i].room,
+            configuration: vm.exam.rooms[i].configuration,
+            startseat: vm.exam.rooms[i].configuration.startseat
+          };
+
+          Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('ROOM.CONFIGURATION_CHANGED') });
         });
       }
     }

@@ -22,11 +22,10 @@
     vm.removeStudent = removeStudent;
 
     // Rooms management
-    var nbRooms = vm.exam.rooms.length;
     vm.rooms = null;
     vm.addRoom = addRoom;
     vm.removeRoom = removeRoom;
-    vm.config = Array.apply(null, new Array(nbRooms)).map(function(x, i) {
+    vm.config = Array.apply(null, new Array(vm.exam.rooms.length)).map(function(x, i) {
       return {
         room: vm.exam.rooms[i].room,
         configuration: vm.exam.rooms[i].configuration,
@@ -177,6 +176,23 @@
       }
     }
 
+    // Change the shown configuration
+    function changeConfiguration(i) {
+      if (vm.exam.rooms[i].configuration !== null) {
+        $http.post('/api/exams/' + vm.exam._id + '/room/' + i + '/configure', { configuration: vm.exam.rooms[i].configuration, startseat: vm.exam.rooms[i].startseat })
+        .then(function(response) {
+          vm.exam.copies = response.data;
+          vm.config[i] = {
+            room: vm.exam.rooms[i].room,
+            configuration: vm.exam.rooms[i].configuration,
+            startseat: vm.exam.rooms[i].configuration.startseat
+          };
+
+          Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('ROOM.CONFIGURATION_CHANGED') });
+        });
+      }
+    }
+
     // Add a copy to the exam
     function addCopy() {
       $http.post('/api/exams/' + vm.exam._id + '/copy')
@@ -232,23 +248,6 @@
       .then(function(response) {
         vm.exam.copies = response.data;
       });
-    }
-
-    // Change the shown configuration
-    function changeConfiguration(i) {
-      if (vm.exam.rooms[i].configuration !== null) {
-        $http.post('/api/exams/' + vm.exam._id + '/room/' + i + '/configure', { configuration: vm.exam.rooms[i].configuration, startseat: vm.exam.rooms[i].startseat })
-        .then(function(response) {
-          vm.exam.copies = response.data;
-          vm.config[i] = {
-            room: vm.exam.rooms[i].room,
-            configuration: vm.exam.rooms[i].configuration,
-            startseat: vm.exam.rooms[i].configuration.startseat
-          };
-
-          Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('ROOM.CONFIGURATION_CHANGED') });
-        });
-      }
     }
   }
 }());

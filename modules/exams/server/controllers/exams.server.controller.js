@@ -243,7 +243,7 @@ exports.addRoom = function (req, res) {
   var exam = req.exam;
 
   // Find the room to add
-  Room.findOne({ 'code': req.body.roomCode }, 'code name nbseats map configuration').exec(function (err, room) {
+  Room.findOne({ 'code': req.body.roomCode }, 'code name nbseats map configurations').exec(function (err, room) {
     if (err || !room) {
       return res.status(404).send({
         message: 'No room with that code has been found.'

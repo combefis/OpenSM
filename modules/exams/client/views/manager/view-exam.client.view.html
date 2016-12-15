@@ -79,11 +79,33 @@
                     <h3 ng-bind="vm.exam.rooms[i].room.name"></h3>
                     <div ng-if="vm.exam.rooms[i].room.map">
                       <canvas draw-map="vm.config[i]"></canvas>
+
+                      <h4 ng-bind="'EXAM.ROOM_CONFIGURATION' | translate"></h4>
+                      <div class="row col-md-12">
+                        <form class="form-horizontal">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="control-label" for="{{'configuration' + i}}" ng-bind="'ROOM.SELECT_CONFIGURATION' | translate"></label>
+                              <div class="controls">
+                                <select id="{{'configuration' + i}}" class="form-control" ng-options="j as vm.exam.rooms[i].room.configurations[j].name for j in cvm.getNumber(vm.exam.rooms[i].room.configurations.length)" ng-model="vm.exam.rooms[i].configuration"></select>
+                                <p class="help-block">({{vm.exam.rooms[i].configuration !== null ? vm.exam.rooms[i].room.configurations[vm.exam.rooms[i].configuration].seats.length : 0}} {{'ROOM.SELECTED_SEATS' | translate}})</p>
+                              </div>
+                              <button type="submit" class="btn btn-primary" ng-click="vm.changeConfiguration(i)" ng-bind="'ROOM.CHANGE_CONFIGURATION' | translate"></button>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="control-label" for="startseat" ng-bind="'ROOM.STARTING_SEAT' | translate"></label>
+                              <div class="controls">
+                                <input type="number" ng-model="vm.exam.rooms[i].startseat" id="startseat" class="form-control" >
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                      <div class="clearfix"></div>
                     </div>
                     <div ng-if="!vm.exam.rooms[i].room.map" ng-bind="'ROOM.NO_MAP' | translate"></div>
-
-                    <h4 ng-bind="'EXAM.ROOM_CONFIGURATION' | translate"></h4>
-                    <div ng-bind="'EXAM.ROOM_SEATS_SUMMARY' | translate: { seats: 0, nbseats: vm.exam.rooms[i].room.nbseats }"></div>
                   </div>
                 </uib-tab>
               </uib-tabset>
