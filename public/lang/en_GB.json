@@ -87,7 +87,9 @@
       "ADD": "Add a questionnaire",
       "NOT_UPLOADED": "Questionnaire not uploaded yet.",
       "SUCCESSFUL_DELETE": "Questionnaire deleted successfully!",
-      "FILE_UPLOADED_ON": "File uploaded on"
+      "FILE_UPLOADED_ON": "File uploaded on",
+      "GENERATE": "Generate copies",
+      "MARK_PRINTED": "Mark as printed"
     },
     "ROOM": {
       "DELETE": "@:GENERAL.DELETE"
