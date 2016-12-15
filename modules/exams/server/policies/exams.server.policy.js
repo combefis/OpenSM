@@ -27,7 +27,8 @@ exports.invokeRolesPolicies = function () {
         '/api/exams/:examId/copy',
         '/api/exams/:examId/copy/:i',
         '/api/exams/:examId/copy/:i/download',
-        '/api/exams/:examId/copy/:i/upload'
+        '/api/exams/:examId/copy/:i/upload',
+        '/api/exams/:examId/copy/:i/validate'
       ],
       permissions: '*'
     }]
