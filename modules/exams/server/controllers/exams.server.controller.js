@@ -46,7 +46,8 @@ exports.create = function (req, res) {
   exam.academicyear = 2016;
 
   // Load the exam session
-  ExamSession.findById(exam.examsession).exec(function (err, examsession) {
+  ExamSession.findById(exam.examsession)
+  .exec(function (err, examsession) {
     if (err || !examsession) {
       return res.status(400).send({
         message: 'Impossible to find the exam session.'
@@ -124,7 +125,8 @@ exports.delete = function (req, res) {
   var exam = req.exam;
 
   // Load the exam session
-  ExamSession.findById(exam.examsession).exec(function (err, examsession) {
+  ExamSession.findById(exam.examsession, 'exams')
+  .exec(function (err, examsession) {
     if (err || !examsession) {
       return res.status(400).send({
         message: 'Impossible to find the exam session.'
@@ -204,7 +206,9 @@ exports.assignSeats = function (req, res) {
  * List of exams
  */
 exports.list = function (req, res) {
-  Exam.find({ 'academicyear': req.session.academicyear }).sort({ date: 1 }).exec(function (err, exams) {
+  Exam.find({ 'academicyear': req.session.academicyear })
+  .sort({ date: 1 })
+  .exec(function (err, exams) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -222,7 +226,8 @@ exports.addStudent = function (req, res) {
   var exam = req.exam;
 
   // Find the student to add
-  User.findOne({ 'username': req.body.studentUsername }, 'username displayName').exec(function (err, student) {
+  User.findOne({ username: req.body.studentUsername }, 'username displayName')
+  .exec(function (err, student) {
     if (err || !student) {
       return res.status(404).send({
         message: 'No student with that username has been found.'
@@ -230,7 +235,9 @@ exports.addStudent = function (req, res) {
     }
 
     // Add the student to the exam and save it
-    exam.registrations.push(student);
+    exam.registrations.push({
+      student: student
+    });
     exam.save(function (err) {
       if (err) {
         return res.status(422).send({
@@ -269,7 +276,8 @@ exports.addRoom = function (req, res) {
   var exam = req.exam;
 
   // Find the room to add
-  Room.findOne({ 'code': req.body.roomCode }, 'code name nbseats map configurations').exec(function (err, room) {
+  Room.findOne({ code: req.body.roomCode }, 'code name nbseats map configurations')
+  .exec(function (err, room) {
     if (err || !room) {
       return res.status(404).send({
         message: 'No room with that code has been found.'
@@ -286,6 +294,7 @@ exports.addRoom = function (req, res) {
           message: errorHandler.getErrorMessage(err)
         });
       }
+
       res.json(exam.rooms);
     });
   });
@@ -546,7 +555,7 @@ exports.examByID = function (req, res, next, id) {
   .populate('course', 'code name team')
   .populate('examsession', 'code name')
   .populate('rooms.room', 'code name nbseats map configurations')
-  .populate('registrations', 'displayName username')
+  .populate('registrations.student', 'displayName username')
   .exec(function (err, exam) {
     if (err) {
       return next(err);

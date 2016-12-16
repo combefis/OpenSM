@@ -51,7 +51,7 @@
 
       // Remove already selected students
       vm.exam.registrations.forEach(function (element) {
-        var username = element.username;
+        var username = element.student.username;
         vm.students.splice(vm.students.findIndex(function (element) {
           return element.username === username;
         }), 1);
@@ -127,7 +127,7 @@
     // Remove a student of the exam
     function removeStudent(i) {
       if ($window.confirm('Are you sure you want to delete this student?')) {
-        var student = vm.exam.registrations[i];
+        var student = vm.exam.registrations[i].student;
 
         $http.delete('/api/exams/' + vm.exam._id + '/student/' + i)
         .then(function(response) {

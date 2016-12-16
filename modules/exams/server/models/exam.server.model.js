@@ -32,10 +32,23 @@ var ExamSchema = new Schema({
     required: 'Please fill in the duration of the exam.'
   },
   registrations: {
-    type: [{
-      type: Schema.ObjectId,
-      ref: 'User'
-    }],
+    type: [new Schema({
+      student: {
+        type: Schema.ObjectId,
+        ref: 'User'
+      },
+      seat: {
+        type: Number,
+        default: 0
+      },
+      room: {
+        type: Number,
+        default: 0
+      }
+    }, {
+      id: false,
+      _id: false
+    })],
     default: []
   },
   copies: {

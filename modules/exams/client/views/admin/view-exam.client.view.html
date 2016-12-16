@@ -36,7 +36,7 @@
                   <div class="pull-right">
                     <button ng-click="vm.removeStudent(i)" class="btn btn-default btn-xs" tooltip-placement="bottom" uib-tooltip="{{'EXAM.STUDENT.DELETE' | translate}}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
                   </div>
-                  <div><b>{{i+1}} {{vm.exam.registrations[i].displayName}}</b></div>
+                  <div><b>{{i+1}} {{vm.exam.registrations[i].student.displayName}}</b></div>
                 </li>
               </ul>
             </div>
