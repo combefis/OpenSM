@@ -91,11 +91,20 @@
     // Validate exam
     function validate() {
       if ($window.confirm('Are you sure you want to validate this exam?')) {
+        assignSeats();
         $http.post('/api/exams/' + vm.exam._id + '/validate')
         .then(function(response) {
           vm.exam.ready = response.data;
         });
       }
+    }
+
+    // Compute the seat assignment of students
+    function assignSeats() {
+      $http.post('/api/exams/' + vm.exam._id + '/assignseats')
+      .then(function(response) {
+        vm.exam.registrations = response.data;
+      });
     }
 
     // Add a student to the exam

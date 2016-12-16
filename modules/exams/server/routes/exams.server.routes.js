@@ -20,6 +20,8 @@ module.exports = function (app) {
     .delete(exams.delete);
   app.route('/api/exams/:examId/validate').all(examsPolicy.isAllowed)
     .post(exams.validate);
+  app.route('/api/exams/:examId/assignseats').all(examsPolicy.isAllowed)
+    .post(exams.assignSeats);
 
   // Exam students routes
   app.route('/api/exams/:examId/student').all(examsPolicy.isAllowed)

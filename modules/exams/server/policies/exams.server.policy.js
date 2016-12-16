@@ -19,6 +19,7 @@ exports.invokeRolesPolicies = function () {
         '/api/exams',
         '/api/exams/:examId',
         '/api/exams/:examId/validate',
+        '/api/exams/:examId/assignseats',
         '/api/exams/:examId/student',
         '/api/exams/:examId/student/:i',
         '/api/exams/:examId/room',
@@ -40,7 +41,8 @@ exports.invokeRolesPolicies = function () {
         '/api/exams/:examId/student',
         '/api/exams/:examId/room',
         '/api/exams/:examId/room/:i/configure',
-        '/api/exams/:examId/validate'
+        '/api/exams/:examId/validate',
+        '/api/exams/:examId/assignseats'
       ],
       permissions: ['post']
     }, {

@@ -175,6 +175,32 @@ exports.validate = function (req, res) {
 };
 
 /**
+ * Assign seats
+ */
+exports.assignSeats = function (req, res) {
+  var exam = req.exam;
+
+  // Check if there is enough seats
+  var totalSeats = 0;
+  exam.rooms.forEach(function (element) {
+    totalSeats += element.room.configurations[element.configuration].seats.length;
+  });
+  console.log('TOTAL SEATS: ' + totalSeats);
+
+  // Assign seat to registered students
+
+  exam.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+
+    res.json(exam.registrations);
+  });
+};
+
+/**
  * List of exams
  */
 exports.list = function (req, res) {
