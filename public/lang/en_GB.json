@@ -95,7 +95,9 @@
       "DELETE": "@:GENERAL.DELETE"
     },
     "STUDENT": {
-      "DELETE": "@:GENERAL.DELETE"
+      "DELETE": "@:GENERAL.DELETE",
+      "NUMBER": "Number",
+      "NAME": "Name"
     },
     "ROOMS": "Rooms",
     "NO_ROOMS": "No affected rooms.",
@@ -104,7 +106,9 @@
     "ROOM_CONFIGURATION": "@:ROOM.CONFIGURATION",
     "VALIDATE": "Validate",
     "STATE": "State",
-    "VALIDATED": "Validated"
+    "VALIDATED": "Validated",
+    "ASSIGN_SEATS": "Assign seats",
+    "SEATS_ASSIGNED": "Seats successfully assigned!"
   },
   "EXAMSESSION": {
     "EXAMSESSIONS": "Exam sessions",

@@ -95,7 +95,9 @@
       "DELETE": "@:GENERAL.DELETE"
     },
     "STUDENT": {
-      "DELETE": "@:GENERAL.DELETE"
+      "DELETE": "@:GENERAL.DELETE",
+      "NUMBER": "Numéro",
+      "NAME": "Nom"
     },
     "ROOMS": "Locaux",
     "NO_ROOMS": "Pas de locaux attribués.",
@@ -104,7 +106,9 @@
     "ROOM_CONFIGURATION": "@:ROOM.CONFIGURATION",
     "VALIDATE": "Valider",
     "STATE": "État",
-    "VALIDATED": "Validé"
+    "VALIDATED": "Validé",
+    "ASSIGN_SEATS": "Affecter les sièges",
+    "SEATS_ASSIGNED": "Sièges affectés avec succès !"
   },
   "EXAMSESSION": {
     "EXAMSESSIONS": "Sessions d'examens",

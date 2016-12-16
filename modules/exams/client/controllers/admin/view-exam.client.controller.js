@@ -15,6 +15,7 @@
     vm.authentication = Authentication;
     vm.remove = remove;
     vm.validate = validate;
+    vm.assignSeats = assignSeats;
 
     // Students management
     vm.students = null;
@@ -91,7 +92,6 @@
     // Validate exam
     function validate() {
       if ($window.confirm('Are you sure you want to validate this exam?')) {
-        assignSeats();
         $http.post('/api/exams/' + vm.exam._id + '/validate')
         .then(function(response) {
           vm.exam.ready = response.data;
@@ -104,6 +104,10 @@
       $http.post('/api/exams/' + vm.exam._id + '/assignseats')
       .then(function(response) {
         vm.exam.registrations = response.data;
+
+        Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAM.SEATS_ASSIGNED') });
+      }, function(err) {
+        Notification.error({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + err.data.message });
       });
     }
 

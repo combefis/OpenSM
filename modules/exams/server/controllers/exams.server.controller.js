@@ -187,9 +187,14 @@ exports.assignSeats = function (req, res) {
   exam.rooms.forEach(function (element) {
     totalSeats += element.room.configurations[element.configuration].seats.length;
   });
-  console.log('TOTAL SEATS: ' + totalSeats);
+  if (exam.registrations.length > totalSeats) {
+    return res.status(400).send({
+      message: 'Not enough seats for all the registered students.'
+    });
+  }
 
   // Assign seat to registered students
+
 
   exam.save(function (err) {
     if (err) {
