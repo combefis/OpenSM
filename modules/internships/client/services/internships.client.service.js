@@ -1,25 +1,55 @@
-(function () {
+(function () {  // on DEFINIT ce qu'est le service, on ne le crée pas. le creer sera du boulot du new.
   'use strict';
 
   angular
     .module('internships.services')
-    .factory('InternshipsService', InternshipsService)
-    .factory('MyInternshipsService', MyInternshipsService);
+    .factory('InternshipsService', InternshipsService);
 
   InternshipsService.$inject = ['$resource'];
-  MyInternshipsService.$inject = ['$resource'];
 
   function InternshipsService($resource) {
-    var Internships = $resource('api/internships');
+    var Internship = $resource('api/internships/:internshipId', { // je déclare la route (avec les get post delete derrière) qui mène à mon serveur
+      internshipId: '@_id'  // il va chercher autiomatiquement l'id dedans.
+    }, {
+      update: { // quand je fais un update ca appelle PUt. J'aurais pu dire "quand je fais un "prout" ca appelle get.
+        method: 'PUT'
+      }
+    });
 
-    return Internships;
+    angular.extend(Internship.prototype, {  // on étend le service. Quand on aura créé un
+      createOrUpdate: function() {
+        var internship = this;
+        return createOrUpdate(internship);
+      }
+      // faire qqchose d'autre: function (){} et on le définirait plus loin
+    });
+
+    return Internship;
+
+    function createOrUpdate(internship) {
+      if (internship._id) {
+        return internship.$update({ internshipCode: internship.code }, onSuccess, onError);
+      }
+      return internship.$save(onSuccess, onError);
+
+      // $save et $update existent deja, la on choisi juste entre les deux.
+
+      // Handle successful response
+      function onSuccess(internship) {
+        // Any required internal processing from inside the service, goes here.
+      }
+
+      // Handle error response
+      function onError(errorResponse) {
+        var error = errorResponse.data;
+        // Handle error internally
+        handleError(error);
+      }
+    }
+
+    function handleError(error) {
+      // Log error
+      console.log(error);
+    }
   }
-
-
-  function MyInternshipsService($resource) {
-    var MyInternships = $resource('api/myinternships');
-
-    return MyInternships;
-  }
-
 }());

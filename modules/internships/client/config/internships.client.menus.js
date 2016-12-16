@@ -15,10 +15,5 @@
       roles: ['admin']
     });
 
-    menuService.addSubMenuItem('topbar', 'dashboard', {
-      title: 'My internships',
-      state: 'internships.list',
-      roles: ['student']
-    });
   }
 }());

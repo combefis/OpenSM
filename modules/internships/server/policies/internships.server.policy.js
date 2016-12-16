@@ -18,19 +18,13 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/internships',
       permissions: '*'
     }]
-  }, {
-    roles: ['student'],
-    allows: [{
-      resources: '/api/myinternships',
-      permissions: '*'
-    }]
   }
   ]);
 };
 
 
 /**
- * Check if internships policy allows
+ * Check if internships policy allows DONT TOUCH:
  */
 exports.isAllowed = function (req, res, next) {
   var roles = (req.user) ? req.user.roles : ['guest'];

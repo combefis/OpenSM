@@ -11,8 +11,9 @@ var path = require('path'),
 /**
  * List of rooms
  */
-exports.listAll = function (req, res) {
-  Internship.find().exec(function (err, internships) {
+
+exports.list = function (req, res) {
+  Internship.find({}).exec(function (err, internships) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -22,14 +23,16 @@ exports.listAll = function (req, res) {
   });
 };
 
+exports.create = function (req, res) {
+  var internship = new Internship(req.body); // req.body permet de TOUT lui mettre, on mettra des infos en plus plus loin si besoin.
+  internship.createdon = new Date();  // par exemple (non utilisé, a supprimer)
 
-exports.list = function (req, res) {
-  Internship.find({ 'student': req.user }).exec(function (err, myInternships) {
+  internship.save(function (err) {  // pas besoin de mettre function (err, internship) pas besoin de lui passer qqchose pour le save.
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     }
-    res.json(myInternships);
+    res.json(internship); // on renvoie l'instance du modèle et non pas le modèle en lui même (evidemment, comme avece dkp)
   });
 };

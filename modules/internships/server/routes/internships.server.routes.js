@@ -9,8 +9,6 @@ var internshipsPolicy = require('../policies/internships.server.policy'),
 module.exports = function(app) {
   // Internships collection routes
   app.route('/api/internships').all(internshipsPolicy.isAllowed)
-    .get(internships.listAll);
-
-  app.route('/api/myinternships').all(internshipsPolicy.isAllowed)
-    .get(internships.list);
+    .get(internships.list)
+    .post(internships.create);
 };
