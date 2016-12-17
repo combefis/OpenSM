@@ -25,6 +25,19 @@
         }
       })
 
+    .state('admin.manage.internships.view', {
+      url: '/:internshipId',
+      templateUrl: 'modules/internships/client/views/view-internship.client.view.html',
+      controller: 'InternshipsController',
+      controllerAs: 'vm',
+      resolve: {
+        internshipResolve: getInternship
+      },
+      data: {
+        pageTitle: 'view internship details'
+      }
+    })
+
     .state('admin.manage.internships.create', {
       url: '/create',
       templateUrl: 'modules/internships/client/views/createInternship.client.view.html',
@@ -36,15 +49,15 @@
       resolve: {
         internshipResolve: newInternship
       }
-    })
-    
+    });
+
   }
 
   getInternship.$inject = ['$stateParams', 'InternshipsService'];
 
   function getInternship($stateParams, InternshipsService) {
     return InternshipsService.get({
-      internshipCode: $stateParams.internshipCode
+      internshipId: $stateParams.internshipId // $stateParams = "prends dans l'url"
     }).$promise;
   }
 

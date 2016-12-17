@@ -1,0 +1,174 @@
+<section>
+	<ol class="breadcrumb">
+	    <li><a ui-sref="admin.manage.internships.list" ng-bind="'INTERNSHIP.INTERNSHIPS' | translate"></a></li>
+	    <li ng-if="!vm.internships._id" class="active"><a ui-sref="admin.manage.internships.view({ internshipId: vm.internship._id })" ng-bind="vm.internship._id"></a></li>
+    </ol>
+
+
+</section>
+	<h2 ng-bind="vm.internship._id"></h2>
+	
+	<dl>
+  		<dt>Student</dt>
+  			<dd ng-bind="vm.internship.student"></dd>
+  		<dt>Master</dt>
+  			<dd ng-bind="vm.internship.master"></dd>
+  		<dt>Supervisor</dt>
+  			<dd ng-bind="vm.internship.supervisor"></dd>
+  		<dt>Proposition</dt>
+  			<dd>
+  				<dl>
+  					<dt>Description:</dt>
+  						<dd ng-bind="vm.internship.proposition.description.description"></dd>
+  					<dt>SubjectApproval</dt>
+  						<dd>
+  							<dl>
+  								<dt>Consulted Teacher</dt>
+  									<dd ng-bind="vm.internship.proposition.description.subjectApproval.consultedTeacher"></dd>
+  								<dt>Consulted Teacher Approval</dt>
+  									<dd ng-bind="vm.internship.proposition.description.subjectApproval.consultedTeacherApproval"></dd>
+  								<dt>Unit Chief Approval</dt>
+  									<dd ng-bind="vm.internship.proposition.description.subjectApproval.unitChiefApproval"></dd>
+  								<dt>Master Approval</dt>
+  									<dd ng-bind="vm.internship.proposition.description.subjectApproval.masterApproval"></dd>
+  							</dl>
+  						</dd>	
+  					<dt>Validator Approval</dt>
+  						<dd ng-bind ="vm.internship.proposition.description.validatorApproval"></dd>
+  			</dd>
+  		<dt>Enterprise</dt>
+  			<dd>
+  				<dl>
+  					<dt>Name</dt>
+  						<dd ng-bind="vm.internship.enterprise.name"></dd>
+  					<dt>Domain</dt>
+  						<dd ng-bind="vm.internship.enterprise.domain"></dd>
+  					<dt>Address</dt>
+  						<dd>
+  							<dl>
+  								<dt>Street</dt>
+  									<dd ng-bind="vm.internship.enterprise.address.street"></dd>
+  								<dt>Number</dt>
+  									<dd ng-bind="vm.internship.enterprise.address.number"></dd>
+  								<dt>Postal Code</dt>
+  									<dd ng-bind="vm.internship.enterprise.address.postalCode"></dd>	
+  								<dt>City</dt>
+  									<dd ng-bind="vm.internship.enterprise.address.city".></dd>
+  								<dt>Country</dt>
+  									<dd ng-bind="vm.internship.enterprise.address.country"></dd>
+  								</dl>
+  							</dd>
+  						<dt>Phone Number</dt>
+  							<dd ng-bind="vm.internship.enterprise.phoneNumber"></dd>
+  						<dt>Fax</dt>
+  							<dd ng-bind="vm.internship.enterprise.fax"></dd>
+  						<dt>Mail</dt>
+  							<dd ng-bind="vm.internship.enterprise.mail"></dd>
+  						<dt>Representative</dt>
+  							<dd>
+  								<dl>
+  									<dt>Name</dt>
+  										<dd ng-bind="vm.internship.enterprise.representative.name"></dd>
+  										<dt>Position</dt>
+  											<dd ng-bind="vm.internship.enterprise.representative.position"></dd>
+  								</dl>
+  							</dd>  								
+  				</dl>
+  			</dd>
+  		<dt>Convention</dt>
+  			<dd>
+  				<dl>
+  					<dt>Validation</dt>
+  						<dd ng-bind="vm.internship.convention.validation"></dd>
+  					</dl>
+  			</dd>
+  		<dt>Activities Note</dt>
+  			<dd>
+  				<dl>
+  					<dt>General Objectives</dt>
+						<dd><ul>
+							<li ng-repeat="objective in vm.internship.activitiesNote.generalObjectives">{{objective}}
+							</li>
+						</ul></dd>
+					<dt>Specific Objectives</dt>
+						<dd><ul>
+							<li  ng-repeat="specificObjective in vm.internship.activitiesNote.specificObjectives">{{specificObjective}}
+							</li>
+						</ul></dd>
+					<dt>Approval</dt>
+							<dd ng-bind="vm.internship.activitiesNote.approval"></dd>
+  				</dl>
+  			</dd>	
+  		<dt>First Visit</dt>
+  			<dd>
+  				<dl>
+  					<dt>Date</dt>
+  						<dd ng-bind="vm.internship.firstVisit.date | amDateFormat:'ddd D MMM YYYY'"></dd>
+  					<dt>Location</dt>
+  						<dd ng-bind="vm.internship.firstVisit.location"></dd>
+  					<dt>Supervisor Notes</dt>
+  						<dd ng-bind="vm.internship.firstVisit.supervisorNotes"></dd>
+  				</dl>
+  			</dd>
+  		<dt>Intermediate Evaluation</dt>
+  			<dd>
+  				<dl>
+  					<dt>Master Notes</dt>
+  						<dd ng-bind="vm.internship.intermediateEvaluation.masterNotes"></dd>
+  				</dl>
+  			</dd>
+  		<dt>Continuous Evaluation</dt>
+  			<dd>
+  				<dl>
+  					<dt>Points</dt>
+  						<dd><ul ng-repeat="i in cvm.getNumber(vm.internship.continuousEvaluation.points.length)">
+  						<li>{{vm.internship.continuousEvaluation.points[i]}}</li>
+  						</ul></dd>
+  				</dl>
+  			</dd>
+  		<dt>Oral Presentation</dt>
+  			<dd>
+  				<dl>
+  					<dt>Date</dt>
+  						<dd ng-bind="vm.internship.oralPresentation.date | amDateFormat:'ddd D MMM YYYY'"></dd>
+  					<dt>Location</dt>
+  						<dd ng-bind="vm.internship.oralPresentation.location"></dd>
+  					<dt>Points</dt>
+  						<dd><ul>
+  							<li ng-repeat="i in cvm.getNumber(vm.internship.oralPresentation.points.length)">
+  								{{vm.internship.oralPresentation.points[i]}}
+  							</li>
+  						</ul></dd>
+  				</dl>
+  			</dd>
+  		<dt>Written Report</dt>
+  			<dd>
+  				<dl>
+  					<dt>Handed In</dt>
+  						<dd ng-bind="vm.internship.writtenReport.handedIn"></dd>
+  					<dt>points</dt>
+  						<dd><ul>
+  							<li ng-repeat="i in cvm.getNumber(vm.internship.writtenReport.points.length)">
+  									{{vm.internship.writtenReport.points[i]}}</li>
+  						</ul></dd>
+  				</dl>
+  			</dd>
+  		<dt>Certificate</dt>
+	  		<dd>
+	  			<dl>
+	  				<dt>Handed In</dt>
+	  					<dd ng-bind="vm.internship.certificate.handedIn"></dd>
+	  			</dl>
+	  		</dd>
+	  	<dt>Deadlines</dt>
+	  		<dd>
+	  			<dl>
+	  				<dd>End of Internship</dd>
+	  					<dt ng-bind="vm.internship.deadlines.endInternship | amDateFormat:'ddd D MMM YYYY'" ></dt>
+	  				<dd>Written Repport</dd>
+	  					<dt ng-bind="vm.internship.deadlines.writtenReport | amDateFormat:'ddd D MMM YYYY'"></dt>
+	  				<dd>Internship Certrificate</dd>
+	  					<dt ng-bind="vm.internship.deadlines.certificate | amDateFormat:'ddd D MMM YYYY'"></dt>
+	  			</dl>
+	  		</dd>
+  	</dl>

@@ -13,11 +13,11 @@
     <div class="row">
       <div class="col-md-9">
         <div class="action-box">
-          <a ui-sref="internships.create" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> {{'INTERNSHIP.CREATE' | translate}}</a>
+          <a ui-sref="admin.manage.internships.create" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> {{'INTERNSHIP.CREATE' | translate}}</a>
         </div>
 
         <div class="list-group" ng-if="vm.internships.length">
-          <a ng-repeat="internship in vm.internships" ui-sref="admin.manage.internships.view({ internshipStudent: internship._id })" class="list-group-item" ng-bind="internship.student"></a>
+          <a ng-repeat="internship in vm.internships" ui-sref="admin.manage.internships.view({ internshipId: internship._id })" class="list-group-item" ng-bind="internship.student"></a>
         </div>
 
         <div class="alert alert-warning" ng-if="!vm.internships.length" ng-bind="'INTERNSHIP.NO_INTERNSHIP' | translate"></div>

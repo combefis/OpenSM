@@ -3,19 +3,14 @@
 
   angular
     .module('internships')
-    .controller('InternshipController', InternshipController);
+    .controller('InternshipsController', InternshipsController);
 
-  InternshipController.$inject = ['$scope', '$state', 'internshipResolve', '$window', 'Authentication', '$http'];
+  InternshipsController.$inject = ['$scope', '$state', 'internshipResolve', '$window', 'Authentication', '$http'];
 
-  function InternshipController($scope, $state, internship, $window, Authentication, http) {
+  function InternshipsController($scope, $state, internship, $window, Authentication, http) {
     var vm = this; // on instancie tout ce qu'on vient de lui passer
 
     vm.internship = internship; // le "resolve"
-    vm.authentication = Authentication;
-    vm.error = null;
-    vm.form = {}; // init de la variable à vide.
-    vm.save = save;
-
 
     // Save Internship
     function save(isValid) {

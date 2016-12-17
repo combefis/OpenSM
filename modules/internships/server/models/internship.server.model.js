@@ -49,7 +49,7 @@ var IntershipSchema = new Schema({
     phoneNumber: Number,
     fax: Number,
     mail: String,
-    Representative: {
+    representative: {
       name: String,
       position: String
     }

@@ -18,6 +18,7 @@ module.exports = function (app) {
     .get(exams.read)
     .put(exams.update)
     .delete(exams.delete);
+
   app.route('/api/exams/:examId/validate').all(examsPolicy.isAllowed)
     .post(exams.validate);
 
