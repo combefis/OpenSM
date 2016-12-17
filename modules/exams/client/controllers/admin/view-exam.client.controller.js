@@ -30,7 +30,8 @@
       return {
         room: vm.exam.rooms[i].room,
         configuration: vm.exam.rooms[i].configuration,
-        startseat: vm.exam.rooms[i].startseat
+        startseat: vm.exam.rooms[i].startseat,
+        registrations: $filter('filter')(vm.exam.registrations, function (element) { return element.room === i; })
       };
     });
     vm.changeConfiguration = changeConfiguration;

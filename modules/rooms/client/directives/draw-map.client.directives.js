@@ -66,6 +66,15 @@
             var s = map.seats[config.seats[j].seat];
             context.fillText(getLetter(config.seats[j].serie + 1), s.x, s.y + 15);
           }
+
+          // Draw the seats assignment
+          if (configuration.registrations) {
+            configuration.registrations.forEach(function (element) {
+              var s = map.seats[config.seats[element.seat].seat];
+              context.fillText(element.student.lastname, s.x, s.y + 25);
+              context.fillText(element.student.firstname, s.x, s.y + 35);
+            });
+          }
         }
       }
     }
