@@ -182,6 +182,17 @@ exports.validate = function (req, res) {
 exports.assignSeats = function (req, res) {
   var exam = req.exam;
 
+  // Check if all copies have been validated
+  var copiesValidated = true;
+  exam.copies.forEach(function (element) {
+    copiesValidated &= element.validated;
+  });
+  if (!copiesValidated) {
+    return res.status(400).send({
+      message: 'All the questionnaires have not been validated yet!'
+    });
+  }
+
   // Check if there is enough seats
   var totalSeats = 0;
   exam.rooms.forEach(function (element) {
@@ -189,7 +200,7 @@ exports.assignSeats = function (req, res) {
   });
   if (exam.registrations.length > totalSeats) {
     return res.status(400).send({
-      message: 'Not enough seats for all the registered students.'
+      message: 'Not enough seats for all the registered students!'
     });
   }
 

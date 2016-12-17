@@ -211,6 +211,8 @@
       $http.post('/api/exams/' + vm.exam._id + '/copy')
       .then(function(response) {
         vm.exam.copies = response.data;
+
+        Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAM.COPY.SUCCESSFUL_ADD') });
       });
     }
 
@@ -221,7 +223,7 @@
         .then(function(response) {
           vm.exam.copies = response.data;
 
-          Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAM.COPY_SUCCESSFUL_DELETE') });
+          Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAM.COPY.SUCCESSFUL_DELETE') });
         });
       }
     }

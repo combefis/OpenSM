@@ -34,12 +34,16 @@
               <table class="table table-bordered">
                 <tr>
                   <th class="col-md-1" ng-bind="'EXAM.STUDENT.NUMBER' | translate"></th>
-                  <th class="col-md-10" ng-bind="'EXAM.STUDENT.NAME' | translate"></th>
+                  <th class="col-md-8" ng-bind="'EXAM.STUDENT.NAME' | translate"></th>
+                  <th class="col-md-1" ng-bind="'EXAM.ROOM.ROOM' | translate"></th>
+                  <th class="col-md-1" ng-bind="'EXAM.SEAT' | translate"></th>
                   <th class="col-md-1"></th>
                 </tr>
                 <tr ng-repeat="i in cvm.getNumber(vm.exam.registrations.length)">
                   <td><b ng-bind="i+1"></b></td>
                   <td ng-bind="vm.exam.registrations[i].student.displayName"></td>
+                  <td></td>
+                  <td></td>
                   <td>
                     <button ng-click="vm.removeStudent(i)" class="btn btn-default btn-xs" tooltip-placement="bottom" uib-tooltip="{{'EXAM.STUDENT.DELETE' | translate}}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
                   </td>

@@ -86,13 +86,15 @@
       "DELETE": "@:GENERAL.DELETE",
       "ADD": "Add a questionnaire",
       "NOT_UPLOADED": "Questionnaire not uploaded yet.",
+      "SUCCESSFUL_ADD": "Questionnaire successfully added!",
       "SUCCESSFUL_DELETE": "Questionnaire deleted successfully!",
       "FILE_UPLOADED_ON": "File uploaded on",
       "GENERATE": "Generate copies",
       "MARK_PRINTED": "Mark as printed"
     },
     "ROOM": {
-      "DELETE": "@:GENERAL.DELETE"
+      "DELETE": "@:GENERAL.DELETE",
+      "ROOM": "Room"
     },
     "STUDENT": {
       "DELETE": "@:GENERAL.DELETE",
@@ -108,7 +110,8 @@
     "STATE": "State",
     "VALIDATED": "Validated",
     "ASSIGN_SEATS": "Assign seats",
-    "SEATS_ASSIGNED": "Seats successfully assigned!"
+    "SEATS_ASSIGNED": "Seats successfully assigned!",
+    "SEAT": "Seat"
   },
   "EXAMSESSION": {
     "EXAMSESSIONS": "Exam sessions",

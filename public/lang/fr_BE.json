@@ -86,13 +86,15 @@
       "DELETE": "@:GENERAL.DELETE",
       "ADD": "Ajouter un questionnaire",
       "NOT_UPLOADED": "Questionnaire pas encore chargé.",
+      "SUCCESSFUL_ADD": "Questionnaire ajouté avec succès !",
       "SUCCESSFUL_DELETE": "Questionnaire supprimé avec succès !",
       "FILE_UPLOADED_ON": "Fichier chargé le",
       "GENERATE": "Générer les copies",
       "MARK_PRINTED": "Marquer comme imprimé"
     },
     "ROOM": {
-      "DELETE": "@:GENERAL.DELETE"
+      "DELETE": "@:GENERAL.DELETE",
+      "ROOM": "Local"
     },
     "STUDENT": {
       "DELETE": "@:GENERAL.DELETE",
@@ -108,7 +110,8 @@
     "STATE": "État",
     "VALIDATED": "Validé",
     "ASSIGN_SEATS": "Affecter les sièges",
-    "SEATS_ASSIGNED": "Sièges affectés avec succès !"
+    "SEATS_ASSIGNED": "Sièges affectés avec succès !",
+    "SEAT": "Siège"
   },
   "EXAMSESSION": {
     "EXAMSESSIONS": "Sessions d'examens",
