@@ -57,10 +57,26 @@ function checkExam (exam) {
 }
 
 /*
- *
+ * Assign seats to registered students
  */
 function assignSeats (exam) {
-  console.log('SEATS ASSIGNED!');
+  var registrations = exam.registrations;
+  var nextStudent = 0;
+
+  for (var i = 0; i < exam.rooms.length; i++) {
+    var room = exam.rooms[i].room;
+    var configuration = room.configurations[exam.rooms[i].configuration];
+
+    for (var j = 0; j < configuration.seats.length; j++) {
+      registrations[nextStudent].room = i;
+      registrations[nextStudent].seat = j;
+      nextStudent++;
+
+      if (nextStudent === registrations.length) {
+        return;
+      }
+    }
+  }
 }
 
 /*
@@ -207,7 +223,7 @@ exports.validate = function (req, res) {
     });
   }
 
-  assignSeats();
+  assignSeats(exam);
   exam.ready = true;
   exam.save(function (err) {
     if (err) {
@@ -237,7 +253,7 @@ exports.assignSeats = function (req, res) {
     });
   }
 
-  assignSeats();
+  assignSeats(exam);
   exam.save(function (err) {
     if (err) {
       return res.status(422).send({

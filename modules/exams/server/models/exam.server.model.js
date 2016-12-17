@@ -39,11 +39,11 @@ var ExamSchema = new Schema({
       },
       seat: {
         type: Number,
-        default: 0
+        default: null
       },
       room: {
         type: Number,
-        default: 0
+        default: null
       }
     }, {
       id: false,
