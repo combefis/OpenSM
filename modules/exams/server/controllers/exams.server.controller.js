@@ -34,12 +34,13 @@ function checkData (exam) {
  * Check if an exam is ready to be validated
  */
 function checkExam (exam) {
+  // Check if all rooms have been configured
+  if (!exam.rooms.every(function(element) { return element.configuration !== null; })) {
+    return 'All the rooms have not been configured yet!';
+  }
+
   // Check if all copies have been validated
-  var copiesValidated = true;
-  exam.copies.forEach(function (element) {
-    copiesValidated &= element.validated;
-  });
-  if (!copiesValidated) {
+  if (!exam.copies.every(function(element) { return element.validated; })) {
     return 'All the questionnaires have not been validated yet!';
   }
 
