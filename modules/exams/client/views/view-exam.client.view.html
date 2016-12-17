@@ -15,22 +15,47 @@
     <div class="row">
       <div class="col-md-12">
         <uib-tabset>
+          <uib-tab heading="{{'INFORMATIONS' | translate}}">
+            <h3 ng-bind="'EXAM.STATE' | translate"></h3>
+            <ul class="list-unstyled">
+              <li>
+                <span class="well well-lg glyphicon glyphicon-book" aria-hidden="true"></span>
+                {{'EXAM.COPY.COPIES' | translate}} <span ng-if="vm.exam.validation.copies">{{'EXAM.VALIDATED_ON' | translate}} {{vm.exam.validation.copies | amDateFormat:'ddd D MMM YYYY HH:mm'}}</span>
+              </li>
+              <li>
+                <span class="well well-lg glyphicon glyphicon-equalizer" aria-hidden="true"></span>
+                {{'EXAM.REGISTRATIONS' | translate}} <span ng-if="vm.exam.validation.registrations">{{'EXAM.VALIDATED_ON' | translate}} {{vm.exam.validation.registrations | amDateFormat:'ddd D MMM YYYY HH:mm'}}</span>
+              </li>
+              <li>
+                <span class="well well-lg glyphicon glyphicon-print" aria-hidden="true"></span>
+                {{'EXAM.PRINTINGS' | translate}} <span ng-if="vm.exam.validation.printings">{{'EXAM.VALIDATED_ON' | translate}} {{vm.exam.validation.printings | amDateFormat:'ddd D MMM YYYY HH:mm'}}</span>
+              </li>
+            </ul>
+          </uib-tab>
           <uib-tab heading="{{'EXAM.STUDENTS' | translate}}">
             <div ng-if="vm.exam.registrations.length">
-              <ul class="list-group">
-                <li class="list-group-item" ng-repeat="i in cvm.getNumber(vm.exam.registrations.length)">
-                  <div><b>{{i+1}} {{vm.exam.registrations[i].displayName}}</b></div>
-                </li>
-              </ul>
+              <table class="table table-bordered">
+                <tr>
+                  <th class="col-md-1" ng-bind="'EXAM.STUDENT.NUMBER' | translate"></th>
+                  <th class="col-md-9" ng-bind="'EXAM.STUDENT.NAME' | translate"></th>
+                  <th class="col-md-1" ng-bind="'EXAM.ROOM.ROOM' | translate"></th>
+                  <th class="col-md-1" ng-bind="'EXAM.SEAT' | translate"></th>
+                </tr>
+                <tr ng-repeat="i in cvm.getNumber(vm.exam.registrations.length)">
+                  <td><b ng-bind="i+1"></b></td>
+                  <td ng-bind="vm.exam.registrations[i].student.displayName"></td>
+                  <td ng-bind="vm.exam.registrations[i].room !== null ? vm.exam.rooms[vm.exam.registrations[i].room].room.code : '–'"></td>
+                  <td ng-bind="vm.exam.registrations[i].seat !== null ? vm.exam.rooms[vm.exam.registrations[i].room].room.configurations[vm.exam.rooms[vm.exam.registrations[i].room].configuration].seats[vm.exam.registrations[i].seat].seat + 1 : '–'"></td>
+                </tr>
+              </table>
             </div>
             <div ng-if="!vm.exam.registrations.length" ng-bind="'EXAM.NO_STUDENTS' | translate"></div>
           </uib-tab>
           <uib-tab heading="{{'EXAM.COPY.COPIES' | translate}}">
             <div ng-if="!vm.exam.ready && cvm.hasAnyRole(['teacher'])" class="clearfix">
-              <div class="pull-right">
-                <form class="form-inline right-form">
-                  <button ng-click="vm.addCopy()" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> {{'EXAM.COPY.ADD' | translate}}</button>
-                </form>
+              <div ng-if="!vm.exam.validation.copies" class="action-box">
+                <a ng-click="vm.addCopy()" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> {{'EXAM.COPY.ADD' | translate}}</a>
+                <a ng-click="vm.validateCopies()" class="btn btn-primary"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> {{'EXAM.COPY.VALIDATE' | translate}}</a>
               </div>
             </div>
             <div ng-if="vm.exam.copies.length">

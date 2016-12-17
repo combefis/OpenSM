@@ -90,7 +90,8 @@
       "SUCCESSFUL_DELETE": "Questionnaire deleted successfully!",
       "FILE_UPLOADED_ON": "File uploaded on",
       "GENERATE": "Generate copies",
-      "MARK_PRINTED": "Mark as printed"
+      "MARK_PRINTED": "Mark as printed",
+      "SUCCESSFUL_VALIDATION": "The questionnaires have been successfully validated!"
     },
     "ROOM": {
       "DELETE": "@:GENERAL.DELETE",

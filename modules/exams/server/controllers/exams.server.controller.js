@@ -640,7 +640,7 @@ exports.examByID = function (req, res, next, id) {
     });
   }
 
-  Exam.findById(id, 'title course examsession date duration registrations copies rooms ready')
+  Exam.findById(id, 'title course examsession date duration registrations copies rooms ready validation')
   .populate('course', 'code name team')
   .populate('examsession', 'code name')
   .populate('rooms.room', 'code name nbseats map configurations')

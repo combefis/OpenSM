@@ -71,7 +71,8 @@ exports.invokeRolesPolicies = function () {
       resources: [
         '/api/exams/:examId/copy',
         '/api/exams/:examId/copy/:i/upload',
-        '/api/exams/:examId/copy/:i/validate'
+        '/api/exams/:examId/copy/:i/validate',
+        '/api/exams/:examId/copies/validate'
       ],
       permissions: ['post']
     }, {

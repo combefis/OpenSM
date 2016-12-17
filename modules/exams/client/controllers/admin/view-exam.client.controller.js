@@ -292,10 +292,17 @@
 
     // Validate the copies of the exam
     function validateCopies() {
-      $http.post('/api/exams/' + vm.exam._id + '/copies/validate')
-      .then(function(response) {
+      $http.post('/api/exams/' + vm.exam._id + '/copies/validate').then(onSuccess, onError);
+
+      function onSuccess(response) {
         vm.exam.validation = response.data;
-      });
+
+        Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAM.COPY.SUCCESSFUL_VALIDATION') });
+      }
+
+      function onError(err) {
+        Notification.error({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + err.data.message });
+      }
     }
   }
 }());
