@@ -31,7 +31,7 @@
         room: vm.exam.rooms[i].room,
         configuration: vm.exam.rooms[i].configuration,
         startseat: vm.exam.rooms[i].startseat,
-        registrations: $filter('filter')(vm.exam.registrations, function (element) { return element.room === i; })
+        registrations: getRegistrations(i)
       };
     });
     vm.changeConfiguration = changeConfiguration;
@@ -105,12 +105,28 @@
       }
     }
 
+    // Get registrations for a room
+    function getRegistrations (i) {
+      return $filter('filter')(vm.exam.registrations, function (element) {
+        return element.room === i;
+      });
+    }
+
     // Compute the seat assignment of students
     function assignSeats() {
       $http.post('/api/exams/' + vm.exam._id + '/assignseats').then(onSuccess, onError);
 
       function onSuccess(response) {
         vm.exam.registrations = response.data;
+        for (var i = 0; i < vm.exam.rooms.length; i++) {
+          vm.config[i] = {
+            room: vm.exam.rooms[i].room,
+            configuration: vm.exam.rooms[i].configuration,
+            startseat: vm.exam.rooms[i].startseat,
+            registrations: getRegistrations(i)
+          };
+        }
+
         Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAM.SEATS_ASSIGNED') });
       }
 
