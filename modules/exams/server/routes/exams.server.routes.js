@@ -48,6 +48,8 @@ module.exports = function (app) {
     .post(exams.uploadCopy);
   app.route('/api/exams/:examId/copy/:i/validate').all(examsPolicy.isAllowed)
     .post(exams.validateCopy);
+  app.route('/api/exams/:examId/copies/validate').all(examsPolicy.isAllowed)
+    .post(exams.validateCopies);
 
   // Finish by binding the exam middleware
   app.param('examId', exams.examByID);

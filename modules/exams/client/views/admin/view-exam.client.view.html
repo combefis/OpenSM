@@ -70,12 +70,9 @@
             <div ng-if="!vm.exam.registrations.length" ng-bind="'EXAM.NO_STUDENTS' | translate"></div>
           </uib-tab>
           <uib-tab heading="{{'EXAM.COPY.COPIES' | translate}}">
-            <div class="clearfix">
-              <div class="pull-right">
-                <form class="form-inline right-form">
-                  <button ng-click="vm.addCopy()" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> {{'EXAM.COPY.ADD' | translate}}</button>
-                </form>
-              </div>
+            <div class="action-box">
+              <a ng-click="vm.addCopy()" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> {{'EXAM.COPY.ADD' | translate}}</a>
+              <a ng-click="vm.validateCopies()" class="btn btn-primary"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> {{'EXAM.COPY.VALIDATE' | translate}}</a>
             </div>
 
             <div ng-if="vm.exam.copies.length">

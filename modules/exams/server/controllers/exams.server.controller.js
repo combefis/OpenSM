@@ -605,6 +605,32 @@ exports.validateCopy = function (req, res) {
 };
 
 /**
+ * Validate the copies of an exam
+ */
+exports.validateCopies = function (req, res) {
+  var exam = req.exam;
+
+  // Check if all the copies have been validated
+  if (!exam.copies.every(function(element) { return element.validated; })) {
+    return res.status(400).send({
+      message: 'All the copies have not been validated yet!'
+    });
+  }
+
+  // Mark the copies as validated and save the exam
+  exam.validation.copies = new Date();
+  exam.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+
+    res.json(exam.validation);
+  });
+};
+
+/**
  * Exam middleware
  */
 exports.examByID = function (req, res, next, id) {
