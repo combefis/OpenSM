@@ -39,11 +39,11 @@
                   <th class="col-md-1" ng-bind="'EXAM.SEAT' | translate"></th>
                   <th class="col-md-1"></th>
                 </tr>
-                <tr ng-repeat="i in cvm.getNumber(vm.exam.registrations.length)" ng-init="registration = vm.exam.registrations[i]">
+                <tr ng-repeat="i in cvm.getNumber(vm.exam.registrations.length)">
                   <td><b ng-bind="i+1"></b></td>
-                  <td ng-bind="registration.student.displayName"></td>
-                  <td ng-bind="registration.room !== null ? vm.exam.rooms[vm.exam.registrations[i].room].room.code : '–'"></td>
-                  <td ng-init="room = vm.exam.rooms[registration.room]" ng-bind="registration.seat !== null ? room.room.configurations[room.configuration].seats[registration.seat].seat + 1 : '–'"></td>
+                  <td ng-bind="vm.exam.registrations[i].student.displayName"></td>
+                  <td ng-bind="vm.exam.registrations[i].room !== null ? vm.exam.rooms[vm.exam.registrations[i].room].room.code : '–'"></td>
+                  <td ng-bind="vm.exam.registrations[i].seat !== null ? vm.exam.rooms[vm.exam.registrations[i].room].room.configurations[room.configuration].seats[vm.exam.registrations[i].seat].seat + 1 : '–'"></td>
                   <td>
                     <button ng-click="vm.removeStudent(i)" class="btn btn-default btn-xs" tooltip-placement="bottom" uib-tooltip="{{'EXAM.STUDENT.DELETE' | translate}}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
                   </td>
