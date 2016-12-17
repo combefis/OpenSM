@@ -43,7 +43,7 @@
                   <td><b ng-bind="i+1"></b></td>
                   <td ng-bind="vm.exam.registrations[i].student.displayName"></td>
                   <td ng-bind="vm.exam.registrations[i].room !== null ? vm.exam.rooms[vm.exam.registrations[i].room].room.code : '–'"></td>
-                  <td ng-bind="vm.exam.registrations[i].seat !== null ? vm.exam.rooms[vm.exam.registrations[i].room].room.configurations[room.configuration].seats[vm.exam.registrations[i].seat].seat + 1 : '–'"></td>
+                  <td ng-bind="vm.exam.registrations[i].seat !== null ? vm.exam.rooms[vm.exam.registrations[i].room].room.configurations[vm.exam.rooms[vm.exam.registrations[i].room].configuration].seats[vm.exam.registrations[i].seat].seat + 1 : '–'"></td>
                   <td>
                     <button ng-click="vm.removeStudent(i)" class="btn btn-default btn-xs" tooltip-placement="bottom" uib-tooltip="{{'EXAM.STUDENT.DELETE' | translate}}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
                   </td>
