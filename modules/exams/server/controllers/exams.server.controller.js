@@ -22,10 +22,44 @@ function checkData (exam) {
   if (!moment(exam.date).isBetween(exam.examsession.start, exam.examsession.end, 'day', '[]')) {
     return 'Exam date must be between the start and end dates of the exam session.';
   }
+
   if (exam.duration <= 0) {
     return 'Exam duration must be positive.';
   }
+
   return '';
+}
+
+/*
+ * Check if an exam is ready to be validated
+ */
+function checkExam (exam) {
+  // Check if all copies have been validated
+  var copiesValidated = true;
+  exam.copies.forEach(function (element) {
+    copiesValidated &= element.validated;
+  });
+  if (!copiesValidated) {
+    return 'All the questionnaires have not been validated yet!';
+  }
+
+  // Check if there is enough seats
+  var totalSeats = 0;
+  exam.rooms.forEach(function (element) {
+    totalSeats += element.room.configurations[element.configuration].seats.length;
+  });
+  if (exam.registrations.length > totalSeats) {
+    return 'Not enough seats for all the registered students!';
+  }
+
+  return '';
+}
+
+/*
+ *
+ */
+function assignSeats (exam) {
+  console.log('SEATS ASSIGNED!');
 }
 
 /*
@@ -164,6 +198,15 @@ exports.delete = function (req, res) {
 exports.validate = function (req, res) {
   var exam = req.exam;
 
+  // Check if exam can be validated
+  var errorMsg = checkExam(exam);
+  if (errorMsg !== '') {
+    return res.status(400).send({
+      message: errorMsg
+    });
+  }
+
+  assignSeats();
   exam.ready = true;
   exam.save(function (err) {
     if (err) {
@@ -182,17 +225,6 @@ exports.validate = function (req, res) {
 exports.assignSeats = function (req, res) {
   var exam = req.exam;
 
-  // Check if all copies have been validated
-  var copiesValidated = true;
-  exam.copies.forEach(function (element) {
-    copiesValidated &= element.validated;
-  });
-  if (!copiesValidated) {
-    return res.status(400).send({
-      message: 'All the questionnaires have not been validated yet!'
-    });
-  }
-
   // Check if there is enough seats
   var totalSeats = 0;
   exam.rooms.forEach(function (element) {
@@ -204,9 +236,7 @@ exports.assignSeats = function (req, res) {
     });
   }
 
-  // Assign seat to registered students
-
-
+  assignSeats();
   exam.save(function (err) {
     if (err) {
       return res.status(422).send({

@@ -42,8 +42,8 @@
                 <tr ng-repeat="i in cvm.getNumber(vm.exam.registrations.length)">
                   <td><b ng-bind="i+1"></b></td>
                   <td ng-bind="vm.exam.registrations[i].student.displayName"></td>
-                  <td></td>
-                  <td></td>
+                  <td ng-bind="vm.exam.registrations[i].room ? vm.exam.registrations[i].room : '–'"></td>
+                  <td ng-bind="vm.exam.registrations[i].seat ? vm.exam.registrations[i].seat : '–'"></td>
                   <td>
                     <button ng-click="vm.removeStudent(i)" class="btn btn-default btn-xs" tooltip-placement="bottom" uib-tooltip="{{'EXAM.STUDENT.DELETE' | translate}}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
                   </td>

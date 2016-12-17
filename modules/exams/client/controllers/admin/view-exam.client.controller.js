@@ -78,37 +78,44 @@
         vm.exam.$remove({ examId: exam._id }, onSuccess, onError);
       }
 
-      function onSuccess(examsession) {
+      function onSuccess(response) {
         $state.go('admin.manage.exams.list');
         Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAM.SUCCESSFUL_DELETE') });
       }
 
-      function onError(errorResponse) {
-        var error = errorResponse.data;
-        Notification.error({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + error.message });
+      function onError(err) {
+        Notification.error({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + err.data.message });
       }
     }
 
     // Validate exam
     function validate() {
       if ($window.confirm('Are you sure you want to validate this exam?')) {
-        $http.post('/api/exams/' + vm.exam._id + '/validate')
-        .then(function(response) {
-          vm.exam.ready = response.data;
-        });
+        $http.post('/api/exams/' + vm.exam._id + '/validate').then(onSuccess, onError);
+      }
+
+      function onSuccess(response) {
+        vm.exam.ready = response.data;
+        Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAM.SUCCESSFUL_VALIDATION') });
+      }
+
+      function onError(err) {
+        Notification.error({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + err.data.message });
       }
     }
 
     // Compute the seat assignment of students
     function assignSeats() {
-      $http.post('/api/exams/' + vm.exam._id + '/assignseats')
-      .then(function(response) {
-        vm.exam.registrations = response.data;
+      $http.post('/api/exams/' + vm.exam._id + '/assignseats').then(onSuccess, onError);
 
+      function onSuccess(response) {
+        vm.exam.registrations = response.data;
         Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAM.SEATS_ASSIGNED') });
-      }, function(err) {
+      }
+
+      function onError(err) {
         Notification.error({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + err.data.message });
-      });
+      }
     }
 
     // Add a student to the exam
