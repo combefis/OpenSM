@@ -21,6 +21,23 @@
         </div>
 
         <uib-tabset>
+          <uib-tab heading="{{'INFORMATIONS' | translate}}">
+            <h3 ng-bind="'EXAM.STATE' | translate"></h3>
+            <ul class="list-unstyled">
+              <li>
+                <span class="well well-lg glyphicon glyphicon-book" aria-hidden="true"></span>
+                {{'EXAM.COPY.COPIES' | translate}} <span ng-if="vm.exam.validation.copies">{{'EXAM.VALIDATED_ON' | translate}} {{vm.exam.validation.copies | amDateFormat:'ddd D MMM YYYY HH:mm'}}</span>
+              </li>
+              <li>
+                <span class="well well-lg glyphicon glyphicon-equalizer" aria-hidden="true"></span>
+                {{'EXAM.REGISTRATIONS' | translate}} <span ng-if="vm.exam.validation.registrations">{{'EXAM.VALIDATED_ON' | translate}} {{vm.exam.validation.registrations | amDateFormat:'ddd D MMM YYYY HH:mm'}}</span>
+              </li>
+              <li>
+                <span class="well well-lg glyphicon glyphicon-print" aria-hidden="true"></span>
+                {{'EXAM.PRINTINGS' | translate}} <span ng-if="vm.exam.validation.printings">{{'EXAM.VALIDATED_ON' | translate}} {{vm.exam.validation.printings | amDateFormat:'ddd D MMM YYYY HH:mm'}}</span>
+              </li>
+            </ul>
+          </uib-tab>
           <uib-tab heading="{{'EXAM.STUDENTS' | translate}}">
             <div class="clearfix">
               <div class="pull-right">

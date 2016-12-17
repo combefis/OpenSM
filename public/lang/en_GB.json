@@ -112,7 +112,10 @@
     "ASSIGN_SEATS": "Assign seats",
     "SEATS_ASSIGNED": "Seats successfully assigned!",
     "SEAT": "Seat",
-    "SUCCESSFUL_VALIDATION": "Exam successfully validated!"
+    "SUCCESSFUL_VALIDATION": "Exam successfully validated!",
+    "REGISTRATIONS": "Registrations",
+    "PRINTINGS": "Printings",
+    "VALIDATED_ON": "validated on "
   },
   "EXAMSESSION": {
     "EXAMSESSIONS": "Exam sessions",

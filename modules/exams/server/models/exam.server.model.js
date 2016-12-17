@@ -102,6 +102,17 @@ var ExamSchema = new Schema({
   academicyear: {
     type: Number
   },
+  validation: {
+    copies: {
+      type: Date
+    },
+    registrations: {
+      type: Date
+    },
+    printings: {
+      type: Date
+    }
+  },
   ready: {
     type: Boolean,
     default: false
