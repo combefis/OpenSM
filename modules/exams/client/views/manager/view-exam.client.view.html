@@ -6,11 +6,11 @@
   <div ng-if="vm.exam.$resolved">
     <ol class="breadcrumb">
       <li><a ui-sref="manage.examsessions.list" ng-bind="'EXAMSESSION.EXAMSESSIONS' | translate"></a></li>
-      <li><a ui-sref="manage.examsessions.view({ examsessionCode: vm.exam.examsession.code })">{{vm.exam.examsession.code}}</a></li>
-      <li class="active"><a ui-sref="manage.examsessions.viewexam({ examsessionCode: vm.exam.examsession.code, examId: vm.exam._id })">{{vm.exam.title}}</a></li>
+      <li><a ui-sref="manage.examsessions.view({ examsessionCode: vm.exam.examsession.code })" ng-bind="vm.exam.examsession.code"></a></li>
+      <li class="active"><a ui-sref="manage.examsessions.viewexam({ examsessionCode: vm.exam.examsession.code, examId: vm.exam._id })" ng-bind="vm.exam.title"></a></li>
     </ol>
 
-    <h2>{{vm.exam.title}}</h2>
+    <h2 ng-bind="vm.exam.title"></h2>
 
     <div class="row">
       <div class="col-md-12">
@@ -21,6 +21,23 @@
         </div>
 
         <uib-tabset>
+          <uib-tab heading="{{'INFORMATIONS' | translate}}">
+            <h3 ng-bind="'EXAM.STATE' | translate"></h3>
+            <ul class="list-unstyled">
+              <li>
+                <span class="well well-lg glyphicon glyphicon-book" aria-hidden="true"></span>
+                {{'EXAM.COPY.COPIES' | translate}} <span ng-if="vm.exam.validation.copies">{{'EXAM.VALIDATED_ON' | translate}} {{vm.exam.validation.copies | amDateFormat:'ddd D MMM YYYY HH:mm'}}</span>
+              </li>
+              <li>
+                <span class="well well-lg glyphicon glyphicon-equalizer" aria-hidden="true"></span>
+                {{'EXAM.REGISTRATIONS' | translate}} <span ng-if="vm.exam.validation.registrations">{{'EXAM.VALIDATED_ON' | translate}} {{vm.exam.validation.registrations | amDateFormat:'ddd D MMM YYYY HH:mm'}}</span>
+              </li>
+              <li>
+                <span class="well well-lg glyphicon glyphicon-print" aria-hidden="true"></span>
+                {{'EXAM.PRINTINGS' | translate}} <span ng-if="vm.exam.validation.printings">{{'EXAM.VALIDATED_ON' | translate}} {{vm.exam.validation.printings | amDateFormat:'ddd D MMM YYYY HH:mm'}}</span>
+              </li>
+            </ul>
+          </uib-tab>
           <uib-tab heading="{{'EXAM.STUDENTS' | translate}}">
             <div ng-if="!vm.exam.ready" class="clearfix">
               <div class="pull-right">
@@ -31,14 +48,24 @@
               </div>
             </div>
             <div ng-if="vm.exam.registrations.length">
-              <ul class="list-group">
-                <li class="list-group-item" ng-repeat="i in cvm.getNumber(vm.exam.registrations.length)">
-                  <div ng-if="!vm.exam.ready" class="pull-right">
-                    <button ng-click="vm.removeStudent(i)" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
-                  </div>
-                  <div><b>{{i+1}} {{vm.exam.registrations[i].displayName}}</b></div>
-                </li>
-              </ul>
+              <table class="table table-bordered">
+                <tr>
+                  <th class="col-md-1" ng-bind="'EXAM.STUDENT.NUMBER' | translate"></th>
+                  <th class="col-md-8" ng-bind="'EXAM.STUDENT.NAME' | translate"></th>
+                  <th class="col-md-1" ng-bind="'EXAM.ROOM.ROOM' | translate"></th>
+                  <th class="col-md-1" ng-bind="'EXAM.SEAT' | translate"></th>
+                  <th class="col-md-1"></th>
+                </tr>
+                <tr ng-repeat="i in cvm.getNumber(vm.exam.registrations.length)">
+                  <td><b ng-bind="i+1"></b></td>
+                  <td ng-bind="vm.exam.registrations[i].student.displayName"></td>
+                  <td ng-bind="vm.exam.registrations[i].room !== null ? vm.exam.rooms[vm.exam.registrations[i].room].room.code : '–'"></td>
+                  <td ng-bind="vm.exam.registrations[i].seat !== null ? vm.exam.rooms[vm.exam.registrations[i].room].room.configurations[vm.exam.rooms[vm.exam.registrations[i].room].configuration].seats[vm.exam.registrations[i].seat].seat + 1 : '–'"></td>
+                  <td>
+                    <button ng-click="vm.removeStudent(i)" class="btn btn-default btn-xs" tooltip-placement="bottom" uib-tooltip="{{'EXAM.STUDENT.DELETE' | translate}}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+                  </td>
+                </tr>
+              </table>
             </div>
             <div ng-if="!vm.exam.registrations.length" ng-bind="'EXAM.NO_STUDENTS' | translate"></div>
           </uib-tab>

@@ -30,7 +30,8 @@
       return {
         room: vm.exam.rooms[i].room,
         configuration: vm.exam.rooms[i].configuration,
-        startseat: vm.exam.rooms[i].startseat
+        startseat: vm.exam.rooms[i].startseat,
+        registrations: getRegistrations(i)
       };
     });
     vm.changeConfiguration = changeConfiguration;
@@ -97,6 +98,13 @@
           vm.exam.ready = response.data;
         });
       }
+    }
+
+    // Get registrations for a room
+    function getRegistrations (i) {
+      return $filter('filter')(vm.exam.registrations, function (element) {
+        return element.room === i;
+      });
     }
 
     // Add a student to the exam
