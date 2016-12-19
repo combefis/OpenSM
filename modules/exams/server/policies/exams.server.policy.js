@@ -84,7 +84,8 @@ exports.invokeRolesPolicies = function () {
     allows: [{
       resources: [
         '/api/exams/:examId',
-        '/api/exams/:examId/copy/:i/download'
+        '/api/exams/:examId/copy/:i/download',
+        '/api/exams/:examId/copies/download'
       ],
       permissions: ['get']
     }, {

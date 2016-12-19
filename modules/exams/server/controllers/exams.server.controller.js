@@ -717,6 +717,16 @@ exports.generateCopies = function (req, res) {
 };
 
 /**
+ * Download the copies of an exam
+ */
+exports.downloadCopies = function (req, res) {
+  var exam = req.exam;
+
+  var zippath = path.dirname(require.main.filename) + '/copies/copies-' + exam._id + '.zip';
+  res.sendFile(zippath);
+};
+
+/**
  * Exam middleware
  */
 exports.examByID = function (req, res, next, id) {
