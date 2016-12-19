@@ -105,7 +105,7 @@
                   <div>
                     <h3 ng-bind="vm.exam.rooms[i].room.name"></h3>
                     <div ng-if="vm.exam.rooms[i].room.map">
-                      <canvas draw-map="vm.config[i]"></canvas>
+                      <div class="roommap"><canvas draw-map="vm.config[i]"></canvas></div>
 
                       <h4 ng-bind="'EXAM.ROOM_CONFIGURATION' | translate"></h4>
                       <div class="row col-md-12">

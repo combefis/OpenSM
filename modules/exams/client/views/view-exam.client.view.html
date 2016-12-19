@@ -89,7 +89,7 @@
                   <div>
                     <h3 ng-bind="vm.exam.rooms[i].room.name"></h3>
                     <div ng-if="vm.exam.rooms[i].room.map">
-                      <canvas draw-map="vm.config[i]"></canvas>
+                      <div class="roommap"><canvas draw-map="vm.config[i]"></canvas></div>
                     </div>
                     <div ng-if="!vm.exam.rooms[i].room.map" ng-bind="'ROOM.NO_MAP' | translate"></div>
                   </div>
