@@ -95,7 +95,7 @@
       if ($window.confirm('Are you sure you want to validate this exam?')) {
         $http.post('/api/exams/' + vm.exam._id + '/validate')
         .then(function(response) {
-          vm.exam.ready = response.data;
+          vm.exam.validation = response.data;
         });
       }
     }

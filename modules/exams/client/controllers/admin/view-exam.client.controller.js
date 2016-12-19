@@ -97,7 +97,7 @@
       }
 
       function onSuccess(response) {
-        vm.exam.ready = response.data;
+        vm.exam.validation = response.data;
         Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAM.SUCCESSFUL_VALIDATION') });
       }
 

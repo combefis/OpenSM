@@ -224,7 +224,7 @@ exports.validate = function (req, res) {
   }
 
   assignSeats(exam);
-  exam.ready = true;
+  exam.validation.registrations = new Date();
   exam.save(function (err) {
     if (err) {
       return res.status(422).send({
@@ -232,7 +232,7 @@ exports.validate = function (req, res) {
       });
     }
 
-    res.json(exam.ready);
+    res.json(exam.validation);
   });
 };
 
