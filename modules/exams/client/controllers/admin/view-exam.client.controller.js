@@ -97,7 +97,17 @@
       }
 
       function onSuccess(response) {
-        vm.exam.validation = response.data;
+        vm.exam.registrations = response.data.registrations;
+        vm.exam.validation = response.data.validation;
+        for (var i = 0; i < vm.exam.rooms.length; i++) {
+          vm.config[i] = {
+            room: vm.exam.rooms[i].room,
+            configuration: vm.exam.rooms[i].configuration,
+            startseat: vm.exam.rooms[i].startseat,
+            registrations: getRegistrations(i)
+          };
+        }
+
         Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAM.SUCCESSFUL_VALIDATION') });
       }
 
@@ -205,9 +215,8 @@
         $http.delete('/api/exams/' + vm.exam._id + '/room/' + i)
         .then(function(response) {
           vm.rooms.push(room);
-          vm.exam.rooms = response.data;
-
           vm.config.splice(i, 1);
+          vm.exam.rooms = response.data;
 
           Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAM.ROOM_SUCCESSFUL_DELETE', { code: room.code }) });
         });

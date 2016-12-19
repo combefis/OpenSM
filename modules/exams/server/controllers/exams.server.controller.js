@@ -232,7 +232,7 @@ exports.validate = function (req, res) {
       });
     }
 
-    res.json(exam.validation);
+    res.json({ validation: exam.validation, registrations: exam.registrations });
   });
 };
 

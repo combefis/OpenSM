@@ -93,10 +93,26 @@
     // Validate exam
     function validate() {
       if ($window.confirm('Are you sure you want to validate this exam?')) {
-        $http.post('/api/exams/' + vm.exam._id + '/validate')
-        .then(function(response) {
-          vm.exam.validation = response.data;
-        });
+        $http.post('/api/exams/' + vm.exam._id + '/validate').then(onSuccess, onError);
+      }
+
+      function onSuccess(response) {
+        vm.exam.registrations = response.data.registrations;
+        vm.exam.validation = response.data.validation;
+        for (var i = 0; i < vm.exam.rooms.length; i++) {
+          vm.config[i] = {
+            room: vm.exam.rooms[i].room,
+            configuration: vm.exam.rooms[i].configuration,
+            startseat: vm.exam.rooms[i].startseat,
+            registrations: getRegistrations(i)
+          };
+        }
+
+        Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAM.SUCCESSFUL_VALIDATION') });
+      }
+
+      function onError(err) {
+        Notification.error({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + err.data.message });
       }
     }
 
@@ -176,9 +192,8 @@
         $http.delete('/api/exams/' + vm.exam._id + '/room/' + i)
         .then(function(response) {
           vm.rooms.push(room);
-          vm.exam.rooms = response.data;
-
           vm.config.splice(i, 1);
+          vm.exam.rooms = response.data;
 
           Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAM.ROOM_SUCCESSFUL_DELETE', { code: room.code }) });
         });
