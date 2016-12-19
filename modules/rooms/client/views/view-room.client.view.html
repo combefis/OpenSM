@@ -23,7 +23,7 @@
           </uib-tab>
           <uib-tab heading="{{'ROOM.MAP' | translate}}">
             <div ng-if="vm.room.map">
-              <canvas draw-map="vm.config"></canvas>
+              <div class="roommap"><canvas draw-map="vm.config"></canvas></div>
 
               <div class="row col-md-12">
                 <form class="form-horizontal">

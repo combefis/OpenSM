@@ -24,6 +24,10 @@ div.action-box {
   text-align: right;
 }
 
+div.roommap {
+  overflow: scroll;
+}
+
 /* MEAN.js */
 .content {
   margin-top: 50px;
