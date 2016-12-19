@@ -12,6 +12,8 @@ module.exports = function (app) {
     .get(courses.list)
     .post(courses.create);
 
+  app.route('/api/courses/mud').get(courses.mud);
+
   // Single course routes
   app.route('/api/courses/:courseCode').all(coursesPolicy.isAllowed)
     .get(courses.read)
