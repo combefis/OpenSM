@@ -52,8 +52,8 @@
             <div ng-if="!vm.exam.registrations.length" ng-bind="'EXAM.NO_STUDENTS' | translate"></div>
           </uib-tab>
           <uib-tab heading="{{'EXAM.COPY.COPIES' | translate}}">
-            <div ng-if="!vm.exam.ready && cvm.hasAnyRole(['teacher'])" class="clearfix">
-              <div ng-if="!vm.exam.validation.copies" class="action-box">
+            <div ng-if="!vm.exam.validation.copies && cvm.hasAnyRole(['teacher'])" class="clearfix">
+              <div class="action-box">
                 <a ng-click="vm.addCopy()" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> {{'EXAM.COPY.ADD' | translate}}</a>
                 <a ng-click="vm.validateCopies()" class="btn btn-primary"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> {{'EXAM.COPY.VALIDATE' | translate}}</a>
               </div>
@@ -61,7 +61,7 @@
             <div ng-if="vm.exam.copies.length">
               <ul class="list-group">
                 <li class="list-group-item" ng-repeat="i in cvm.getNumber(vm.exam.copies.length)">
-                  <div ng-if="!vm.exam.ready" class="pull-right">
+                  <div class="pull-right">
                     <button ng-if="cvm.hasAnyRole(['teacher']) && !vm.exam.copies[i].validated" type="file" ngf-select="vm.uploadCopy($file, i)" accept="application/pdf" ngf-allow-dir="false" ngf-max-files="1" class="btn btn-default btn-xs" tooltip-placement="bottom" uib-tooltip="{{'EXAM.COPY.UPLOAD' | translate}}"><span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span></button>
                     <button ng-if="cvm.hasAnyRole(['teacher'])" ng-click="vm.downloadCopy(i)" class="btn btn-default btn-xs" ng-disabled="!vm.exam.copies[i].name && !vm.uploading[i]" tooltip-placement="bottom" uib-tooltip="{{'EXAM.COPY.DOWNLOAD' | translate}}"><span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span></button>
                     <button ng-if="cvm.hasAnyRole(['teacher']) && !vm.exam.copies[i].validated" ng-click="vm.validateCopy(i)" class="btn btn-default btn-xs" ng-disabled="!vm.exam.copies[i].name && !vm.uploading[i]" tooltip-placement="bottom" uib-tooltip="{{'EXAM.COPY.VALIDATE' | translate}}"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>

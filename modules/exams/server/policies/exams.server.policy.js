@@ -87,6 +87,11 @@ exports.invokeRolesPolicies = function () {
         '/api/exams/:examId/copy/:i/download'
       ],
       permissions: ['get']
+    }, {
+      resources: [
+        '/api/exams/:examId/copies/generate'
+      ],
+      permissions: ['post']
     }]
   }]);
 };

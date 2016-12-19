@@ -27,6 +27,7 @@
     vm.downloadCopy = downloadCopy;
     vm.validateCopy = validateCopy;
     vm.validateCopies = validateCopies;
+    vm.generateCopies = generateCopies;
 
     // Room management
     vm.config = Array.apply(null, new Array(vm.exam.rooms.length)).map(function(x, i) {
@@ -127,6 +128,21 @@
 
       function onSuccess(response) {
         vm.exam.validation = response.data;
+
+        Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAM.COPY.SUCCESSFUL_VALIDATION') });
+      }
+
+      function onError(err) {
+        Notification.error({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + err.data.message });
+      }
+    }
+
+    // Generate the copies of the exam
+    function generateCopies() {
+      $http.post('/api/exams/' + vm.exam._id + '/copies/generate').then(onSuccess, onError);
+
+      function onSuccess(response) {
+        console.log(response.data);
 
         Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAM.COPY.SUCCESSFUL_VALIDATION') });
       }

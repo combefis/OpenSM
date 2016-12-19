@@ -631,6 +631,92 @@ exports.validateCopies = function (req, res) {
 };
 
 /**
+ * Generate the copies of an exam
+ */
+var totalGenerated = 0;
+var totalErrors = 0;
+exports.generateCopies = function (req, res) {
+  var exam = req.exam;
+
+  // Create directory to store copies
+  var copiespath = path.dirname(require.main.filename) + '/copies/' + exam._id;
+  fs.ensureDirSync(copiespath);
+
+  // For each student, generate his copy
+  totalGenerated = 0;
+  totalErrors = 0;
+  for (var i = 0; i < exam.registrations.length; i++) {
+    // Load information about the student
+    var registration = exam.registrations[i];
+    var room = exam.rooms[registration.room].room;
+    var seat = room.configurations[exam.rooms[registration.room].configuration].seats[registration.seat];
+
+    console.log(registration);
+    console.log(room.code);
+    console.log(seat);
+
+    var file = path.dirname(require.main.filename) + '/copies/' + exam._id + '/' + exam.copies[seat.serie].name;
+
+    console.log(file);
+
+    // Open the chosen template
+    var template = path.dirname(require.main.filename) + '/templates/basic-template.tex';
+    var filename = exam.examsession.code + '_' + exam.course.code + '_copy_' + getLetter(seat.serie + 1);
+    var content = fs.readFileSync(template, { flag: 'r', encoding: 'utf8' });
+    content = content.replace(/!filepath!/g, file);
+
+    // Fill the variables in the template
+    content = content.replace(/!classement!/g, '1');
+    content = content.replace(/!courseid!/g, exam.course.code);
+    content = content.replace(/!coursename!/g, exam.course.name);
+    content = content.replace(/!datetime!/g, moment(exam.date).format('DD/MM/YYYY HH:mm'));
+    content = content.replace(/!date!/g, moment(exam.date).format('DD/MM/YYYY'));
+    content = content.replace(/!duration!/g, exam.duration);
+    content = content.replace(/!firstname!/g, registration.student.firstname);
+    content = content.replace(/!globalorder!/g, i + 1);
+    content = content.replace(/!lastname!/g, registration.student.lastname);
+    content = content.replace(/!matricule!/g, registration.student.username);
+    content = content.replace(/!room!/g, room.code);
+    content = content.replace(/!seatnumber!/g, seat.seat + 1);
+    content = content.replace(/!serie!/g, getLetter(seat.serie + 1));
+
+    var dest = path.dirname(require.main.filename) + '/copies/' + exam._id + '/' + filename + '_' + i + '.tex';
+
+    console.log(dest);
+
+    fs.writeFileSync(dest, content, { flag: 'w', encoding: 'utf8' });
+
+    // Compile the .tex file
+    process.chdir(path.dirname(dest));
+    child_process.execFile('pdflatex', ['-interaction=nonstopmode', path.basename(dest)], function (err, stdout, stderr) {
+      if (err) {
+        console.log('ERROR !!!');
+        console.log(err);
+        totalErrors++;
+      }
+
+      // Check if all files have been generated
+      totalGenerated++;
+      console.log('>>> ' + totalGenerated + '/' + exam.registrations.length);
+      if (totalGenerated === exam.registrations.length) {
+        console.log('!!! FINIIIIII');
+        console.log('Erreurs : ' + totalErrors);
+        // Build a ZIP archive with all the copies
+        process.chdir(path.dirname(require.main.filename) + '/copies');
+        child_process.execFile('zip', ['-r', 'copies-' + exam._id + '.zip', exam._id, '-i*.pdf'], function (err, stdout, stderr) {
+          if (err) {
+            return res.status(400).send({
+              message: 'Error while generating the ZIP file'
+            });
+          }
+          res.json({ status: true });
+        });
+      }
+    });
+  }
+};
+
+/**
  * Exam middleware
  */
 exports.examByID = function (req, res, next, id) {
