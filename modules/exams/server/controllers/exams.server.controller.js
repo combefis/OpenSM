@@ -642,6 +642,11 @@ exports.generateCopies = function (req, res) {
   var copiespath = path.dirname(require.main.filename) + '/copies/' + exam._id;
   fs.ensureDirSync(copiespath);
 
+
+  var printScript = 'C:\\Users\\dbk\\Desktop\\Print\\WprintCanon\\WprintCanon.exe load C:\\Users\\dbk\\Desktop\\Print\\WprintCanon\\bac5\n';
+  var currentBac = 0;
+
+
   // For each student, generate his copy
   totalGenerated = 0;
   totalErrors = 0;
@@ -686,6 +691,14 @@ exports.generateCopies = function (req, res) {
 
     fs.writeFileSync(dest, content, { flag: 'w', encoding: 'utf8' });
 
+
+    if (seat.serie !== currentBac) {
+      currentBac = seat.serie;
+      printScript += 'C:\\Users\\dbk\\Desktop\\Print\\WprintCanon\\WprintCanon.exe load C:\\Users\\dbk\\Desktop\\Print\\WprintCanon\\bac' + (currentBac % 2 === 0 ? '5' : '1') + '\n';
+    }
+    printScript += 'Start-Process -FilePath \'C:\\Users\\dbk\\Desktop\\Print\\' + exam._id + '\\' + path.basename(dest, '.tex') + '.pdf\' -Verb Print -PassThru | %{sleep 10;$_} | kill\n';
+
+
     // Compile the .tex file
     process.chdir(path.dirname(dest));
     child_process.execFile('pdflatex', ['-interaction=nonstopmode', path.basename(dest)], function (err, stdout, stderr) {
@@ -701,9 +714,15 @@ exports.generateCopies = function (req, res) {
       if (totalGenerated === exam.registrations.length) {
         console.log('!!! FINIIIIII');
         console.log('Erreurs : ' + totalErrors);
+
+
+        console.log(printScript);
+        fs.writeFileSync(path.dirname(require.main.filename) + '/copies/' + exam._id + '/SCRIPT_PRINT.txt', printScript, { encoding: 'utf8', flag: 'w' }, function(err) { console.log('Erreur générer script : ' + err); });
+
+
         // Build a ZIP archive with all the copies
         process.chdir(path.dirname(require.main.filename) + '/copies');
-        child_process.execFile('zip', ['-r', 'copies-' + exam._id + '.zip', exam._id, '-i*.pdf'], function (err, stdout, stderr) {
+        child_process.execFile('zip', ['-r', 'copies-' + exam._id + '.zip', exam._id, '-i', '*.pdf', '*.txt'], function (err, stdout, stderr) {
           if (err) {
             return res.status(400).send({
               message: 'Error while generating the ZIP file'
@@ -760,6 +779,62 @@ exports.examByID = function (req, res, next, id) {
 
       req.exam = exam;
       next();
+    });
+  });
+};
+
+
+exports.loadStudentsFromXLS = function (req, res) {
+  var exam = req.exam;
+
+  var results = Array.apply(null, new Array(req.body.students.length)).map(function(x, i) { return null; });
+  var total = 0;
+  var error = null;
+
+  console.log('TOTAL STUDENTS : ' + req.body.students.length);
+
+  req.body.students.forEach(function (element, index, array) {
+    console.log('SEARCHING FOR ' + element);
+    User.findOne({ username: element }, 'username displayName')
+    .exec(function (err, student) {
+      if (err || !student) {
+        error = 'Étudiant numéro ' + element + ' pas trouvé !';
+        console.log(error);
+      }
+
+      // Add the student to the exam and save it
+      console.log('Trouvé !');
+      console.log(student);
+
+      results[index] = student;
+      console.log(results);
+      total++;
+
+      if (total === req.body.students.length) {
+        if (error) {
+          return res.status(404).send({
+            message: error
+          });
+        }
+        for (var j = 0; j < results.length; j++) {
+          console.log(results[j]);
+          if (results[j]) {
+            exam.registrations.push({
+              student: results[j]
+            });
+          }
+        }
+
+        exam.save(function (err) {
+          if (err) {
+            return res.status(422).send({
+              message: errorHandler.getErrorMessage(err)
+            });
+          }
+
+          res.json(exam.registrations);
+        });
+      }
     });
   });
 };

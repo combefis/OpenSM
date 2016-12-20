@@ -66,6 +66,7 @@ module.exports = {
     io: true,
     moment: true,
     Modernizr: true,
+    Papa: true,
     Promise: true,
     __TESTING__: true,
     _: false,

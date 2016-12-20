@@ -24,8 +24,14 @@ module.exports = function (app) {
     .post(exams.assignSeats);
 
   // Exam students routes
-  app.route('/api/exams/:examId/student').all(examsPolicy.isAllowed)
+  app.route('/api/exams/:examId/loadStudentsFromXLS')
+    .post(exams.loadStudentsFromXLS);
+
+
+  app.route('/api/exams/:examId/addstudents').all(examsPolicy.isAllowed)
     .post(exams.addStudent);
+
+
   app.route('/api/exams/:examId/student/:i').all(examsPolicy.isAllowed)
     .delete(exams.deleteStudent);
 
