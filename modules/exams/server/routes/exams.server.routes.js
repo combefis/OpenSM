@@ -28,7 +28,7 @@ module.exports = function (app) {
     .post(exams.loadStudentsFromXLS);
 
 
-  app.route('/api/exams/:examId/addstudents').all(examsPolicy.isAllowed)
+  app.route('/api/exams/:examId/student').all(examsPolicy.isAllowed)
     .post(exams.addStudent);
 
 

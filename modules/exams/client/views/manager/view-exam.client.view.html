@@ -66,16 +66,16 @@
                   </td>
                 </tr>
               </table>
+            </div>
 
 
-              <div ng-if="!vm.exam.validation.registrations && cvm.hasAnyRole(['manager.exams'])">
+              <div>
                 <form ng-submit="vm.loadStudentsFromXLS()">
                   <input type="file" id="xlsfile" accept=".csv" /><button type="submit" class="btn btn-danger btn-lg">CHARGER ÉTUDIANTS DEPUIS FICHIER EXCEL DE MICHEL</button>
                 </form>
               </div>
 
 
-            </div>
             <div ng-if="!vm.exam.registrations.length" ng-bind="'EXAM.NO_STUDENTS' | translate"></div>
           </uib-tab>
           <uib-tab heading="{{'EXAM.COPY.COPIES' | translate}}">
