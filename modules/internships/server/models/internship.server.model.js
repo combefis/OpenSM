@@ -19,20 +19,23 @@ var IntershipSchema = new Schema({
     type: Schema.ObjectId,
     ref: 'User'
   },
+  validator: {
+    type: Schema.ObjectId,
+    ref: 'User'
+  },
   proposition: {
     theme: String,
     domain: String,
-    description: {
-      description: String,
-      subjectApproval: {
-        consultedTeacher: {
-          type: Schema.ObjectId,
-          ref: 'User'
-        },
-        consultedTeacherApproval: Boolean,
-        unitChiefApproval: Boolean,
-        masterApproval: Boolean
+    location: String,
+    description: String,
+    approval: {
+      consultedTeacher: {
+        type: Schema.ObjectId,
+        ref: 'User'
       },
+      consultedTeacherApproval: Boolean,
+      unitChiefApproval: Boolean,
+      masterApproval: Boolean,
       validatorApproval: Boolean
     }
   },
@@ -58,8 +61,8 @@ var IntershipSchema = new Schema({
     validation: Boolean
   },
   activitiesNote: {
-    generalObjectives: [String],
-    specificObjectives: [String],
+    generalObjectives: [new Schema({ value: String }, { id: false, _id: false })],
+    specificObjectives: [new Schema({ value: String }, { id: false, _id: false })],
     approval: Boolean
   },
   firstVisit: {
