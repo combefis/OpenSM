@@ -80,24 +80,21 @@
     }
 
     function addGeneralObjective() {
-      console.log('coucou');
       vm.internship.activitiesNote.generalObjectives.push({});
     }
 
-    function removeGeneralObjective(objective) {
-      console.log('coucou');
-      var index = vm.internship.activitiesNote.generalObjectives.indexOf(objective);
+    function removeGeneralObjective(Gobjective) {
+      var index = vm.internship.activitiesNote.generalObjectives.indexOf(Gobjective);
       vm.internship.activitiesNote.generalObjectives.splice(index, 1);
     }
 
     function addSpecificObjective() {
-      console.log('coucou');
       vm.internship.activitiesNote.specificObjectives.push({});
     }
 
-    function removeSpecificObjective(objective) {
-      console.log('coucou');
-      var index = vm.internship.activitiesNote.specificObjectives.indexOf(objective);
+    function removeSpecificObjective(Sobjective) {
+      var index = vm.internship.activitiesNote.specificObjectives.indexOf(Sobjective);
+      console.log(index);
       vm.internship.activitiesNote.specificObjectives.splice(index, 1);
     }
 
