@@ -25,6 +25,19 @@
         }
       })
 
+    .state('admin.manage.internships.create', {
+      url: '/create',
+      templateUrl: 'modules/internships/client/views/form-internship.client.view.html',
+      controller: 'InternshipsController',
+      controllerAs: 'vm',
+      resolve: {
+        internshipResolve: newInternship
+      },
+      data: {
+        pageTitle: 'Create a new internship'
+      }
+    })
+
     .state('admin.manage.internships.view', {
       url: '/:internshipId',
       templateUrl: 'modules/internships/client/views/view-internship.client.view.html',
@@ -36,21 +49,7 @@
       data: {
         pageTitle: 'view internship details'
       }
-    })
-
-    .state('admin.manage.internships.create', {
-      url: '/create',
-      templateUrl: 'modules/internships/client/views/createInternship.client.view.html',
-      controller: 'InternshipsController',
-      controllerAs: 'vm',
-      data: {
-        pageTitle: 'Create a new internship'
-      },
-      resolve: {
-        internshipResolve: newInternship
-      }
     });
-
   }
 
   getInternship.$inject = ['$stateParams', 'InternshipsService'];

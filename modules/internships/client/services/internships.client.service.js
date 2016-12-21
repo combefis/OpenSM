@@ -10,11 +10,13 @@
   function InternshipsService($resource) {
     var Internship = $resource('api/internships/:internshipId', { // je déclare la route (avec les get post delete derrière) qui mène à mon serveur
       internshipId: '@_id'  // il va chercher autiomatiquement l'id dedans.
-    }, {
-      update: { // quand je fais un update ca appelle PUt. J'aurais pu dire "quand je fais un "prout" ca appelle get.
-        method: 'PUT'
-      }
-    });
+    },
+
+      {
+        update: { // quand je fais un update ca appelle PUt. J'aurais pu dire "quand je fais un "prout" ca appelle get.
+          method: 'PUT'
+        }
+      });
 
     angular.extend(Internship.prototype, {  // on étend le service. Quand on aura créé un
       createOrUpdate: function() {
@@ -28,9 +30,10 @@
 
     function createOrUpdate(internship) {
       if (internship._id) {
-        return internship.$update({ internshipCode: internship.code }, onSuccess, onError);
+        return internship.$update(onSuccess, onError);
       }
-      return internship.$save(onSuccess, onError);
+      console.log(internship);
+      return internship.$save(onSuccess, onError); // equivalent à http.p
 
       // $save et $update existent deja, la on choisi juste entre les deux.
 

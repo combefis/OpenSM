@@ -1,0 +1,59 @@
+<section>
+  
+    <ol class="breadcrumb">
+      <li><a ui-sref="internships.list" ng-bind="'INTERNSHIP.INTERNSHIPS' | translate"></a></li>
+      <li ng-if="!vm.internships._id" class="active"><a ui-sref="internships.create" ng-bind="'GENERAL.CREATE' | translate"></a></li>
+    </ol>
+
+    <h2>{{vm.internships._id ? 'INTERNSHIP.EDIT' : 'INTERNSHIP.CREATE' | translate}}</h2>
+
+    <div class="col-md-12">
+      <form name="vm.form.internshipForm" class="form-horizontal" ng-submit="vm.save(vm.form.internshipForm.$valid)" novalidate>
+      
+        <fieldset>
+
+          <div class="form-group" show-errors>
+            <label class="control-label" for="masterLastname" ng-bind="'INTERNSHIP.MASTER.LASTNAME' | translate"></label>
+            <input name="master.lastname" type="text" ng-model="vm.internship.master.lastname" id="masterLastname" class="form-control" placeholder="{{'INTERNSHIP.MASTER.LASTNAME' | translate}}" required />
+            <div ng-messages="vm.master.lastname.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.MASTER.LASTNAME' | translate"></p>
+          </div>
+          </div>
+
+        
+          <div class="form-group" show-errors>
+            <label class="control-label" for="masterPosition" ng-bind="'INTERNSHIP.MASTER.POSITION' | translate"></label>
+            <input name="master.position" type="text" ng-model="vm.internship.master.position" id="masterPosition" class="form-control" placeholder="{{'INTERNSHIP.MASTER.POSITION' | translate}}" required />
+            <div ng-messages="vm.master.position.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.MASTER.POSITION' | translate"></p>
+          </div>
+          </div>
+
+          <div class="form-group" show-errors>
+            <label class="control-label" for="masterPhoneNumber" ng-bind="'INTERNSHIP.MASTER.PHONENUMBER' | translate"></label>
+            <input name="master.phonenumber" type="text" ng-model="vm.internship.master.phonennumber" id="masterPhoneNumber" class="form-control" placeholder="{{'INTERNSHIP.MASTER.PHONENUMBER' | translate}}" required />
+            <div ng-messages="vm.master.phonenumber.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.MASTER.PHONENUMBER' | translate"></p>
+          </div>
+          </div>
+
+          <div class="form-group" show-errors>
+            <label class="control-label" for="masterMail" ng-bind="'INTERNSHIP.MASTER.MAIL' | translate"></label>
+            <input name="master.mail" type="text" ng-model="vm.internship.master.mail" id="masterMail" class="form-control" placeholder="{{'INTERNSHIP.MASTER.MAIL' | translate}}" required />
+            <div ng-messages="vm.master.mail.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.MASTER.MAIL' | translate"></p>
+          </div>
+          </div>
+
+        </fieldset>
+      
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary">{{vm.internship._id ? 'GENERAL.UPDATE' : 'GENERAL.CREATE' | translate}}</button>
+          </div>
+          <div ng-show="vm.error" class="text-danger">
+            <strong ng-bind="vm.error"></strong>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+</section>

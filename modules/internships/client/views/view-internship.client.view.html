@@ -3,9 +3,8 @@
 	    <li><a ui-sref="admin.manage.internships.list" ng-bind="'INTERNSHIP.INTERNSHIPS' | translate"></a></li>
 	    <li ng-if="!vm.internships._id" class="active"><a ui-sref="admin.manage.internships.view({ internshipId: vm.internship._id })" ng-bind="vm.internship._id"></a></li>
     </ol>
-
-
 </section>
+
 	<h2 ng-bind="vm.internship._id"></h2>
 	
 	<dl>
@@ -15,27 +14,38 @@
   			<dd ng-bind="vm.internship.master"></dd>
   		<dt>Supervisor</dt>
   			<dd ng-bind="vm.internship.supervisor"></dd>
+      <dt>Validator</dt>
+        <dd ng-bind="vm.internship.validator"></dd>
+
   		<dt>Proposition</dt>
-  			<dd>
-  				<dl>
-  					<dt>Description:</dt>
-  						<dd ng-bind="vm.internship.proposition.description.description"></dd>
-  					<dt>SubjectApproval</dt>
-  						<dd>
-  							<dl>
-  								<dt>Consulted Teacher</dt>
-  									<dd ng-bind="vm.internship.proposition.description.subjectApproval.consultedTeacher"></dd>
-  								<dt>Consulted Teacher Approval</dt>
-  									<dd ng-bind="vm.internship.proposition.description.subjectApproval.consultedTeacherApproval"></dd>
-  								<dt>Unit Chief Approval</dt>
-  									<dd ng-bind="vm.internship.proposition.description.subjectApproval.unitChiefApproval"></dd>
-  								<dt>Master Approval</dt>
-  									<dd ng-bind="vm.internship.proposition.description.subjectApproval.masterApproval"></dd>
-  							</dl>
-  						</dd>	
-  					<dt>Validator Approval</dt>
-  						<dd ng-bind ="vm.internship.proposition.description.validatorApproval"></dd>
-  			</dd>
+        <dd>
+          <dl>
+            <dt>theme</dt>
+              <dd ng-bind="vm.internship.proposition.theme"></dd>
+            <dt>domain</dt>
+              <dd ng-bind="vm.internship.proposition.domain"></dd>
+            <dt>location</dt>
+              <dd ng-bind="vm.internship.proposition.location"></dd>
+            <dt>description</dt>
+               <dd ng-bind="vm.internship.proposition.description"></dd>
+             <dt>Approval</dt>
+                <dd>
+                  <dl>
+                    <dt>Consulted Teacher</dt>
+                      <dd ng-bind="vm.internship.proposition.approval.consultedTeacher"></dd>
+                    <dt>Consulted Teacher Approval</dt>
+                      <dd ng-bind="vm.internship.proposition.approval.consultedTeacherApproval"></dd>
+                    <dt>Unit Chief Approval</dt>
+                      <dd ng-bind="vm.internship.proposition.approval.unitChiefApproval"></dd>
+                    <dt>Master Approval</dt>
+                      <dd ng-bind="vm.internship.proposition.approval.masterApproval"></dd>
+                    <dt>Validator Approval</dt>
+                      <dd ng-bind ="vm.internship.proposition.approval.validatorApproval"></dd>
+                  </dl>
+                </dd>
+          </dl>
+    		</dd>
+
   		<dt>Enterprise</dt>
   			<dd>
   				<dl>
@@ -87,12 +97,12 @@
   				<dl>
   					<dt>General Objectives</dt>
 						<dd><ul>
-							<li ng-repeat="objective in vm.internship.activitiesNote.generalObjectives">{{objective}}
+							<li ng-repeat="objective in vm.internship.activitiesNote.generalObjectives">{{objective.value}}
 							</li>
 						</ul></dd>
 					<dt>Specific Objectives</dt>
 						<dd><ul>
-							<li  ng-repeat="specificObjective in vm.internship.activitiesNote.specificObjectives">{{specificObjective}}
+							<li  ng-repeat="specificObjective in vm.internship.activitiesNote.specificObjectives">{{specificObjective.value}}
 							</li>
 						</ul></dd>
 					<dt>Approval</dt>
@@ -130,7 +140,7 @@
   			<dd>
   				<dl>
   					<dt>Date</dt>
-  						<dd ng-bind="vm.internship.oralPresentation.date | amDateFormat:'ddd D MMM YYYY'"></dd>
+  						<dd ng-bind="vm.internship.oralPresentation.date"></dd>
   					<dt>Location</dt>
   						<dd ng-bind="vm.internship.oralPresentation.location"></dd>
   					<dt>Points</dt>
