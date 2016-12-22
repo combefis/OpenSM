@@ -10,189 +10,348 @@
         <h1 ng-bind="vm.internship._id"></h1>
       </div>
       <div class="col-md-4">
-        <a class="btn btn-primary" ui-sref="admin.manage.internship-edit({userId: vm.user._id})">
+        <a class="btn btn-primary" ui-sref="admin.manage.internship-edit({internshipId: vm.inernship._id})">
           <i class="glyphicon glyphicon-edit"></i>
         </a>
-        <a class="btn btn-primary" ng-click="vm.remove()" ng-if="vm.user._id !== vm.authentication.user._id">
+        <a class="btn btn-primary" ng-click="vm.remove()">
           <i class="glyphicon glyphicon-trash"></i>
         </a>
       </div>
     </div>
   </div>
-	
-  <fieldset></fieldset>
-	<dl>
-  		<dt>Student</dt>
-  			<dd ng-bind="vm.internship.student"></dd>
-  		<dt>Master</dt>
-  			<dd ng-bind="vm.internship.master"></dd>
-  		<dt>Supervisor</dt>
-  			<dd ng-bind="vm.internship.supervisor"></dd>
-      <dt>Validator</dt>
-        <dd ng-bind="vm.internship.validator"></dd>
+    
+  <div class = "row">
+    <div class = "col-md-12">
+      <h2>Participants</h2>
+      <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-5"><strong>Student</strong></div>
+        <div class="col-md-6" ng-bind="vm.internship.student"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-5"><strong>Master</strong></div>
+        <div class="col-md-6" ng-bind="vm.internship.master"></div>
+      </div>        
+      <div class="row">
+        <div class="col-md-5"><strong>Consulted Teacher</strong></div>
+        <div class="col-md-6" ng-bind="vm.internship.proposition.approval.consultedTeacher"></div>
+      </div>        
+      <div class="row">
+        <div class="col-md-5"><strong>Supervisor</strong></div>
+        <div class="col-md-6" ng-bind="vm.internship.supervisor"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-5"><strong>Validator</strong></div>
+        <div class="col-md-6" ng-bind="vm.internship.validator"></div>
+      </div>
+    </div>  
+  </div>
+  </div>
+  <hr>
 
-  		<dt>Proposition</dt>
-        <dd>
-          <dl>
-            <dt>theme</dt>
-              <dd ng-bind="vm.internship.proposition.theme"></dd>
-            <dt>domain</dt>
-              <dd ng-bind="vm.internship.proposition.domain"></dd>
-            <dt>location</dt>
-              <dd ng-bind="vm.internship.proposition.location"></dd>
-            <dt>description</dt>
-               <dd ng-bind="vm.internship.proposition.description"></dd>
-             <dt>Approval</dt>
-                <dd>
-                  <dl>
-                    <dt>Consulted Teacher</dt>
-                      <dd ng-bind="vm.internship.proposition.approval.consultedTeacher"></dd>
-                    <dt>Consulted Teacher Approval</dt>
-                      <dd ng-bind="vm.internship.proposition.approval.consultedTeacherApproval"></dd>
-                    <dt>Unit Chief Approval</dt>
-                      <dd ng-bind="vm.internship.proposition.approval.unitChiefApproval"></dd>
-                    <dt>Master Approval</dt>
-                      <dd ng-bind="vm.internship.proposition.approval.masterApproval"></dd>
-                    <dt>Validator Approval</dt>
-                      <dd ng-bind ="vm.internship.proposition.approval.validatorApproval"></dd>
-                  </dl>
-                </dd>
-          </dl>
-    		</dd>
+  <div class="row">
+      <div class="col-md-12">
+        <h2>Enterprise</h2>
+        <div class="col-md-6">
+          <h3>General information</h3>
+            <div class="row">
+                  <div class="col-md-5"><strong>Name</strong></div>
+                  <div class="col-md-6" ng-bind="vm.internship.enterprise.name"></div>
+              </div>
+              <div class="row">
+                  <div class="col-md-5"><strong>Domain</strong></div>
+                  <div class="col-md-6" ng-bind="vm.internship.enterprise.domain"></div>
+              </div>
+              <div class="row">
+                  <div class="col-md-5"><strong>Representative</strong></div>
+                  <div class="col-md-6" ng-bind="vm.internship.enterprise.representative.name"></div>
+              </div>
+              <div class="row">
+                  <div class="col-md-5"><strong>Representative Position</strong></div>
+                  <div class="col-md-6" ng-bind="vm.internship.enterprise.representative.position"></div>
+              </div>
+              <div class="row">
+                  <div class="col-md-5"><strong>Telephone</strong></div>
+                  <div class="col-md-6" ng-bind="vm.internship.enterprise.phoneNumber"></div>
+              </div>
+              <div class="row">
+                  <div class="col-md-5"><strong>Fax</strong></div>
+                  <div class="col-md-6" ng-bind="vm.internship.enterprise.fax"></div>
+              </div>
+              <div class="row">
+                  <div class="col-md-5"><strong>Mail</strong></div>
+                  <div class="col-md-6" ng-bind="vm.internship.enterprise.mail"></div>
+              </div>
+        </div>
 
-  		<dt>Enterprise</dt>
-  			<dd>
-  				<dl>
-  					<dt>Name</dt>
-  						<dd ng-bind="vm.internship.enterprise.name"></dd>
-  					<dt>Domain</dt>
-  						<dd ng-bind="vm.internship.enterprise.domain"></dd>
-  					<dt>Address</dt>
-  						<dd>
-  							<dl>
-  								<dt>Street</dt>
-  									<dd ng-bind="vm.internship.enterprise.address.street"></dd>
-  								<dt>Number</dt>
-  									<dd ng-bind="vm.internship.enterprise.address.number"></dd>
-  								<dt>Postal Code</dt>
-  									<dd ng-bind="vm.internship.enterprise.address.postalCode"></dd>	
-  								<dt>City</dt>
-  									<dd ng-bind="vm.internship.enterprise.address.city".></dd>
-  								<dt>Country</dt>
-  									<dd ng-bind="vm.internship.enterprise.address.country"></dd>
-  								</dl>
-  							</dd>
-  						<dt>Phone Number</dt>
-  							<dd ng-bind="vm.internship.enterprise.phoneNumber"></dd>
-  						<dt>Fax</dt>
-  							<dd ng-bind="vm.internship.enterprise.fax"></dd>
-  						<dt>Mail</dt>
-  							<dd ng-bind="vm.internship.enterprise.mail"></dd>
-  						<dt>Representative</dt>
-  							<dd>
-  								<dl>
-  									<dt>Name</dt>
-  										<dd ng-bind="vm.internship.enterprise.representative.name"></dd>
-  										<dt>Position</dt>
-  											<dd ng-bind="vm.internship.enterprise.representative.position"></dd>
-  								</dl>
-  							</dd>  								
-  				</dl>
-  			</dd>
-  		<dt>Convention</dt>
-  			<dd>
-  				<dl>
-  					<dt>Validation</dt>
-  						<dd ng-bind="vm.internship.convention.validation"></dd>
-  					</dl>
-  			</dd>
-  		<dt>Activities Note</dt>
-  			<dd>
-  				<dl>
-  					<dt>General Objectives</dt>
-						<dd><ul>
-							<li ng-repeat="objective in vm.internship.activitiesNote.generalObjectives">{{objective.value}}
-							</li>
-						</ul></dd>
-					<dt>Specific Objectives</dt>
-						<dd><ul>
-							<li  ng-repeat="specificObjective in vm.internship.activitiesNote.specificObjectives">{{specificObjective.value}}
-							</li>
-						</ul></dd>
-					<dt>Approval</dt>
-							<dd ng-bind="vm.internship.activitiesNote.approval"></dd>
-  				</dl>
-  			</dd>	
-  		<dt>First Visit</dt>
-  			<dd>
-  				<dl>
-  					<dt>Date</dt>
-  						<dd ng-bind="vm.internship.firstVisit.date | amDateFormat:'ddd D MMM YYYY'"></dd>
-  					<dt>Location</dt>
-  						<dd ng-bind="vm.internship.firstVisit.location"></dd>
-  					<dt>Supervisor Notes</dt>
-  						<dd ng-bind="vm.internship.firstVisit.supervisorNotes"></dd>
-  				</dl>
-  			</dd>
-  		<dt>Intermediate Evaluation</dt>
-  			<dd>
-  				<dl>
-  					<dt>Master Notes</dt>
-  						<dd ng-bind="vm.internship.intermediateEvaluation.masterNotes"></dd>
-  				</dl>
-  			</dd>
-  		<dt>Continuous Evaluation</dt>
-  			<dd>
-  				<dl>
-  					<dt>Points</dt>
-  						<dd><ul ng-repeat="i in cvm.getNumber(vm.internship.continuousEvaluation.points.length)">
-  						<li>{{vm.internship.continuousEvaluation.points[i]}}</li>
-  						</ul></dd>
-  				</dl>
-  			</dd>
-  		<dt>Oral Presentation</dt>
-  			<dd>
-  				<dl>
-  					<dt>Date</dt>
-  						<dd ng-bind="vm.internship.oralPresentation.date"></dd>
-  					<dt>Location</dt>
-  						<dd ng-bind="vm.internship.oralPresentation.location"></dd>
-  					<dt>Points</dt>
-  						<dd><ul>
-  							<li ng-repeat="i in cvm.getNumber(vm.internship.oralPresentation.points.length)">
-  								{{vm.internship.oralPresentation.points[i]}}
-  							</li>
-  						</ul></dd>
-  				</dl>
-  			</dd>
-  		<dt>Written Report</dt>
-  			<dd>
-  				<dl>
-  					<dt>Handed In</dt>
-  						<dd ng-bind="vm.internship.writtenReport.handedIn"></dd>
-  					<dt>points</dt>
-  						<dd><ul>
-  							<li ng-repeat="i in cvm.getNumber(vm.internship.writtenReport.points.length)">
-  									{{vm.internship.writtenReport.points[i]}}</li>
-  						</ul></dd>
-  				</dl>
-  			</dd>
-  		<dt>Certificate</dt>
-	  		<dd>
-	  			<dl>
-	  				<dt>Handed In</dt>
-	  					<dd ng-bind="vm.internship.certificate.handedIn"></dd>
-	  			</dl>
-	  		</dd>
-	  	<dt>Deadlines</dt>
-	  		<dd>
-	  			<dl>
-	  				<dd>End of Internship</dd>
-	  					<dt ng-bind="vm.internship.deadlines.endInternship | amDateFormat:'ddd D MMM YYYY'" ></dt>
-	  				<dd>Written Repport</dd>
-	  					<dt ng-bind="vm.internship.deadlines.writtenReport | amDateFormat:'ddd D MMM YYYY'"></dt>
-	  				<dd>Internship Certrificate</dd>
-	  					<dt ng-bind="vm.internship.deadlines.certificate | amDateFormat:'ddd D MMM YYYY'"></dt>
-	  			</dl>
-	  		</dd>
-  	</dl>
+        <div class="col-md-6">
+          <h3>Address</h3>
+          <div class="row">
+                <div class="col-md-3"><strong>Street</strong></div>
+                <div class="col-md-7" ng-bind="vm.internship.enterprise.address.street"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"><strong>Number</strong></div>
+                <div class="col-md-7" ng-bind="vm.internship.enterprise.address.number"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"><strong>PostalCode</strong></div>
+                <div class="col-md-7" ng-bind="vm.internship.enterprise.address.postalCode"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"><strong>City</strong></div>
+                <div class="col-md-7" ng-bind="vm.internship.enterprise.address.city"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"><strong>Country</strong></div>
+                <div class="col-md-7" ng-bind="vm.internship.enterprise.address.country"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <hr>    
+
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Proposition</h2>
+        <div class="col-md-8">   
+          <h3>General information</h3>
+            <div class="row">
+                <div class="col-md-2"><strong>Theme</strong></div>
+                <div class="col-md-9" ng-bind="vm.internship.proposition.theme"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"><strong>Domain</strong></div>
+                <div class="col-md-9" ng-bind="vm.internship.proposition.domain"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"><strong>Location</strong></div>
+                <div class="col-md-9" ng-bind="vm.internship.proposition.location"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"><strong>Description</strong></div>
+                <div class="col-md-9" ng-bind="vm.internship.proposition.description"></div>
+            </div>
+        </div>
+        <div class="col-md-4">
+          <h3>Approval</h3>  
+            <div class="row">
+                <div class="col-md-7"><strong>Master</strong></div>
+                <div class="col-md-1" ng-bind="vm.internship.proposition.approval.masterApproval"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-7"><strong>Consulted Teacher</strong></div>
+                <div class="col-md-1" ng-bind="vm.internship.proposition.approval.consultedTeacherApproval"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-7"><strong>Supervisor</strong></div>
+                <div class="col-md-1" ng-bind="vm.internship.proposition.approval.supervisorApproval"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-7"><strong>Validator</strong></div>
+                <div class="col-md-1" ng-bind="vm.internship.proposition.approval.validatorApproval"></div>
+            </div>                        
+        </div>
+      
+      </div>
+    </div>
+
+    <hr>
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Activities Note</h2>
+        <div class="row">
+        <div class="col-md-12">  
+        <div class="col-md-6">
+          <h3>General Objectives</h3>
+          <div class="row">
+              <ul>
+                <li ng-repeat="objective in vm.internship.activitiesNote.generalObjectives">{{objective.value}}</li>
+              </ul>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <h3>Specific Objectives</h3>
+          <div class="row">
+              <ul>
+              <li  ng-repeat="specificObjective in vm.internship.activitiesNote.specificObjectives">{{specificObjective.value}}</li>
+              </ul>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <div class ="row">
+      <div class="col-md-12">
+        <div class ="col-md-6">
+          <h3>Validation</h3>
+           <div class="row">
+                <div class="col-md-2"><strong>Status</strong></div>
+                <div class="col-md-2" ng-bind="vm.internship.activitiesNote.approval"></div>
+            </div>
+        </div>
+      </div>
+      </div>  
+    </div>
+    </div>
+    <hr>    
+
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Deliverables</h2>
+        <div class="col-md-3">
+          <h3>Convention</h3>
+          <div class="row">
+                <div class="col-md-2"><strong>Status</strong></div>
+                <div class="col-md-7" ng-bind="vm.internship.convention.validation"></div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <h3>Certificate</h3>
+          <div class="row">
+                <div class="col-md-2"><strong>Status</strong></div>
+                <div class="col-md-7" ng-bind="vm.internship.convention.validation"></div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <h3>Written report</h3>
+          <div class="row">
+                <div class="col-md-2"><strong>Status</strong></div>
+                <div class="col-md-7" ng-bind="vm.internship.convention.validation"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Deadlines</h2>
+        <div class="col-md-3">
+          <h3>Internship start</h3>
+          <div class="row">
+                <div class="col-md-2"><strong>Date</strong></div>
+                <div class="col-md-7" ng-bind="vm.internship.deadlines.startInternship | amDateFormat:'ddd D MMM YYYY'"></div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <h3>Certificate</h3>
+          <div class="row">
+                <div class="col-md-2"><strong>Date</strong></div>
+                <div class="col-md-7" ng-bind="vm.internship.deadlines.certificate | amDateFormat:'ddd D MMM YYYY'"></div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <h3>Written report</h3>
+          <div class="row">
+                <div class="col-md-2"><strong>Date</strong></div>
+                <div class="col-md-7" ng-bind="vm.internship.deadline.writtenReport | amDateFormat:'ddd D MMM YYYY'"></div>
+          </div>
+        </div>        
+        <div class="col-md-3">
+          <h3>Internship end</h3>
+          <div class="row">
+                <div class="col-md-2"><strong>Date</strong></div>
+                <div class="col-md-7" ng-bind="vm.internship.deadlines.endInternship | amDateFormat:'ddd D MMM YYYY'"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+
+  <div class="row">
+      <div class="col-md-12">
+        <h2>First Visit</h2>
+        <div class="col-md-8">
+        <h3>Supervisor Notes</h3>
+          <div class="row">
+                <div class="col-md-12" ng-bind="vm.internship.firstVisit.supervisorNotes"></div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+        <h3>General information</h3>
+            <div class="row">
+                  <div class="col-md-5"><strong>Date</strong></div>
+                  <div class="col-md-6" ng-bind="vm.internship.firstVisit.date | amDateFormat:'ddd D MMM YYYY'"></div>
+              </div>
+              <div class="row">
+                  <div class="col-md-5"><strong>Location</strong></div>
+                  <div class="col-md-6" ng-bind="vm.internship.firstVisit.location"></div>
+              </div>
+        </div>
+      </div>
+  </div>
+  <hr>
+
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Intermediate Evaluation</h2>
+        <div class="col-md-8">
+          <h3>Master notes</h3>
+          <div class="row">
+                <div class="col-md-12" ng-bind="vm.internship.intermediateEvaluation.masterNotes"></div>
+          </div>
+        </div>
+        <div class="col-md-4">
+        <h3>General information</h3>
+            <div class="row">
+                  <div class="col-md-5"><strong>Date</strong></div>
+                  <div class="col-md-6" ng-bind="vm.internship.intermediateEvaluation.date | amDateFormat:'ddd D MMM YYYY'"></div>
+              </div>
+              <div class="row">
+                  <div class="col-md-5"><strong>Location</strong></div>
+                  <div class="col-md-6" ng-bind="vm.internship.intermediateEvaluation.location"></div>
+              </div>
+        </div>
+      </div>
+      </div>
+    </div>
+    <hr>
+
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Continuous Evaluation</h2>
+        <div class="col-md-3">
+          <h3>Points</h3>
+          <div class="row">
+              <ul><li ng-repeat="i in cvm.getNumber(vm.internship.continuousEvaluation.points.length)">
+              {{vm.internship.continuousEvaluation.points[i]}}</li>
+              </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Oral Presentation</h2>
+        <div class="col-md-3">
+          <h3>Points</h3>
+          <div class="row">
+                <ul><li ng-repeat="i in cvm.getNumber(vm.internship.oralPresentation.points.length)">
+                  {{vm.internship.oralPresentation.points[i]}}</li>
+              </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>    
+
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Written Report</h2>
+        <div class="col-md-3">
+          <h3>Points</h3>
+          <div class="row">
+                <ul><li ng-repeat="i in cvm.getNumber(vm.internship.writtenReport.points.length)">
+                  {{vm.internship.writtenReport.points[i]}}</li>
+              </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>    
+  </div>
+  </div>

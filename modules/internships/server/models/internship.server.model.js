@@ -71,6 +71,8 @@ var IntershipSchema = new Schema({
     supervisorNotes: String
   },
   intermediateEvaluation: {
+    location: String,
+    supervisorNotes: String,
     masterNotes: String
   },
   continuousEvaluation: {
