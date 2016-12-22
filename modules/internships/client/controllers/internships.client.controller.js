@@ -40,33 +40,6 @@
 
 
       function successCallback(res) {
-/*        vm.internship.enterprise.name = '';                // on vide tous les champs du formulaireeeee
-        vm.internship.enterprise.domain = '';
-
-        vm.internship.enterprise.address.street = '';
-        vm.internship.enterprise.address.number = '';
-        vm.internship.enterprise.address.postalCode = '';
-        vm.internship.enterprise.address.city = '';
-        vm.internship.enterprise.address.country = '';
-
-        vm.internship.enterprise.phonenumber = '';
-        vm.internship.enterprise.fax = '';
-        vm.internship.enterprise.mail = '';
-
-        vm.internship.enterprise.representative.name = '';
-        vm.internship.enterprise.representative.position = '';
-
-        vm.internship.proposition.theme = '';
-        vm.internship.proposition.domain = '';
-        vm.internship.proposition.description.description = '';
-        vm.internship.proposition.description.subjectApproval.consultedTeacher = '';
-
-        vm.internship.master.firstname = '';
-        vm.internship.master.lastname = '';
-        vm.internship.master.position = '';
-        vm.internship.master.phonenumber = '';
-        vm.internship.master.mail = '';
-*/
         console.log('all is good');
         $state.go('admin.manage.internships.list', {
           internshipId: res._id

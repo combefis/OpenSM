@@ -33,10 +33,10 @@ var IntershipSchema = new Schema({
         type: Schema.ObjectId,
         ref: 'User'
       },
-      consultedTeacherApproval: Boolean,
-      unitChiefApproval: Boolean,
-      masterApproval: Boolean,
-      validatorApproval: Boolean
+      consultedTeacherApproval: { type: Boolean, default: 'false' },
+      unitChiefApproval: { type: Boolean, default: 'false' },
+      masterApproval: { type: Boolean, default: 'false' },
+      validatorApproval: { type: Boolean, default: 'false' }
     }
   },
   enterprise: {
@@ -58,7 +58,7 @@ var IntershipSchema = new Schema({
     }
   },
   convention: {
-    validation: Boolean
+    validation: { type: Boolean, default: 'false' }
   },
   activitiesNote: {
     generalObjectives: [new Schema({ value: String }, { id: false, _id: false })],
@@ -82,13 +82,14 @@ var IntershipSchema = new Schema({
     points: [Number]
   },
   writtenReport: {
-    handedIn: Boolean,
+    handedIn: { type: Boolean, default: 'false' },
     points: [Number]
   },
   certificate: {
-    handedIn: Boolean
+    handedIn: { type: Boolean, default: 'false' }
   },
   deadlines: {
+    startInternship: Date,
     endInternship: Date,
     writtenReport: Date,
     certificate: Date
