@@ -280,27 +280,33 @@
             <label class="control-label" for="InternshipActivitiesNoteGeneralObjectives" ng-bind="'INTERNSHIP.ACTIVITIESNOTE.GENERALOBJECTIVES' | translate"></label>
             <div ng-repeat="Gobjective in vm.internship.activitiesNote.generalObjectives">
               <input  name="internship.activititesNote.generalObjective" type="text" ng-model="Gobjective.value" id="vm.activitiesNote.generalObjective" class="form-control" placeholder="INTERNSHIP.ACTIVITIESNOTE.GENERALOBJECTIVE' | translate" required />
-            
+              <a class="btn btn-primary" ng-click="vm.removeGeneralObjective(Gobjective)" ng-if="vm.internship.activitiesNote.generalObjectives.indexOf(Gobjective)!=0">
+              <i class="glyphicon glyphicon-minus"></i>
+              </a>
               <div ng-messages="item.$error" role="alert">
                 <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.ACTIVITIESNOTE.GENERALOBJECTIVES' | translate"></p>
               </div>
-              <button ng-if="vm.internship.activitiesNote.generalObjectives.indexOf(Gobjective)!=0"ng-click="vm.removeGeneralObjective(Gobjective)">Remove Objective</button>
+              </div>  
             </div>
-          </div>
-          <button ng-click="vm.addGeneralObjective()">Add Objective</button>
+            <a class="btn btn-primary" ng-click="vm.addGeneralObjective()">
+              <i class="glyphicon glyphicon-plus"></i>
+            </a>
 
           <div  class="form-group" show-errors>
             <label class="control-label" for="InternshipActivitiesNoteSpecificObjectives" ng-bind="'INTERNSHIP.ACTIVITIESNOTE.SPECIFICOBJECTIVES' | translate"></label>
             <div ng-repeat="Sobjective in vm.internship.activitiesNote.specificObjectives">
-              <input  name="internship.activititesNote.specificObjective" type="text" ng-model="Sobjective.value" id="vm.activitiesNote.specificObjective" class="form-control" placeholder="INTERNSHIP.ACTIVITIESNOTE.SPECIFICOBJECTIVE' | translate" required />
-            
+              <input  name="internship.activititesNote.specificObjective" type="text" ng-model="Sobjective.value" id="vm.activitiesNote.specificObjective" class="form-control" placeholder="INTERNSHIP.ACTIVITIESNOTE.SPECIFICOBJECTIVE' | translate" required />                
+              <a class="btn btn-primary" ng-click="vm.removeSpecificObjective(Sobjective)" ng-if="vm.internship.activitiesNote.specificObjectives.indexOf(Sobjective)!=0">
+                <i class="glyphicon glyphicon-minus"></i>
+              </a>
               <div ng-messages="item.$error" role="alert">
                 <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.ACTIVITIESNOTE.SPECIFICOBJECTIVES' | translate"></p>
               </div>
-              <button ng-if="vm.internship.activitiesNote.specificObjectives.indexOf(Sobjective)!=0"ng-click="vm.removeSpecificObjective(Sobjective)">Remove Objective</button>
             </div>
-          </div>
-          <button ng-click="vm.addSpecificObjective()">Add Objective</button>
+            </div>
+            <a class="btn btn-primary" ng-click="vm.addSpecificObjective()">
+              <i class="glyphicon glyphicon-plus"></i>
+            </a>
 
           <div class="form-group" show-errors>
             <label class="control-label" for="InternshipActivitiesNoteApproval" ng-bind="'INTERNSHIP.ACTIVITIESNOTE.APPROVAL' | translate"></label>
