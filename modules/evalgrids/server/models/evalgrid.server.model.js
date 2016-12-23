@@ -21,11 +21,15 @@ var EvalGridSchema = new Schema({
     required: 'Please fill in the name of the evaluation grid.',
     trim: true
   },
-  criteria: {
+  categories: {
     type: [new Schema({
-      categories: {
+      name: {
+        type: String,
+        trim: true
+      },
+      criteria: {
         type: [new Schema({
-          name: {
+          text: {
             type: String,
             trim: true
           },
@@ -45,13 +49,13 @@ var EvalGridSchema = new Schema({
     })],
     default: []
   },
-  author: {
-    type: Schema.ObjectId,
-    ref: 'User'
-  },
   created: {
     type: Date,
     default: Date.now
+  },
+  user: {
+    type: Schema.ObjectId,
+    ref: 'User'
   }
 });
 
