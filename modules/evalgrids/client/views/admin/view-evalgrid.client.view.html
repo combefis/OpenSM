@@ -1,0 +1,56 @@
+<section>
+  <div ng-if="!vm.evalgrid.$resolved" class="loading">
+    <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> {{'LOADING' | translate}}
+  </div>
+
+  <div ng-if="vm.evalgrid.$resolved">
+    <ol class="breadcrumb">
+      <li><a ui-sref="admin.manage.evalgrids.list" ng-bind="'EVALGRID.EVALGRIDS' | translate"></a></li>
+      <li class="active"><a ui-sref="admin.manage.evalgrids.view({ evalgridCode: vm.evalgrid.code })" ng-bind="vm.evalgrid.code"></a></li>
+    </ol>
+
+    <h2 ng-bind="vm.evalgrid.name"></h2>
+
+    <div class="row">
+      <div class="col-md-9">
+        <div ng-if="vm.evalgrid.description" ng-bind="vm.evalgrid.description"></div>
+        <div ng-if="!vm.evalgrid.description" ng-bind="'EVALGRID.NO_DESCRIPTION' | translate"></div>
+
+        <div ng-repeat="i in cvm.getNumber(vm.evalgrid.categories.length)" ng-init="category = vm.evalgrid.categories[i]">
+          <h3 ng-bind="'C' + (i + 1) + '. ' + category.name"></h3>
+
+          <table class="table">
+            <tr>
+              <th></th>
+              <th ng-bind="'EVALGRID.CRITERION_TEXT' | translate"></th>
+              <th ng-bind="'EVALGRID.CRITERION_EVALTYPE' | translate"></th>
+            </tr>
+            <tr ng-repeat="j in cvm.getNumber(category.criteria.length)" ng-init="criterion = category.criteria[j]">
+              <td class="col-md-1" ng-bind="'C' + (i + 1) + '.' + (j + 1)"></td>
+              <td class="col-md-9" ng-bind="criterion.text"></td>
+              <td class="col-md-2" ng-bind="criterion.evaltype"></td>
+            </tr>
+          </table>
+        </div>
+
+        <p ng-if="!vm.evalgrid.categories.length" ng-bind="'EVALGRID.NO_CATEGORIES' | translate"></p>
+      </div>
+
+      <div class="col-md-3">
+        <div class="panel panel-info">
+          <div class="panel-heading"><h3 class="panel-title" ng-bind="'INFORMATIONS' | translate"></h3></div>
+          <div class="panel-body">
+            <dl>
+              <dt ng-bind="'EVALGRID.CODE' | translate"></dt>
+              <dd ng-bind="vm.evalgrid.code"></dd>
+              <dt ng-bind="'EVALGRID.NAME' | translate"></dt>
+              <dd ng-bind="vm.evalgrid.name"></dd>
+              <dt ng-bind="'EVALGRID.AUTHOR' | translate"></dt>
+              <dd ng-bind="vm.evalgrid.user.displayName"></dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+</section>

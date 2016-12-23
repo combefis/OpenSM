@@ -12,7 +12,7 @@
     "ADD_TEACHER": "Add a teacher",
     "TEACHER_MISSING_ERROR": "Please select at least one teacher.",
     "DESCRIPTION": "Description",
-    "NO_DESCRIPTION": "No description.",
+    "NO_DESCRIPTION": "@:GENERAL.NO_DESCRIPTION",
     "SUCCESSFUL_CREATION": "The activity \"{{code}}\" has been successfully created!",
     "SUCCESSFUL_UPDATE": "The activity \"{{code}}\" has been successfully updated!"
   },
@@ -36,7 +36,7 @@
     "COORDINATOR_TOOMUCH_ERROR": "Please select only one coordinator.",
     "TEAM": "Team",
     "DESCRIPTION": "Description",
-    "NO_DESCRIPTION": "No description.",
+    "NO_DESCRIPTION": "@:GENERAL.NO_DESCRIPTION",
     "ACTIVITIES": "Activities",
     "ADD_ACTIVITIES": "Add an activity",
     "NO_ACTIVITY": "No activities.",
@@ -50,6 +50,17 @@
     "MANAGE": "Manage",
     "ANNOUNCEMENT": "Annoucement",
     "WORK": "Work"
+  },
+  "EVALGRID": {
+    "EVALGRIDS": "Evaluation grids",
+    "NB_EVALGRIDS": "Number of evaluation grids",
+    "CODE": "Code",
+    "NAME": "Name",
+    "AUTHOR": "Author",
+    "NO_DESCRIPTION": "@:GENERAL.NO_DESCRIPTION",
+    "NO_CATEGORIES": "No categories.",
+    "CRITERION_TEXT": "Text",
+    "CRITERION_EVALTYPE": "Type"
   },
   "EXAM": {
     "EXAMS": "Exams",
@@ -134,7 +145,7 @@
     "END_ERROR": "Please fill in the end date.",
     "FROM": "From",
     "TO": "to",
-    "NO_DESCRIPTION": "No description.",
+    "NO_DESCRIPTION": "@:GENERAL.NO_DESCRIPTION",
     "PLANNING": "Planning",
     "NO_EXAM": "No exam in this session.",
     "SUCCESSFUL_DELETE": "Exam session deleted successfully!",
@@ -149,7 +160,8 @@
     "EDIT": "Edit",
     "UPDATE": "Update",
     "DELETE": "Delete",
-    "ADD": "Add"
+    "ADD": "Add",
+    "NO_DESCRIPTION": "No description."
   },
   "HOME": {
     "LEAD": "Welcome on the OpenSM platform!",
