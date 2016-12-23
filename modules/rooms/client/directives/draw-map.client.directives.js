@@ -39,6 +39,10 @@
         context.scale(1, 1);
         context.font = 'normal 7pt Arial';
 
+        context.fillText(configuration.room.code, 10, 15);
+        context.fillText(configuration.course, 10, 25);
+        context.fillText(configuration.date, 10, 35);
+
         // Draw the seats
         for (var i = 0; i < map.seats.length; i++) {
           var seat = map.seats[i];

@@ -28,6 +28,8 @@
     vm.removeRoom = removeRoom;
     vm.config = Array.apply(null, new Array(vm.exam.rooms.length)).map(function(x, i) {
       return {
+        course: vm.exam.course.code + ' ' + vm.exam.course.name,
+        date: moment(vm.exam.date).format('MMMM Do YYYY, h:mm:ss a'),
         room: vm.exam.rooms[i].room,
         configuration: vm.exam.rooms[i].configuration,
         startseat: vm.exam.rooms[i].startseat,
@@ -35,6 +37,14 @@
       };
     });
     vm.changeConfiguration = changeConfiguration;
+
+
+    vm.downloadRoom = downloadRoom;
+    function downloadRoom(i) {
+      console.log('Kikoo');
+      $window.location.href = $('canvas')[0].toDataURL("image/png");
+    }
+
 
     // Copies management
     vm.getLetter = getLetter;
