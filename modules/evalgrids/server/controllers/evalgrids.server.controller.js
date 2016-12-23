@@ -5,44 +5,52 @@
  */
 var path = require('path'),
   mongoose = require('mongoose'),
-  EvaluationGrid = mongoose.model('EvaluationGrid'),
+  EvalGrid = mongoose.model('EvalGrid'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
-/**
- * List of rooms
+/*
+ * Show the current evalgrid
  */
+exports.read = function (req, res) {
+  // convert mongoose document to JSON
+  var evalgrid = req.evalgrid ? req.evalgrid.toJSON() : {};
 
+  res.json(evalgrid);
+};
+
+/**
+ * List of evalgrids
+ */
 exports.list = function (req, res) {
-  EvaluationGrid.find({}).exec(function (err, evaluationGrids) {
+  EvalGrid.find({}, 'code name author')
+  .sort({ code: 1 })
+  .exec(function (err, evalgrids) {
     if (err) {
-      return res.status(400).send({
+      return res.status(422).send({
         message: errorHandler.getErrorMessage(err)
       });
     }
-    res.json(evaluationGrids);
+
+    res.json(evalgrids);
   });
 };
 
-exports.read = function (req, res) {
-  // var internship = req.internship ? req.internship.toJSON() : {};
-  var evaluationGrid = req.evaluationGrid;
-  res.json(evaluationGrid);
-
-};
-
-exports.gridByCode = function (req, res, next, code) {
-  EvaluationGrid.find({ 'code': code }).exec(function (err, evaluationGrid) {
+/**
+ * Evalgrid middleware
+ */
+exports.evalgridByCode = function (req, res, next, code) {
+  EvalGrid.findOne({ code: code }, 'code name criteria')
+  .exec(function (err, evalgrid) {
     if (err) {
       return next(err);
     }
-
-    if (!evaluationGrid) {
+    if (!evalgrid) {
       return res.status(404).send({
-        message: 'No Internship with that identifier has been found.'
+        message: 'No evaluation grid with that code has been found.'
       });
     }
 
-    req.evaluationGrid = evaluationGrid;
+    req.evalgrid = evalgrid;
     next();
   });
 };

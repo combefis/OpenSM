@@ -1,32 +1,58 @@
 'use strict';
 
-// Module dependencies
+/*
+ * Module dependencies
+ */
 var mongoose = require('mongoose'),
-  Schema = mongoose.Schema;   // create instance of mongoose schema, called Schema.
+  Schema = mongoose.Schema;
 
-
-// Internship Schema
-var EvaluationGrid = new Schema({
-  category: String,
-  year: String,
-  GeneralCriteria: {
-    Behaviour: [new Schema({ field: String }, { details: String }, { id: false, _id: false })],
-    Relationship: [new Schema({ field: String }, { details: String }, { id: false, _id: false })],
-    Motivation: [new Schema({ field: String }, { details: String }, { id: false, _id: false })]
+/*
+ * EvalGrid Schema
+ */
+var EvalGridSchema = new Schema({
+  code: {
+    type: String,
+    required: 'Please fill in the code of the evaluation grid.',
+    trim: true,
+    unique: true
   },
-  ContinuousEvaluation: {
-    Professionalism: [new Schema({ field: String }, { details: String }, { id: false, _id: false })],
-    ProjectManagement: [new Schema({ field: String }, { details: String }, { id: false, _id: false })]
+  name: {
+    type: String,
+    required: 'Please fill in the name of the evaluation grid.',
+    trim: true
   },
-  OralPresentation: {
-    Criteria: [new Schema({ field: String }, { details: String }, { id: false, _id: false })]
+  criteria: {
+    type: [new Schema({
+      categories: {
+        type: [new Schema({
+          name: {
+            type: String,
+            trim: true
+          },
+          evaltype: {
+            type: String,
+            enum: ['score']
+          }
+        }, {
+          id: false,
+          _id: false
+        })],
+        default: []
+      }
+    }, {
+      id: false,
+      _id: false
+    })],
+    default: []
   },
-  WrittenReport: {
-    Criteria: [new Schema({ field: String }, { details: String }, { id: false, _id: false })]
+  author: {
+    type: Schema.ObjectId,
+    ref: 'User'
   },
-  Recap: {
-    NotesAndRemarks: [new Schema({ field: String }, { id: false, _id: false })]
+  created: {
+    type: Date,
+    default: Date.now
   }
 });
 
-mongoose.model('EvaluationGrid', EvaluationGrid);
+mongoose.model('EvalGrid', EvalGridSchema);

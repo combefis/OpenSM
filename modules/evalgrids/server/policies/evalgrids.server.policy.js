@@ -9,22 +9,23 @@ var acl = require('acl');
 acl = new acl(new acl.memoryBackend());
 
 /**
- * Invoke internships permissions
+ * Invoke evalgrids permissions
  */
 exports.invokeRolesPolicies = function () {
   acl.allow([{
     roles: ['admin'],
     allows: [{
-      resources: ['/api/evaluationgrids', '/api/evaluationgrids/:code'],
+      resources: [
+        '/api/evalgrids',
+        '/api/evalgrids/:evalgridCode'
+      ],
       permissions: '*'
     }]
-  }
-  ]);
+  }]);
 };
 
-
 /**
- * Check if internships policy allows DONT TOUCH:
+ * Check if evalgrids policy allows
  */
 exports.isAllowed = function (req, res, next) {
   var roles = (req.user) ? req.user.roles : ['guest'];
