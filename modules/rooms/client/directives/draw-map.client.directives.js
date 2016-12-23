@@ -75,8 +75,18 @@
           if (configuration.registrations) {
             configuration.registrations.forEach(function (element) {
               var s = map.seats[config.seats[element.seat].seat];
-              context.fillText(element.student.lastname, s.x, s.y + 25);
-              context.fillText(element.student.firstname, s.x, s.y + 35);
+
+              var lastname = element.student.lastname;
+              while (context.measureText(lastname).width > 50) {
+                lastname = lastname.substring(0, lastname.length - 1);
+              }
+              context.fillText(lastname, s.x, s.y + 25);
+
+              var firstname = element.student.firstname;
+              while (context.measureText(firstname).width > 50) {
+                firstname = firstname.substring(0, firstname.length - 1);
+              }
+              context.fillText(firstname, s.x, s.y + 35);
             });
           }
         }
