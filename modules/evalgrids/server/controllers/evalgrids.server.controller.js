@@ -22,7 +22,7 @@ exports.read = function (req, res) {
  * List of evalgrids
  */
 exports.list = function (req, res) {
-  EvalGrid.find({}, 'code name author')
+  EvalGrid.find({}, 'code name')
   .sort({ code: 1 })
   .exec(function (err, evalgrids) {
     if (err) {
@@ -39,7 +39,8 @@ exports.list = function (req, res) {
  * Evalgrid middleware
  */
 exports.evalgridByCode = function (req, res, next, code) {
-  EvalGrid.findOne({ code: code }, 'code name criteria')
+  EvalGrid.findOne({ code: code }, 'code name categories user')
+  .populate('user', 'displayName')
   .exec(function (err, evalgrid) {
     if (err) {
       return next(err);
