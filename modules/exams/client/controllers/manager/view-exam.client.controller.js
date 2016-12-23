@@ -42,7 +42,7 @@
     vm.downloadRoom = downloadRoom;
     function downloadRoom(i) {
       console.log('Kikoo');
-      $window.location.href = $('canvas')[0].toDataURL("image/png");
+      $window.location.href = $('canvas')[i].toDataURL("image/png");
     }
 
 
