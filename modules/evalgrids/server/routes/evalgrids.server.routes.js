@@ -3,8 +3,8 @@
 /**
  * Module dependencies
  */
-var evaluationGridsPolicy = require('../policies/evaluationgrids.server.policy'),
-  evaluationgrids = require('../controllers/evaluationgrid.server.controller');
+var evaluationGridsPolicy = require('../policies/evalgrids.server.policy'),
+  evaluationgrids = require('../controllers/evalgrids.server.controller');
 
 module.exports = function(app) {
   // Internships collection routes
