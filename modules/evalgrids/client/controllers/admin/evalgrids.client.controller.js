@@ -11,6 +11,7 @@
     var vm = this;
 
     vm.evalgrid = evalgrid;
+    vm.name = evalgrid.name;
     vm.authentication = Authentication;
     vm.error = null;
     vm.form = {};
