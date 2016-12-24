@@ -1,57 +1,83 @@
 <section>
-  <div ng-if="(vm.course._id && !vm.course.$resolved) || !vm.isFormReady()" class="loading">
+  <div ng-if="vm.evalgrid._id && !vm.evalgrid.$resolved" class="loading">
     <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> {{'LOADING' | translate}}
   </div>
 
-  <div ng-if="(!vm.course._id || vm.course.$resolved) && vm.isFormReady()">
+  <div ng-if="!vm.evalgrid._id || vm.evalgrid.$resolved">
     <ol class="breadcrumb">
-      <li><a ui-sref="admin.manage.courses.list" ng-bind="'COURSE.COURSES' | translate"></a></li>
-      <li ng-if="!vm.course._id" class="active"><a ui-sref="admin.manage.courses.create" ng-bind="'GENERAL.CREATE' | translate"></a></li>
-      <li ng-if="vm.course._id"><a ui-sref="admin.manage.courses.view({ courseCode: vm.course.code })" ng-bind="vm.course.code"></a></li>
-      <li ng-if="vm.course._id" class="active"><a ui-sref="admin.manage.courses.edit({ courseCode: vm.course.code })" ng-bind="'GENERAL.EDIT' | translate"></a></li>
+      <li><a ui-sref="admin.manage.evalgrids.list" ng-bind="'EVALGRID.EVALGRIDS' | translate"></a></li>
+      <li ng-if="!vm.evalgrid._id" class="active"><a ui-sref="admin.manage.evalgrids.create" ng-bind="'GENERAL.CREATE' | translate"></a></li>
+      <li ng-if="vm.evalgrid._id"><a ui-sref="admin.manage.evalgrids.view({ evalgridCode: vm.evalgrid.code })" ng-bind="vm.evalgrid.code"></a></li>
+      <li ng-if="vm.evalgrid._id" class="active"><a ui-sref="admin.manage.evalgrids.edit({ evalgridCode: vm.evalgrid.code })" ng-bind="'GENERAL.EDIT' | translate"></a></li>
     </ol>
 
-    <h2><span ng-if="vm.course._id" ng-bind="vm.coursename"></span><span ng-if="!vm.course._id" ng-bind="'COURSE.CREATE' | translate"></span></h2>
+    <h2><span ng-if="vm.evalgrid._id" ng-bind="vm.name"></span><span ng-if="!vm.evalgrid._id" ng-bind="'EVALGRID.CREATE' | translate"></span></h2>
 
     <div class="col-md-12">
-      <form name="vm.form.courseForm" class="form-horizontal" ng-submit="vm.save(vm.form.courseForm.$valid)" novalidate>
+      <form name="vm.form.evalgridForm" class="form-horizontal" ng-submit="vm.save(vm.form.evalgridForm.$valid)" novalidate>
         <fieldset>
           <div class="form-group" show-errors>
-            <label class="control-label" for="code" ng-bind="'COURSE.CODE' | translate"></label>
-            <input name="code" type="text" ng-model="vm.course.code" id="code" class="form-control" placeholder="{{'COURSE.CODE' | translate}}" required ng-disabled="vm.course._id" />
-            <div ng-messages="vm.form.courseForm.code.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'COURSE.CODE_REQUIRED_ERROR' | translate"></p>
+            <label class="control-label" for="code" ng-bind="'EVALGRID.CODE' | translate"></label>
+            <input name="code" type="text" ng-model="vm.evalgrid.code" id="code" class="form-control" placeholder="{{'EVALGRID.CODE' | translate}}" required ng-disabled="vm.evalgrid._id" />
+            <div ng-messages="vm.form.evalgridForm.code.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'EVALGRID.CODE_REQUIRED_ERROR' | translate"></p>
             </div>
           </div>
           <div class="form-group" show-errors>
-            <label class="control-label" for="name" ng-bind="'COURSE.NAME' | translate"></label>
-            <input name="name" type="text" ng-model="vm.course.name" id="name" class="form-control" placeholder="{{'COURSE.NAME' | translate}}" required />
-            <div ng-messages="vm.form.courseForm.name.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'COURSE.NAME_REQUIRED_ERROR' | translate"></p>
+            <label class="control-label" for="name" ng-bind="'EVALGRID.NAME' | translate"></label>
+            <input name="name" type="text" ng-model="vm.evalgrid.name" id="name" class="form-control" placeholder="{{'EVALGRID.NAME' | translate}}" required />
+            <div ng-messages="vm.form.evalgridForm.name.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'EVALGRID.NAME_REQUIRED_ERROR' | translate"></p>
             </div>
-          </div>
-          <div class="form-group" show-errors>
-            <label class="control-label" for="coordinator" ng-bind="'COURSE.COORDINATOR' | translate"></label>
-            <tags-input name="coordinator" type="text" ng-model="vm.course.coordinator" add-on-blur="false" add-from-autocomplete-only="true" display-property="displayName" replace-spaces-with-dashes="false" id="coordinator" placeholder="{{'COURSE.COORDINATOR' | translate}}" min-tags="1" max-tags="1">
-              <auto-complete source="vm.loadTeachers($query)" min-length="0"></auto-complete>
-            </tags-input>
-            <div ng-messages="vm.form.courseForm.coordinator.$error" role="alert">
-              <p class="help-block error-text" ng-message="minTags" ng-bind="'COURSE.COORDINATOR_MISSING_ERROR' | translate"></p>
-              <p class="help-block error-text" ng-message="maxTags" ng-bind="'COURSE.COORDINATOR_TOOMUCH_ERROR' | translate"></p>
-            </div>
-          </div>
-          <div class="form-group" show-errors>
-            <label class="control-label" for="description" ng-bind="'COURSE.DESCRIPTION' | translate"></label>
-            <textarea name="description" ng-model="vm.course.description" id="description" class="form-control" cols="30" rows="5" placeholder="{{'COURSE.DESCRIPTION' | translate}}"></textarea>
           </div>
           <div class="form-group">
-            <label class="control-label" for="activities" ng-bind="'COURSE.ACTIVITIES' | translate"></label>
-            <tags-input name="activities" type="text" ng-model="vm.course.activities" add-on-blur="false" add-from-autocomplete-only="true" display-property="code" replace-spaces-with-dashes="false" id="activities" placeholder="{{'COURSE.ADD_ACTIVITIES' | translate}}">
-              <auto-complete source="vm.loadActivities($query)" min-length="0"></auto-complete>
-            </tags-input>
+            <h3 ng-bind="'EVALGRID.CATEGORIES' | translate"></h3>
+            <div class="pull-right">
+              <button type="button" class="btn btn-success btn-xs" ng-click="vm.addCategory()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> {{'EVALGRID.ADD_CATEGORY' | translate}}</button>
+            </div>
+            <uib-tabset ng-if="vm.evalgrid.categories.length">
+              <uib-tab ng-repeat="i in cvm.getNumber(vm.evalgrid.categories.length)" heading="{{'C' + (i + 1)}}">
+                <div class="row col-md-12 form-group">
+                  <label class="control-label" for="{{'category' + i + '_name'}}" ng-bind="'EVALGRID.CATEGORY_NAME' | translate"></label>
+                  <input name="{{'category' + i + '_name'}}" type="text" ng-model="vm.evalgrid.categories[i].name" id="{{'category' + i + '_name'}}" class="form-control" placeholder="{{'EVALGRID.CATEGORY_NAME' | translate}}" required />
+                  <div ng-messages="vm.form.evalgridForm.categories[i].name.$error" role="alert">
+                    <p class="help-block error-text" ng-message="required" ng-bind="'EVALGRID.CATEGORY.NAME_REQUIRED_ERROR' | translate"></p>
+                  </div>
+                </div>
+                <h3 ng-bind="'EVALGRID.CRITERIA' | translate"></h3>
+                <div class="row col-md-12 action-box">
+                  <button type="button" class="btn btn-success btn-xs" ng-click="vm.addCriterion(i)"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> {{'EVALGRID.CRITERION.ADD' | translate}}</button>
+                </div>
+                <div class="row col-md-12" ng-repeat="j in cvm.getNumber(vm.evalgrid.categories[i].criteria.length)">
+                  <div class="col-md-9">
+                    <div class="form-group" show-errors>
+                      <label class="control-label" for="{{'category' + i + '_criterion' + j + '_text'}}" ng-bind="'C' + (i + 1) + '.' + (j + 1)"></label>
+                      <input name="{{'category' + i + '_criterion' + j + '_text'}}" type="text" ng-model="vm.evalgrid.categories[i].criteria[j].text" id="{{'category' + i + '_criterion' + j + '_text'}}" class="form-control" required />
+                      <div ng-messages="vm.form.evalgridForm.categories[i].criteria[j].text.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required" ng-bind="'EVALGRID.CRITERION.TEXT_REQUIRED_ERROR' | translate"></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group" show-errors>
+                      <label class="control-label" for="{{'category' + i + '_criterion' + j + '_evaltype'}}" ng-bind="'EVALGRID.CRITERION.EVALTYPE' | translate"></label>
+                      <select name="{{'category' + i + '_criterion' + j + '_evaltype'}}" class="form-control" ng-model="vm.evalgrid.categories[i].criteria[j].evaltype" id="{{'category' + i + '_criterion' + j + '_evaltype'}}" required>
+                        <option value="score" ng-bind="'EVALGRID.CRITERION.SCORE' | translate"></option>
+                      </select>
+                      <div ng-messages="vm.form.evalgridForm.categories[i].criteria[j].evaltype.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required" ng-bind="'EVALGRID.CRITERION.EVALTYPE_REQUIRED_ERROR' | translate"></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+                <p ng-if="!vm.evalgrid.categories[i].criteria.length" ng-bind="'EVALGRID.CRITERION.NO_CRITERION' | translate"></p>
+              </uib-tab>
+            </uib-tabset>
+            <p ng-if="!vm.evalgrid.categories.length" ng-bind="'EVALGRID.NO_CATEGORIES' | translate"></p>
           </div>
           <div class="form-group">
-            <button type="submit" class="btn btn-primary">{{vm.course._id ? 'GENERAL.UPDATE' : 'GENERAL.CREATE' | translate}}</button>
+            <button type="submit" class="btn btn-primary" ng-bind="vm.evalgrid._id ? 'GENERAL.UPDATE' : 'GENERAL.CREATE' | translate"></button>
           </div>
           <div ng-show="vm.error" class="text-danger">
             <strong ng-bind="vm.error"></strong>

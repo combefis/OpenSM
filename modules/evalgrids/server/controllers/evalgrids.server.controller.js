@@ -8,8 +8,27 @@ var path = require('path'),
   EvalGrid = mongoose.model('EvalGrid'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
+/**
+ * Create an evaluation grid
+ */
+exports.create = function (req, res) {
+  var evalgrid = new EvalGrid(req.body);
+  evalgrid.user = req.user;
+
+  // Save the evaluation grid
+  evalgrid.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+
+    res.json(evalgrid);
+  });
+};
+
 /*
- * Show the current evalgrid
+ * Show the current evaluation grid
  */
 exports.read = function (req, res) {
   // convert mongoose document to JSON
@@ -19,7 +38,7 @@ exports.read = function (req, res) {
 };
 
 /**
- * List of evalgrids
+ * List of evaluation grids
  */
 exports.list = function (req, res) {
   EvalGrid.find({}, 'code name')
@@ -36,7 +55,7 @@ exports.list = function (req, res) {
 };
 
 /**
- * Evalgrid middleware
+ * Evaluation grid middleware
  */
 exports.evalgridByCode = function (req, res, next, code) {
   EvalGrid.findOne({ code: code }, 'code name categories user')

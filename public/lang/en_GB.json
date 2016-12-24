@@ -55,12 +55,25 @@
     "EVALGRIDS": "Evaluation grids",
     "NB_EVALGRIDS": "Number of evaluation grids",
     "CODE": "Code",
+    "CODE_REQUIRED_ERROR": "Please fill in the code.",
     "NAME": "Name",
+    "NAME_REQUIRED_ERROR": "Please fill in the name.",
     "AUTHOR": "Author",
     "NO_DESCRIPTION": "@:GENERAL.NO_DESCRIPTION",
+    "CATEGORIES": "Categories",
+    "ADD_CATEGORY": "Add a category",
     "NO_CATEGORIES": "No categories.",
-    "CRITERION_TEXT": "Text",
-    "CRITERION_EVALTYPE": "Type"
+    "CATEGORY_NAME": "Name",
+    "CATEGORY_NAME_REQUIRED_ERROR": "Please fill in the category name.",
+    "CRITERIA": "Criteria",
+    "CRITERION": {
+      "ADD": "Add a criterion",
+      "NO_CRITERION": "No criterion.",
+      "TEXT": "Text",
+      "EVALTYPE": "Type",
+      "SCORE": "Score"
+    },
+    "CREATE": "Create an evaluation grid"
   },
   "EXAM": {
     "EXAMS": "Exams",

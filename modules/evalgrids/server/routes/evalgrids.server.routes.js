@@ -9,7 +9,8 @@ var evalgridsPolicy = require('../policies/evalgrids.server.policy'),
 module.exports = function(app) {
   // Evalgrids collection routes
   app.route('/api/evalgrids').all(evalgridsPolicy.isAllowed)
-    .get(evalgrids.list);
+    .get(evalgrids.list)
+    .post(evalgrids.create);
 
   // Single evalgrid routes
   app.route('/api/evalgrids/:evalgridCode').all(evalgridsPolicy.isAllowed)

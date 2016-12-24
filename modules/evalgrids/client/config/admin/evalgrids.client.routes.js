@@ -24,6 +24,19 @@
           pageTitle: 'Evaluation grids'
         }
       })
+      .state('admin.manage.evalgrids.create', {
+        url: '/create',
+        templateUrl: 'modules/evalgrids/client/views/admin/form-evalgrid.client.view.html',
+        controller: 'EvalGridsAdminController',
+        controllerAs: 'vm',
+        resolve: {
+          evalgridResolve: newEvalGrid
+        },
+        data: {
+          roles: ['admin'],
+          pageTitle: 'Create an exam session'
+        }
+      })
       .state('admin.manage.evalgrids.view', {
         url: '/:evalgridCode',
         templateUrl: 'modules/evalgrids/client/views/admin/view-evalgrid.client.view.html',
@@ -45,5 +58,11 @@
     return EvalGridsService.get({
       evalgridCode: $stateParams.evalgridCode
     }).$promise;
+  }
+
+  newEvalGrid.$inject = ['EvalGridsService'];
+
+  function newEvalGrid(EvalGridsService) {
+    return new EvalGridsService();
   }
 }());

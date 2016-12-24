@@ -12,6 +12,10 @@
 
     <div class="row">
       <div class="col-md-9">
+        <div class="action-box">
+          <a ui-sref="admin.manage.evalgrids.create" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> {{'GENERAL.CREATE' | translate}}</a>
+        </div>
+
         <div class="list-group" ng-if="vm.evalgrids.length">
           <a ng-repeat="evalgrid in vm.evalgrids" ui-sref="admin.manage.evalgrids.view({ evalgridCode: evalgrid.code })" class="list-group-item">
             <b>{{evalgrid.code}}</b> — {{evalgrid.name}}

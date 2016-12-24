@@ -22,8 +22,8 @@
           <table class="table">
             <tr>
               <th></th>
-              <th ng-bind="'EVALGRID.CRITERION_TEXT' | translate"></th>
-              <th ng-bind="'EVALGRID.CRITERION_EVALTYPE' | translate"></th>
+              <th ng-bind="'EVALGRID.CRITERION.TEXT' | translate"></th>
+              <th ng-bind="'EVALGRID.CRITERION.EVALTYPE' | translate"></th>
             </tr>
             <tr ng-repeat="j in cvm.getNumber(category.criteria.length)" ng-init="criterion = category.criteria[j]">
               <td class="col-md-1" ng-bind="'C' + (i + 1) + '.' + (j + 1)"></td>

@@ -52,15 +52,28 @@
     "WORK": "Travail"
   },
   "EVALGRID": {
-    "EVALGRIDS": "Grilles d'évalution",
+    "EVALGRIDS": "Grilles d'évaluation",
     "NB_EVALGRIDS": "Nombre de grilles d'évaluation",
     "CODE": "Code",
+    "CODE_REQUIRED_ERROR": "Veuillez spécifier le code.",
     "NAME": "Nom",
+    "NAME_REQUIRED_ERROR": "Veuillez spécifier le nom.",
     "AUTHOR": "Auteur",
     "NO_DESCRIPTION": "@:GENERAL.NO_DESCRIPTION",
+    "CATEGORIES": "Catégories",
+    "ADD_CATEGORY": "Ajouter une catégorie",
     "NO_CATEGORIES": "Pas de catégories.",
-    "CRITERION_TEXT": "Texte",
-    "CRITERION_EVALTYPE": "Type"
+    "CATEGORY_NAME": "Nom",
+    "CATEGORY_NAME_REQUIRED_ERROR": "Veuillez spécifier le nom de la catégorie.",
+    "CRITERIA": "Critères",
+    "CRITERION": {
+      "ADD": "Ajouter un critère",
+      "NO_CRITERION": "Pas de critère.",
+      "TEXT": "Texte",
+      "EVALTYPE": "Type",
+      "SCORE": "Score"
+    },
+    "CREATE": "Créer une grille d'évaluation"
   },
   "EXAM": {
     "EXAMS": "Examens",
