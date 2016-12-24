@@ -14,30 +14,9 @@
     vm.authentication = Authentication;
     vm.error = null;
     vm.form = {};
-    vm.remove = remove;
     vm.save = save;
     vm.addCategory = addCategory;
     vm.addCriterion = addCriterion;
-
-    // Remove existing evaluation grid
-    function remove() {
-      var code = vm.evalgrid.code;
-      if ($window.confirm('Are you sure you want to delete this evaluation grid?')) {
-        vm.evalgrid.$remove({ evalgridCode: code }, onSuccess, onError);
-      }
-
-      function onSuccess(examsession) {
-        $state.go('admin.manage.evalgrids.list');
-
-        Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EVALGRID.SUCCESSFUL_DELETE', { code: code }) });
-      }
-
-      function onError(errorResponse) {
-        var error = errorResponse.data;
-
-        Notification.error({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + error.message });
-      }
-    }
 
     // Save evaluation grid
     function save(isValid) {
