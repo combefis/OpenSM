@@ -13,6 +13,10 @@
 
     <h2><span ng-if="vm.evalgrid._id" ng-bind="vm.name"></span><span ng-if="!vm.evalgrid._id" ng-bind="'EVALGRID.CREATE' | translate"></span></h2>
 
+    <div ng-show="vm.error" class="alert alert-danger">
+      <strong ng-bind="vm.error"></strong>
+    </div>
+
     <div class="col-md-12">
       <form name="vm.form.evalgridForm" class="form-horizontal" ng-submit="vm.save(vm.form.evalgridForm.$valid)" novalidate>
         <fieldset>
@@ -37,7 +41,7 @@
           <div class="form-group">
             <h3 ng-bind="'EVALGRID.CATEGORIES' | translate"></h3>
             <div class="pull-right">
-              <button type="button" class="btn btn-success btn-xs" ng-click="vm.addCategory()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> {{'EVALGRID.ADD_CATEGORY' | translate}}</button>
+              <button type="button" class="btn btn-success btn-sm" ng-click="vm.addCategory()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> {{'EVALGRID.ADD_CATEGORY' | translate}}</button>
             </div>
             <uib-tabset ng-if="vm.evalgrid.categories.length">
               <uib-tab ng-repeat="i in cvm.getNumber(vm.evalgrid.categories.length)" heading="{{'C' + (i + 1)}}">
@@ -49,9 +53,6 @@
                   </div>
                 </div>
                 <h3 ng-bind="'EVALGRID.CRITERIA' | translate"></h3>
-                <div class="row col-md-12 action-box">
-                  <button type="button" class="btn btn-success btn-xs" ng-click="vm.addCriterion(i)"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> {{'EVALGRID.CRITERION.ADD' | translate}}</button>
-                </div>
                 <div class="row col-md-12" ng-repeat="j in cvm.getNumber(vm.evalgrid.categories[i].criteria.length)">
                   <div class="col-md-9">
                     <div class="form-group" show-errors>
@@ -74,6 +75,9 @@
                     </div>
                   </div>
                 </div>
+                <div class="row col-md-12 action-box">
+                  <button type="button" class="btn btn-success btn-sm" ng-click="vm.addCriterion(i)"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> {{'EVALGRID.CRITERION.ADD' | translate}}</button>
+                </div>
                 <div class="clearfix"></div>
                 <p ng-if="!vm.evalgrid.categories[i].criteria.length" ng-bind="'EVALGRID.CRITERION.NO_CRITERION' | translate"></p>
               </uib-tab>
@@ -82,9 +86,6 @@
           </div>
           <div class="form-group">
             <button type="submit" class="btn btn-primary" ng-bind="vm.evalgrid._id ? 'GENERAL.UPDATE' : 'GENERAL.CREATE' | translate"></button>
-          </div>
-          <div ng-show="vm.error" class="text-danger">
-            <strong ng-bind="vm.error"></strong>
           </div>
         </fieldset>
       </form>
