@@ -53,6 +53,7 @@
   },
   "EVALGRID": {
     "EVALGRIDS": "Grilles d'évaluation",
+    "THIS_EVALGRID": "cette grille d'évaluation",
     "NB_EVALGRIDS": "Nombre de grilles d'évaluation",
     "CODE": "Code",
     "CODE_REQUIRED_ERROR": "Veuillez spécifier le code.",
@@ -174,6 +175,7 @@
     "EDIT": "Éditer",
     "UPDATE": "Mettre à jour",
     "DELETE": "Supprimer",
+    "DELETE_CONFIRMATION": "Êtes-vous sûr de vouloir supprimer {{name}} ?",
     "ADD": "Ajouter",
     "NO_DESCRIPTION": "No description."
   },

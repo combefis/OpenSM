@@ -53,6 +53,7 @@
   },
   "EVALGRID": {
     "EVALGRIDS": "Evaluation grids",
+    "THIS_EVALGRID": "this evaluation grid",
     "NB_EVALGRIDS": "Number of evaluation grids",
     "CODE": "Code",
     "CODE_REQUIRED_ERROR": "Please fill in the code.",
@@ -175,6 +176,7 @@
     "EDIT": "Edit",
     "UPDATE": "Update",
     "DELETE": "Delete",
+    "DELETE_CONFIRMATION": "Are you sure you want to delete {{name}}?",
     "ADD": "Add",
     "NO_DESCRIPTION": "No description."
   },
