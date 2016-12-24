@@ -59,6 +59,23 @@ exports.update = function (req, res) {
   });
 };
 
+/*
+ * Delete an evaluation grid
+ */
+exports.delete = function (req, res) {
+  var evalgrid = req.evalgrid;
+
+  evalgrid.remove(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+
+    res.json(evalgrid);
+  });
+};
+
 /**
  * List of evaluation grids
  */

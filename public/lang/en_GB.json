@@ -74,7 +74,8 @@
       "EVALTYPE": "Type",
       "SCORE": "Score"
     },
-    "CREATE": "Create an evaluation grid"
+    "CREATE": "Create an evaluation grid",
+    "SUCCESSFUL_DELETE": "The evaluation grid \"{{code}}\" has been successfully deleted!"
   },
   "EXAM": {
     "EXAMS": "Exams",
