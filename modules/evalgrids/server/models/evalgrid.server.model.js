@@ -21,6 +21,11 @@ var EvalGridSchema = new Schema({
     required: 'Please fill in the name of the evaluation grid.',
     trim: true
   },
+  description: {
+    type: String,
+    default: '',
+    trim: true
+  },
   categories: {
     type: [new Schema({
       name: {

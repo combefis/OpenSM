@@ -38,6 +38,28 @@ exports.read = function (req, res) {
 };
 
 /**
+ * Update an evaluation grid
+ */
+exports.update = function (req, res) {
+  var evalgrid = req.evalgrid;
+
+  evalgrid.code = req.body.code;
+  evalgrid.name = req.body.name;
+  evalgrid.description = req.body.description;
+  evalgrid.categories = req.body.categories;
+
+  evalgrid.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+
+    res.json(evalgrid);
+  });
+};
+
+/**
  * List of evaluation grids
  */
 exports.list = function (req, res) {
@@ -58,7 +80,7 @@ exports.list = function (req, res) {
  * Evaluation grid middleware
  */
 exports.evalgridByCode = function (req, res, next, code) {
-  EvalGrid.findOne({ code: code }, 'code name categories user')
+  EvalGrid.findOne({ code: code }, 'code name description categories user')
   .populate('user', 'displayName')
   .exec(function (err, evalgrid) {
     if (err) {

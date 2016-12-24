@@ -58,6 +58,7 @@
     "CODE_REQUIRED_ERROR": "Veuillez spécifier le code.",
     "NAME": "Nom",
     "NAME_REQUIRED_ERROR": "Veuillez spécifier le nom.",
+    "DESCRIPTION": "Description",
     "AUTHOR": "Auteur",
     "NO_DESCRIPTION": "@:GENERAL.NO_DESCRIPTION",
     "CATEGORIES": "Catégories",
