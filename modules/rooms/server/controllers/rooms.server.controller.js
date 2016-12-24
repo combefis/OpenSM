@@ -5,6 +5,7 @@
  */
 var path = require('path'),
   mongoose = require('mongoose'),
+  Exam = mongoose.model('Exam'),
   Room = mongoose.model('Room'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
@@ -65,20 +66,31 @@ exports.delete = function (req, res) {
   var room = req.room;
 
   // Check if can be deleted
-  if (!room) {
-    return res.status(400).send({
-      message: 'Cannot delete an exam session with exams'
-    });
-  }
-
-  room.remove(function (err) {
+  Exam.find({}, 'rooms').exec(function (err, exams) {
     if (err) {
-      return res.status(422).send({
-        message: errorHandler.getErrorMessage(err)
+      return res.status(400).send({
+        message: 'Cannot load exams'
       });
     }
 
-    res.json(room);
+    exams.forEach(function (exam) {
+      if (exam.rooms.some(function (element) { return element.room.equals(room.id); })) {
+        return res.status(400).send({
+          message: 'Cannot delete a room that is used by some exams'
+        });
+      }
+
+      // Delete the room
+      room.remove(function (err) {
+        if (err) {
+          return res.status(422).send({
+            message: errorHandler.getErrorMessage(err)
+          });
+        }
+
+        res.json(room);
+      });
+    });
   });
 };
 
