@@ -23,7 +23,7 @@
         <div ng-repeat="i in cvm.getNumber(vm.evalgrid.categories.length)" ng-init="category = vm.evalgrid.categories[i]">
           <h3 ng-bind="'C' + (i + 1) + '. ' + category.name"></h3>
 
-          <table class="table">
+          <table ng-if="category.criteria.length" class="table">
             <tr>
               <th></th>
               <th ng-bind="'EVALGRID.CRITERION.TEXT' | translate"></th>
@@ -35,8 +35,8 @@
               <td class="col-md-2" ng-bind="criterion.evaltype"></td>
             </tr>
           </table>
+          <p ng-if="!category.criteria.length" ng-bind="'EVALGRID.CRITERION.NO_CRITERION' | translate"></p>
         </div>
-
         <p ng-if="!vm.evalgrid.categories.length" ng-bind="'EVALGRID.NO_CATEGORIES' | translate"></p>
       </div>
 
