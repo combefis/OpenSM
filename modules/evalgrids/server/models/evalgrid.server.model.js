@@ -6,6 +6,13 @@
 var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
+/**
+ * Validation function for valid code
+ */
+var validateCode = function (code) {
+  return code.match(/^[a-zA-Z][a-zA-Z0-9]*$/g);
+};
+
 /*
  * EvalGrid Schema
  */
@@ -14,7 +21,8 @@ var EvalGridSchema = new Schema({
     type: String,
     required: 'Please fill in the code of the evaluation grid.',
     trim: true,
-    unique: true
+    unique: true,
+    validate: [validateCode, 'Please choose a valid code.']
   },
   name: {
     type: String,
