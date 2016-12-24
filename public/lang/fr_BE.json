@@ -201,6 +201,8 @@
     "NB_SEATS": "Nombre de sièges",
     "NB_SEATS_ERROR": "Veuillez spécifier le nombre de sièges.",
     "ROOM": "Local",
+    "EQUIPMENTS": "Équipements",
+    "NO_EQUIPMENTS": "Aucun équipements.",
     "PICTURES": "Photos",
     "NO_PICTURES": "Aucune photos.",
     "MAP": "Plan",

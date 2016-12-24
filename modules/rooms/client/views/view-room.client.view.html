@@ -18,6 +18,9 @@
         </div>
 
         <uib-tabset>
+          <uib-tab heading="{{'ROOM.EQUIPMENTS' | translate}}">
+            <div ng-if="!vm.room.equipment" ng-bind="'ROOM.NO_EQUIPMENTS' | translate"></div>
+          </uib-tab>
           <uib-tab heading="{{'ROOM.PICTURES' | translate}}">
             <div ng-if="!vm.room.picture" ng-bind="'ROOM.NO_PICTURES' | translate"></div>
           </uib-tab>

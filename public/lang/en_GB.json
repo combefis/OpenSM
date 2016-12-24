@@ -202,6 +202,8 @@
     "NB_SEATS": "Number of seats",
     "NB_SEATS_ERROR": "Please fill in the number of seats.",
     "ROOM": "Room",
+    "EQUIPMENTS": "Equipments",
+    "NO_EQUIPMENTS": "No equipments yet.",
     "PICTURES": "Pictures",
     "NO_PICTURES": "No pictures yet.",
     "MAP": "Map",

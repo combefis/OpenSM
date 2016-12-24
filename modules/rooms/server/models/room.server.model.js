@@ -24,6 +24,13 @@ var RoomSchema = new Schema({
     type: Number,
     required: 'Please fill in the number of seats of the room.'
   },
+  equipments: {
+    type: [{
+      type: String,
+      enum: ['blackboard', 'whiteboard', 'projector', 'data', 'ethernet']
+    }],
+    default: []
+  },
   pictures: {
     type: Boolean,
     default: false
