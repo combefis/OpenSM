@@ -35,6 +35,7 @@
         // Clear form fields
         vm.evalgrid.code = '';
         vm.evalgrid.name = '';
+        vm.evalgrid.description = '';
         vm.evalgrid.categories = [];
 
         $state.go('admin.manage.evalgrids.view', {

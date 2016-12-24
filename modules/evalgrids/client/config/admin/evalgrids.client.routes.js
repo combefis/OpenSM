@@ -49,6 +49,19 @@
           roles: ['admin'],
           pageTitle: '{{evalgridResolve.code}} — {{evalgridResolve.name}}'
         }
+      })
+      .state('admin.manage.evalgrids.edit', {
+        url: '/:evalgridCode/edit',
+        templateUrl: 'modules/evalgrids/client/views/admin/form-evalgrid.client.view.html',
+        controller: 'EvalGridsAdminController',
+        controllerAs: 'vm',
+        resolve: {
+          evalgridResolve: getEvalGrid
+        },
+        data: {
+          roles: ['admin'],
+          pageTitle: 'Edit an evaluation grid'
+        }
       });
   }
 

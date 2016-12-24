@@ -14,7 +14,8 @@ module.exports = function(app) {
 
   // Single evalgrid routes
   app.route('/api/evalgrids/:evalgridCode').all(evalgridsPolicy.isAllowed)
-    .get(evalgrids.read);
+    .get(evalgrids.read)
+    .put(evalgrids.update);
 
   // Finish by binding the evalgrid middleware
   app.param('evalgridCode', evalgrids.evalgridByCode);
