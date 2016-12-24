@@ -193,6 +193,7 @@
   "OPENSM_AUTHORS": "the OpenSM authors",
   "ROOM": {
     "ROOMS": "Rooms",
+    "THIS_ROOM": "this room",
     "CREATE": "Create a room",
     "NO_ROOM": "No rooms yet.",
     "NB_ROOMS": "Number of rooms",
@@ -210,6 +211,7 @@
     "NO_MAP": "No map yet.",
     "SUCCESSFUL_CREATION": "The room \"{{code}}\" has been successfully created!",
     "SUCCESSFUL_UPDATE": "The room \"{{code}}\" has been successfully updated!",
+    "SUCCESSFUL_DELETE": "The room \"{{code}}\" has been successfully deleted!",
     "CONFIGURATION": "Room configuration",
     "SELECT_CONFIGURATION": "Configuration",
     "STARTING_SEAT": "Starting seat",

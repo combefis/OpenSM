@@ -192,6 +192,7 @@
   "OPENSM_AUTHORS": "les auteurs de OpenSM",
   "ROOM": {
     "ROOMS": "Locaux",
+    "THIS_ROOM": "ce local",
     "CREATE": "Créer un local",
     "NO_ROOM": "Aucun local.",
     "NB_ROOMS": "Nombre de locaux",
@@ -209,6 +210,7 @@
     "NO_MAP": "Pas de plan.",
     "SUCCESSFUL_CREATION": "Le local \"{{code}}\" a été créé avec succès !",
     "SUCCESSFUL_UPDATE": "Le local \"{{code}}\" a été mis à jour avec succès !",
+    "SUCCESSFUL_DELETE": "Le local \"{{code}}\" a été supprimé avec succès !",
     "CONFIGURATION": "Configuration du local",
     "SELECT_CONFIGURATION": "Configuration",
     "STARTING_SEAT": "Siège de départ",
