@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('rooms')
+    .module('rooms.admin')
     .controller('RoomsListController', RoomsListController);
 
   RoomsListController.$inject = ['RoomsService'];

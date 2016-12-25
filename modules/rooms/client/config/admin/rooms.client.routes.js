@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('rooms.routes')
+    .module('rooms.admin.routes')
     .config(routeConfig);
 
   routeConfig.$inject = ['$stateProvider'];
@@ -16,7 +16,7 @@
       })
       .state('admin.manage.rooms.list', {
         url: '',
-        templateUrl: 'modules/rooms/client/views/list-rooms.client.view.html',
+        templateUrl: 'modules/rooms/client/views/admin/list-rooms.client.view.html',
         controller: 'RoomsListController',
         controllerAs: 'vm',
         data: {
@@ -25,7 +25,7 @@
       })
       .state('admin.manage.rooms.create', {
         url: '/create',
-        templateUrl: 'modules/rooms/client/views/form-room.client.view.html',
+        templateUrl: 'modules/rooms/client/views/admin/form-room.client.view.html',
         controller: 'RoomsController',
         controllerAs: 'vm',
         resolve: {
@@ -38,7 +38,7 @@
       })
       .state('admin.manage.rooms.view', {
         url: '/:roomCode',
-        templateUrl: 'modules/rooms/client/views/view-room.client.view.html',
+        templateUrl: 'modules/rooms/client/views/admin/view-room.client.view.html',
         controller: 'RoomsController',
         controllerAs: 'vm',
         resolve: {
@@ -50,7 +50,7 @@
       })
       .state('admin.manage.rooms.edit', {
         url: '/:roomCode/edit',
-        templateUrl: 'modules/rooms/client/views/form-room.client.view.html',
+        templateUrl: 'modules/rooms/client/views/admin/form-room.client.view.html',
         controller: 'RoomsController',
         controllerAs: 'vm',
         resolve: {

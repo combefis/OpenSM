@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('rooms')
+    .module('rooms.admin')
     .run(menuConfig);
 
   menuConfig.$inject = ['menuService'];

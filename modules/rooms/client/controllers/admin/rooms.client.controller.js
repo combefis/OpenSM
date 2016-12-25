@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('rooms')
+    .module('rooms.admin')
     .controller('RoomsController', RoomsController);
 
   RoomsController.$inject = ['$scope', '$state', 'roomResolve', '$window', '$http', 'Authentication', 'Notification', '$filter'];
