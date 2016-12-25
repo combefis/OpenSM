@@ -39,6 +39,9 @@
         context.scale(1, 1);
         context.font = 'normal 7pt Arial';
 
+        // Draw room info
+        context.fillText(configuration.room.code + ' — ' + configuration.room.name, 5, 15);
+
         // Draw the seats
         for (var i = 0; i < map.seats.length; i++) {
           var seat = map.seats[i];
