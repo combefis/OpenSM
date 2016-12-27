@@ -36,7 +36,8 @@ var IntershipSchema = new Schema({
       consultedTeacherApproval: { type: Boolean, default: 'false' },
       unitChiefApproval: { type: Boolean, default: 'false' },
       masterApproval: { type: Boolean, default: 'false' },
-      validatorApproval: { type: Boolean, default: 'false' }
+      validatorApproval: { type: Boolean, default: 'false' },
+      supervisorApproval: { type: Boolean, default: 'false' }
     }
   },
   enterprise: {
@@ -72,7 +73,7 @@ var IntershipSchema = new Schema({
   },
   intermediateEvaluation: {
     location: String,
-    supervisorNotes: String,
+    date: Date,
     masterNotes: String
   },
   continuousEvaluation: {

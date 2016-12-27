@@ -1,11 +1,20 @@
 <section>
     <ol class="breadcrumb">
-      <li><a ui-sref="admin.manage.internships.list" ng-bind="'INTERNSHIP.INTERNSHIPS' | translate"></a></li>
-      <li ng-if="!vm.internships._id" class="active"><a ui-sref="admin.manage.internships.create" ng-bind="'GENERAL.CREATE' | translate"></a></li>
+      <li>
+        <a ui-sref="admin.manage.internships.list" ng-bind="'INTERNSHIP.INTERNSHIPS' | translate"></a>
+      </li>
+      <li ng-if="vm.internship._id" class="active">
+          <a ui-sref="admin.manage.internships.view({ internshipId: vm.internship._id })" ng-bind="vm.internship._id"></a>
+      </li>
+      <li ng-if="vm.internship._id" class="active">
+          <a ui-sref="admin.manage.internships.edit({ internshipId: vm.internship._id })" ng-bind="'GENERAL.EDIT' | translate"></a>
+      </li>
+      <li ng-if="!vm.internship._id" class="active">
+          <a ui-sref="admin.manage.internships.create" ng-bind="'GENERAL.CREATE' | translate"></a></li>
     </ol>
 </section>
 
-    <h2>{{vm.internships._id ? 'INTERNSHIP.EDIT' : 'INTERNSHIP.CREATE' | translate}}</h2>
+    <h2>{{vm.internship._id ? 'INTERNSHIP.EDIT' : 'INTERNSHIP.CREATE' | translate}}</h2>
 
     <div class="col-md-12">
       <form name="vm.form.internshipForm" class="form-horizontal" ng-submit="vm.save(vm.form.internshipForm.$valid)" novalidate>
@@ -239,6 +248,22 @@
           </div>
 
           <div class="form-group" show-errors>
+            <label class="control-label" for="InternshipPropositionsSupervisorApproval" ng-bind="'INTERNSHIP.PROPOSITION.APPROVAL.SUPERVISORAPPROVAL' | translate"></label>
+            <input 
+            name="internship.proposition.approval.supervisorApproval" 
+            type="checkbox" 
+            ng-true-value = "true"
+            ng-false-value = "false"
+            ng-model="vm.internship.proposition.approval.supervisorApproval" 
+            id="propositionApprovalMasterApproval" 
+            class="form-control" 
+            />
+            <div ng-messages="vm.form.internshipForm.proposition.approval.supervisorApproval.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.PROPOSITION.APPROVAL.SUPERVISORAPPROVAL' | translate"></p>
+          </div>
+          </div>
+
+          <div class="form-group" show-errors>
             <label class="control-label" for="InternshipPropositionApprovalValidatorApproval" ng-bind="'INTERNSHIP.PROPOSITION.APPROVAL.VALIDATORAPPROVAL' | translate"></label>
             <input 
             name="internship.proposition.approval.validatorApproval" 
@@ -253,6 +278,9 @@
               <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.PROPOSITION.APPROVAL.VALIDATORAPPROVAL' | translate"></p>
           </div>
           </div>
+
+
+
         </fieldset>
 
     <h3>Convention</h3>

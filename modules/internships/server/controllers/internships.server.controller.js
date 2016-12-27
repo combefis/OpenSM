@@ -43,6 +43,89 @@ exports.create = function (req, res) {
   });
 };
 
+exports.remove = function (req, res) {
+  var internship = req.internship;
+
+  internship.remove(function (err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+
+    res.json(internship);
+  });
+};
+
+
+exports.update = function (req, res) {
+  var internship = req.internship;
+
+  internship.student = req.body.student;
+  internship.master = req.body.master;
+  internship.supervisor = req.body.supervisor;
+  internship.validator = req.body.validator;
+  internship.proposition.theme = req.body.proposition.theme;
+  internship.proposition.domain = req.body.proposition.domain;
+  internship.proposition.location = req.body.proposition.location;
+  internship.proposition.description = req.body.proposition.description;
+  internship.proposition.approval.consultedTeacher = req.body.proposition.approval.consultedTeacher;
+  internship.proposition.consultedTeacherApproval = req.body.proposition.approval.consultedTeacherApproval;
+  internship.proposition.unitChiefApproval = req.body.proposition.unitChiefApproval;
+  internship.proposition.masterApproval = req.body.proposition.masterApproval;
+  internship.proposition.validatorApproval = req.body.proposition.validatorApproval;
+  internship.proposition.supervisorApproval = req.body.proposition.supervisorApproval;
+
+  internship.enterprise.name = req.body.enterprise.name;
+  internship.enterprise.domain = req.body.enterprise.domain;
+  internship.enterprise.fax = req.body.enterprise.fax;
+  internship.enterprise.mail = req.body.enterprise.mail;
+
+  internship.enterprise.address.street = req.body.enterprise.address.street;
+  internship.enterprise.address.number = req.body.enterprise.address.number;
+  internship.enterprise.address.postalCode = req.body.enterprise.address.postalCode;
+  internship.enterprise.address.city = req.body.enterprise.address.city;
+  internship.enterprise.address.country = req.body.enterprise.address.country;
+  internship.enterprise.phoneNumber = req.body.enterprise.phoneNumber;
+
+  internship.enterprise.representative.name = req.body.enterprise.representative.name;
+  internship.enterprise.representative.position = req.body.enterprise.representative.position;
+
+  internship.convention.validation = req.body.convention.validation;
+
+  internship.activitiesNote.generalObjectives = req.body.activitiesNote.generalObjectives;
+  internship.activitiesNote.specificObjectives = req.body.activitiesNote.specificObjectives;
+  internship.activitiesNoteapproval = req.body.activitiesNoteapproval;
+/*
+  internship.firstVisit.date = req.body.firstVisit.date;
+  internship.firstVisit.location = req.body.firstVisit.location;
+  internship.firstVisit.masterNotes = req.body.firstVisit.masterNotes;
+
+  internship.intermediateEvaluation.location = req.body.intermediateEvaluation.location;
+  internship.intermediateEvaluation.supervisorNotes = req.body.intermediateEvaluation.supervisorNotes;
+  internship.intermediateEvaluation.date = req.body.intermediateEvaluation.date;
+*/
+  internship.oralPresentation.date = req.body.oralPresentation.date;
+  internship.oralPresentation.location = req.body.oralPresentation.location;
+
+  internship.certificate.handedIn = req.body.certificate.handedIn;
+
+  internship.deadlines.startInternship = req.body.deadlines.startInternship;
+  internship.deadlines.endInternship = req.body.deadlines.endInternship;
+  internship.deadlines.writtenReport = req.body.deadlines.writtenReport;
+  internship.deadlines.certificate = req.body.deadlines.certificate;
+
+  internship.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+    res.json(internship);
+  });
+};
+
+
 exports.internshipByID = function (req, res, next, id) {
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({

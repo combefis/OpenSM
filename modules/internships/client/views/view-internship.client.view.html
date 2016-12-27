@@ -1,7 +1,9 @@
 <section>
 	<ol class="breadcrumb">
 	    <li><a ui-sref="admin.manage.internships.list" ng-bind="'INTERNSHIP.INTERNSHIPS' | translate"></a></li>
-	    <li ng-if="!vm.internships._id" class="active"><a ui-sref="admin.manage.internships.view({ internshipId: vm.internship._id })" ng-bind="vm.internship._id"></a></li>
+	    <li ng-if="vm.internship._id" class="active">
+        <a ui-sref="admin.manage.internships.view({ internshipId: vm.internship._id })" ng-bind="vm.internship._id"></a>
+      </li>
   </ol>
 
   <div class="page-header">
@@ -10,7 +12,7 @@
         <h1 ng-bind="vm.internship._id"></h1>
       </div>
       <div class="col-md-4">
-        <a class="btn btn-primary" ui-sref="admin.manage.internship-edit({internshipId: vm.inernship._id})">
+        <a class="btn btn-primary" ui-sref="admin.manage.internships.edit({ internshipId: vm.internship._id })">
           <i class="glyphicon glyphicon-edit"></i>
         </a>
         <a class="btn btn-primary" ng-click="vm.remove()">
@@ -202,21 +204,21 @@
         <div class="col-md-3">
           <h3>Convention</h3>
           <div class="row">
-                <div class="col-md-2"><strong>Status</strong></div>
+                <div class="col-md-3"><strong>Status</strong></div>
                 <div class="col-md-7" ng-bind="vm.internship.convention.validation"></div>
           </div>
         </div>
         <div class="col-md-3">
           <h3>Certificate</h3>
           <div class="row">
-                <div class="col-md-2"><strong>Status</strong></div>
+                <div class="col-md-3"><strong>Status</strong></div>
                 <div class="col-md-7" ng-bind="vm.internship.convention.validation"></div>
           </div>
         </div>
         <div class="col-md-3">
           <h3>Written report</h3>
           <div class="row">
-                <div class="col-md-2"><strong>Status</strong></div>
+                <div class="col-md-3"><strong>Status</strong></div>
                 <div class="col-md-7" ng-bind="vm.internship.convention.validation"></div>
           </div>
         </div>
@@ -245,7 +247,7 @@
           <h3>Written report</h3>
           <div class="row">
                 <div class="col-md-2"><strong>Date</strong></div>
-                <div class="col-md-7" ng-bind="vm.internship.deadline.writtenReport | amDateFormat:'ddd D MMM YYYY'"></div>
+                <div class="col-md-7" ng-bind="vm.internship.deadlines.writtenReport | amDateFormat:'ddd D MMM YYYY'"></div>
           </div>
         </div>        
         <div class="col-md-3">

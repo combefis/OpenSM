@@ -13,7 +13,9 @@ module.exports = function(app) {
     .post(internships.create);
 
   app.route('/api/internships/:internshipId').all(internshipsPolicy.isAllowed)
-    .get(internships.read);
+    .get(internships.read)
+    .delete(internships.remove)
+    .put(internships.update);
 
   app.param('internshipId', internships.internshipByID);
   // toutes les routes qui ont internshipID devront passer par a fonction internshiByID, puis par le .all(inter), pui .get etc..

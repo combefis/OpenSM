@@ -47,7 +47,20 @@
         internshipResolve: getInternship
       },
       data: {
-        pageTitle: 'view internship details'
+        pageTitle: 'View internship details'
+      }
+    })
+
+    .state('admin.manage.internships.edit', {
+      url: '/:internshipId/edit',
+      templateUrl: 'modules/internships/client/views/form-internship.client.view.html',
+      controller: 'InternshipsController',
+      controllerAs: 'vm',
+      resolve: {
+        internshipResolve: getInternship
+      },
+      data: {
+        pageTitle: 'Edit internship'
       }
     });
   }

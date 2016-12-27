@@ -5,13 +5,14 @@
     .module('internships')
     .controller('InternshipsController', InternshipsController);
 
-  InternshipsController.$inject = ['$scope', '$state', 'internshipResolve', '$window', 'Authentication', '$http'];
+  InternshipsController.$inject = ['$scope', '$state', 'internshipResolve', '$window', 'Authentication', '$http', '$filter'];
 
-  function InternshipsController($scope, $state, internship, $window, Authentication, http) {
+  function InternshipsController($scope, $state, internship, $window, Authentication, http, filter) {
     var vm = this; // on instancie tout ce qu'on vient de lui passer
 
     vm.internship = internship; // le "resolve"
     vm.save = save;
+    vm.remove = remove;
     vm.addGeneralObjective = addGeneralObjective;
     vm.addSpecificObjective = addSpecificObjective;
     vm.removeGeneralObjective = removeGeneralObjective;
@@ -49,6 +50,20 @@
       function errorCallback(res) {
         console.log(res);
         vm.error = res.message.message;
+      }
+    }
+
+    function remove() {
+      if ($window.confirm('Are you sure you want to delete this internship?')) {
+        vm.internship.$remove({ _id: internship._id }, onSuccess, onError);
+      }
+
+      function onSuccess(internship) {
+        $state.go('admin.manage.internships.list');
+      }
+
+      function onError(errorResponse) {
+        var error = errorResponse.data;
       }
     }
 
