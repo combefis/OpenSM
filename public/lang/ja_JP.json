@@ -1,23 +1,30 @@
 {
   "ACTIVITY": {
     "ACTIVITIES": "Activités",
+    "CREATE": "Créer une activité",
     "NO_ACTIVITY": "Aucune activité.",
     "NB_ACTIVITIES": "Nombre d'activités",
     "CODE": "コデ",
     "CODE_ERROR": "Veuillez spécifier le code.",
-    "NAME": "Nom",
+    "NAME": "科目",
     "NAME_ERROR": "Veuillez spécifier le nom.",
     "TEACHERS": "Enseignants",
-    "TEACHER_ERROR": "Veuillez spécifier au moins un enseignant."
+    "ADD_TEACHER": "Ajouter un enseignant",
+    "TEACHER_MISSING_ERROR": "Veuillez spécifier au moins un enseignant.",
+    "DESCRIPTION": "Description",
+    "NO_DESCRIPTION": "@:GENERAL.NO_DESCRIPTION",
+    "SUCCESSFUL_CREATION": "L'activité \"{{code}}\" a été créée avec succès !",
+    "SUCCESSFUL_UPDATE": "L'activité \"{{code}}\" a été mise à jour avec succès !"
   },
   "AUTHENTICATION": {
     "SIGN_IN": "ログイン",
     "REGISTER": "新規取得",
-    "FORGOT_PASSWORD": "パスワードをお忘れですか?"
+    "FORGOT_PASSWORD": "パスワードをお忘れですか？"
   },
   "BY": "に依り",
   "COURSE": {
     "COURSES": "講座",
+    "CREATE": "Créer un cours",
     "NO_COURSE": "Aucun cours.",
     "NB_COURSES": "Nombre de cours",
     "CODE": "コデ",
@@ -27,11 +34,15 @@
     "COORDINATOR": "Coordinateur",
     "COORDINATOR_MISSING_ERROR": "Veuillez spécifier le coordinateur.",
     "COORDINATOR_TOOMUCH_ERROR": "Veuillez ne spécifier qu'un seul coordinateur.",
+    "TEAM": "Équipe",
     "DESCRIPTION": "Description",
-    "NO_DESCRIPTION": "Pas de description.",
+    "NO_DESCRIPTION": "@:GENERAL.NO_DESCRIPTION",
     "ACTIVITIES": "Activités",
     "ADD_ACTIVITIES": "Ajouter une activité",
-    "NO_ACTIVITY": "Pas d'activité."
+    "NO_ACTIVITY": "Pas d'activité.",
+    "NB_ACTIVITIES": "@:ACTIVITY.NB_ACTIVITIES",
+    "SUCCESSFUL_CREATION": "Le cours \"{{code}}\" a été créé avec succès !",
+    "SUCCESSFUL_UPDATE": "Le cours \"{{code}}\" a été mis à jour avec succès !"
   },
   "DASHBOARD": {
     "DASHBOARD": "Tableau de bord",
@@ -40,8 +51,34 @@
     "ANNOUNCEMENT": "Annonces",
     "WORK": "仕事"
   },
+  "EVALGRID": {
+    "EVALGRIDS": "Grilles d'évaluation",
+    "THIS_EVALGRID": "cette grille d'évaluation",
+    "NB_EVALGRIDS": "Nombre de grilles d'évaluation",
+    "CODE": "コデ",
+    "CODE_REQUIRED_ERROR": "Veuillez spécifier le code.",
+    "NAME": "Nom",
+    "NAME_REQUIRED_ERROR": "Veuillez spécifier le nom.",
+    "DESCRIPTION": "Description",
+    "AUTHOR": "Auteur",
+    "NO_DESCRIPTION": "@:GENERAL.NO_DESCRIPTION",
+    "CATEGORIES": "Catégories",
+    "ADD_CATEGORY": "Ajouter une catégorie",
+    "NO_CATEGORIES": "Pas de catégories.",
+    "CATEGORY_NAME": "Nom",
+    "CATEGORY_NAME_REQUIRED_ERROR": "Veuillez spécifier le nom de la catégorie.",
+    "CRITERIA": "Critères",
+    "CRITERION": {
+      "ADD": "Ajouter un critère",
+      "NO_CRITERION": "Pas de critère.",
+      "TEXT": "Texte",
+      "EVALTYPE": "Type",
+      "SCORE": "Score"
+    },
+    "CREATE": "Créer une grille d'évaluation"
+  },
   "EXAM": {
-    "EXAMS": "Examens",
+    "EXAMS": "テスト",
     "CREATE": "Créer un examen",
     "NO_EXAM": "Aucun examen.",
     "NB_EXAMS": "Nombre d'examens",
@@ -58,25 +95,61 @@
     "DURATION": "Durée",
     "DURATION_ERROR": "Veuillez spécifier la durée.",
     "EXAMSESSION_SUMMARY": "Examen de la session de \"{{name}}\" qui se déroule du",
-    "SUCCESSFUL_UPDATE": "Examen mis à jour avec succès !",
+    "SUCCESSFUL_CREATION": "L'examen \"{{title}}\" a été créé avec succès !",
+    "SUCCESSFUL_UPDATE": "L'examen \"{{title}}\" a été mis à jour avec succès !",
     "SUCCESSFUL_DELETE": "Examen supprimé avec succès !",
-    "STUDENTS": "Étudiants",
+    "STUDENTS": "学生",
     "NO_STUDENTS": "Pas d'étudiants inscrits.",
-    "COPIES": "Copies",
-    "NO_COPIES": "Pas de copies chargées.",
-    "ADD_COPY": "Ajouter une copie",
-    "COPY": "Questionnaire",
-    "COPY_NOT_UPLOADED": "Questionnaire pas encore chargé.",
-    "FILE_UPLOADED_ON": "Fichier chargé le",
+    "STUDENT_SUCCESSFUL_ADD": "L'étudiant \"{{username}}\" a été ajouté avec succès !",
+    "STUDENT_SUCCESSFUL_DELETE": "L'étudiant \"{{username}}\" a été supprimé avec succès !",
+    "COPY": {
+      "COPIES": "Questionnaires",
+      "NO_COPIES": "Pas de questionnaires chargés.",
+      "COPY": "Questionnaire",
+      "UPLOAD": "Téléverser",
+      "DOWNLOAD": "Télécharger",
+      "VALIDATE": "Valider",
+      "DELETE": "@:GENERAL.DELETE",
+      "ADD": "Ajouter un questionnaire",
+      "NOT_UPLOADED": "Questionnaire pas encore chargé.",
+      "SUCCESSFUL_ADD": "Questionnaire ajouté avec succès !",
+      "SUCCESSFUL_DELETE": "Questionnaire supprimé avec succès !",
+      "FILE_UPLOADED_ON": "Fichier chargé le",
+      "GENERATE": "Générer les copies",
+      "MARK_PRINTED": "Marquer comme imprimé",
+      "SUCCESSFUL_VALIDATION": "Les questionnaires ont été validés avec succès !"
+    },
+    "ROOM": {
+      "DELETE": "@:GENERAL.DELETE",
+      "ROOM": "Local"
+    },
+    "STUDENT": {
+      "DELETE": "@:GENERAL.DELETE",
+      "NUMBER": "Numéro",
+      "NAME": "Nom"
+    },
     "ROOMS": "Locaux",
-    "NO_ROOMS": "Pas de locaux attribués."
+    "NO_ROOMS": "Pas de locaux attribués.",
+    "ROOM_SUCCESSFUL_ADD": "Le local \"{{code}}\" a été ajouté avec succès !",
+    "ROOM_SUCCESSFUL_DELETE": "Le local \"{{code}}\" a été supprimé avec succès !",
+    "ROOM_CONFIGURATION": "@:ROOM.CONFIGURATION",
+    "VALIDATE": "Valider",
+    "STATE": "État",
+    "VALIDATED": "Validé",
+    "ASSIGN_SEATS": "Affecter les sièges",
+    "SEATS_ASSIGNED": "Sièges affectés avec succès !",
+    "SEAT": "Siège",
+    "SUCCESSFUL_VALIDATION": "Examen validé avec succès !",
+    "REGISTRATIONS": "Inscriptions",
+    "PRINTINGS": "Impressions",
+    "VALIDATED_ON": "validées le "
   },
   "EXAMSESSION": {
     "EXAMSESSIONS": "Sessions d'examens",
     "CREATE": "Créer une session d'examen",
     "NO_EXAMSESSION": "Aucune session d'examens.",
     "NB_EXAMSESSIONS": "Nombre de sessions d'examens",
-    "CODE": "コデ",
+    "CODE": "Code",
     "CODE_ERROR": "Veuillez spécifier le code.",
     "NAME": "Nom",
     "NAME_ERROR": "Veuillez spécifier le nom.",
@@ -87,13 +160,14 @@
     "END_ERROR": "Veuillez spécifier la date de fin.",
     "FROM": "から",
     "TO": "に",
-    "NO_DESCRIPTION": "記載なし.",
+    "NO_DESCRIPTION": "@:GENERAL.NO_DESCRIPTION",
     "PLANNING": "Planning",
     "NO_EXAM": "Aucun examen dans cette session.",
     "SUCCESSFUL_DELETE": "Session d'examens supprimée avec succès !",
     "ADD_EXAM": "Ajouter un examen",
-    "SUCCESSFUL_EXAMADD": "Examen ajouté avec succès !",
-    "NB_EXAMS": "Nombre d'examens"
+    "SUCCESSFUL_EXAMADD": "L'examen \"{{title}}\" a été ajouté avec succès à la session \"{code}\" !",
+    "NB_EXAMS": "Nombre d'examens",
+    "SHOW_MY_EXAMS": "Ne montrer que mes examens"
   },
   "GENERAL": {
     "ACADEMICYEAR": "年学",
@@ -101,11 +175,13 @@
     "EDIT": "編集",
     "UPDATE": "更新",
     "DELETE": "除く",
-    "ADD": "加える"
+    "DELETE_CONFIRMATION": "Êtes-vous sûr de vouloir supprimer {{name}} ?",
+    "ADD": "加える",
+    "NO_DESCRIPTION": "記載なし。"
   },
   "HOME": {
     "LEAD": "OpenSMプラットフォームへようこそ!",
-    "INTRO": "ブラブラ.",
+    "INTRO": "ブラブラ。",
     "OR": "又は"
   },
   "INFORMATIONS": "弘報",
@@ -116,13 +192,34 @@
   "OPENSM_AUTHORS": "OpenSMの開発者",
   "ROOM": {
     "ROOMS": "教室",
+    "THIS_ROOM": "ce local",
+    "CREATE": "Créer un local",
     "NO_ROOM": "Aucun local.",
     "NB_ROOMS": "Nombre de locaux",
     "CODE": "コデ",
     "CODE_ERROR": "Veuillez spécifier le code.",
     "NAME": "Nom",
-    "NAME_ERROR": "Veuillez spécifier le nom.",
-    "ROOM": "教室"
+    "NB_SEATS": "Nombre de sièges",
+    "NB_SEATS_ERROR": "Veuillez spécifier le nombre de sièges.",
+    "ROOM": "教室",
+    "EQUIPMENTS": "Équipements",
+    "NO_EQUIPMENTS": "Aucun équipements.",
+    "PICTURES": "Photos",
+    "NO_PICTURES": "Aucune photos.",
+    "MAP": "Plan",
+    "NO_MAP": "Pas de plan.",
+    "SUCCESSFUL_CREATION": "Le local \"{{code}}\" a été créé avec succès !",
+    "SUCCESSFUL_UPDATE": "Le local \"{{code}}\" a été mis à jour avec succès !",
+    "SUCCESSFUL_DELETE": "Le local \"{{code}}\" a été supprimé avec succès !",
+    "CONFIGURATION": "Configuration du local",
+    "SELECT_CONFIGURATION": "Configuration",
+    "STARTING_SEAT": "Siège de départ",
+    "SELECTED_SEATS": "sièges sélectionnés",
+    "CHANGE_CONFIGURATION": "Changer la configuration",
+    "CONFIGURATION_CHANGED": "La configuration du local a été changée avec succès !"
+  },
+  "STUDENT": {
+    "STUDENT": "学生"
   },
   "USER": {
     "USERNAME": "利用者名",
