@@ -22,6 +22,7 @@ module.exports = {
     'no-console': 0,
     'no-else-return': 0,
     'no-empty-class': 0,
+    'no-loop-func': 0,
     'no-multi-spaces': 2,
     'no-param-reassign': 0,
     'no-shadow': 0,

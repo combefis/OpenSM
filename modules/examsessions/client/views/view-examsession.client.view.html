@@ -5,31 +5,34 @@
 
   <div ng-if="vm.examsession.$resolved">
     <ol class="breadcrumb">
-      <li><a ui-sref="manage.examsessions.list" ng-bind="'EXAMSESSION.EXAMSESSIONS' | translate"></a></li>
-      <li class="active"><a ui-sref="manage.examsessions.view({ examsessionCode: vm.examsession.code })" ng-bind="vm.examsession.code"></a></li>
+      <li><a ui-sref="examsessions.list" ng-bind="'EXAMSESSION.EXAMSESSIONS' | translate"></a></li>
+      <li class="active"><a ui-sref="examsessions.view({ examsessionCode: vm.examsession.code })" ng-bind="vm.examsession.code"></a></li>
     </ol>
 
-    <h2>{{vm.examsession.name}}</h2>
+    <h2 ng-bind="vm.examsession.name"></h2>
 
     <div class="row">
       <div class="col-md-12">
-        <div class="action-box" ng-if="cvm.hasAnyRole(['manager.exams'])">
-          <a ui-sref="manage.examsessions.edit({ examsessionCode: vm.examsession.code })" class="btn btn-success"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> {{'GENERAL.EDIT' | translate}}</a>
-          <a ng-click="vm.remove()" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> {{'GENERAL.DELETE' | translate}}</a>
-        </div>
-
         <p><span ng-bind="'EXAMSESSION.FROM' | translate"></span> <i ng-bind="vm.examsession.start | amDateFormat:'ddd D MMM YYYY'"></i> <span ng-bind="'EXAMSESSION.TO' | translate"></span> <i ng-bind="vm.examsession.end | amDateFormat:'ddd D MMM YYYY'"></i>.</p>
 
         <div ng-if="vm.examsession.description" ng-bind="vm.examsession.description"></div>
 
         <h3 ng-bind="'EXAMSESSION.PLANNING' | translate"></h3>
 
-        <div class="action-box" ng-if="cvm.hasAnyRole(['manager.exams'])">
-          <a ui-sref="manage.examsessions.addexam({ examsessionCode: vm.examsession.code })" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> {{'EXAMSESSION.ADD_EXAM' | translate}}</a>
+        <div class="clearfix" ng-if="cvm.hasAnyRole(['teacher'])">
+          <div class="pull-right">
+            <form class="form-inline right-form">
+              <label><input type="checkbox" ng-model="vm.showMyExams" class="form-control"> {{'EXAMSESSION.SHOW_MY_EXAMS' | translate}}</label>
+            </form>
+          </div>
         </div>
 
         <div class="list-group" ng-if="vm.examsession.exams.length">
-          <a ng-repeat="exam in vm.examsession.exams | orderBy: 'date'" ui-sref="manage.examsessions.viewexam({ examsessionCode: vm.examsession.code, examId: exam._id })" class="list-group-item"><b>{{exam.title}}</b><br /><small><i>{{exam.date | amDateFormat:'ddd D MMM YYYY'}}</i></small></a>
+          <a ng-repeat="exam in vm.examsession.exams | filter: vm.filterExam | orderBy: '+date'" ui-sref="examsessions.viewexam({ examsessionCode: vm.examsession.code, examId: exam._id })" class="list-group-item">
+            <b>{{exam.course.code}} — {{exam.course.name}}</b><br />
+            <i>{{exam.title}}</i><br />
+            <small><i>{{exam.date | amDateFormat:'ddd D MMM YYYY'}}</i></small>
+          </a>
         </div>
 
         <div ng-if="!vm.examsession.exams.length" ng-bind="'EXAMSESSION.NO_EXAM' | translate"></div>

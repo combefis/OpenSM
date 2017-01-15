@@ -26,6 +26,13 @@ var CourseSchema = new Schema({
     ref: 'User',
     required: 'Please fill in the coordinator of the course.'
   },
+  team: {
+    type: [{
+      type: Schema.ObjectId,
+      ref: 'User'
+    }],
+    default: []
+  },
   description: {
     type: String,
     trim: true

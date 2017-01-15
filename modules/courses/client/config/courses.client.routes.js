@@ -9,35 +9,23 @@
 
   function routeConfig($stateProvider) {
     $stateProvider
-      .state('admin.manage.courses', {
+      .state('courses', {
         abstract: true,
         url: '/courses',
         template: '<ui-view/>'
       })
-      .state('admin.manage.courses.list', {
+      .state('courses.list', {
         url: '',
         templateUrl: 'modules/courses/client/views/list-courses.client.view.html',
         controller: 'CoursesListController',
         controllerAs: 'vm',
         data: {
+          roles: ['teacher'],
           pageTitle: 'Courses'
         }
       })
-      .state('admin.manage.courses.create', {
-        url: '/create',
-        templateUrl: 'modules/courses/client/views/form-course.client.view.html',
-        controller: 'CoursesController',
-        controllerAs: 'vm',
-        resolve: {
-          courseResolve: newCourse
-        },
-        data: {
-          roles: ['admin'],
-          pageTitle: 'Create a course'
-        }
-      })
-      .state('admin.manage.courses.view', {
-        url: '/:courseId',
+      .state('courses.view', {
+        url: '/:courseCode',
         templateUrl: 'modules/courses/client/views/view-course.client.view.html',
         controller: 'CoursesController',
         controllerAs: 'vm',
@@ -45,20 +33,8 @@
           courseResolve: getCourse
         },
         data: {
+          roles: ['teacher'],
           pageTitle: '{{courseResolve.code}} — {{courseResolve.name}}'
-        }
-      })
-      .state('admin.manage.courses.edit', {
-        url: '/:courseId/edit',
-        templateUrl: 'modules/courses/client/views/form-course.client.view.html',
-        controller: 'CoursesController',
-        controllerAs: 'vm',
-        resolve: {
-          courseResolve: getCourse
-        },
-        data: {
-          roles: ['admin'],
-          pageTitle: 'Edit a course'
         }
       });
   }
@@ -67,7 +43,7 @@
 
   function getCourse($stateParams, CoursesService) {
     return CoursesService.get({
-      courseId: $stateParams.courseId
+      courseCode: $stateParams.courseCode
     }).$promise;
   }
 

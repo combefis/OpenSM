@@ -49,6 +49,7 @@
           <ul>
             <li><a ui-sref="admin.manage.activities.list" ng-bind="'ACTIVITY.ACTIVITIES' | translate"></a></li>
             <li><a ui-sref="admin.manage.courses.list" ng-bind="'COURSE.COURSES' | translate"></a></li>
+            <li><a ui-sref="admin.manage.evalgrids.list" ng-bind="'EVALGRID.EVALGRIDS' | translate"></a></li>
             <li><a ui-sref="admin.manage.exams.list" ng-bind="'EXAM.EXAMS' | translate"></a></li>
             <li><a ui-sref="admin.manage.examsessions.list" ng-bind="'EXAMSESSION.EXAMSESSIONS' | translate"></a></li>
             <li><a ui-sref="admin.manage.internships.list" ng-bind="'INTERNSHIP.INTERNSHIPS' | translate"></a></li>
@@ -62,6 +63,25 @@
         <div class="panel-body">
           <ul>
             <li><a ui-sref="manage.examsessions.list" ng-bind="'EXAMSESSION.EXAMSESSIONS' | translate"></a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="panel panel-default" ng-if="cvm.hasAnyRole(['teacher'])">
+        <div class="panel-heading"><h3 class="panel-title" ng-bind="'DASHBOARD.WORK' | translate"></h3></div>
+        <div class="panel-body">
+          <ul>
+            <li><a ui-sref="courses.list" ng-bind="'COURSE.COURSES' | translate"></a></li>
+            <li><a ui-sref="examsessions.list" ng-bind="'EXAMSESSION.EXAMSESSIONS' | translate"></a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="panel panel-default" ng-if="cvm.hasAnyRole(['printer'])">
+        <div class="panel-heading"><h3 class="panel-title" ng-bind="'DASHBOARD.WORK' | translate"></h3></div>
+        <div class="panel-body">
+          <ul>
+            <li><a ui-sref="examsessions.list" ng-bind="'EXAMSESSION.EXAMSESSIONS' | translate"></a></li>
           </ul>
         </div>
       </div>

@@ -9,35 +9,22 @@
 
   function routeConfig($stateProvider) {
     $stateProvider
-      .state('manage.examsessions', {
+      .state('examsessions', {
         abstract: true,
         url: '/examsessions',
         template: '<ui-view/>'
       })
-      .state('manage.examsessions.list', {
+      .state('examsessions.list', {
         url: '',
         templateUrl: 'modules/examsessions/client/views/list-examsessions.client.view.html',
         controller: 'ExamSessionsListController',
         controllerAs: 'vm',
         data: {
-          roles: ['manager.exams'],
+          roles: ['teacher', 'printer'],
           pageTitle: 'Exam sessions'
         }
       })
-      .state('manage.examsessions.create', {
-        url: '/create',
-        templateUrl: 'modules/examsessions/client/views/form-examsession.client.view.html',
-        controller: 'ExamSessionsController',
-        controllerAs: 'vm',
-        resolve: {
-          examsessionResolve: newExamSession
-        },
-        data: {
-          roles: ['manager.exams'],
-          pageTitle: 'Create an exam session'
-        }
-      })
-      .state('manage.examsessions.view', {
+      .state('examsessions.view', {
         url: '/:examsessionCode',
         templateUrl: 'modules/examsessions/client/views/view-examsession.client.view.html',
         controller: 'ExamSessionsController',
@@ -46,21 +33,8 @@
           examsessionResolve: getExamSession
         },
         data: {
-          roles: ['manager.exams'],
+          roles: ['teacher', 'printer'],
           pageTitle: '{{examsessionResolve.name}}'
-        }
-      })
-      .state('manage.examsessions.edit', {
-        url: '/:examsessionCode/edit',
-        templateUrl: 'modules/examsessions/client/views/form-examsession.client.view.html',
-        controller: 'ExamSessionsController',
-        controllerAs: 'vm',
-        resolve: {
-          examsessionResolve: getExamSession
-        },
-        data: {
-          roles: ['manager.exams'],
-          pageTitle: 'Edit an exam session'
         }
       });
   }

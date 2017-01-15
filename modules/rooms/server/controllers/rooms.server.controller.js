@@ -5,6 +5,7 @@
  */
 var path = require('path'),
   mongoose = require('mongoose'),
+  Exam = mongoose.model('Exam'),
   Room = mongoose.model('Room'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
@@ -22,6 +23,7 @@ exports.create = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     }
+
     res.json(room);
   });
 };
@@ -32,6 +34,7 @@ exports.create = function (req, res) {
 exports.read = function (req, res) {
   // convert mongoose document to JSON
   var room = req.room ? req.room.toJSON() : {};
+
   res.json(room);
 };
 
@@ -43,6 +46,7 @@ exports.update = function (req, res) {
 
   room.code = req.body.code;
   room.name = req.body.name;
+  room.nbseats = req.body.nbseats;
 
   room.save(function (err) {
     if (err) {
@@ -50,7 +54,43 @@ exports.update = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     }
+
     res.json(room);
+  });
+};
+
+/*
+ * Delete a room
+ */
+exports.delete = function (req, res) {
+  var room = req.room;
+
+  // Check if can be deleted
+  Exam.find({}, 'rooms').exec(function (err, exams) {
+    if (err) {
+      return res.status(400).send({
+        message: 'Cannot load exams'
+      });
+    }
+
+    exams.forEach(function (exam) {
+      if (exam.rooms.some(function (element) { return element.room.equals(room.id); })) {
+        return res.status(400).send({
+          message: 'Cannot delete a room that is used by some exams'
+        });
+      }
+
+      // Delete the room
+      room.remove(function (err) {
+        if (err) {
+          return res.status(422).send({
+            message: errorHandler.getErrorMessage(err)
+          });
+        }
+
+        res.json(room);
+      });
+    });
   });
 };
 
@@ -58,12 +98,15 @@ exports.update = function (req, res) {
  * List of rooms
  */
 exports.list = function (req, res) {
-  Room.find('code name').sort({ code: 1 }).exec(function (err, rooms) {
+  Room.find({}, 'code name')
+  .sort({ code: 1 })
+  .exec(function (err, rooms) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     }
+
     res.json(rooms);
   });
 };
@@ -72,7 +115,8 @@ exports.list = function (req, res) {
  * Room middleware
  */
 exports.roomByCode = function (req, res, next, code) {
-  Room.findOne({ 'code': code }, 'code name').exec(function (err, room) {
+  Room.findOne({ 'code': code }, 'code name nbseats equipments pictures map configurations')
+  .exec(function (err, room) {
     if (err) {
       return next(err);
     }
@@ -81,6 +125,7 @@ exports.roomByCode = function (req, res, next, code) {
         message: 'No room with that code has been found.'
       });
     }
+
     req.room = room;
     next();
   });

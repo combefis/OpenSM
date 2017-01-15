@@ -27,6 +27,10 @@ var ActivitySchema = new Schema({
     }],
     required: 'Please fill in the teacher(s) of the activity.'
   },
+  description: {
+    type: String,
+    trim: true
+  },
   academicyear: {
     type: Number
   },

@@ -74,7 +74,7 @@ exports.list = function (req, res) {
  * List of teachers
  */
 exports.listTeachers = function (req, res) {
-  User.find({ 'roles': 'teacher' }, 'displayName').exec(function (err, teachers) {
+  User.find({ 'roles': 'teacher' }, 'username displayName').exec(function (err, teachers) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -88,7 +88,7 @@ exports.listTeachers = function (req, res) {
  * List of students
  */
 exports.listStudents = function (req, res) {
-  User.find({ 'roles': 'teacher' }, 'displayName').exec(function (err, teachers) {
+  User.find({ 'roles': 'student' }, 'username displayName').exec(function (err, teachers) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)

@@ -1,0 +1,146 @@
+<section>
+  <div ng-if="!vm.exam.$resolved" class="loading">
+    <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> {{'LOADING' | translate}}
+  </div>
+
+  <div ng-if="vm.exam.$resolved">
+    <ol class="breadcrumb">
+      <li><a ui-sref="manage.examsessions.list" ng-bind="'EXAMSESSION.EXAMSESSIONS' | translate"></a></li>
+      <li><a ui-sref="manage.examsessions.view({ examsessionCode: vm.exam.examsession.code })" ng-bind="vm.exam.examsession.code"></a></li>
+      <li class="active"><a ui-sref="manage.examsessions.viewexam({ examsessionCode: vm.exam.examsession.code, examId: vm.exam._id })" ng-bind="vm.exam.title"></a></li>
+    </ol>
+
+    <h2 ng-bind="vm.exam.title"></h2>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="action-box" ng-if="!vm.exam.validation.registrations && cvm.hasAnyRole(['manager.exams'])">
+          <a ui-sref="manage.examsessions.editexam({ examsessionCode: vm.exam.examsession.code, examId: vm.exam._id })" class="btn btn-success"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> {{'GENERAL.EDIT' | translate}}</a>
+          <a ng-click="vm.remove()" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> {{'GENERAL.DELETE' | translate}}</a>
+          <a ng-click="vm.validate()" class="btn btn-primary"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> {{'EXAM.VALIDATE' | translate}}</a>
+        </div>
+
+        <uib-tabset>
+          <uib-tab heading="{{'INFORMATIONS' | translate}}">
+            <h3 ng-bind="'EXAM.STATE' | translate"></h3>
+            <ul class="list-unstyled">
+              <li>
+                <span class="well well-lg glyphicon glyphicon-book" aria-hidden="true"></span>
+                {{'EXAM.COPY.COPIES' | translate}} <span ng-if="vm.exam.validation.copies">{{'EXAM.VALIDATED_ON' | translate}} {{vm.exam.validation.copies | amDateFormat:'ddd D MMM YYYY HH:mm'}}</span>
+              </li>
+              <li>
+                <span class="well well-lg glyphicon glyphicon-equalizer" aria-hidden="true"></span>
+                {{'EXAM.REGISTRATIONS' | translate}} <span ng-if="vm.exam.validation.registrations">{{'EXAM.VALIDATED_ON' | translate}} {{vm.exam.validation.registrations | amDateFormat:'ddd D MMM YYYY HH:mm'}}</span>
+              </li>
+              <li>
+                <span class="well well-lg glyphicon glyphicon-print" aria-hidden="true"></span>
+                {{'EXAM.PRINTINGS' | translate}} <span ng-if="vm.exam.validation.printings">{{'EXAM.VALIDATED_ON' | translate}} {{vm.exam.validation.printings | amDateFormat:'ddd D MMM YYYY HH:mm'}}</span>
+              </li>
+            </ul>
+          </uib-tab>
+          <uib-tab heading="{{'EXAM.STUDENTS' | translate}}">
+            <div ng-if="!vm.exam.validation.registrations && cvm.hasAnyRole(['manager.exams'])" class="clearfix">
+              <div class="pull-right">
+                <form class="form-inline right-form">
+                  <input type="text" placeholder="{{'STUDENT.STUDENT' | translate}}" ng-model="vm.selectedStudent" uib-typeahead="student as student.displayName for student in vm.students | filter: $viewValue | limitTo: 8" class="form-control">
+                  <button ng-click="vm.addStudent()" class="btn btn-primary" ng-bind="'GENERAL.ADD' | translate"></button>
+                </form>
+              </div>
+            </div>
+            <div ng-if="vm.exam.registrations.length">
+              <table class="table table-bordered">
+                <tr>
+                  <th class="col-md-1" ng-bind="'EXAM.STUDENT.NUMBER' | translate"></th>
+                  <th class="col-md-8" ng-bind="'EXAM.STUDENT.NAME' | translate"></th>
+                  <th class="col-md-1" ng-bind="'EXAM.ROOM.ROOM' | translate"></th>
+                  <th class="col-md-1" ng-bind="'EXAM.SEAT' | translate"></th>
+                  <th ng-if="!vm.exam.validation.registrations && cvm.hasAnyRole(['manager.exams'])" class="col-md-1"></th>
+                </tr>
+                <tr ng-repeat="i in cvm.getNumber(vm.exam.registrations.length)">
+                  <td><b ng-bind="i+1"></b></td>
+                  <td ng-bind="vm.exam.registrations[i].student.displayName"></td>
+                  <td ng-bind="vm.exam.registrations[i].room !== null ? vm.exam.rooms[vm.exam.registrations[i].room].room.code : '–'"></td>
+                  <td ng-bind="vm.exam.registrations[i].seat !== null ? vm.exam.rooms[vm.exam.registrations[i].room].room.configurations[vm.exam.rooms[vm.exam.registrations[i].room].configuration].seats[vm.exam.registrations[i].seat].seat + 1 : '–'"></td>
+                  <td ng-if="!vm.exam.validation.registrations && cvm.hasAnyRole(['manager.exams'])">
+                    <button ng-click="vm.removeStudent(i)" class="btn btn-default btn-xs" tooltip-placement="bottom" uib-tooltip="{{'EXAM.STUDENT.DELETE' | translate}}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div ng-if="!vm.exam.registrations.length" ng-bind="'EXAM.NO_STUDENTS' | translate"></div>
+          </uib-tab>
+          <uib-tab heading="{{'EXAM.COPY.COPIES' | translate}}">
+            <div ng-if="vm.exam.copies.length">
+              <ul class="list-group">
+                <li class="list-group-item" ng-repeat="i in cvm.getNumber(vm.exam.copies.length)">
+                  <div class="pull-right">
+                    <button ng-click="vm.downloadCopy(i)" class="btn btn-default btn-xs" ng-disabled="!vm.exam.copies[i].name && !vm.uploading[i]" tooltip-placement="bottom" uib-tooltip="{{'EXAM.COPY.DOWNLOAD' | translate}}"><span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span></button>
+                  </div>
+                  <div><b>{{'EXAM.COPY.COPY' | translate}} {{vm.getLetter(i+1)}}</b></div>
+                  <div ng-if="vm.exam.copies[i].name && !vm.uploading[i]">
+                    {{'EXAM.COPY.FILE_UPLOADED_ON' | translate}} <i>{{vm.exam.copies[i].created | amDateFormat:'ddd D MMM YYYY HH:mm'}}</i>
+                  </div>
+                  <div ng-if="!vm.exam.copies[i].name && !vm.uploading[i]" ng-bind="'EXAM.COPY.NOT_UPLOADED' | translate"></div>
+                  <uib-progressbar ng-if="vm.progressValue[i] && vm.uploading[i]" class="progress-striped active" animate="true" max="100" value="vm.progressValue[i]" type="success"><i>{{vm.progressValue[i]}} %</i></uib-progressbar>
+                </li>
+              </ul>
+            </div>
+            <div ng-if="!vm.exam.copies.length" ng-bind="'EXAM.COPY.NO_COPIES' | translate"></div>
+          </uib-tab>
+          <uib-tab heading="{{'EXAM.ROOMS' | translate}}">
+            <div ng-if="!vm.exam.validation.registrations && cvm.hasAnyRole(['manager.exams'])" class="clearfix">
+              <div class="pull-right">
+                <form class="form-inline right-form">
+                  <input type="text" placeholder="{{'ROOM.ROOM' | translate}}" ng-model="vm.selectedRoom" uib-typeahead="room as room.code for room in vm.rooms | filter: $viewValue | limitTo: 8" class="form-control">
+                  <button ng-click="vm.addRoom()" class="btn btn-primary" ng-bind="'GENERAL.ADD' | translate"></button>
+                </form>
+              </div>
+            </div>
+            <div ng-if="vm.exam.rooms.length">
+              <uib-tabset>
+                <uib-tab ng-repeat="i in cvm.getNumber(vm.exam.rooms.length)" heading="{{vm.exam.rooms[i].room.code}}">
+                  <div ng-if="!vm.exam.validation.registrations && cvm.hasAnyRole(['manager.exams'])" class="pull-right">
+                    <button ng-click="vm.removeRoom(i)" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+                  </div>
+                  <div>
+                    <h3 ng-bind="vm.exam.rooms[i].room.name"></h3>
+                    <div ng-if="vm.exam.rooms[i].room.map">
+                      <div class="roommap"><canvas draw-map="vm.config[i]"></canvas></div>
+
+                      <h4 ng-bind="'EXAM.ROOM_CONFIGURATION' | translate"></h4>
+                      <div class="row col-md-12">
+                        <form class="form-horizontal">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="control-label" for="{{'configuration' + i}}" ng-bind="'ROOM.SELECT_CONFIGURATION' | translate"></label>
+                              <div class="controls">
+                                <select id="{{'configuration' + i}}" class="form-control" ng-options="j as vm.exam.rooms[i].room.configurations[j].name for j in cvm.getNumber(vm.exam.rooms[i].room.configurations.length)" ng-model="vm.exam.rooms[i].configuration" ng-disabled="vm.exam.validation.registrations"></select>
+                                <p class="help-block">({{vm.exam.rooms[i].configuration !== null ? vm.exam.rooms[i].room.configurations[vm.exam.rooms[i].configuration].seats.length : 0}} {{'ROOM.SELECTED_SEATS' | translate}})</p>
+                              </div>
+                              <button ng-if="!vm.exam.validation.registrations && cvm.hasAnyRole(['manager.exams'])" type="submit" class="btn btn-primary" ng-click="vm.changeConfiguration(i)" ng-bind="'ROOM.CHANGE_CONFIGURATION' | translate"></button>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="control-label" for="startseat" ng-bind="'ROOM.STARTING_SEAT' | translate"></label>
+                              <div class="controls">
+                                <input type="number" ng-model="vm.exam.rooms[i].startseat" id="startseat" class="form-control" ng-disabled="vm.exam.validation.registrations">
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div ng-if="!vm.exam.rooms[i].room.map" ng-bind="'ROOM.NO_MAP' | translate"></div>
+                  </div>
+                </uib-tab>
+              </uib-tabset>
+            </div>
+            <div ng-if="!vm.exam.rooms.length" ng-bind="'EXAM.NO_ROOMS' | translate"></div>
+          </uib-tab>
+        </uib-tabset>
+      </div>
+    </div>
+</div>
+</section>

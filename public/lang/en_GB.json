@@ -1,6 +1,7 @@
 {
   "ACTIVITY": {
     "ACTIVITIES": "Activities",
+    "CREATE": "Create an activity",
     "NO_ACTIVITY": "No activities yet.",
     "NB_ACTIVITIES": "Number of activities",
     "CODE": "Code",
@@ -8,7 +9,12 @@
     "NAME": "Name",
     "NAME_ERROR": "Please fill in the name.",
     "TEACHERS": "Teachers",
-    "TEACHER_ERROR": "Please select at least one teacher."
+    "ADD_TEACHER": "Add a teacher",
+    "TEACHER_MISSING_ERROR": "Please select at least one teacher.",
+    "DESCRIPTION": "Description",
+    "NO_DESCRIPTION": "@:GENERAL.NO_DESCRIPTION",
+    "SUCCESSFUL_CREATION": "The activity \"{{code}}\" has been successfully created!",
+    "SUCCESSFUL_UPDATE": "The activity \"{{code}}\" has been successfully updated!"
   },
   "AUTHENTICATION": {
     "SIGN_IN": "Sign in",
@@ -18,6 +24,7 @@
   "BY": "By",
   "COURSE": {
     "COURSES": "Courses",
+    "CREATE": "Create a course",
     "NO_COURSE": "No courses yet.",
     "NB_COURSES": "Number of courses",
     "CODE": "Code",
@@ -27,17 +34,49 @@
     "COORDINATOR": "Coordinator",
     "COORDINATOR_MISSING_ERROR": "Please select the coordinator.",
     "COORDINATOR_TOOMUCH_ERROR": "Please select only one coordinator.",
+    "TEAM": "Team",
     "DESCRIPTION": "Description",
-    "NO_DESCRIPTION": "No description.",
+    "NO_DESCRIPTION": "@:GENERAL.NO_DESCRIPTION",
     "ACTIVITIES": "Activities",
     "ADD_ACTIVITIES": "Add an activity",
-    "NO_ACTIVITY": "No activities."
+    "NO_ACTIVITY": "No activities.",
+    "NB_ACTIVITIES": "@:ACTIVITY.NB_ACTIVITIES",
+    "SUCCESSFUL_CREATION": "The course \"{{code}}\" has been successfully created!",
+    "SUCCESSFUL_UPDATE": "The course \"{{code}}\" has been successfully updated!"
   },
   "DASHBOARD": {
     "DASHBOARD": "Dashboard",
     "ADMIN": "Administration",
     "MANAGE": "Manage",
-    "ANNOUNCEMENT": "Annoucement"
+    "ANNOUNCEMENT": "Annoucement",
+    "WORK": "Work"
+  },
+  "EVALGRID": {
+    "EVALGRIDS": "Evaluation grids",
+    "THIS_EVALGRID": "this evaluation grid",
+    "NB_EVALGRIDS": "Number of evaluation grids",
+    "CODE": "Code",
+    "CODE_REQUIRED_ERROR": "Please fill in the code.",
+    "NAME": "Name",
+    "NAME_REQUIRED_ERROR": "Please fill in the name.",
+    "DESCRIPTION": "Description",
+    "AUTHOR": "Author",
+    "NO_DESCRIPTION": "@:GENERAL.NO_DESCRIPTION",
+    "CATEGORIES": "Categories",
+    "ADD_CATEGORY": "Add a category",
+    "NO_CATEGORIES": "No categories.",
+    "CATEGORY_NAME": "Name",
+    "CATEGORY_NAME_REQUIRED_ERROR": "Please fill in the category name.",
+    "CRITERIA": "Criteria",
+    "CRITERION": {
+      "ADD": "Add a criterion",
+      "NO_CRITERION": "No criterion.",
+      "TEXT": "Text",
+      "EVALTYPE": "Type",
+      "SCORE": "Score"
+    },
+    "CREATE": "Create an evaluation grid",
+    "SUCCESSFUL_DELETE": "The evaluation grid \"{{code}}\" has been successfully deleted!"
   },
   "EXAM": {
     "EXAMS": "Exams",
@@ -57,18 +96,54 @@
     "DURATION": "Duration",
     "DURATION_ERROR": "Please fill in the duration.",
     "EXAMSESSION_SUMMARY": "Exam of the session of \"{{name}}\" which takes place from",
-    "SUCCESSFUL_UPDATE": "Exam updated successfully!",
+    "SUCCESSFUL_CREATION": "The exam \"{{title}}\" has been successfully created!",
+    "SUCCESSFUL_UPDATE": "The exam \"{{title}}\" has been successfully updated!",
     "SUCCESSFUL_DELETE": "Exam deleted successfully!",
     "STUDENTS": "Students",
     "NO_STUDENTS": "No registered students.",
-    "COPIES": "Copies",
-    "NO_COPIES": "No uploaded exam copies.",
-    "ADD_COPY": "Add a copy",
-    "COPY": "Questionnaire",
-    "COPY_NOT_UPLOADED": "Questionnaire not uploaded yet.",
-    "FILE_UPLOADED_ON": "File uploaded on",
+    "STUDENT_SUCCESSFUL_ADD": "The student \"{{username}}\" has been successfully added!",
+    "STUDENT_SUCCESSFUL_DELETE": "The student \"{{username}}\" has been successfully deleted!",
+    "COPY": {
+      "COPIES": "Questionnaires",
+      "NO_COPIES": "No uploaded questionnaires.",
+      "COPY": "Questionnaire",
+      "UPLOAD": "Upload",
+      "DOWNLOAD": "Download",
+      "VALIDATE": "Validate",
+      "DELETE": "@:GENERAL.DELETE",
+      "ADD": "Add a questionnaire",
+      "NOT_UPLOADED": "Questionnaire not uploaded yet.",
+      "SUCCESSFUL_ADD": "Questionnaire successfully added!",
+      "SUCCESSFUL_DELETE": "Questionnaire deleted successfully!",
+      "FILE_UPLOADED_ON": "File uploaded on",
+      "GENERATE": "Generate copies",
+      "MARK_PRINTED": "Mark as printed",
+      "SUCCESSFUL_VALIDATION": "The questionnaires have been successfully validated!"
+    },
+    "ROOM": {
+      "DELETE": "@:GENERAL.DELETE",
+      "ROOM": "Room"
+    },
+    "STUDENT": {
+      "DELETE": "@:GENERAL.DELETE",
+      "NUMBER": "Number",
+      "NAME": "Name"
+    },
     "ROOMS": "Rooms",
-    "NO_ROOMS": "No affected rooms."
+    "NO_ROOMS": "No affected rooms.",
+    "ROOM_SUCCESSFUL_ADD": "The room \"{{code}}\" has been successfully added!",
+    "ROOM_SUCCESSFUL_DELETE": "The room \"{{code}}\" has been successfully deleted!",
+    "ROOM_CONFIGURATION": "@:ROOM.CONFIGURATION",
+    "VALIDATE": "Validate",
+    "STATE": "State",
+    "VALIDATED": "Validated",
+    "ASSIGN_SEATS": "Assign seats",
+    "SEATS_ASSIGNED": "Seats successfully assigned!",
+    "SEAT": "Seat",
+    "SUCCESSFUL_VALIDATION": "Exam successfully validated!",
+    "REGISTRATIONS": "Registrations",
+    "PRINTINGS": "Printings",
+    "VALIDATED_ON": "validated on "
   },
   "EXAMSESSION": {
     "EXAMSESSIONS": "Exam sessions",
@@ -86,13 +161,14 @@
     "END_ERROR": "Please fill in the end date.",
     "FROM": "From",
     "TO": "to",
-    "NO_DESCRIPTION": "No description.",
+    "NO_DESCRIPTION": "@:GENERAL.NO_DESCRIPTION",
     "PLANNING": "Planning",
     "NO_EXAM": "No exam in this session.",
     "SUCCESSFUL_DELETE": "Exam session deleted successfully!",
     "ADD_EXAM": "Add an exam",
-    "SUCCESSFUL_EXAMADD": "Exam added successfully!",
-    "NB_EXAMS": "Number of exams"
+    "SUCCESSFUL_EXAMADD": "The exam \"{{title}}\" has been successfully added to the \"{{code}}\" session!",
+    "NB_EXAMS": "Number of exams",
+    "SHOW_MY_EXAMS": "Only show my exams"
   },
   "GENERAL": {
     "ACADEMICYEAR": "Academic year",
@@ -100,7 +176,9 @@
     "EDIT": "Edit",
     "UPDATE": "Update",
     "DELETE": "Delete",
-    "ADD": "Add"
+    "DELETE_CONFIRMATION": "Are you sure you want to delete {{name}}?",
+    "ADD": "Add",
+    "NO_DESCRIPTION": "No description."
   },
   "HOME": {
     "LEAD": "Welcome on the OpenSM platform!",
@@ -115,13 +193,34 @@
   "OPENSM_AUTHORS": "the OpenSM authors",
   "ROOM": {
     "ROOMS": "Rooms",
+    "THIS_ROOM": "this room",
+    "CREATE": "Create a room",
     "NO_ROOM": "No rooms yet.",
     "NB_ROOMS": "Number of rooms",
     "CODE": "Code",
     "CODE_ERROR": "Please fill in the code.",
     "NAME": "Name",
-    "NAME_ERROR": "Please fill in the name.",
-    "ROOM": "Room"
+    "NB_SEATS": "Number of seats",
+    "NB_SEATS_ERROR": "Please fill in the number of seats.",
+    "ROOM": "Room",
+    "EQUIPMENTS": "Equipments",
+    "NO_EQUIPMENTS": "No equipments yet.",
+    "PICTURES": "Pictures",
+    "NO_PICTURES": "No pictures yet.",
+    "MAP": "Map",
+    "NO_MAP": "No map yet.",
+    "SUCCESSFUL_CREATION": "The room \"{{code}}\" has been successfully created!",
+    "SUCCESSFUL_UPDATE": "The room \"{{code}}\" has been successfully updated!",
+    "SUCCESSFUL_DELETE": "The room \"{{code}}\" has been successfully deleted!",
+    "CONFIGURATION": "Room configuration",
+    "SELECT_CONFIGURATION": "Configuration",
+    "STARTING_SEAT": "Starting seat",
+    "SELECTED_SEATS": "selected seats",
+    "CHANGE_CONFIGURATION": "Changer la configuration",
+    "CONFIGURATION_CHANGED": "The room configuration has been successfully changed!"
+  },
+  "STUDENT": {
+    "STUDENT": "Student"
   },
   "USER": {
     "USERNAME": "Username",

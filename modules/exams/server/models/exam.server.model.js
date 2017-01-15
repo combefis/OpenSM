@@ -32,10 +32,23 @@ var ExamSchema = new Schema({
     required: 'Please fill in the duration of the exam.'
   },
   registrations: {
-    type: [{
-      type: Schema.ObjectId,
-      ref: 'User'
-    }],
+    type: [new Schema({
+      student: {
+        type: Schema.ObjectId,
+        ref: 'User'
+      },
+      seat: {
+        type: Number,
+        default: null
+      },
+      room: {
+        type: Number,
+        default: null
+      }
+    }, {
+      id: false,
+      _id: false
+    })],
     default: []
   },
   copies: {
@@ -67,14 +80,42 @@ var ExamSchema = new Schema({
     default: []
   },
   rooms: {
-    type: [{
-      type: Schema.ObjectId,
-      ref: 'Room'
-    }],
+    type: [new Schema({
+      room: {
+        type: Schema.ObjectId,
+        ref: 'Room'
+      },
+      configuration: {
+        type: Number,
+        default: null
+      },
+      startseat: {
+        type: Number,
+        default: 1
+      }
+    }, {
+      id: false,
+      _id: false
+    })],
     default: []
   },
   academicyear: {
     type: Number
+  },
+  validation: {
+    copies: {
+      type: Date
+    },
+    registrations: {
+      type: Date
+    },
+    printings: {
+      type: Date
+    }
+  },
+  ready: {
+    type: Boolean,
+    default: false
   },
   created: {
     type: Date,

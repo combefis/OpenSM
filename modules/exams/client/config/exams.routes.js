@@ -9,43 +9,17 @@
 
   function routeConfig($stateProvider) {
     $stateProvider
-      .state('manage.examsessions.addexam', {
-        url: '/:examsessionCode/addexam',
-        templateUrl: 'modules/exams/client/views/form-exam.client.view.html',
-        controller: 'ExamsController',
-        controllerAs: 'vm',
-        resolve: {
-          examResolve: newExam
-        },
-        data: {
-          roles: ['manager.exams'],
-          pageTitle: 'Create an exam'
-        }
-      })
-      .state('manage.examsessions.viewexam', {
+      .state('examsessions.viewexam', {
         url: '/:examsessionCode/exams/:examId',
         templateUrl: 'modules/exams/client/views/view-exam.client.view.html',
-        controller: 'ExamsController',
+        controller: 'ViewExamController',
         controllerAs: 'vm',
         resolve: {
           examResolve: getExam
         },
         data: {
-          roles: ['manager.exams'],
+          roles: ['teacher', 'printer'],
           pageTitle: '{{examResolve.title}}'
-        }
-      })
-      .state('manage.examsessions.editexam', {
-        url: '/:examsessionCode/exams/:examId/edit',
-        templateUrl: 'modules/exams/client/views/form-exam.client.view.html',
-        controller: 'ExamsController',
-        controllerAs: 'vm',
-        resolve: {
-          examResolve: getExam
-        },
-        data: {
-          roles: ['manager.exams'],
-          pageTitle: 'Edit an exam'
         }
       });
   }

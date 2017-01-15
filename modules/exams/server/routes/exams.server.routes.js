@@ -18,10 +18,26 @@ module.exports = function (app) {
     .get(exams.read)
     .put(exams.update)
     .delete(exams.delete);
+  app.route('/api/exams/:examId/validate').all(examsPolicy.isAllowed)
+    .post(exams.validate);
+  app.route('/api/exams/:examId/assignseats').all(examsPolicy.isAllowed)
+    .post(exams.assignSeats);
 
-  // Exam update routes
+  // Exam students routes
+  app.route('/api/exams/:examId/student').all(examsPolicy.isAllowed)
+    .post(exams.addStudent);
+  app.route('/api/exams/:examId/student/:i').all(examsPolicy.isAllowed)
+    .delete(exams.deleteStudent);
+
+  // Exam rooms routes
   app.route('/api/exams/:examId/room').all(examsPolicy.isAllowed)
     .post(exams.addRoom);
+  app.route('/api/exams/:examId/room/:i').all(examsPolicy.isAllowed)
+    .delete(exams.deleteRoom);
+  app.route('/api/exams/:examId/room/:i/configure').all(examsPolicy.isAllowed)
+    .post(exams.configureRoom);
+
+  // Exam copies routes
   app.route('/api/exams/:examId/copy').all(examsPolicy.isAllowed)
     .post(exams.addCopy);
   app.route('/api/exams/:examId/copy/:i').all(examsPolicy.isAllowed)
@@ -30,6 +46,14 @@ module.exports = function (app) {
     .get(exams.downloadCopy);
   app.route('/api/exams/:examId/copy/:i/upload').all(examsPolicy.isAllowed).all(multiparty())
     .post(exams.uploadCopy);
+  app.route('/api/exams/:examId/copy/:i/validate').all(examsPolicy.isAllowed)
+    .post(exams.validateCopy);
+  app.route('/api/exams/:examId/copies/validate').all(examsPolicy.isAllowed)
+    .post(exams.validateCopies);
+  app.route('/api/exams/:examId/copies/generate').all(examsPolicy.isAllowed)
+    .post(exams.generateCopies);
+  app.route('/api/exams/:examId/copies/download').all(examsPolicy.isAllowed)
+    .get(exams.downloadCopies);
 
   // Finish by binding the exam middleware
   app.param('examId', exams.examByID);

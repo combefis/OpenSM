@@ -18,22 +18,81 @@ exports.invokeRolesPolicies = function () {
       resources: [
         '/api/exams',
         '/api/exams/:examId',
+        '/api/exams/:examId/validate',
+        '/api/exams/:examId/assignseats',
+        '/api/exams/:examId/student',
+        '/api/exams/:examId/student/:i',
         '/api/exams/:examId/room',
+        '/api/exams/:examId/room/:i',
+        '/api/exams/:examId/room/:i/configure',
         '/api/exams/:examId/copy',
         '/api/exams/:examId/copy/:i',
         '/api/exams/:examId/copy/:i/download',
-        '/api/exams/:examId/copy/:i/upload'
+        '/api/exams/:examId/copy/:i/upload',
+        '/api/exams/:examId/copy/:i/validate',
+        '/api/exams/:examId/copies/validate'
       ],
       permissions: '*'
     }]
   }, {
     roles: ['manager.exams'],
     allows: [{
-      resources: '/api/exams',
+      resources: [
+        '/api/exams',
+        '/api/exams/:examId/student',
+        '/api/exams/:examId/room',
+        '/api/exams/:examId/room/:i/configure',
+        '/api/exams/:examId/validate',
+        '/api/exams/:examId/assignseats'
+      ],
       permissions: ['post']
     }, {
       resources: '/api/exams/:examId',
       permissions: ['get', 'put', 'delete']
+    }, {
+      resources: '/api/exams/:examId/copy/:i/download',
+      permissions: ['get']
+    }, {
+      resources: [
+        '/api/exams/:examId/student/:i',
+        '/api/exams/:examId/room/:i'
+      ],
+      permissions: ['delete']
+    }]
+  }, {
+    roles: ['teacher'],
+    allows: [{
+      resources: [
+        '/api/exams/:examId',
+        '/api/exams/:examId/copy/:i/download'
+      ],
+      permissions: ['get']
+    }, {
+      resources: [
+        '/api/exams/:examId/copy',
+        '/api/exams/:examId/copy/:i/upload',
+        '/api/exams/:examId/copy/:i/validate',
+        '/api/exams/:examId/copies/validate'
+      ],
+      permissions: ['post']
+    }, {
+      resources: ['/api/exams/:examId/copy/:i'],
+      permissions: ['delete']
+    }]
+  }, {
+    roles: ['printer'],
+    allows: [{
+      resources: [
+        '/api/exams/:examId',
+        '/api/exams/:examId/copy/:i/download',
+        '/api/exams/:examId/copies/download'
+      ],
+      permissions: ['get']
+    }, {
+      resources: [
+        '/api/exams/:examId/copies/generate'
+      ],
+      permissions: ['post']
     }]
   }]);
 };

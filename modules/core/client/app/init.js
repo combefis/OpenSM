@@ -35,6 +35,7 @@
       suffix: '.json'
     });
     $translateProvider.preferredLanguage('en_GB');
+    $translateProvider.fallbackLanguage('en_GB');
     $translateProvider.useLocalStorage();
   }
 
@@ -43,16 +44,19 @@
     .module(app.applicationModuleName)
     .controller('LanguageController', languageController);
 
-  languageController.$inject = ['$translate', '$translateLocalStorage'];
+  languageController.$inject = ['$translate', '$translateLocalStorage', 'amMoment'];
 
-  function languageController($translate, $translateLocalStorage) {
+  function languageController($translate, $translateLocalStorage, amMoment) {
     var vm = this;
 
     vm.lang = $translateLocalStorage.get('NG_TRANSLATE_LANG_KEY');
     vm.changeLanguage = changeLanguage;
 
+    changeLanguage(vm.lang);
+
     function changeLanguage(lang) {
       $translate.use(lang);
+      amMoment.changeLocale(lang.substr(0, 2));
     }
   }
 

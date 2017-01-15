@@ -15,16 +15,25 @@ exports.invokeRolesPolicies = function () {
   acl.allow([{
     roles: ['admin'],
     allows: [{
-      resources: '/api/courses',
-      permissions: '*'
-    }, {
-      resources: '/api/courses/:courseId',
+      resources: [
+        '/api/courses',
+        '/api/courses/:courseCode'
+      ],
       permissions: '*'
     }]
   }, {
     roles: ['manager.exams'],
     allows: [{
       resources: '/api/courses',
+      permissions: ['get']
+    }]
+  }, {
+    roles: ['teacher'],
+    allows: [{
+      resources: [
+        '/api/courses',
+        '/api/courses/:courseCode'
+      ],
       permissions: ['get']
     }]
   }]);
@@ -35,6 +44,26 @@ exports.invokeRolesPolicies = function () {
  */
 exports.isAllowed = function (req, res, next) {
   var roles = (req.user) ? req.user.roles : ['guest'];
+
+  // Check permission according to filter
+  if (req.query.filter) {
+    switch (req.query.filter) {
+      case 'all':
+        if (!(roles.includes('admin') || roles.includes('manager.exams'))) {
+          return res.status(403).json({
+            message: 'User is not authorized'
+          });
+        }
+        break;
+
+      case 'teacher':
+        if (!roles.includes('teacher')) {
+          return res.status(403).json({
+            message: 'User is not authorized'
+          });
+        }
+    }
+  }
 
   // Check for user roles
   acl.areAnyRolesAllowed(roles, req.route.path, req.method.toLowerCase(), function (err, isAllowed) {

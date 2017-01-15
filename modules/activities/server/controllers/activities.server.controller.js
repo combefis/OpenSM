@@ -14,7 +14,6 @@ var path = require('path'),
 exports.create = function (req, res) {
   var activity = new Activity(req.body);
   activity.user = req.user;
-  activity.teachers = [req.user];
   activity.academicyear = 2016;
 
   activity.save(function (err) {
@@ -45,6 +44,7 @@ exports.update = function (req, res) {
   activity.code = req.body.code;
   activity.name = req.body.name;
   activity.teachers = req.body.teachers;
+  activity.description = req.body.description;
 
   activity.save(function (err) {
     if (err) {
@@ -60,7 +60,10 @@ exports.update = function (req, res) {
  * List of activities
  */
 exports.list = function (req, res) {
-  Activity.find({ 'academicyear': req.session.academicyear }).exec(function (err, activities) {
+  Activity.find({ academicyear: req.session.academicyear }, 'code name teachers')
+  .populate('teachers', 'firstname lastname')
+  .sort({ code: 1 })
+  .exec(function (err, activities) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -73,14 +76,10 @@ exports.list = function (req, res) {
 /**
  * Activity middleware
  */
-exports.activityByID = function (req, res, next, id) {
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).send({
-      message: 'Activity is invalid'
-    });
-  }
-
-  Activity.findById(id, 'code name teachers').exec(function (err, activity) {
+exports.activityByCode = function (req, res, next, code) {
+  Activity.findOne({ code: code }, 'code name teachers description')
+  .populate('teachers', 'firstname lastname displayName')
+  .exec(function (err, activity) {
     if (err) {
       return next(err);
     }

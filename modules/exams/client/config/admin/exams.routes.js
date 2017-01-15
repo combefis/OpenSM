@@ -40,7 +40,7 @@
       .state('admin.manage.exams.view', {
         url: '/:examId',
         templateUrl: 'modules/exams/client/views/admin/view-exam.client.view.html',
-        controller: 'ExamsAdminController',
+        controller: 'ViewExamAdminController',
         controllerAs: 'vm',
         resolve: {
           examResolve: getExam
