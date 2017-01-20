@@ -53,10 +53,6 @@
       }
     }
 
-    function createNew() {
-      console.log('test');
-    }
-
     function remove() {
       if ($window.confirm('Are you sure you want to delete this internship?')) {
         vm.internship.$remove({ _id: internship._id }, onSuccess, onError);

@@ -37,6 +37,7 @@ exports.read = function (req, res) {
 };
 
 exports.create = function (req, res) {
+  console.log('in create function');
   var internship = new Internship(req.body); // req.body permet de TOUT lui mettre, on mettra des infos en plus plus loin si besoin.
   // internship.createdon = new Date();  // par exemple (non utilisé, a supprimer)
   if (req.user.roles.includes('student')) {
