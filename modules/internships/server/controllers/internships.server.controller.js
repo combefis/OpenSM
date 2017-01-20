@@ -39,7 +39,9 @@ exports.read = function (req, res) {
 exports.create = function (req, res) {
   var internship = new Internship(req.body); // req.body permet de TOUT lui mettre, on mettra des infos en plus plus loin si besoin.
   // internship.createdon = new Date();  // par exemple (non utilisé, a supprimer)
-
+  if (req.user.roles.includes('student')) {
+    internship.student = req.user._id;
+  }
   internship.save(function (err) {  // pas besoin de mettre function (err, internship) pas besoin de lui passer qqchose pour le save.
     if (err) {
       return res.status(400).send({
