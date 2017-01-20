@@ -19,7 +19,7 @@
     .state('student.manage.internships.list', {
       url: '',
       templateUrl: 'modules/internships/client/views/list-internships-student.client.view.html',
-      controller: 'InternshipsListController',
+      controller: 'InternshipsStudentListController',
       controllerAs: 'vm',
       data: {
         pageTitle: 'My Internships'
