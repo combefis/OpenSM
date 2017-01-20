@@ -15,5 +15,11 @@
       roles: ['admin']
     });
 
+    menuService.addSubMenuItem('topbar', 'student.manage', {
+      title: 'Internships',
+      state: 'student.manage.internships.list',
+      roles: ['student']
+    });
+
   }
 }());

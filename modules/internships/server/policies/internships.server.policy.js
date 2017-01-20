@@ -12,13 +12,21 @@ acl = new acl(new acl.memoryBackend());
  * Invoke internships permissions
  */
 exports.invokeRolesPolicies = function () {
-  acl.allow([{
-    roles: ['admin'],
-    allows: [{
-      resources: ['/api/internships', '/api/internships/:internshipId'],
-      permissions: '*'
-    }]
-  }
+  acl.allow([
+    {
+      roles: ['admin'],
+      allows: [{
+        resources: ['/api/internships', '/api/internships/:internshipId'],
+        permissions: '*'
+      }]
+    },
+    {
+      roles: ['student'],
+      allows: [{
+        resources: ['/api/internships', '/api/internships/:internshipId'],
+        permissions: '*'
+      }]
+    }
   ]);
 };
 

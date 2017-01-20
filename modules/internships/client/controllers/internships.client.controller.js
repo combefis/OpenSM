@@ -33,7 +33,7 @@
 
       console.log('coucou controleur');
       console.log(vm.internship);
-      console.log('reoucoucou');
+      console.log('recoucou');
       // Create a new exam session, or update the current instance
       vm.internship.createOrUpdate()          // appel à la fonction dans le service
         .then(successCallback)

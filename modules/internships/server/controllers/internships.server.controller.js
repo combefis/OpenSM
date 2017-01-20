@@ -13,7 +13,14 @@ var path = require('path'),
  */
 
 exports.list = function (req, res) {
-  Internship.find({}).exec(function (err, internships) {
+
+  var query = {};
+
+  if (req.user.roles.includes('student')) {
+    query = { 'student': req.user._id };
+  }
+
+  Internship.find(query).exec(function (err, internships) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -125,7 +132,6 @@ exports.update = function (req, res) {
   });
 };
 
-
 exports.internshipByID = function (req, res, next, id) {
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
@@ -143,8 +149,6 @@ exports.internshipByID = function (req, res, next, id) {
         message: 'No Internship with that identifier has been found.'
       });
     }
-
-    req.internship = internship;
-    next();
+    res.json(internship);
   });
 };

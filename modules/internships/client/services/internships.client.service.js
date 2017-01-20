@@ -8,6 +8,7 @@
   InternshipsService.$inject = ['$resource'];
 
   function InternshipsService($resource) {
+
     var Internship = $resource('api/internships/:internshipId', { // je déclare la route (avec les get post delete derrière) qui mène à mon serveur
       internshipId: '@_id'  // il va chercher autiomatiquement l'id dedans.
     },
