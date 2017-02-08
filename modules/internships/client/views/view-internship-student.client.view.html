@@ -1,26 +1,204 @@
-<div ng-cloak>
-  <md-content>
-    <md-tabs md-dynamic-height md-border-bottom>
-      <md-tab label="one">
-        <md-content class="md-padding">
-          <h1 class="md-display-2">Tab One</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi.</p>
-        </md-content>
-      </md-tab>
-      <md-tab label="two">
-        <md-content class="md-padding">
-          <h1 class="md-display-2">Tab Two</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor, orci enim rutrum enim, vel tempor sapien arcu a tellus. Vivamus convallis sodales ante varius gravida. Curabitur a purus vel augue ultrices ultricies id a nisl. Nullam malesuada consequat diam, a facilisis tortor volutpat et. Sed urna dolor, aliquet vitae posuere vulputate, euismod ac lorem. Sed felis risus, pulvinar at interdum quis, vehicula sed odio. Phasellus in enim venenatis, iaculis tortor eu, bibendum ante. Donec ac tellus dictum neque volutpat blandit. Praesent efficitur faucibus risus, ac auctor purus porttitor vitae. Phasellus ornare dui nec orci posuere, nec luctus mauris semper.</p>
-          <p>Morbi viverra, ante vel aliquet tincidunt, leo dolor pharetra quam, at semper massa orci nec magna. Donec posuere nec sapien sed laoreet. Etiam cursus nunc in condimentum facilisis. Etiam in tempor tortor. Vivamus faucibus egestas enim, at convallis diam pulvinar vel. Cras ac orci eget nisi maximus cursus. Nunc urna libero, viverra sit amet nisl at, hendrerit tempor turpis. Maecenas facilisis convallis mi vel tempor. Nullam vitae nunc leo. Cras sed nisl consectetur, rhoncus sapien sit amet, tempus sapien.</p>
-          <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
-        </md-content>
-      </md-tab>
-      <md-tab label="three">
-        <md-content class="md-padding">
-          <h1 class="md-display-2">Tab Three</h1>
-          <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
-        </md-content>
-      </md-tab>
-    </md-tabs>
-  </md-content>
-</div>
+<section>
+    <ol class="breadcrumb">
+      <li>
+        <a ui-sref="student.manage.internships.list" ng-bind="'INTERNSHIP.INTERNSHIPS' | translate"></a>
+      </li>
+      <li ng-if="vm.internship._id" class="active">
+          <a ui-sref="student.manage.internships.view({ internshipId: vm.internship._id })" ng-bind="vm.internship._id"></a>
+      </li>
+    </ol>
+</section>
+
+<uib-tabset>
+  <uib-tab heading="Overview">
+      <div class = "row">
+    <div class = "col-md-12">
+      <h2>Participants</h2>
+      <hr>
+      <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-2"><strong>Student</strong></div>
+        <div class="col-md-6" ng-bind="vm.internship.student"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-2"><strong>Master</strong></div>
+        <div class="col-md-6" ng-bind="vm.internship.master"></div>
+      </div>               
+      <div class="row">
+        <div class="col-md-2"><strong>Supervisor</strong></div>
+        <div class="col-md-6" ng-bind="vm.internship.supervisor"></div>
+      </div>
+    </div>  
+  </div>
+  </div>
+  </uib-tab>
+
+  <uib-tab heading="Enterprise">
+  <div class="row">
+      <div class="col-md-12">
+        <h2>Enterprise</h2>
+        <div class="alert alert-warning" ng-if="!vm.internship.enterprise" ng-bind="'INTERNSHIP.NO_ENTERPRISE' | translate"></div>
+        <div ng-if="vm.internship.enterprise">
+        <hr>
+        <div class="col-md-6">
+          <h3>General information</h3>
+            <div class="row">
+                  <div class="col-md-5"><strong>Name</strong></div>
+                  <div class="col-md-6" ng-bind="vm.internship.enterprise.name"></div>
+              </div>
+              <div class="row">
+                  <div class="col-md-5"><strong>Domain</strong></div>
+                  <div class="col-md-6" ng-bind="vm.internship.enterprise.domain"></div>
+              </div>
+              <div class="row">
+                  <div class="col-md-5"><strong>Representative</strong></div>
+                  <div class="col-md-6" ng-bind="vm.internship.enterprise.representative.name"></div>
+              </div>
+              <div class="row">
+                  <div class="col-md-5"><strong>Representative Position</strong></div>
+                  <div class="col-md-6" ng-bind="vm.internship.enterprise.representative.position"></div>
+              </div>
+              <div class="row">
+                  <div class="col-md-5"><strong>Telephone</strong></div>
+                  <div class="col-md-6" ng-bind="vm.internship.enterprise.phoneNumber"></div>
+              </div>
+              <div class="row">
+                  <div class="col-md-5"><strong>Fax</strong></div>
+                  <div class="col-md-6" ng-bind="vm.internship.enterprise.fax"></div>
+              </div>
+              <div class="row">
+                  <div class="col-md-5"><strong>Mail</strong></div>
+                  <div class="col-md-6" ng-bind="vm.internship.enterprise.mail"></div>
+              </div>
+        </div>
+
+        <div class="col-md-6">
+          <h3>Address</h3>
+          <div class="row">
+                <div class="col-md-3"><strong>Street</strong></div>
+                <div class="col-md-7" ng-bind="vm.internship.enterprise.address.street"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"><strong>Number</strong></div>
+                <div class="col-md-7" ng-bind="vm.internship.enterprise.address.number"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"><strong>PostalCode</strong></div>
+                <div class="col-md-7" ng-bind="vm.internship.enterprise.address.postalCode"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"><strong>City</strong></div>
+                <div class="col-md-7" ng-bind="vm.internship.enterprise.address.city"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"><strong>Country</strong></div>
+                <div class="col-md-7" ng-bind="vm.internship.enterprise.address.country"></div>
+            </div>
+        </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-4">
+        <a class="btn btn-primary" ui-sref="student.manage.internships.edit.enterprise({ internshipId: vm.internship._id })">
+          <i class="glyphicon glyphicon-edit" ng-if="vm.internship.enterprise"></i>
+          <span class="glyphicon glyphicon-plus" ng-if="!vm.internship.enterprise" aria-hidden="true"></span>
+          <span ng-if="!vm.internship.enterprise"> {{'INTERNSHIP.ENTERPRISE.CREATE' | translate}} </span>
+          <span ng-if="vm.internship.enterprise"> {{'INTERNSHIP.ENTERPRISE.EDIT' | translate}} </span>
+        </a>
+      </div>
+    </div>
+  </uib-tab>
+
+  <uib-tab heading="Proposition">
+
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Proposition</h2>
+        <hr>
+        <div class="col-md-8">   
+          <h3>General information</h3>
+            <div class="row">
+                <div class="col-md-2"><strong>Theme</strong></div>
+                <div class="col-md-9" ng-bind="vm.internship.proposition.theme"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"><strong>Domain</strong></div>
+                <div class="col-md-9" ng-bind="vm.internship.proposition.domain"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"><strong>Location</strong></div>
+                <div class="col-md-9" ng-bind="vm.internship.proposition.location"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"><strong>Description</strong></div>
+                <div class="col-md-9" ng-bind="vm.internship.proposition.description"></div>
+            </div>
+        </div>
+        <div class="col-md-4">
+          <h3>Approval</h3>  
+            <div class="row">
+                <div class="col-md-7"><strong>Master</strong></div>
+                <div class="col-md-1" ng-bind="vm.internship.proposition.approval.masterApproval"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-7"><strong>Consulted Teacher</strong></div>
+                <div class="col-md-1" ng-bind="vm.internship.proposition.approval.consultedTeacherApproval"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-7"><strong>Supervisor</strong></div>
+                <div class="col-md-1" ng-bind="vm.internship.proposition.approval.supervisorApproval"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-7"><strong>Validator</strong></div>
+                <div class="col-md-1" ng-bind="vm.internship.proposition.approval.validatorApproval"></div>
+            </div>                        
+        </div>
+      
+      </div>
+    </div>
+   <div class = "row">
+    <div class = "col-md-12">
+      <h3>Participants</h3>
+      <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-5"><strong>Master</strong></div>
+        <div class="col-md-6" ng-bind="vm.internship.master"></div>
+      </div>        
+      <div class="row">
+        <div class="col-md-5"><strong>Consulted Teacher</strong></div>
+        <div class="col-md-6" ng-bind="vm.internship.proposition.approval.consultedTeacher"></div>
+      </div>        
+      <div class="row">
+        <div class="col-md-5"><strong>Supervisor</strong></div>
+        <div class="col-md-6" ng-bind="vm.internship.supervisor"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-5"><strong>Validator</strong></div>
+        <div class="col-md-6" ng-bind="vm.internship.validator"></div>
+      </div>
+    </div>  
+  </div>
+  </div>
+    <hr>   
+    <div class="row">
+      <div class="col-md-4">
+        <a class="btn btn-primary" ui-sref="student.manage.internships.enterprise.edit({ internshipId: vm.internship._id })">
+          <i class="glyphicon glyphicon-edit"></i>
+        </a>
+      </div>
+    </div>     
+  </uib-tab>
+
+  <uib-tab heading="Journal de bord">
+    <div class="alert alert-warning" ng-if="!vm.internship.journal.entry" ng-bind="'INTERNSHIP.NO_JOURNAL_ENTRIES' | translate"></div>
+    <div class="row" ng-repeat="entry in vm.internship.journal.entry">
+      <div class = "col-md-7">
+      <ul>
+        <li>{{entry.note}}</li>
+      </ul>
+      </div>
+    </div>
+  </uib-tab>                            
+</uib-tabset>

@@ -10,9 +10,11 @@
   function InternshipsController($scope, $state, internship, $window, Authentication, http, filter) {
     var vm = this; // on instancie tout ce qu'on vient de lui passer
 
+    vm.authentication = Authentication;
     vm.internship = internship; // le "resolve"
     vm.save = save;
     vm.remove = remove;
+    vm.enterpriseCreateOrUpdate = enterpriseCreateOrUpdate;
     vm.addGeneralObjective = addGeneralObjective;
     vm.addSpecificObjective = addSpecificObjective;
     vm.removeGeneralObjective = removeGeneralObjective;
@@ -31,9 +33,6 @@
         return false;   // on envoie dans  <div class="form-group" show-errors>
       }
 
-      console.log('coucou controleur');
-      console.log(vm.internship);
-      console.log('recoucou');
       // Create a new exam session, or update the current instance
       vm.internship.createOrUpdate()          // appel à la fonction dans le service
         .then(successCallback)
@@ -41,10 +40,15 @@
 
 
       function successCallback(res) {
-        console.log('all is good');
-        $state.go('admin.manage.internships.list', {
-          internshipId: res._id
-        });
+        if (vm.authentication.user.roles.includes('admin')) {
+          $state.go('admin.manage.internships.list', {
+            internshipId: res._id
+          });
+        } else if (vm.authentication.user.roles.includes('student')) {
+          $state.go('student.manage.internships.view', {
+            internshipId: res._id
+          });
+        }
       }
 
       function errorCallback(res) {
@@ -64,6 +68,14 @@
 
       function onError(errorResponse) {
         var error = errorResponse.data;
+      }
+    }
+
+    function enterpriseCreateOrUpdate() {
+      if (!vm.internship.enterprise.modifications.createdOn) {
+        vm.internship.enterprise.modifications.createdOn = Date.now();
+      } else {
+        vm.internship.enterprise.modifications.lastModification = Date.now();
       }
     }
 

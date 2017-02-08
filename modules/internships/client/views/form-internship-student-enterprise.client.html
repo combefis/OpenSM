@@ -1,0 +1,127 @@
+<section>
+    <ol class="breadcrumb">
+      <li>
+        <a ui-sref="admin.manage.internships.list" ng-bind="'INTERNSHIP.INTERNSHIPS' | translate"></a>
+      </li>
+      <li ng-if="vm.internship._id" class="active">
+          <a ui-sref="student.manage.internships.view({ internshipId: vm.internship._id })" ng-bind="vm.internship._id"></a>
+      </li>
+      <li ng-if="vm.internship._id" class="active">
+          <a ui-sref="student.manage.internships.edit.enterprise({ internshipId: vm.internship._id })" ng-bind="'GENERAL.EDIT' | translate"></a>
+      </li>
+      <li ng-if="!vm.internship._id" class="active">
+          <a ui-sref="student.manage.internships.create" ng-bind="'GENERAL.CREATE' | translate"></a></li>
+    </ol>
+</section>
+
+    <h2>{{vm.internship._id ? 'INTERNSHIP.ENTERPRISE.EDIT' : 'INTERNSHIP.ENTERPRISE.CREATE' | translate}}</h2>
+
+    <div class="col-md-12">
+      <form name="vm.form.internshipEnterpriseForm" class="form-horizontal" ng-submit="vm.save(vm.form.internshipEnterpriseForm.$valid)" novalidate>
+      
+        <fieldset>
+           <div class="form-group" show-errors>
+            <label class="control-label" for="enterpriseName" ng-bind="'INTERNSHIP.ENTERPRISE.NAME' | translate"></label>
+            <input name="internship.enterprise.name" type="text" ng-model="vm.internship.enterprise.name" id="enterpriseName" class="form-control" placeholder="{{'INTERNSHIP.ENTERPRISE.NAME' | translate}}" required />
+            <div ng-messages="vm.form.internshipForm.enterprise.name.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.ENTERPRISE.NAME_ERROR' | translate"></p>
+            </div>
+          </div>
+
+          <div class="form-group" show-errors>
+            <label class="control-label" for="enterpriseDomain" ng-bind="'INTERNSHIP.ENTERPRISE.DOMAIN' | translate"></label>
+            <input name="internship.enterprise.domain" type="text" ng-model="vm.internship.enterprise.domain" id="enterpriseDomain" class="form-control" placeholder="{{'INTERNSHIP.ENTERPRISE.DOMAIN' | translate}}" required />
+            <div ng-messages="vm.form.internshipForm.enterprise.domain.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.ENTERPRISE.DOMAIN_ERROR' | translate"></p>
+          </div>
+          </div>
+
+          <div class="form-group" show-errors>
+            <label class="control-label" for="enterpriseAddressStreet" ng-bind="'INTERNSHIP.ENTERPRISE.ADDRESS.STREET' | translate"></label>
+            <input name="internship.enterprise.address.street" type="text" ng-model="vm.internship.enterprise.address.street" id="enterpriseAddressStreet" class="form-control" placeholder="{{'INTERNSHIP.ENTERPRISE.ADDRESS.STREET' | translate}}" required />
+            <div ng-messages="vm.form.internshipForm.enterprise.address.street.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.ENTERPRISE.ADDRESS.STREET_ERROR' | translate"></p>
+          </div>
+          </div>
+
+          <div class="form-group" show-errors>
+            <label class="control-label" for="enterpriseAddressNumber" ng-bind="'INTERNSHIP.ENTERPRISE.ADDRESS.NUMBER' | translate"></label>
+            <input name="internship.enterprise.address.number" type="text" ng-model="vm.internship.enterprise.address.number" id="enterpriseAddressNumber" class="form-control" placeholder="{{'INTERNSHIP.ENTERPRISE.ADDRESS.NUMBER' | translate}}" required />
+            <div ng-messages="vm.form.internshipForm.enterprise.address.number.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.ENTERPRISE.ADDRESS.NUMBER_ERROR' | translate"></p>
+          </div>
+          </div>
+
+          <div class="form-group" show-errors>
+            <label class="control-label" for="enterpriseAddressPostalCode" ng-bind="'INTERNSHIP.ENTERPRISE.ADDRESS.POSTALCODE' | translate"></label>
+            <input name="internship.enterprise.address.postalCode" type="text" ng-model="vm.internship.enterprise.address.postalCode" id="enterpriseAddressPostalCode" class="form-control" placeholder="{{'INTERNSHIP.ENTERPRISE.ADDRESS.POSTALCODE' | translate}}" required />
+            <div ng-messages="vm.form.internshipForm.enterprise.address.postalCode.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.ENTERPRISE.ADDRESS.POSTALCODE_ERROR' | translate"></p>
+          </div>
+          </div>
+
+          <div class="form-group" show-errors>
+            <label class="control-label" for="enterpriseAddressCity" ng-bind="'INTERNSHIP.ENTERPRISE.ADDRESS.CITY' | translate"></label>
+            <input name="internship.enterprise.address.City" type="text" ng-model="vm.internship.enterprise.address.city" id="enterpriseAddressCity" class="form-control" placeholder="{{'INTERNSHIP.ENTERPRISE.ADDRESS.CITY' | translate}}" required />
+            <div ng-messages="vm.form.internshipForm.enterprise.address.city.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.ENTERPRISE.ADDRESS.CITY_ERROR' | translate"></p>
+          </div>
+          </div>
+
+          <div class="form-group" show-errors>
+            <label class="control-label" for="enterpriseAddressCountry" ng-bind="'INTERNSHIP.ENTERPRISE.ADDRESS.COUNTRY' | translate"></label>
+            <input name="internship.enterprise.address.City" type="text" ng-model="vm.internship.enterprise.address.country" id="enterpriseAddressCountry" class="form-control" placeholder="{{'INTERNSHIP.ENTERPRISE.ADDRESS.COUNTRY' | translate}}" required />
+            <div ng-messages="vm.form.internshipForm.enterprise.address.country.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.ENTERPRISE.ADDRESS.COUNTRY_ERROR' | translate"></p>
+          </div>
+          </div>
+
+          <div class="form-group" show-errors>
+            <label class="control-label" for="enterprisePhoneNumber" ng-bind="'INTERNSHIP.ENTERPRISE.PHONENUMBER' | translate"></label>
+            <input name="internship.enterprise.phoneNumber" type="text" ng-model="vm.internship.enterprise.phoneNumber" id="enterprisePhoneNumber" class="form-control" placeholder="{{'INTERNSHIP.ENTERPRISE.PHONENUMBER' | translate}}" required />
+            <div ng-messages="vm.form.internshipForm.enterprise.phoneNumber.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.ENTERPRISE.PHONENUMBER_ERROR' | translate"></p>
+          </div>
+          </div>
+
+          <div class="form-group" show-errors>
+            <label class="control-label" for="enterpriseFax" ng-bind="'INTERNSHIP.ENTERPRISE.FAX' | translate"></label>
+            <input name="internship.enterprise.fax" type="text" ng-model="vm.internship.enterprise.fax" id="enterpriseFax" class="form-control" placeholder="{{'INTERNSHIP.ENTERPRISE.FAX' | translate}}" required />
+            <div ng-messages="vm.form.internshipForm.enterprise.fax.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.ENTERPRISE.FAX_ERROR' | translate"></p>
+          </div>
+          </div>
+
+          <div class="form-group" show-errors>
+            <label class="control-label" for="enterpriseMail" ng-bind="'INTERNSHIP.ENTERPRISE.MAIL' | translate"></label>
+            <input name="internship.enterprise.mail" type="text" ng-model="vm.internship.enterprise.mail" id="enterpriseMail" class="form-control" placeholder="{{'INTERNSHIP.ENTERPRISE.MAIL' | translate}}" required />
+            <div ng-messages="vm.form.internshipForm.enterprise.mail.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.ENTERPRISE.MAIL_ERROR' | translate"></p>
+          </div>
+          </div>
+
+          <div class="form-group" show-errors>
+            <label class="control-label" for="enterpriseRepresentativeName" ng-bind="'INTERNSHIP.ENTERPRISE.REPRESENTATIVE.NAME' | translate"></label>
+            <input name="internship.enterprise.Representative.Name" type="text" ng-model="vm.internship.enterprise.representative.name" id="enterpriseRepresentative.Name" class="form-control" placeholder="{{'INTERNSHIP.ENTERPRISE.REPRESENTATIVE.NAME' | translate}}" required />
+            <div ng-messages="vm.form.internshipForm.enterprise.representative.name.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.ENTERPRISE.REPRESENTATIVE.NAME_ERROR' | translate"></p>
+          </div>
+          </div>
+
+          <div class="form-group" show-errors>
+            <label class="control-label" for="enterpriseRepresentativePosition" ng-bind="'INTERNSHIP.ENTERPRISE.REPRESENTATIVE.POSITION' | translate"></label>
+            <input name="internship.enterprise.Representative.Position" type="text" ng-model="vm.internship.enterprise.representative.position" id="enterpriseRepresentativePosition" class="form-control" placeholder="{{'INTERNSHIP.ENTERPRISE.REPRESENTATIVE.POSITION' | translate}}" required />
+            <div ng-messages="vm.form.internshipForm.enterprise.representative.position.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.ENTERPRISE.REPRESENTATIVE.POSITION_ERROR' | translate"></p>
+          </div>
+          </div>
+      </fieldset>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary">{{vm.internship._id ? 'GENERAL.UPDATE' : 'GENERAL.CREATE' | translate}}</button>
+          </div>
+          <div ng-show="vm.error" class="text-danger">
+            <strong ng-bind="vm.error"></strong>
+          </div>
+      </form>
+    </div>

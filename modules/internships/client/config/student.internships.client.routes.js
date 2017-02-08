@@ -42,6 +42,24 @@
       }
     })
 
+    .state('student.manage.internships.edit', {
+      url: '/:internshipId/edit',
+      template: '<ui-view/>'
+    })
+
+    .state('student.manage.internships.edit.enterprise', {
+      url: '/:internshipId/edit/enterprise',
+      templateUrl: 'modules/internships/client/views/form-internship-student-enterprise.client.html',
+      controller: 'InternshipsStudentEnterpriseController',
+      controllerAs: 'vm',
+      resolve: {
+        internshipResolve: getInternship
+      },
+      data: {
+        pageTitle: 'Enterprise'
+      }
+    })
+
     ;
   }
 

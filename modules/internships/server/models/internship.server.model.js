@@ -24,6 +24,10 @@ var IntershipSchema = new Schema({
     ref: 'User'
   },
   proposition: {
+    modifications: {
+      createdOn: Date,
+      lastModification: Date
+    },
     theme: String,
     domain: String,
     location: String,
@@ -78,6 +82,9 @@ var IntershipSchema = new Schema({
   },
   continuousEvaluation: {
     points: [Number]
+  },
+  Journal: {
+    entry: [new Schema({ Date: Date, Notes: String }, { id: false, _id: false })]
   },
   oralPresentation: {
     date: Date,

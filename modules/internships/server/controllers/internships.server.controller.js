@@ -13,7 +13,7 @@ var path = require('path'),
  */
 
 exports.list = function (req, res) {
-
+  console.log('in list function');
   var query = {};
 
   if (req.user.roles.includes('student')) {
@@ -31,13 +31,13 @@ exports.list = function (req, res) {
 };
 
 exports.read = function (req, res) {
-  // convert mongoose document to JSON
+  console.log('in read function');
   var internship = req.internship ? req.internship.toJSON() : {};
   res.json(internship);
 };
 
 exports.create = function (req, res) {
-  console.log('in create function');
+  console.log('in create functiooon');
   var internship = new Internship(req.body); // req.body permet de TOUT lui mettre, on mettra des infos en plus plus loin si besoin.
   // internship.createdon = new Date();  // par exemple (non utilisé, a supprimer)
   if (req.user.roles.includes('student')) {
@@ -69,12 +69,16 @@ exports.remove = function (req, res) {
 
 
 exports.update = function (req, res) {
+
+  console.log('in update function');
+
   var internship = req.internship;
 
   internship.student = req.body.student;
   internship.master = req.body.master;
   internship.supervisor = req.body.supervisor;
   internship.validator = req.body.validator;
+
   internship.proposition.theme = req.body.proposition.theme;
   internship.proposition.domain = req.body.proposition.domain;
   internship.proposition.location = req.body.proposition.location;
@@ -91,6 +95,8 @@ exports.update = function (req, res) {
   internship.enterprise.fax = req.body.enterprise.fax;
   internship.enterprise.mail = req.body.enterprise.mail;
 
+  internship.enterprise.modifications.createdOn = req.body.enterprise.modifications.createdOn;
+  internship.enterprise.modifications.lastModification = req.body.enterprise.modifications.lastModification;
   internship.enterprise.address.street = req.body.enterprise.address.street;
   internship.enterprise.address.number = req.body.enterprise.address.number;
   internship.enterprise.address.postalCode = req.body.enterprise.address.postalCode;
@@ -136,6 +142,7 @@ exports.update = function (req, res) {
 };
 
 exports.internshipByID = function (req, res, next, id) {
+  console.log('in internshipByID server function');
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
       message: 'Internship is invalid'
@@ -150,6 +157,39 @@ exports.internshipByID = function (req, res, next, id) {
     if (!internship) {
       return res.status(404).send({
         message: 'No Internship with that identifier has been found.'
+      });
+    }
+    req.internship = internship;
+    // console.log(internship);
+    next();
+  });
+};
+
+exports.updateEnterprise = function (req, res) {
+
+  console.log('in updateEnterprise function');
+
+  var internship = req.internship;
+  
+  internship.enterprise.name = req.body.enterprise.name;
+  internship.enterprise.domain = req.body.enterprise.domain;
+  internship.enterprise.fax = req.body.enterprise.fax;
+  internship.enterprise.mail = req.body.enterprise.mail;
+
+  internship.enterprise.address.street = req.body.enterprise.address.street;
+  internship.enterprise.address.number = req.body.enterprise.address.number;
+  internship.enterprise.address.postalCode = req.body.enterprise.address.postalCode;
+  internship.enterprise.address.city = req.body.enterprise.address.city;
+  internship.enterprise.address.country = req.body.enterprise.address.country;
+  internship.enterprise.phoneNumber = req.body.enterprise.phoneNumber;
+
+  internship.enterprise.representative.name = req.body.enterprise.representative.name;
+  internship.enterprise.representative.position = req.body.enterprise.representative.position;
+
+  internship.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
       });
     }
     res.json(internship);
