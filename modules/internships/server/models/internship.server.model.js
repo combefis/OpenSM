@@ -83,8 +83,11 @@ var IntershipSchema = new Schema({
   continuousEvaluation: {
     points: [Number]
   },
-  Journal: {
-    entry: [new Schema({ Date: Date, Notes: String }, { id: false, _id: false })]
+  journal: {
+    entries: {
+      type: [new Schema({ date: Date, note: String }, { id: false, _id: false })],
+      default: []
+    }
   },
   oralPresentation: {
     date: Date,

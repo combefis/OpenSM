@@ -200,13 +200,26 @@
   </uib-tab>
 
   <uib-tab heading="Journal de bord">
-    <div class="alert alert-warning" ng-if="!vm.internship.journal.entry" ng-bind="'INTERNSHIP.NO_JOURNAL_ENTRIES' | translate"></div>
-    <div class="row" ng-repeat="entry in vm.internship.journal.entry">
-      <div class = "col-md-7">
-      <ul>
-        <li>{{entry.note}}</li>
-      </ul>
+  <div class="row">
+  <div class="col-md-12">
+  <h2>Journal</h2>
+    <div class="action-box">
+      <a class="btn btn-primary" ui-sref="student.manage.internships.edit.journal({ internshipId: vm.internship._id })"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> {{'JOURNAL.ENTRY.CREAATE' | translate}}</a>
+    </div>
+    <hr>
+    <div class="alert alert-warning" ng-if="!vm.internship.journal.entries[0]" ng-bind="'INTERNSHIP.NO_JOURNAL_ENTRIES' | translate"></div>
+    
+    <div class="panel-group">
+      <div class="panel panel-default" ng-repeat="entry in vm.internship.journal.entries">
+        <div class="panel-heading">
+        {{entry.date | amDateFormat: 'ddd D MMM YYYY'}}
+        </div>
+        <div class="panel-body">
+        {{entry.note}}
+        </div>
       </div>
     </div>
+  </div>
+  </div>
   </uib-tab>                            
 </uib-tabset>

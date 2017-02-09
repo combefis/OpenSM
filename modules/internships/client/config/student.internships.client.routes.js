@@ -73,6 +73,19 @@
       }
     })
 
+    .state('student.manage.internships.edit.journal', {
+      url: '/journal',
+      templateUrl: 'modules/internships/client/views/form-internship-student-journalEntry.html',
+      controller: 'InternshipsStudentJournalController',
+      controllerAs: 'vm',
+      resolve: {
+        internshipResolve: getInternship
+      },
+      data: {
+        pageTitle: 'Journal'
+      }
+    })
+
     ;
   }
 

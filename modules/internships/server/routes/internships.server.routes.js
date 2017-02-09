@@ -28,4 +28,6 @@ module.exports = function(app) {
   app.route('/api/internships/:internshipId/editProposition').all(internshipsPolicy.isAllowed)
     .put(internships.updateProposition);
 
+  app.route('/api/internships/:internshipId/editJournal').all(internshipsPolicy.isAllowed)
+    .post(internships.updateJournal);    
 };

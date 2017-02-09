@@ -27,7 +27,8 @@ exports.invokeRolesPolicies = function () {
           '/api/internships',
           '/api/internships/:internshipId',
           '/api/internships/:internshipId/editEnterprise',
-          '/api/internships/:internshipId/editProposition'],
+          '/api/internships/:internshipId/editProposition',
+          '/api/internships/:internshipId/editJournal'],
         permissions: '*'
       }]
     }
