@@ -13,19 +13,19 @@
   <uib-tab heading="Overview">
       <div class = "row">
     <div class = "col-md-12">
-      <h2>Participants</h2>
+      <h2>Overview of Internship</h2>
       <hr>
       <div class="col-md-6">
       <div class="row">
-        <div class="col-md-2"><strong>Student</strong></div>
+        <div class="col-md-4"><strong>Student</strong></div>
         <div class="col-md-6" ng-bind="vm.internship.student"></div>
       </div>
       <div class="row">
-        <div class="col-md-2"><strong>Master</strong></div>
+        <div class="col-md-4"><strong>Master</strong></div>
         <div class="col-md-6" ng-bind="vm.internship.master"></div>
       </div>               
       <div class="row">
-        <div class="col-md-2"><strong>Supervisor</strong></div>
+        <div class="col-md-4"><strong>Supervisor</strong></div>
         <div class="col-md-6" ng-bind="vm.internship.supervisor"></div>
       </div>
     </div>  
@@ -110,6 +110,34 @@
     </div>
   </uib-tab>
 
+  <uib-tab heading="Participants" ng-if="vm.internship.proposition">
+   <div class = "row">
+    <div class = "col-md-12">
+      <h2>Participants</h2>
+      <hr>
+      <div class="col-md-10">
+      <div class="row">
+        <div class="col-md-3"><strong>Master</strong></div>
+        <div class="col-md-6" ng-bind="vm.internship.master"></div>
+      </div> 
+      <div class="row">
+        <div class="col-md-3"><strong>Supervisor</strong></div>
+        <div class="col-md-6" ng-bind="vm.internship.supervisor"></div>
+      </div>             
+      <div class="row">
+        <div class="col-md-3"><strong>Consulted Teacher</strong></div>
+        <div class="col-md-6" ng-bind="vm.internship.proposition.approval.consultedTeacher"></div>
+      </div>        
+      <div class="row">
+        <div class="col-md-3"><strong>Validator</strong></div>
+        <div class="col-md-6" ng-bind="vm.internship.validator"></div>
+      </div>
+    </div>  
+  </div>
+  </div>
+    <hr>      
+
+  </uib-tab>
   <uib-tab heading="Proposition">
 
     <div class="row">
@@ -159,31 +187,6 @@
         </div>
       </div>
     </div>
-   <div class = "row">
-    <div class = "col-md-12">
-    <div ng-if="vm.internship.proposition">
-      <h3>Participants</h3>
-      <div class="col-md-6">
-      <div class="row">
-        <div class="col-md-5"><strong>Master</strong></div>
-        <div class="col-md-6" ng-bind="vm.internship.master"></div>
-      </div>        
-      <div class="row">
-        <div class="col-md-5"><strong>Consulted Teacher</strong></div>
-        <div class="col-md-6" ng-bind="vm.internship.proposition.approval.consultedTeacher"></div>
-      </div>        
-      <div class="row">
-        <div class="col-md-5"><strong>Supervisor</strong></div>
-        <div class="col-md-6" ng-bind="vm.internship.supervisor"></div>
-      </div>
-      <div class="row">
-        <div class="col-md-5"><strong>Validator</strong></div>
-        <div class="col-md-6" ng-bind="vm.internship.validator"></div>
-      </div>
-    </div>  
-    </div>
-  </div>
-  </div>
     <hr>   
     <div class="row">
       <div class="col-md-4">
