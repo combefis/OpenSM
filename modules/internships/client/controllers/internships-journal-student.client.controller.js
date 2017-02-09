@@ -18,14 +18,11 @@
     // Save Internship
     function save(isValid) {
       if (!isValid) {
-        $scope.$broadcast('show-errors-check-validity', 'vm.form.internshipForm');  // on envoie dans le scope (associé au controleur, et donc la page html)
+        $scope.$broadcast('show-errors-check-validity', 'vm.form.internshipJournalForm');  // on envoie dans le scope (associé au controleur, et donc la page html)
         return false;   // on envoie dans  <div class="form-group" show-errors>
       }
 
-      $http.post('/api/internships/' + vm.internship._id + '/editJournal', {'date':vm.journalDate, 'note':vm.journalNote}).success(successCallback);
-
-//changer dans html ng-bind: vm.journalDate
-//changer le .success en .then (spécifique au post.. pour une raison mystérieuese.)
+      $http.post('/api/internships/' + vm.internship._id + '/editJournal', { 'date': vm.journalDate, 'note': vm.journalNote }).success(successCallback);
 
       function successCallback(res) {
         if (vm.authentication.user.roles.includes('admin')) {

@@ -15,14 +15,14 @@
     <h2>{{vm.internship._id ? 'INTERNSHIP.EDIT' : 'INTERNSHIP.CREATE' | translate}}</h2>
 
     <div class="col-md-12">
-      <form name="vm.form.internshipForm" class="form-horizontal" ng-submit="vm.save(vm.form.internshipForm.$valid)" novalidate>
+      <form name="vm.form.internshipPropositionForm" class="form-horizontal" ng-submit="vm.save(vm.form.internshipForm.$valid)" novalidate>
       
   <h3>Proposition:</h3>
       <fieldset>
           <div class="form-group" show-errors>
             <label class="control-label" for="propositionTheme" ng-bind="'INTERNSHIP.PROPOSITION.THEME' | translate"></label>
             <input name="internship.proposition.theme" type="text" ng-model="vm.internship.proposition.theme" id="propositionTheme" class="form-control" placeholder="{{'INTERNSHIP.PROPOSITION.THEME' | translate}}" required />
-            <div ng-messages="vm.form.internshipForm.proposition.theme.$error" role="alert">
+            <div ng-messages="vm.form.internshipProposistionForm.proposition.theme.$error" role="alert">
               <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.PROPOSITION.THEME' | translate"></p>
           </div>
           </div>
@@ -30,7 +30,7 @@
           <div class="form-group" show-errors>
             <label class="control-label" for="propositionDomain" ng-bind="'INTERNSHIP.PROPOSITION.DOMAIN' | translate"></label>
             <input name="internship.proposition.domain" type="text" ng-model="vm.internship.proposition.domain" id="propositionDomain" class="form-control" placeholder="{{'INTERNSHIP.PROPOSITION.DOMAIN' | translate}}" required />
-            <div ng-messages="vm.form.internshipForm.proposition.domain.$error" role="alert">
+            <div ng-messages="vm.form.internshipProposistionForm.proposition.domain.$error" role="alert">
               <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.PROPOSITION.DOMAIN' | translate"></p>
           </div>
           </div>
@@ -38,7 +38,7 @@
           <div class="form-group" show-errors>
             <label class="control-label" for="propositionLocation" ng-bind="'INTERNSHIP.PROPOSITION.LOCATION' | translate"></label>
             <input name="internship.proposition.location" type="text" ng-model="vm.internship.proposition.location" id="propositionLocation" class="form-control" placeholder="{{'INTERNSHIP.PROPOSITION.LOCATION' | translate}}" required />
-            <div ng-messages="vm.form.internshipForm.proposition.location.$error" role="alert">
+            <div ng-messages="vm.form.internshipProposistionForm.proposition.location.$error" role="alert">
               <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.PROPOSITION.LOCATION' | translate"></p>
           </div>
           </div>               
@@ -46,7 +46,7 @@
           <div class="form-group" show-errors>
             <label class="control-label" for="InternshipPropositionDescription" ng-bind="'INTERNSHIP.PROPOSITION.DESCRIPTION' | translate"></label>
             <textarea name="internshipDescription" ng-model="vm.internship.proposition.description" id="internsipProposisiontDescription" class="form-control" cols="30" rows="5" placeholder="{{'INTERNSHIP.PROPOSITION.DESCRIPTION' | translate}}" required></textarea>
-            <div ng-messages="vm.form.internshipForm.proposition.description.$error" role="alert">
+            <div ng-messages="vm.form.internshipProposistionForm.proposition.description.$error" role="alert">
               <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.PROPOSITION.DESCRIPTION' | translate"></p>
             </div>
           </div>
@@ -57,7 +57,7 @@
             name="internship.proposition.approval.consultedTeacher" 
             type="text" 
             ng-model="vm.internship.proposition.approval.consultedTeacher" id="propositionApprovalConsultedTeacher" class="form-control" placeholder="5810c73167f35ee81f7a30b5" required />
-            <div ng-messages="vm.form.internshipForm.proposition.approval.consultedTeacher.$error" role="alert">
+            <div ng-messages="vm.form.internshipProposistionForm.proposition.approval.consultedTeacher.$error" role="alert">
               <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.PROPOSITION.APPROVAL.CONSULTEDTEACHER' | translate"></p>
           </div>
           </div>
@@ -65,7 +65,7 @@
           <div class="form-group" show-errors>
             <label class="control-label" for="InternshipMaster" ng-bind="'INTERNSHIP.MASTER' | translate"></label>
             <input name="internship.master" type="text" ng-model="vm.internship.master" id="master" class="form-control" placeholder="5810c73167f35ee81f7a30b5" required />
-            <div ng-messages="vm.form.internship.master.$error" role="alert">
+            <div ng-messages="vm.form.internshipProposistionForm.master.$error" role="alert">
               <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.MASTER' | translate"></p>
             </div>
             </div>
@@ -73,7 +73,7 @@
           <div class="form-group" show-errors>
             <label class="control-label" for="InternshipSupervisor" ng-bind="'INTERNSHIP.SUPERVISOR' | translate"></label>
             <input name="internship.supervisor" type="text" ng-model="vm.internship.supervisor" id="master" class="form-control" placeholder="5810c73167f35ee81f7a30b5" required />
-            <div ng-messages="vm.form.internship.supervisor.$error" role="alert">
+            <div ng-messages="vm.form.internshipProposistionForm.supervisor.$error" role="alert">
               <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.SUPERVISOR' | translate"></p>
           </div>
           </div>    

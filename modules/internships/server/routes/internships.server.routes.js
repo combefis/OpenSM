@@ -29,5 +29,5 @@ module.exports = function(app) {
     .put(internships.updateProposition);
 
   app.route('/api/internships/:internshipId/editJournal').all(internshipsPolicy.isAllowed)
-    .post(internships.updateJournal);    
+    .post(internships.updateJournal);
 };

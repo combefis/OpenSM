@@ -17,12 +17,11 @@
     // Save Internship
     function save(isValid) {
       if (!isValid) {
-        $scope.$broadcast('show-errors-check-validity', 'vm.form.internshipForm');  // on envoie dans le scope (associé au controleur, et donc la page html)
+        $scope.$broadcast('show-errors-check-validity', 'vm.form.internshipEnterpriseForm');  // on envoie dans le scope (associé au controleur, et donc la page html)
         return false;   // on envoie dans  <div class="form-group" show-errors>
       }
 
       $http.put('/api/internships/' + vm.internship._id + '/editEnterprise', vm.internship).success(successCallback);
-
       function successCallback(res) {
         if (vm.authentication.user.roles.includes('admin')) {
           alert('Enterprise info Updated!');

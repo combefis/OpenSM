@@ -17,7 +17,7 @@
     // Save Internship
     function save(isValid) {
       if (!isValid) {
-        $scope.$broadcast('show-errors-check-validity', 'vm.form.internshipForm');  // on envoie dans le scope (associé au controleur, et donc la page html)
+        $scope.$broadcast('show-errors-check-validity', 'vm.form.internshipPropositionForm');  // on envoie dans le scope (associé au controleur, et donc la page html)
         return false;   // on envoie dans  <div class="form-group" show-errors>
       }
 
