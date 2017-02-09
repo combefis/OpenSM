@@ -37,9 +37,9 @@ exports.read = function (req, res) {
 };
 
 exports.create = function (req, res) {
-  console.log('in create functiooon');
+  console.log('in create function');
   var internship = new Internship(req.body); // req.body permet de TOUT lui mettre, on mettra des infos en plus plus loin si besoin.
-  // internship.createdon = new Date();  // par exemple (non utilisé, a supprimer)
+  console.log(internship);  // par exemple (non utilisé, a supprimer)
   if (req.user.roles.includes('student')) {
     internship.student = req.user._id;
   }
@@ -170,7 +170,7 @@ exports.updateEnterprise = function (req, res) {
   console.log('in updateEnterprise function');
 
   var internship = req.internship;
-  
+
   internship.enterprise.name = req.body.enterprise.name;
   internship.enterprise.domain = req.body.enterprise.domain;
   internship.enterprise.fax = req.body.enterprise.fax;
@@ -185,6 +185,31 @@ exports.updateEnterprise = function (req, res) {
 
   internship.enterprise.representative.name = req.body.enterprise.representative.name;
   internship.enterprise.representative.position = req.body.enterprise.representative.position;
+
+  internship.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+    res.json(internship);
+  });
+};
+
+exports.updateProposition = function (req, res) {
+
+  console.log('in updateProposition function');
+
+  var internship = req.internship;
+
+  internship.master = req.body.master;
+  internship.supervisor = req.body.supervisor;
+
+  internship.proposition.theme = req.body.proposition.theme;
+  internship.proposition.domain = req.body.proposition.domain;
+  internship.proposition.location = req.body.proposition.location;
+  internship.proposition.description = req.body.proposition.description;
+  internship.proposition.approval.consultedTeacher = req.body.proposition.approval.consultedTeacher;
 
   internship.save(function (err) {
     if (err) {

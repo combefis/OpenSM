@@ -25,4 +25,7 @@ module.exports = function(app) {
   app.route('/api/internships/:internshipId/editEnterprise').all(internshipsPolicy.isAllowed)
     .put(internships.updateEnterprise);
 
+  app.route('/api/internships/:internshipId/editProposition').all(internshipsPolicy.isAllowed)
+    .put(internships.updateProposition);
+
 };

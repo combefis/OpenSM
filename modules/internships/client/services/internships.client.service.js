@@ -35,8 +35,7 @@
         console.log('internship exists');
         return internship.$update(onSuccess, onError);
       }
-      console.log(internship);
-      console.log('internship does note exist');
+      console.log('internship does not exist');
       return internship.$save(onSuccess, onError); // equivalent à http.p
 
       // $save et $update existent deja, la on choisi juste entre les deux.

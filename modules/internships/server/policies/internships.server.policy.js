@@ -23,7 +23,11 @@ exports.invokeRolesPolicies = function () {
     {
       roles: ['student'],
       allows: [{
-        resources: ['/api/internships', '/api/internships/:internshipId', '/api/internships/:internshipId/editEnterprise'],
+        resources: [
+        '/api/internships',
+        '/api/internships/:internshipId',
+        '/api/internships/:internshipId/editEnterprise',
+        '/api/internships/:internshipId/editProposition'],
         permissions: '*'
       }]
     }

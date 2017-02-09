@@ -9,8 +9,6 @@
       <li ng-if="vm.internship._id" class="active">
           <a ui-sref="student.manage.internships.edit.enterprise({ internshipId: vm.internship._id })" ng-bind="'GENERAL.EDIT' | translate"></a>
       </li>
-      <li ng-if="!vm.internship._id" class="active">
-          <a ui-sref="student.manage.internships.create" ng-bind="'GENERAL.CREATE' | translate"></a></li>
     </ol>
 </section>
 

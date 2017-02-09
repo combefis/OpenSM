@@ -37,11 +37,11 @@ var IntershipSchema = new Schema({
         type: Schema.ObjectId,
         ref: 'User'
       },
-      consultedTeacherApproval: { type: Boolean, default: 'false' },
-      unitChiefApproval: { type: Boolean, default: 'false' },
-      masterApproval: { type: Boolean, default: 'false' },
-      validatorApproval: { type: Boolean, default: 'false' },
-      supervisorApproval: { type: Boolean, default: 'false' }
+      consultedTeacherApproval: Boolean,
+      unitChiefApproval: Boolean,
+      masterApproval: Boolean,
+      validatorApproval: Boolean,
+      supervisorApproval: Boolean
     }
   },
   enterprise: {

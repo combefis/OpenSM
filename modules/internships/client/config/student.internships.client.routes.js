@@ -48,7 +48,7 @@
     })
 
     .state('student.manage.internships.edit.enterprise', {
-      url: '/:internshipId/edit/enterprise',
+      url: '/enterprise',
       templateUrl: 'modules/internships/client/views/form-internship-student-enterprise.client.html',
       controller: 'InternshipsStudentEnterpriseController',
       controllerAs: 'vm',
@@ -57,6 +57,19 @@
       },
       data: {
         pageTitle: 'Enterprise'
+      }
+    })
+
+    .state('student.manage.internships.edit.proposition', {
+      url: '/proposition',
+      templateUrl: 'modules/internships/client/views/form-internship-student-proposition.html',
+      controller: 'InternshipsStudentPropositionController',
+      controllerAs: 'vm',
+      resolve: {
+        internshipResolve: getInternship
+      },
+      data: {
+        pageTitle: 'Proposition'
       }
     })
 
