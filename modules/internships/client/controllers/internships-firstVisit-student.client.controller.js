@@ -12,8 +12,9 @@
 
     vm.authentication = Authentication;
     vm.internship = internship; // le "resolve"
-    vm.internship.firstVisit.date = new Date(internship.firstVisit.date);
     vm.save = save;
+
+    if(typeof vm.internship.firstVisit != 'undefined') vm.internship.firstVisit.date = new Date(internship.firstVisit.date);
 
     // Save Internship
     function save(isValid) {

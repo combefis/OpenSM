@@ -1,0 +1,76 @@
+<section>
+    <ol class="breadcrumb">
+      <li>
+        <a ui-sref="admin.manage.internships.list" ng-bind="'INTERNSHIP.INTERNSHIPS' | translate"></a>
+      </li>
+      <li ng-if="vm.internship._id" class="active">
+          <a ui-sref="student.manage.internships.view({ internshipId: vm.internship._id })" ng-bind="vm.internship._id"></a>
+      </li>
+      <li ng-if="vm.internship._id" class="active">
+          <a ui-sref="student.manage.internships.edit.activitiesNote({ internshipId: vm.internship._id })" ng-bind="'GENERAL.EDIT' | translate"></a>
+      </li>
+    </ol>
+</section>
+
+<h2>{{vm.internship._id ? 'INTERNSHIP.ACTIVITIESNOTE.EDIT' : 'INTERNSHIP.ACTIVITIESNOTE.CREATE' | translate}}</h2>
+
+  <div class="col-md-12">
+    <form name="vm.form.InternshipActivitiesNoteForm" class="form-horizontal" ng-submit="vm.save(vm.form.InternshipActivitiesNoteForm.$valid)" novalidate>
+      
+    <h3>Activities Note</h3>
+      <fieldset>
+      <div class="row" ng-repeat="Gobjective in vm.internship.activitiesNote.generalObjectives">
+        <div  class="form-group col-md-5" show-errors>
+          <label class="control-label" for="InternshipActivitiesNoteGeneralObjectives" ng-bind="'INTERNSHIP.ACTIVITIESNOTE.GENERALOBJECTIVES' | translate"></label>
+          <div>
+            <a role="button">
+              <div class="input-group">
+                <input type="text" ng-model="Gobjective.value" class="form-control" id="vm.activitiesNote.generalObjective" name="internship.activititesNote.generalObjective" placeholder="INTERNSHIP.ACTIVITIESNOTE.GENERALOBJECTIVE' | translate" required/>
+                <span class="input-group-addon" ng-click="vm.removeGeneralObjective(Gobjective)"><i class="glyphicon glyphicon-trash"></i></span>
+              </div>
+            </a>
+            <div ng-messages="item.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.ACTIVITIESNOTE.GENERALOBJECTIVES' | translate"></p>
+            </div>
+          </div>             
+         </div>
+
+        <div  class="form-group col-md-5" show-errors>
+          <label class="control-label" for="InternshipActivitiesNoteSpecificObjectives" ng-bind="'INTERNSHIP.ACTIVITIESNOTE.SPECIFICOBJECTIVES' | translate"></label>
+            <div ng-repeat="Sobjective in vm.internship.activitiesNote.specificObjectives">
+              <a role="button">
+                <div class="input-group">
+                  <input type="text" ng-model="Sobjective.value" id="vm.activitiesNote.specificObjective" class="form-control" name="internship.activititesNote.specificObjective" placeholder="INTERNSHIP.ACTIVITIESNOTE.SPECIFICOBJECTIVE' | translate" required/>
+                  <span class="input-group-addon" ng-click="vm.removeSpecificObjective(Sobjective)"><i class="glyphicon glyphicon-trash"></i></span>
+                </div>
+              </a>
+              <div ng-messages="item.$error" role="alert">
+                <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.ACTIVITIESNOTE.SPECIFICOBJECTIVES' | translate"></p>
+              </div>
+            </div>
+            
+        </div>
+      </div>
+          <div>
+            <a class="btn btn-primary" ng-click="vm.addGeneralObjective()">
+              <i class="glyphicon glyphicon-plus"></i>
+              <span>Add General Objective</span>
+            </a> 
+          </div>
+          <div>
+            <a class="btn btn-primary" ng-click="vm.addSpecificObjective()">
+              <i class="glyphicon glyphicon-plus"></i>
+              <span>Add Specific Objective</span>
+            </a> 
+          </div>           
+
+        <div>
+          <button type="submit" class="btn btn-primary">{{'GENERAL.CREATE' | translate}}</button>
+        </div>
+        <div ng-show="vm.error" class="text-danger">
+          <strong ng-bind="vm.error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+    

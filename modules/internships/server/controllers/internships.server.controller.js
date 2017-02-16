@@ -95,8 +95,6 @@ exports.update = function (req, res) {
   internship.enterprise.fax = req.body.enterprise.fax;
   internship.enterprise.mail = req.body.enterprise.mail;
 
-  internship.enterprise.modifications.createdOn = req.body.enterprise.modifications.createdOn;
-  internship.enterprise.modifications.lastModification = req.body.enterprise.modifications.lastModification;
   internship.enterprise.address.street = req.body.enterprise.address.street;
   internship.enterprise.address.number = req.body.enterprise.address.number;
   internship.enterprise.address.postalCode = req.body.enterprise.address.postalCode;
@@ -110,7 +108,6 @@ exports.update = function (req, res) {
   internship.convention.validation = req.body.convention.validation;
 
   internship.activitiesNote.generalObjectives = req.body.activitiesNote.generalObjectives;
-  internship.activitiesNote.specificObjectives = req.body.activitiesNote.specificObjectives;
   internship.activitiesNoteapproval = req.body.activitiesNoteapproval;
 /*
   internship.firstVisit.date = req.body.firstVisit.date;
@@ -245,10 +242,28 @@ exports.updateFirstVisit = function (req, res) {
   console.log('in updateFirstVisit function');
 
   var internship = req.internship;
-  console.log(req.body.firstVisit);
 
   internship.firstVisit.date = req.body.firstVisit.date;
   internship.firstVisit.location = req.body.firstVisit.location;
+
+  internship.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+    res.json(internship);
+  });
+};
+
+exports.updateActivitiesNote = function (req, res) {
+
+  console.log('in updateActivitiesNote function');
+
+  var internship = req.internship;
+  console.log(req.body.activitiesNote.generalObjectives);
+
+  internship.activitiesNote.generalObjectives= req.body.activitiesNote.generalObjectives;
 
   internship.save(function (err) {
     if (err) {

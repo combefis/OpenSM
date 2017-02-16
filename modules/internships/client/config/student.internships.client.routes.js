@@ -62,7 +62,7 @@
 
     .state('student.manage.internships.edit.proposition', {
       url: '/proposition',
-      templateUrl: 'modules/internships/client/views/form-internship-student-proposition.html',
+      templateUrl: 'modules/internships/client/views/form-internship-student-proposition.client.html',
       controller: 'InternshipsStudentPropositionController',
       controllerAs: 'vm',
       resolve: {
@@ -75,7 +75,7 @@
 
     .state('student.manage.internships.edit.journal', {
       url: '/journal',
-      templateUrl: 'modules/internships/client/views/form-internship-student-journalEntry.html',
+      templateUrl: 'modules/internships/client/views/form-internship-student-journalEntry.client.html',
       controller: 'InternshipsStudentJournalController',
       controllerAs: 'vm',
       resolve: {
@@ -88,14 +88,27 @@
 
     .state('student.manage.internships.edit.firstVisit', {
       url: '/fistVisit',
-      templateUrl: 'modules/internships/client/views/form-internship-student-firstVisit.html',
+      templateUrl: 'modules/internships/client/views/form-internship-student-firstVisit.client.html',
       controller: 'InternshipsStudentFirstVisitController',
       controllerAs: 'vm',
       resolve: {
         internshipResolve: getInternship
       },
       data: {
-        pageTitle: 'firstVisit'
+        pageTitle: 'FirstVisit'
+      }
+    })
+
+    .state('student.manage.internships.edit.activitiesNote', {
+      url: '/activitiesNote',
+      templateUrl: 'modules/internships/client/views/form-internship-student-activitiesNote.client.html',
+      controller: 'InternshipsStudentActivitiesNoteController',
+      controllerAs: 'vm',
+      resolve: {
+        internshipResolve: getInternship
+      },
+      data: {
+        pageTitle: 'ActivitiesNote'
       }
     })
 
