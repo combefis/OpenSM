@@ -86,6 +86,19 @@
       }
     })
 
+    .state('student.manage.internships.edit.firstVisit', {
+      url: '/fistVisit',
+      templateUrl: 'modules/internships/client/views/form-internship-student-firstVisit.html',
+      controller: 'InternshipsStudentFirstVisitController',
+      controllerAs: 'vm',
+      resolve: {
+        internshipResolve: getInternship
+      },
+      data: {
+        pageTitle: 'firstVisit'
+      }
+    })
+
     ;
   }
 

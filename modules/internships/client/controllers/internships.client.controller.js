@@ -24,7 +24,7 @@
       vm.internship.activitiesNote = {};
       vm.internship.activitiesNote.generalObjectives = [{}];
       vm.internship.activitiesNote.specificObjectives = [{}];
-    }
+    }  
 
     // Save Internship
     function save(isValid) {

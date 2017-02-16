@@ -30,4 +30,7 @@ module.exports = function(app) {
 
   app.route('/api/internships/:internshipId/editJournal').all(internshipsPolicy.isAllowed)
     .post(internships.updateJournal);
+
+  app.route('/api/internships/:internshipId/editFirstVisit').all(internshipsPolicy.isAllowed)
+    .put(internships.updateFirstVisit);
 };

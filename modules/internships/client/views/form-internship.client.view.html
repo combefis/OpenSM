@@ -306,39 +306,53 @@
         <fieldset>
           <div  class="form-group" show-errors>
             <label class="control-label" for="InternshipActivitiesNoteGeneralObjectives" ng-bind="'INTERNSHIP.ACTIVITIESNOTE.GENERALOBJECTIVES' | translate"></label>
-            <div ng-repeat="Gobjective in vm.internship.activitiesNote.generalObjectives">
-              <input  name="internship.activititesNote.generalObjective" type="text" ng-model="Gobjective.value" id="vm.activitiesNote.generalObjective" class="form-control" placeholder="INTERNSHIP.ACTIVITIESNOTE.GENERALOBJECTIVE' | translate" required />
-              <a class="btn btn-primary" ng-click="vm.removeGeneralObjective(Gobjective)" ng-if="vm.internship.activitiesNote.generalObjectives.indexOf(Gobjective)!=0">
-              <i class="glyphicon glyphicon-minus"></i>
-              </a>
-              <div ng-messages="item.$error" role="alert">
-                <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.ACTIVITIESNOTE.GENERALOBJECTIVES' | translate"></p>
+            
+              <div ng-repeat="Gobjective in vm.internship.activitiesNote.generalObjectives">
+                <a role="button">
+                  <div class="input-group">
+                    <input type="text" ng-model="Gobjective.value" class="form-control" id="vm.activitiesNote.generalObjective" name="internship.activititesNote.generalObjective" placeholder="INTERNSHIP.ACTIVITIESNOTE.GENERALOBJECTIVE' | translate" required/>
+                    <span class="input-group-addon" ng-click="vm.removeGeneralObjective(Gobjective)"><i class="glyphicon glyphicon-trash"></i></span>
+                  </div>
+                </a>
+                <div ng-messages="item.$error" role="alert">
+                  <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.ACTIVITIESNOTE.GENERALOBJECTIVES' | translate"></p>
+                </div>
               </div>
-              </div>  
-            </div>
-            <a class="btn btn-primary" ng-click="vm.addGeneralObjective()">
-              <i class="glyphicon glyphicon-plus"></i>
-            </a>
+
+              <div>
+              <a class="btn btn-primary" ng-click="vm.addGeneralObjective()">
+                <i class="glyphicon glyphicon-plus"></i>
+                <span>Add General Objective</span>
+              </a> 
+              </div>             
+          </div>
 
           <div  class="form-group" show-errors>
             <label class="control-label" for="InternshipActivitiesNoteSpecificObjectives" ng-bind="'INTERNSHIP.ACTIVITIESNOTE.SPECIFICOBJECTIVES' | translate"></label>
-            <div ng-repeat="Sobjective in vm.internship.activitiesNote.specificObjectives">
-              <input  name="internship.activititesNote.specificObjective" type="text" ng-model="Sobjective.value" id="vm.activitiesNote.specificObjective" class="form-control" placeholder="INTERNSHIP.ACTIVITIESNOTE.SPECIFICOBJECTIVE' | translate" required />                
-              <a class="btn btn-primary" ng-click="vm.removeSpecificObjective(Sobjective)" ng-if="vm.internship.activitiesNote.specificObjectives.indexOf(Sobjective)!=0">
-                <i class="glyphicon glyphicon-minus"></i>
-              </a>
-              <div ng-messages="item.$error" role="alert">
-                <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.ACTIVITIESNOTE.SPECIFICOBJECTIVES' | translate"></p>
+            
+              <div ng-repeat="Sobjective in vm.internship.activitiesNote.specificObjectives">
+                <a role="button">
+                  <div class="input-group">
+                    <input type="text" ng-model="Sobjective.value" id="vm.activitiesNote.specificObjective" class="form-control" name="internship.activititesNote.specificObjective" placeholder="INTERNSHIP.ACTIVITIESNOTE.SPECIFICOBJECTIVE' | translate" required/>
+                    <span class="input-group-addon" ng-click="vm.removeSpecificObjective(Sobjective)"><i class="glyphicon glyphicon-trash"></i></span>
+                  </div>
+                </a>
+                <div ng-messages="item.$error" role="alert">
+                  <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.ACTIVITIESNOTE.SPECIFICOBJECTIVES' | translate"></p>
+                </div>
               </div>
-            </div>
-            </div>
-            <a class="btn btn-primary" ng-click="vm.addSpecificObjective()">
-              <i class="glyphicon glyphicon-plus"></i>
-            </a>
 
-          <div class="form-group" show-errors>
-            <label class="control-label" for="InternshipActivitiesNoteApproval" ng-bind="'INTERNSHIP.ACTIVITIESNOTE.APPROVAL' | translate"></label>
-            <input 
+              <div>
+              <a class="btn btn-primary" ng-click="vm.addSpecificObjective()">
+                <i class="glyphicon glyphicon-plus"></i>
+                <span>Add Specific Objective</span>
+              </a> 
+              </div>             
+          </div>
+
+      <div class="form-group" show-errors>
+        <label class="control-label" for="InternshipActivitiesNoteApproval" ng-bind="'INTERNSHIP.ACTIVITIESNOTE.APPROVAL' | translate"></label>
+          <input 
             name="internship.activititesNote.approval" 
             ng-true-value = "true"
             ng-false-value = "false"
@@ -346,12 +360,15 @@
             ng-model="vm.internship.activitiesNote.approval" 
             id="activitiesNoteApproval" 
             class="form-control" 
-            />
-            <div ng-messages="vm.form.internshipForm.convention.validation.$error" role="alert">
+          />
+          <div ng-messages="vm.form.internshipForm.convention.validation.$error" role="alert">
               <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.CONVENTION.APPROVAL' | translate"></p>
           </div>
-          </div>          
-        </fieldset>
+      </div>          
+    </fieldset>
+
+
+
       <h3>Certificate</h3>
         <fieldset>
         <div class="form-group" show-errors>

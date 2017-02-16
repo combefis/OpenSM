@@ -199,6 +199,67 @@
     </div>     
   </uib-tab>
 
+  <uib-tab heading="First Meeting">
+   <div class = "row">
+    <div class = "col-md-12">
+      <h2>First Meeting</h2>
+      <div class="alert alert-warning" ng-if="!vm.internship.firstVisit" ng-bind="'INTERNSHIP.NO_FIRSTVISIT' | translate"></div>
+      <div ng-if="vm.internship.firstVisit">
+      <hr>
+          <div class="col-md-10">
+          <div class="row">
+            <div class="col-md-3"><strong>Location</strong></div>
+            <div class="col-md-6" ng-bind="vm.internship.firstVisit.location"></div>
+          </div> 
+          <div class="row">
+            <div class="col-md-3"><strong>Date</strong></div>
+            <div class="col-md-6" ng-bind="vm.internship.firstVisit.date | amDateFormat: 'ddd D MMM YYYY'"></div>
+          </div>             
+          <div class="row">
+            <div class="col-md-3"><strong>Supervisor Notes</strong></div>
+            <div class="col-md-6" ng-bind="vm.internship.firstVisit.supervisorNotes"></div>
+          </div>        
+        </div>  
+      </div>
+    </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-4">
+        <a class="btn btn-primary" ui-sref="student.manage.internships.edit.firstVisit({ internshipId: vm.internship._id })">
+          <i class="glyphicon glyphicon-edit" ng-if="vm.internship.firstVisit"></i>
+          <span class="glyphicon glyphicon-plus" ng-if="!vm.internship.firstVisit" aria-hidden="true"></span>
+          <span> {{vm.internship.firstVisit? 'INTERNSHIP.FIRSTVISIT.UPDATE':'INTERNSHIP.FIRSTVISIT.CREATE' | translate}} </span>
+        </a>
+      </div>
+    </div>
+    </div>
+  </uib-tab>      
+
+  <uib-tab heading="Final Presentation">
+  <div class="row">
+  <div class="col-md-12">
+  <h2>Journal</h2>
+    <div class="action-box">
+      <a class="btn btn-primary" ui-sref="student.manage.internships.edit.journal({ internshipId: vm.internship._id })"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> {{'JOURNAL.ENTRY.CREAATE' | translate}}</a>
+    </div>
+    <hr>
+    <div class="alert alert-warning" ng-if="!vm.internship.journal.entries[0]" ng-bind="'INTERNSHIP.NO_JOURNAL_ENTRIES' | translate"></div>
+    
+    <div class="panel-group">
+      <div class="panel panel-default" ng-repeat="entry in vm.internship.journal.entries">
+        <div class="panel-heading">
+        {{entry.date | amDateFormat: 'ddd D MMM YYYY'}}
+        </div>
+        <div class="panel-body">
+        {{entry.note}}
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </uib-tab>
+
   <uib-tab heading="Journal de bord">
   <div class="row">
   <div class="col-md-12">
@@ -221,5 +282,6 @@
     </div>
   </div>
   </div>
-  </uib-tab>                            
+  </uib-tab>
+
 </uib-tabset>

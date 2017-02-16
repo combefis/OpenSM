@@ -226,17 +226,30 @@ exports.updateJournal = function (req, res) {
   console.log('in updateJournal function');
 
   var internship = req.internship;
-
-  console.log(internship);
-  console.log('DATE');
-  console.log(req.body.date);
-  console.log('NOTE');
-  console.log(req.body.note);
-
   internship.journal.entries.push({
     date: req.body.date,
     note: req.body.note
   });
+  internship.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+    res.json(internship);
+  });
+};
+
+exports.updateFirstVisit = function (req, res) {
+
+  console.log('in updateFirstVisit function');
+
+  var internship = req.internship;
+  console.log(req.body.firstVisit);
+
+  internship.firstVisit.date = req.body.firstVisit.date;
+  internship.firstVisit.location = req.body.firstVisit.location;
+
   internship.save(function (err) {
     if (err) {
       return res.status(422).send({

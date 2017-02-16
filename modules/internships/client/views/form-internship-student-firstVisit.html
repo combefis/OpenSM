@@ -1,0 +1,49 @@
+<section>
+    <ol class="breadcrumb">
+      <li>
+        <a ui-sref="admin.manage.internships.list" ng-bind="'INTERNSHIP.INTERNSHIPS' | translate"></a>
+      </li>
+      <li ng-if="vm.internship._id" class="active">
+          <a ui-sref="student.manage.internships.view({ internshipId: vm.internship._id })" ng-bind="vm.internship._id"></a>
+      </li>
+      <li ng-if="vm.internship._id" class="active">
+          <a ui-sref="student.manage.internships.edit.firstVisit({ internshipId: vm.internship._id })" ng-bind="'GENERAL.EDIT' | translate"></a>
+      </li>
+    </ol>
+</section>
+
+    <h2>{{vm.internship._id ? 'INTERNSHIP.FIRSTVISIT.EDIT' : 'INTERNSHIP.JOURNAL.FIRSTVISIT' | translate}}</h2>
+
+    <div class="col-md-12">
+      <form name="vm.form.internshipFirstVisitForm" class="form-horizontal" ng-submit="vm.save(vm.form.internshipFirstVisitForm.$valid)" novalidate>
+      
+  <h3>Create first internship visit</h3>
+      <fieldset>
+
+          <div class="form-group" show-errors>
+            <label class="control-label" for="InternshipFirstVisitDate" ng-bind="'INTERNSHIP.FIRSTVISIT.DATE' | translate"></label>
+            <input name="internshipFirstVisitDate" type="date" ng-model="vm.internship.firstVisit.date" id="firstVisitDate" class="form-control" required />
+            <div ng-messages="vm.form.internshipFirstVisitForm.firstVisit.date.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.FIRSTVISIT.DATE' | translate"></p>
+          </div>
+          </div>               
+
+          <div class="form-group" show-errors>
+            <label class="control-label" for="InternshipFirstVisitLocation" ng-bind="'INTERNSHIP.FIRSTVISIT.LOCATION' | translate"></label>
+            <textarea name="internshipFirstVisitLocation" ng-model="vm.internship.firstVisit.location" id="internshipFirstVisitLocation" class="form-control" cols="30" rows="5" placeholder="{{'INTERNSHIP.FIRSTVISIT.LOCATION' | translate}}" required>
+            </textarea>
+            <div ng-messages="vm.form.internshipFirstVisitForm.firstVisit.location.note.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.FIRSTVISIT.LOCATION' | translate"></p>
+            </div>
+          </div>
+ 
+        </fieldset>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">{{'GENERAL.CREATE' | translate}}</button>
+          </div>
+          <div ng-show="vm.error" class="text-danger">
+            <strong ng-bind="vm.error"></strong>
+          </div>
+      </form>
+    </div>
