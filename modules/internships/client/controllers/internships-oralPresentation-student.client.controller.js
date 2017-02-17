@@ -3,7 +3,7 @@
 
   angular
     .module('internships')
-    .controller('InternshipsStudentFirstVisitController', InternshipsController);
+    .controller('InternshipsStudentOralPresentationController', InternshipsController);
 
   InternshipsController.$inject = ['$scope', '$state', 'internshipResolve', '$window', 'Authentication', '$http', '$filter'];
 
@@ -19,12 +19,12 @@
     // Save Internship
     function save(isValid) {
       if (!isValid) {
-        $scope.$broadcast('show-errors-check-validity', 'vm.form.internshipFirstVisitForm');  // on envoie dans le scope (associé au controleur, et donc la page html)
+        $scope.$broadcast('show-errors-check-validity', 'vm.form.internshipOralPresentationForm');  // on envoie dans le scope (associé au controleur, et donc la page html)
         console.log('error');
         return false;   // on envoie dans  <div class="form-group" show-errors>
       }
 
-      $http.put('/api/internships/' + vm.internship._id + '/editFirstVisit', vm.internship).success(successCallback);
+      $http.put('/api/internships/' + vm.internship._id + '/editOralPresentation', vm.internship).success(successCallback);
 
       function successCallback(res) {
         if (vm.authentication.user.roles.includes('admin')) {

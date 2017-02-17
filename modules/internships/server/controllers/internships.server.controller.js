@@ -261,9 +261,25 @@ exports.updateActivitiesNote = function (req, res) {
   console.log('in updateActivitiesNote function');
 
   var internship = req.internship;
-  console.log(req.body.activitiesNote.generalObjectives);
+  internship.activitiesNote.generalObjectives = req.body.activitiesNote.generalObjectives;
 
-  internship.activitiesNote.generalObjectives= req.body.activitiesNote.generalObjectives;
+  internship.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+    res.json(internship);
+  });
+};
+
+exports.updateOralPresentation = function (req, res) {
+
+  console.log('in updateOralPresentation function');
+
+  var internship = req.internship;
+  console.log(req.body.oralPresentation);
+  internship.oralPresentation = req.body.oralPresentation;
 
   internship.save(function (err) {
     if (err) {

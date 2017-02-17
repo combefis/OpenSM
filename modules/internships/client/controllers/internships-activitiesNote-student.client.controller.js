@@ -16,7 +16,7 @@
     vm.addGeneralObjective = addGeneralObjective;
     vm.addSpecificObjective = addSpecificObjective;
     vm.removeGeneralObjective = removeGeneralObjective;
-    vm.removeSpecificObjective = removeSpecificObjective;    
+    vm.removeSpecificObjective = removeSpecificObjective;
 
     // Save Internship
     function save(isValid) {
@@ -60,7 +60,7 @@
     function addSpecificObjective(Gobjective) {
       var index = vm.internship.activitiesNote.generalObjectives.indexOf(Gobjective);
       console.log(index);
-      if (typeof vm.internship.activitiesNote.generalObjectives[index].specificObjectives == 'undefined'){
+      if (typeof vm.internship.activitiesNote.generalObjectives[index].specificObjectives == 'undefined') {
         vm.internship.activitiesNote.generalObjectives[index].specificObjectives = [{}];
         return;
       }
@@ -71,6 +71,6 @@
       var indexG = vm.internship.activitiesNote.generalObjectives.indexOf(Gobjective);
       var indexS = vm.internship.activitiesNote.generalObjectives[indexG].specificObjectives.indexOf(Sobjective);
       vm.internship.activitiesNote.generalObjectives[indexG].specificObjectives.splice(indexS, 1);
-    }    
+    }
   }
 }());

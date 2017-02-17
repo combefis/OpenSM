@@ -40,7 +40,7 @@
         </fieldset>
 
         <div class="form-group">
-            <button type="submit" class="btn btn-primary">{{'GENERAL.CREATE' | translate}}</button>
+            <button type="submit" class="btn btn-primary">{{vm.internship.firstVisti? 'GENERAL.UPDATE' : 'GENERAL.CREATE' | translate}}</button>
           </div>
           <div ng-show="vm.error" class="text-danger">
             <strong ng-bind="vm.error"></strong>

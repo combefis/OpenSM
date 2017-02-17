@@ -67,14 +67,14 @@ var IntershipSchema = new Schema({
   },
   activitiesNote: {
     generalObjectives: {
-      type: [new Schema({ 
-              value: String,
-              specificObjectives: 
-                  [new Schema({ 
-                    value: String,
-                    },
-                    { id: false, _id: false })],
-           }, { id: false, _id: false })]
+      type: [new Schema({
+        value: String,
+        specificObjectives:
+                  [new Schema({
+                    value: String
+                  },
+                  { id: false, _id: false })]
+      }, { id: false, _id: false })]
     },
     approval: Boolean
   },

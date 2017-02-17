@@ -272,28 +272,41 @@
     </div>
   </uib-tab>      
 
-  <uib-tab heading="Final Presentation">
-  <div class="row">
-  <div class="col-md-12">
-  <h2>Journal</h2>
-    <div class="action-box">
-      <a class="btn btn-primary" ui-sref="student.manage.internships.edit.journal({ internshipId: vm.internship._id })"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> {{'JOURNAL.ENTRY.CREAATE' | translate}}</a>
-    </div>
-    <hr>
-    <div class="alert alert-warning" ng-if="!vm.internship.journal.entries[0]" ng-bind="'INTERNSHIP.NO_JOURNAL_ENTRIES' | translate"></div>
-    
-    <div class="panel-group">
-      <div class="panel panel-default" ng-repeat="entry in vm.internship.journal.entries">
-        <div class="panel-heading">
-        {{entry.date | amDateFormat: 'ddd D MMM YYYY'}}
-        </div>
-        <div class="panel-body">
-        {{entry.note}}
-        </div>
+  <uib-tab heading="Oral Presentation">
+   <div class = "row">
+    <div class = "col-md-12">
+      <h2>Oral Presentation</h2>
+      <div class="alert alert-warning" ng-if="!vm.internship.firstVisit" ng-bind="'INTERNSHIP.NO_FIRSTVISIT' | translate"></div>
+      <div ng-if="vm.internship.firstVisit">
+      <hr>
+          <div class="col-md-10">
+          <div class="row">
+            <div class="col-md-3"><strong>Location</strong></div>
+            <div class="col-md-6" ng-bind="vm.internship.oralPresentation.location"></div>
+          </div> 
+          <div class="row">
+            <div class="col-md-3"><strong>Date</strong></div>
+            <div class="col-md-6" ng-bind="vm.internship.oralPresentation.date | amDateFormat: 'ddd D MMM YYYY'"></div>
+          </div>             
+          <div class="row">
+            <div class="col-md-3"><strong>Points (to be added later)</strong></div>
+            <div class="col-md-6" ng-bind="vm.internship.oralPresentation.blob"></div>
+          </div>        
+        </div>  
       </div>
     </div>
-  </div>
-  </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-4">
+        <a class="btn btn-primary" ui-sref="student.manage.internships.edit.oralPresentation({ internshipId: vm.internship._id })">
+          <i class="glyphicon glyphicon-edit" ng-if="vm.internship.oralPresentation"></i>
+          <span class="glyphicon glyphicon-plus" ng-if="!vm.internship.oralPresentation" aria-hidden="true"></span>
+          <span> {{vm.internship.oralPresentation? 'INTERNSHIP.ORALPRESENTATION.UPDATE':'INTERNSHIP.ORALPRESENTATION.CREATE' | translate}} </span>
+        </a>
+      </div>
+    </div>
+    </div>
   </uib-tab>
 
   <uib-tab heading="Journal de bord">

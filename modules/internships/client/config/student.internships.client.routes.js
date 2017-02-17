@@ -99,6 +99,19 @@
       }
     })
 
+    .state('student.manage.internships.edit.oralPresentation', {
+      url: '/oralPresentation',
+      templateUrl: 'modules/internships/client/views/form-internship-student-oralPresentation.client.html',
+      controller: 'InternshipsStudentOralPresentationController',
+      controllerAs: 'vm',
+      resolve: {
+        internshipResolve: getInternship
+      },
+      data: {
+        pageTitle: 'FirstVisit'
+      }
+    })
+
     .state('student.manage.internships.edit.activitiesNote', {
       url: '/activitiesNote',
       templateUrl: 'modules/internships/client/views/form-internship-student-activitiesNote.client.html',
