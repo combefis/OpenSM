@@ -24,10 +24,6 @@ var IntershipSchema = new Schema({
     ref: 'User'
   },
   proposition: {
-    modifications: {
-      createdOn: Date,
-      lastModification: Date
-    },
     theme: String,
     domain: String,
     location: String,
@@ -40,6 +36,7 @@ var IntershipSchema = new Schema({
       consultedTeacherApproval: Boolean,
       unitChiefApproval: Boolean,
       masterApproval: Boolean,
+      masterComment: String,
       validatorApproval: Boolean,
       supervisorApproval: Boolean
     }
@@ -76,7 +73,8 @@ var IntershipSchema = new Schema({
                   { id: false, _id: false })]
       }, { id: false, _id: false })]
     },
-    approval: Boolean
+    approval: Boolean,
+    masterComment: String
   },
   firstVisit: {
     date: Date,

@@ -21,5 +21,11 @@
       roles: ['student']
     });
 
+    menuService.addSubMenuItem('topbar', 'master.manage', {
+      title: 'Students',
+      state: 'master.manage.students.list',
+      roles: ['master']
+    });
+
   }
 }());

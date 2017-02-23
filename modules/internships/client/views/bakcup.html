@@ -1,0 +1,312 @@
+<section>
+    <ol class="breadcrumb">
+      <li>
+        <a ui-sref="master.manage.students.internships.list" ng-bind="'INTERNSHIP.INTERNSHIPS' | translate"></a>
+      </li>
+      <li ng-if="vm.internship._id" class="active">
+          <a ui-sref="master.manage.students.internships.view({ internshipId: vm.internship._id })" ng-bind="vm.internship._id"></a>
+      </li>
+    </ol>
+</section>
+
+<uib-tabset>
+  <uib-tab heading="Overview">
+    <div class = "row">
+    <div class = "col-md-12">
+      <h2>Overview of Internship</h2>
+      <hr>
+      
+    <div class="col-md-6">
+    <h3>Participants</h3>
+      <div class="row">
+        <div class="col-md-4"><strong>Student</strong></div>
+        <div class="col-md-6" ng-bind="vm.internship.student"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-4"><strong>Master</strong></div>
+        <div class="col-md-6" ng-bind="vm.internship.master"></div>
+      </div>               
+      <div class="row">
+        <div class="col-md-4"><strong>Supervisor</strong></div>
+        <div class="col-md-6" ng-bind="vm.internship.supervisor"></div>
+      </div>
+    </div> 
+    <div class="col-md-4">
+    <h3>Internship period</h3>
+      <div class="row">
+        <div class="col-md-4"><strong>Beginning</strong></div>
+        <div class="col-md-6" ng-bind="vm.internship.deadlines.startInternship"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-4"><strong>End</strong></div>
+        <div class="col-md-6" ng-bind="vm.internship.deadlines.endInternship"></div>
+      </div>               
+    </div>  
+  </div>
+  </div>
+  </uib-tab>
+
+  <uib-tab heading="Participants" ng-if="vm.internship.proposition">
+   <div class = "row">
+    <div class = "col-md-12">
+      <h2>Participants</h2>
+      <hr>
+      <div class="col-md-10">
+      <div class="row">
+        <div class="col-md-3"><strong>Master</strong></div>
+        <div class="col-md-6" ng-bind="vm.internship.master"></div>
+      </div> 
+      <div class="row">
+        <div class="col-md-3"><strong>Supervisor</strong></div>
+        <div class="col-md-6" ng-bind="vm.internship.supervisor"></div>
+      </div>             
+      <div class="row">
+        <div class="col-md-3"><strong>Consulted Teacher</strong></div>
+        <div class="col-md-6" ng-bind="vm.internship.proposition.approval.consultedTeacher"></div>
+      </div>        
+      <div class="row">
+        <div class="col-md-3"><strong>Validator</strong></div>
+        <div class="col-md-6" ng-bind="vm.internship.validator"></div>
+      </div>
+    </div>  
+  </div>
+  </div>
+    <hr>      
+  </uib-tab>
+
+    <uib-tab heading="Proposition">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Proposition</h2>
+        <div class="alert alert-warning" ng-if="!vm.internship.proposition" ng-bind="'INTERNSHIP.NO_PROPOSITION' | translate"></div>
+        <div ng-if="vm.internship.proposition">
+        <hr>
+        <div class="col-md-8">   
+          <h3>General information</h3>
+            <div class="row">
+                <div class="col-md-2"><strong>Theme</strong></div>
+                <div class="col-md-9" ng-bind="vm.internship.proposition.theme"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"><strong>Domain</strong></div>
+                <div class="col-md-9" ng-bind="vm.internship.proposition.domain"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"><strong>Location</strong></div>
+                <div class="col-md-9" ng-bind="vm.internship.proposition.location"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"><strong>Description</strong></div>
+                <div class="col-md-9" ng-bind="vm.internship.proposition.description"></div>
+            </div>
+        </div>
+        <div class="col-md-4">
+          <h3>Approval</h3>  
+            <div class="row">
+                <div class="col-md-7"><strong>Master</strong></div>
+                <div class="col-md-1" ng-bind="vm.internship.proposition.approval.masterApproval"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-7"><strong>Consulted Teacher</strong></div>
+                <div class="col-md-1" ng-bind="vm.internship.proposition.approval.consultedTeacherApproval"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-7"><strong>Supervisor</strong></div>
+                <div class="col-md-1" ng-bind="vm.internship.proposition.approval.supervisorApproval"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-7"><strong>Validator</strong></div>
+                <div class="col-md-1" ng-bind="vm.internship.proposition.approval.validatorApproval"></div>
+            </div>                        
+        </div>
+        </div>
+      </div>
+    </div>
+    <hr>   
+    <div class="row" ng-if="vm.internship.proposition.approval.masterApproval!=true">
+      <div class="col-md-12"> 
+        <div class = "row">
+          <div class="col-md-4">
+            <button class="btn btn-primary" ng-click="vm.masterCommentAdd(true,true)">
+              <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>{{'INTERNSHIP.PROPOSITION.ACCEPT' | translate}}
+            </button>
+          </div> 
+          <form name="vm.form.internshipPropositionMasterCommentForm" class="form-horizontal" ng-submit="vm.masterCommentAdd(vm.form.internshipPropositionMasterCommentForm.$valid,false)" novalidate>
+            <div class="col-md-4">
+              <button type="submit" class="btn btn-primary">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>{{'INTERNSHIP.PROPOSITION.REFUSE' | translate}}
+              </button>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group" show-errors>
+              <textarea name="propositionMasterComment" ng-model="vm.internship.proposition.approval.masterComment" id="internshipProposisionMasterComment" class="form-control" cols="30" rows="5" placeholder="{{'INTERNSHIP.PROPOSITION.MASTERCOMMENT' | translate}}" required>
+              </textarea>
+              <div ng-messages="vm.form.internshipPropositionMasterCommentForm.proposition.masterComment.$error" role="alert">
+                <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.PROPOSITION.DESCRIPTION' | translate"></p>
+              </div>
+              </form>
+            </div>            
+          </div>
+        </div>
+      </div>
+    </div>         
+  </uib-tab>
+
+  <uib-tab heading="Activities Note">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Activities Note</h2>
+        <div class="alert alert-warning" ng-if="!vm.internship.activitiesNote.generalObjectives[0]" ng-bind="'INTERNSHIP.NO_ACTIVITIESNOTE' | translate"></div>
+        <div ng-if="vm.internship.activitiesNote.generalObjectives[0]">
+        <hr>
+          <div class="col-md-5"><h3>General Objectives</h3></div><div class="col-md-6"><h3>Specific Objectivies</h3></div>
+            
+            <div class="row" ng-repeat="Gobjective in vm.internship.activitiesNote.generalObjectives">
+              <div class="col-md-5">   
+                <ul>
+                  <li>{{Gobjective.value}}</li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <ul ng-repeat="Sobjective in Gobjective.specificObjectives">
+                  <li>{{Sobjective.value}}</li>
+                </ul>
+              </div>
+            </div>
+
+        </div>
+      </div>
+    </div>
+    <hr>
+
+    <div class="row" ng-if="vm.internship.activitiesNote.approval.approval!=true">
+      <div class="col-md-12"> 
+        <div class = "row">
+          <div class="col-md-4">
+            <button class="btn btn-primary" ng-click="vm.masterCommentAdd(true,true)">
+              <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>{{'INTERNSHIP.PROPOSITION.ACCEPT' | translate}}
+            </button>
+          </div> 
+          <form name="vm.form.internshipActivitiesNoteMasterCommentForm" class="form-horizontal" ng-submit="vm.masterCommentAdd(vm.form.internshipActivitiesNoteMasterCommentForm.$valid,false)" novalidate>
+            <div class="col-md-4">
+              <button type="submit" class="btn btn-primary">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>{{'INTERNSHIP.PROPOSITION.REFUSE' | translate}}
+              </button>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group" show-errors>
+              <textarea name="propositionMasterComment" ng-model="vm.internship.proposition.approval.masterComment" id="internshipProposisionMasterComment" class="form-control" cols="30" rows="5" placeholder="{{'INTERNSHIP.PROPOSITION.MASTERCOMMENT' | translate}}" required>
+              </textarea>
+              <div ng-messages="vm.form.internshipActivitiesNoteMasterCommentForm.proposition.masterComment.$error" role="alert">
+                <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.PROPOSITION.DESCRIPTION' | translate"></p>
+              </div>
+              </form>
+            </div>            
+          </div>
+        </div>
+      </div>
+    </div>   
+  </uib-tab>
+
+  <uib-tab heading="First Meeting">
+   <div class = "row">
+    <div class = "col-md-12">
+      <h2>First Meeting</h2>
+      <div class="alert alert-warning" ng-if="!vm.internship.firstVisit" ng-bind="'INTERNSHIP.NO_FIRSTVISIT' | translate"></div>
+      <div ng-if="vm.internship.firstVisit">
+      <hr>
+          <div class="col-md-10">
+          <div class="row">
+            <div class="col-md-3"><strong>Location</strong></div>
+            <div class="col-md-6" ng-bind="vm.internship.firstVisit.location"></div>
+          </div> 
+          <div class="row">
+            <div class="col-md-3"><strong>Date</strong></div>
+            <div class="col-md-6" ng-bind="vm.internship.firstVisit.date | amDateFormat: 'ddd D MMM YYYY'"></div>
+          </div>             
+          <div class="row">
+            <div class="col-md-3"><strong>Supervisor Notes</strong></div>
+            <div class="col-md-6" ng-bind="vm.internship.firstVisit.supervisorNotes"></div>
+          </div>        
+        </div>  
+      </div>
+    </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-4">
+        <a class="btn btn-primary" ui-sref="student.manage.internships.edit.firstVisit({ internshipId: vm.internship._id })">
+          <i class="glyphicon glyphicon-edit" ng-if="vm.internship.firstVisit"></i>
+          <span class="glyphicon glyphicon-plus" ng-if="!vm.internship.firstVisit" aria-hidden="true"></span>
+          <span> {{vm.internship.firstVisit? 'INTERNSHIP.FIRSTVISIT.UPDATE':'INTERNSHIP.FIRSTVISIT.CREATE' | translate}} </span>
+        </a>
+      </div>
+    </div>
+    </div>
+  </uib-tab>      
+
+  <uib-tab heading="Oral Presentation">
+   <div class = "row">
+    <div class = "col-md-12">
+      <h2>Oral Presentation</h2>
+      <div class="alert alert-warning" ng-if="!vm.internship.firstVisit" ng-bind="'INTERNSHIP.NO_FIRSTVISIT' | translate"></div>
+      <div ng-if="vm.internship.firstVisit">
+      <hr>
+          <div class="col-md-10">
+          <div class="row">
+            <div class="col-md-3"><strong>Location</strong></div>
+            <div class="col-md-6" ng-bind="vm.internship.oralPresentation.location"></div>
+          </div> 
+          <div class="row">
+            <div class="col-md-3"><strong>Date</strong></div>
+            <div class="col-md-6" ng-bind="vm.internship.oralPresentation.date | amDateFormat: 'ddd D MMM YYYY'"></div>
+          </div>             
+          <div class="row">
+            <div class="col-md-3"><strong>Points (to be added later)</strong></div>
+            <div class="col-md-6" ng-bind="vm.internship.oralPresentation.blob"></div>
+          </div>        
+        </div>  
+      </div>
+    </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-4">
+        <a class="btn btn-primary" ui-sref="student.manage.internships.edit.oralPresentation({ internshipId: vm.internship._id })">
+          <i class="glyphicon glyphicon-edit" ng-if="vm.internship.oralPresentation"></i>
+          <span class="glyphicon glyphicon-plus" ng-if="!vm.internship.oralPresentation" aria-hidden="true"></span>
+          <span> {{vm.internship.oralPresentation? 'INTERNSHIP.ORALPRESENTATION.UPDATE':'INTERNSHIP.ORALPRESENTATION.CREATE' | translate}} </span>
+        </a>
+      </div>
+    </div>
+    </div>
+  </uib-tab>
+
+  <uib-tab heading="Journal de bord">
+  <div class="row">
+  <div class="col-md-12">
+  <h2>Journal</h2>
+    <hr>
+    <div class="alert alert-warning" ng-if="!vm.internship.journal.entries[0]" ng-bind="'INTERNSHIP.NO_JOURNAL_ENTRIES' | translate"></div>
+    
+    <div class="panel-group">
+      <div class="panel panel-default" ng-repeat="entry in vm.internship.journal.entries">
+        <div class="panel-heading">
+        {{entry.date | amDateFormat: 'ddd D MMM YYYY'}}
+        </div>
+        <div class="panel-body">
+        {{entry.note}}
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </uib-tab>
+
+</uib-tabset>

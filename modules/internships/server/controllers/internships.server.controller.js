@@ -20,6 +20,11 @@ exports.list = function (req, res) {
     query = { 'student': req.user._id };
   }
 
+  if (req.user.roles.includes('master')) {
+    query = { 'student': req.query.studentId, 'master': req.user._id };
+    console.log(req.query.studentId);
+  }
+
   Internship.find(query).exec(function (err, internships) {
     if (err) {
       return res.status(400).send({
@@ -199,14 +204,19 @@ exports.updateProposition = function (req, res) {
 
   var internship = req.internship;
 
-  internship.master = req.body.master;
-  internship.supervisor = req.body.supervisor;
+  if (req.user.roles.includes('master')) {
+    internship.proposition.approval.masterComment = req.body.proposition.approval.masterComment;
+    internship.proposition.approval.masterApproval = req.body.proposition.approval.masterApproval;
+  } else {
+    internship.master = req.body.master;
+    internship.supervisor = req.body.supervisor;
 
-  internship.proposition.theme = req.body.proposition.theme;
-  internship.proposition.domain = req.body.proposition.domain;
-  internship.proposition.location = req.body.proposition.location;
-  internship.proposition.description = req.body.proposition.description;
-  internship.proposition.approval.consultedTeacher = req.body.proposition.approval.consultedTeacher;
+    internship.proposition.theme = req.body.proposition.theme;
+    internship.proposition.domain = req.body.proposition.domain;
+    internship.proposition.location = req.body.proposition.location;
+    internship.proposition.description = req.body.proposition.description;
+    internship.proposition.approval.consultedTeacher = req.body.proposition.approval.consultedTeacher;
+  }
 
   internship.save(function (err) {
     if (err) {
@@ -261,7 +271,13 @@ exports.updateActivitiesNote = function (req, res) {
   console.log('in updateActivitiesNote function');
 
   var internship = req.internship;
-  internship.activitiesNote.generalObjectives = req.body.activitiesNote.generalObjectives;
+
+  if (req.user.roles.includes('master')) {
+    internship.activitiesNote.approval = req.body.activitiesNote.approval;
+    internship.activitiesNote.masterComment = req.body.activitiesNote.masterComment;
+  } else {
+    internship.activitiesNote.generalObjectives = req.body.activitiesNote.generalObjectives;
+  }
 
   internship.save(function (err) {
     if (err) {

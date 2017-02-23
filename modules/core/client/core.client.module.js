@@ -7,4 +7,6 @@
   app.registerModule('core.admin.routes', ['ui.router']);
   app.registerModule('core.student', ['core']);
   app.registerModule('core.student.routes', ['ui.router']);
+  app.registerModule('core.master', ['core']);
+  app.registerModule('core.master.routes', ['ui.router']);
 }(ApplicationConfiguration));

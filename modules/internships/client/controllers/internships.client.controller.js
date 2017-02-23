@@ -7,7 +7,7 @@
 
   InternshipsController.$inject = ['$scope', '$state', 'internshipResolve', '$window', 'Authentication', '$http', '$filter'];
 
-  function InternshipsController($scope, $state, internship, $window, Authentication, http, filter) {
+  function InternshipsController($scope, $state, internship, $window, Authentication, $http, filter) {
     var vm = this; // on instancie tout ce qu'on vient de lui passer
 
     vm.authentication = Authentication;
@@ -19,6 +19,8 @@
     vm.addSpecificObjective = addSpecificObjective;
     vm.removeGeneralObjective = removeGeneralObjective;
     vm.removeSpecificObjective = removeSpecificObjective;
+    vm.masterPropositionCommentAdd = masterPropositionCommentAdd;
+    vm.masterActivitiesNoteCommentAdd = masterActivitiesNoteCommentAdd;
 
     if (!internship._id) {
       vm.internship.activitiesNote = {};
@@ -96,6 +98,57 @@
       var index = vm.internship.activitiesNote.specificObjectives.indexOf(Sobjective);
       console.log(index);
       vm.internship.activitiesNote.specificObjectives.splice(index, 1);
+    }
+
+
+    function masterActivitiesNoteCommentAdd(isValid, decision) {
+      if (!isValid) {
+        $scope.$broadcast('show-errors-check-validity', 'vm.form.internshipActivitiesNoteMasterCommentForm');  // on envoie dans le scope (associé au controleur, et donc la page html)
+        return false;
+           // on envoie dans  <div class="form-group" show-errors>
+      }
+
+      vm.internship.activitiesNote.approval = decision;
+      $http.put('/api/internships/' + vm.internship._id + '/editActivitiesNote', vm.internship).success(successCallback);
+
+      function successCallback(res) {
+        if (vm.authentication.user.roles.includes('master')) {
+          alert('Action registered!');
+          $state.go('master.manage.students.internships.view', {
+            internshipId: res._id
+          });
+        }
+      }
+
+      function errorCallback(res) {
+        console.log(res);
+        vm.error = res.message.message;
+      }
+    }
+
+    function masterPropositionCommentAdd(isValid, decision) {
+      if (!isValid) {
+        $scope.$broadcast('show-errors-check-validity', 'vm.form.internshipPropositionMasterCommentForm');  // on envoie dans le scope (associé au controleur, et donc la page html)
+        return false;
+           // on envoie dans  <div class="form-group" show-errors>
+      }
+      console.log(decision);
+      vm.internship.proposition.approval.masterApproval = decision;
+      $http.put('/api/internships/' + vm.internship._id + '/editProposition', vm.internship).success(successCallback);
+
+      function successCallback(res) {
+        if (vm.authentication.user.roles.includes('master')) {
+          alert('Action registered!');
+          $state.go('master.manage.students.internships.view', {
+            internshipId: res._id
+          });
+        }
+      }
+
+      function errorCallback(res) {
+        console.log(res);
+        vm.error = res.message.message;
+      }
     }
 
   }

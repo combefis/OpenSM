@@ -34,6 +34,17 @@ exports.invokeRolesPolicies = function () {
           '/api/internships/:internshipId/editOralPresentation'],
         permissions: '*'
       }]
+    },
+    {
+      roles: ['master'],
+      allows: [{
+        resources: [
+          '/api/internships',
+          '/api/internships/:internshipId',
+          '/api/internships/:internshipId/editProposition',
+          '/api/internships/:internshipId/editActivitiesNote'],
+        permissions: '*'
+      }]
     }
   ]);
 };

@@ -28,12 +28,12 @@ exports.invokeRolesPolicies = function () {
       permissions: '*'
     }]
   }, {
-    roles: ['manager.exams'],
+    roles: ['manager.exams', 'master'],
     allows: [{
       resources: '/api/teachers',
       permissions: ['get']
     }, {
-      resources: '/api/students',
+      resources: ['/api/students', '/api/students/:userId'],
       permissions: ['get']
     }]
   }]);
