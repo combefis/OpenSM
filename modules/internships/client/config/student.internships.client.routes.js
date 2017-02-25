@@ -125,6 +125,19 @@
       }
     })
 
+    .state('student.manage.internships.edit.supervisor', {
+      url: '/supervisor',
+      templateUrl: 'modules/internships/client/views/form-internship-student-supervisor.client.html',
+      controller: 'InternshipsStudentSupervisorController',
+      controllerAs: 'vm',
+      resolve: {
+        internshipResolve: getInternship
+      },
+      data: {
+        pageTitle: 'Supervisor'
+      }
+    })
+
     ;
   }
 

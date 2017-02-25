@@ -1,0 +1,40 @@
+<section>
+    <ol class="breadcrumb">
+      <li>
+        <a ui-sref="admin.manage.internships.list" ng-bind="'INTERNSHIP.INTERNSHIPS' | translate"></a>
+      </li>
+      <li ng-if="vm.internship._id" class="active">
+          <a ui-sref="student.manage.internships.view({ internshipId: vm.internship._id })" ng-bind="vm.internship._id"></a>
+      </li>
+      <li ng-if="vm.internship._id" class="active">
+          <a ui-sref="student.manage.internships.edit.supervisor({ internshipId: vm.internship._id })" ng-bind="'GENERAL.EDIT' | translate"></a>
+      </li>
+    </ol>
+</section>
+
+    <h2>{{vm.internship.supervisor ? 'INTERNSHIP.SUPERVISOR.EDIT' : 'INTERNSHIP.SUPERVISOR' | translate}}</h2>
+
+    <div class="col-md-12">
+      <form name="vm.form.internshipSupervisorForm" class="form-horizontal" ng-submit="vm.save(vm.form.internshipSupervisorForm.$valid)" novalidate>
+      
+  <h3>Choose your supervisor</h3>
+      <fieldset>         
+          <div class="form-group" show-errors>
+            <label class="control-label" for="internshipSupervisorSupervisor" ng-bind="'INTERNSHIP.SUPERVISOR.SUPERVISOR' | translate"></label>
+            <input name="internshipSupervisorSupervisor" ng-model="vm.internship.supervisor.supervisor" id="internshipSupervisorSupervisor" class="form-control" cols="30" rows="5" placeholder="{{'INTERNSHIP.SUPERVISOR' | translate}}" required>
+            </input>
+            <div ng-messages="vm.form.internshipSupervisorForm.supervisor.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.SUPERVISOR.SUPERVISOR' | translate"></p>
+            </div>
+          </div>
+ 
+        </fieldset>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">{{vm.internship.supervisor.supervisor? 'GENERAL.UPDATE' : 'GENERAL.CREATE' | translate}}</button>
+          </div>
+          <div ng-show="vm.error" class="text-danger">
+            <strong ng-bind="vm.error"></strong>
+          </div>
+      </form>
+    </div>

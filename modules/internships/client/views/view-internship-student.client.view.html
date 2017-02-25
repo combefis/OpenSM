@@ -28,6 +28,14 @@
         <div class="col-md-4"><strong>Supervisor</strong></div>
         <div class="col-md-6" ng-bind="vm.internship.supervisor"></div>
       </div>
+      <div class="row">
+        <div class="col-md-4"><strong>Supervisor status</strong></div>
+        <div class="col-md-6" ng-bind="vm.internship.supervisor.status"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-4"><strong>Consulted Teacher</strong></div>
+        <div class="col-md-6" ng-bind="vm.internship.consultedTeacher"></div>
+      </div> 
     </div>  
   </div>
   </div>
@@ -110,34 +118,6 @@
     </div>
   </uib-tab>
 
-  <uib-tab heading="Participants" ng-if="vm.internship.proposition">
-   <div class = "row">
-    <div class = "col-md-12">
-      <h2>Participants</h2>
-      <hr>
-      <div class="col-md-10">
-      <div class="row">
-        <div class="col-md-3"><strong>Master</strong></div>
-        <div class="col-md-6" ng-bind="vm.internship.master"></div>
-      </div> 
-      <div class="row">
-        <div class="col-md-3"><strong>Supervisor</strong></div>
-        <div class="col-md-6" ng-bind="vm.internship.supervisor"></div>
-      </div>             
-      <div class="row">
-        <div class="col-md-3"><strong>Consulted Teacher</strong></div>
-        <div class="col-md-6" ng-bind="vm.internship.proposition.approval.consultedTeacher"></div>
-      </div>        
-      <div class="row">
-        <div class="col-md-3"><strong>Validator</strong></div>
-        <div class="col-md-6" ng-bind="vm.internship.validator"></div>
-      </div>
-    </div>  
-  </div>
-  </div>
-    <hr>      
-  </uib-tab>
-
   <uib-tab heading="Proposition">
     <div class="row">
       <div class="col-md-12">
@@ -178,12 +158,8 @@
                   <div class="col-md-1" ng-bind="vm.internship.proposition.approval.consultedTeacherApproval"></div>
               </div>
               <div class="row">
-                  <div class="col-md-7"><strong>Supervisor</strong></div>
-                  <div class="col-md-1" ng-bind="vm.internship.proposition.approval.supervisorApproval"></div>
-              </div>
-              <div class="row">
-                  <div class="col-md-7"><strong>Validator</strong></div>
-                  <div class="col-md-1" ng-bind="vm.internship.proposition.approval.validatorApproval"></div>
+                  <div class="col-md-7"><strong>Year Coordinator</strong></div>
+                  <div class="col-md-1" ng-bind="vm.internship.proposition.approval.coordinatorApproval"></div>
               </div>                        
           </div>
           </div>
@@ -206,6 +182,41 @@
           <i class="glyphicon glyphicon-edit" ng-if="vm.internship.proposition"></i>
           <span class="glyphicon glyphicon-plus" ng-if="!vm.internship.proposition" aria-hidden="true"></span>
           <span> {{vm.internship.proposition? 'INTERNSHIP.PROPOSITION.UPDATE':'INTERNSHIP.PROPOSITION.CREATE' | translate}} </span>
+        </a>
+      </div>
+    </div>     
+  </uib-tab>
+  
+  <uib-tab heading="Supervisor">
+    <div class = "row">
+      <div class = "col-md-12">
+        <h2>Supervisor</h2>
+        <div class="alert alert-warning" ng-if="!vm.internship.supervisor.supervisor" ng-bind="'INTERNSHIP.NO_SUPERVISOR' | translate"></div>
+          <div ng-if="vm.internship.supervisor.supervisor">
+          <hr>
+              <div class="row">
+                <div class="col-md-7"><strong>Proposed Supervisor</strong></div>
+                <div class="col-md-3" ng-bind="vm.internship.supervisor.supervisor"></div>
+              </div>
+              <div class="row">
+                <div class="col-md-7"><strong>Response</strong></div>
+                <div class="col-md-1" ng-bind="vm.internship.supervisor.response"></div>
+              </div>
+              <div class="row">
+                <div class="col-md-7"><strong>Status</strong></div>
+                <div class="col-md-4" ng-if="vm.internship.supervisor.attributed == true">you have a supervisor</div>
+                <div class="col-md-4" ng-if="vm.internship.supervisor.attributed != true">no supervisor</div>
+              </div>
+          </div>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-4">
+        <a class="btn btn-primary" ui-sref="student.manage.internships.edit.supervisor({ internshipId: vm.internship._id })">
+          <i class="glyphicon glyphicon-edit" ng-if="vm.internship.supervisor"></i>
+          <span class="glyphicon glyphicon-plus" ng-if="!vm.internship.supervisor" aria-hidden="true"></span>
+          <span> {{vm.internship.supervisor? 'INTERNSHIP.PROPOSITION.UPDATE':'INTERNSHIP.PROPOSITION.CHOOSE' | translate}} </span>
         </a>
       </div>
     </div>     

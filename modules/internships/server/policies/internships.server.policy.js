@@ -31,7 +31,8 @@ exports.invokeRolesPolicies = function () {
           '/api/internships/:internshipId/editJournal',
           '/api/internships/:internshipId/editFirstVisit',
           '/api/internships/:internshipId/editActivitiesNote',
-          '/api/internships/:internshipId/editOralPresentation'],
+          '/api/internships/:internshipId/editOralPresentation',
+          '/api/internships/:internshipId/editSupervisor'],
         permissions: '*'
       }]
     },
@@ -43,6 +44,26 @@ exports.invokeRolesPolicies = function () {
           '/api/internships/:internshipId',
           '/api/internships/:internshipId/editProposition',
           '/api/internships/:internshipId/editActivitiesNote'],
+        permissions: '*'
+      }]
+    },
+    {
+      roles: ['manager.internships'],
+      allows: [{
+        resources: [
+          '/api/internships',
+          '/api/internships/:internshipId'
+        ],
+        permissions: '*'
+      }]
+    },
+    {
+      roles: ['teacher'],
+      allows: [{
+        resources: [
+          '/api/internships',
+          '/api/internships/:internshipId'
+        ],
         permissions: '*'
       }]
     }

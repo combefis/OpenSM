@@ -27,5 +27,18 @@
       roles: ['master']
     });
 
+    menuService.addSubMenuItem('topbar', 'manager.manage', {
+      title: 'Internships',
+      state: 'manager.manage.internships.list',
+      roles: ['manager.internships']
+    });
+
+    menuService.addSubMenuItem('topbar', 'teacher.manage', {
+      title: 'Internships',
+      state: 'teacher.manage.internships.list',
+      roles: ['teacher']
+    });
+
+
   }
 }());

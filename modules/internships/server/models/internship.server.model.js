@@ -16,31 +16,41 @@ var IntershipSchema = new Schema({
     ref: 'User'
   },
   supervisor: {
-    type: Schema.ObjectId,
-    ref: 'User'
+    supervisor: {
+      type: Schema.ObjectId,
+      ref: 'User'
+    },
+    response: String,
+    attributed: Boolean
   },
   validator: {
     type: Schema.ObjectId,
     ref: 'User'
   },
+  consultedTeacher: {
+    type: Schema.ObjectId,
+    ref: 'User'
+  },
+
+  supervisorStatus: String,
+  supervisorApproval: Boolean,
+  validatorApproval: Boolean,
+  coordinatorApproval: Boolean,
+
   proposition: {
     theme: String,
     domain: String,
     location: String,
     description: String,
     approval: {
-      consultedTeacher: {
-        type: Schema.ObjectId,
-        ref: 'User'
-      },
       consultedTeacherApproval: Boolean,
-      unitChiefApproval: Boolean,
+      coordinatorApproval: Boolean,
       masterApproval: Boolean,
       masterComment: String,
-      validatorApproval: Boolean,
-      supervisorApproval: Boolean
+      approved: Boolean
     }
   },
+
   enterprise: {
     name: String,
     domain: String,

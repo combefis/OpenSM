@@ -52,13 +52,13 @@
           </div>
 
           <div class="form-group" show-errors>
-            <label class="control-label" for="InternshipPropositionApprovalConsultedTeacher" ng-bind="'INTERNSHIP.PROPOSITION.APPROVAL.CONSULTEDTEACHER' | translate"></label>
+            <label class="control-label" for="InternshipPropositionApprovalConsultedTeacher" ng-bind="'INTERNSHIP.CONSULTEDTEACHER' | translate"></label>
             <input 
-            name="internship.proposition.approval.consultedTeacher" 
+            name="internship.consultedTeacher" 
             type="text" 
-            ng-model="vm.internship.proposition.approval.consultedTeacher" id="propositionApprovalConsultedTeacher" class="form-control" placeholder="5810c73167f35ee81f7a30b5" required />
-            <div ng-messages="vm.form.internshipProposistionForm.proposition.approval.consultedTeacher.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.PROPOSITION.APPROVAL.CONSULTEDTEACHER' | translate"></p>
+            ng-model="vm.internship.consultedTeacher" id="propositionConsultedTeacher" class="form-control" placeholder="5810c73167f35ee81f7a30b5" required />
+            <div ng-messages="vm.form.internshipProposistionForm.consultedTeacher.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.CONSULTEDTEACHER' | translate"></p>
           </div>
           </div>
 
@@ -68,15 +68,7 @@
             <div ng-messages="vm.form.internshipProposistionForm.master.$error" role="alert">
               <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.MASTER' | translate"></p>
             </div>
-            </div>
-
-          <div class="form-group" show-errors>
-            <label class="control-label" for="InternshipSupervisor" ng-bind="'INTERNSHIP.SUPERVISOR' | translate"></label>
-            <input name="internship.supervisor" type="text" ng-model="vm.internship.supervisor" id="master" class="form-control" placeholder="5810c73167f35ee81f7a30b5" required />
-            <div ng-messages="vm.form.internshipProposistionForm.supervisor.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.SUPERVISOR' | translate"></p>
-          </div>
-          </div>    
+            </div>   
         </fieldset>
 
 

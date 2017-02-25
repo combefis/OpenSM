@@ -15,17 +15,29 @@ var path = require('path'),
 exports.list = function (req, res) {
   console.log('in list function');
   var query = {};
+  var populateQuery = {};
 
   if (req.user.roles.includes('student')) {
     query = { 'student': req.user._id };
+    populateQuery = [{ path: 'supervisor.supervisor', select: 'username' }, { path: 'master', select: 'username' }];
   }
 
   if (req.user.roles.includes('master')) {
     query = { 'student': req.query.studentId, 'master': req.user._id };
-    console.log(req.query.studentId);
+    populateQuery = [{ path: 'student', select: 'firstname lastname' }];
   }
 
-  Internship.find(query).exec(function (err, internships) {
+  if (req.user.roles.includes('manager.internships')) {
+    query = {};
+    populateQuery = [{ path: 'student', select: 'firstname lastname username' }, { path: 'supervisor.supervisor', select: 'username' }, { path: 'master', select: 'username' }];
+  }
+
+  if (req.user.roles.includes('teacher')) {
+    query = { $or: [{ 'supervisor.supervisor': req.user._id }, { 'consultedTeacher': req.user._id }] };
+    populateQuery = [{ path: 'supervisor.supervisor', select: 'username' }, { path: 'consultedTeacher', select: 'username' }, { path: 'student', select: 'username firstname lastname' }];
+  }
+
+  Internship.find(query).populate(populateQuery).exec(function (err, internships) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -79,6 +91,8 @@ exports.update = function (req, res) {
 
   var internship = req.internship;
 
+  // internship = req.body??
+
   internship.student = req.body.student;
   internship.master = req.body.master;
   internship.supervisor = req.body.supervisor;
@@ -114,15 +128,7 @@ exports.update = function (req, res) {
 
   internship.activitiesNote.generalObjectives = req.body.activitiesNote.generalObjectives;
   internship.activitiesNoteapproval = req.body.activitiesNoteapproval;
-/*
-  internship.firstVisit.date = req.body.firstVisit.date;
-  internship.firstVisit.location = req.body.firstVisit.location;
-  internship.firstVisit.masterNotes = req.body.firstVisit.masterNotes;
 
-  internship.intermediateEvaluation.location = req.body.intermediateEvaluation.location;
-  internship.intermediateEvaluation.supervisorNotes = req.body.intermediateEvaluation.supervisorNotes;
-  internship.intermediateEvaluation.date = req.body.intermediateEvaluation.date;
-*/
   internship.oralPresentation.date = req.body.oralPresentation.date;
   internship.oralPresentation.location = req.body.oralPresentation.location;
 
@@ -207,6 +213,9 @@ exports.updateProposition = function (req, res) {
   if (req.user.roles.includes('master')) {
     internship.proposition.approval.masterComment = req.body.proposition.approval.masterComment;
     internship.proposition.approval.masterApproval = req.body.proposition.approval.masterApproval;
+    if ((internship.proposition.approval.coordinatorApproval === true) && (internship.proposition.approval.consultedTeacherApproval === true) && (req.body.proposition.approval.masterApproval === true)) {
+      internship.proposition.approval.approved = true;
+    }
   } else {
     internship.master = req.body.master;
     internship.supervisor = req.body.supervisor;
@@ -215,7 +224,7 @@ exports.updateProposition = function (req, res) {
     internship.proposition.domain = req.body.proposition.domain;
     internship.proposition.location = req.body.proposition.location;
     internship.proposition.description = req.body.proposition.description;
-    internship.proposition.approval.consultedTeacher = req.body.proposition.approval.consultedTeacher;
+    internship.consultedTeacher = req.body.consultedTeacher;
   }
 
   internship.save(function (err) {
@@ -296,6 +305,28 @@ exports.updateOralPresentation = function (req, res) {
   var internship = req.internship;
   console.log(req.body.oralPresentation);
   internship.oralPresentation = req.body.oralPresentation;
+
+  internship.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+    res.json(internship);
+  });
+};
+
+exports.updateSupervisor = function (req, res) {
+
+  console.log('in updateSupervisor function');
+
+  var internship = req.internship;
+  internship.supervisor.supervisor = req.body.supervisor.supervisor;
+
+  if (req.user.roles.includes('student')) {
+    console.log("i am a student");
+    internship.supervisor.response = "pending";
+  }
 
   internship.save(function (err) {
     if (err) {
