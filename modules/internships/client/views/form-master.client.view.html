@@ -36,6 +36,15 @@
               <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.MASTER.PHONENUMBER' | translate"></p>
           </div>
           </div>
+
+          <div class="form-group" show-errors>
+            <label class="control-label" for="masterMail" ng-bind="'INTERNSHIP.MASTER.MAIL' | translate"></label>
+            <input name="master.mail" type="text" ng-model="vm.internship.master.mail" id="masterMail" class="form-control" placeholder="{{'INTERNSHIP.MASTER.MAIL' | translate}}" required />
+            <div ng-messages="vm.master.mail.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.MASTER.MAIL' | translate"></p>
+          </div>
+          </div>
+
         </fieldset>
       
           <div class="form-group">

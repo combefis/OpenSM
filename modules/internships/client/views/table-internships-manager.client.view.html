@@ -26,14 +26,14 @@
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="internship in vm.internships" ui-sref="admin.manage.internships.view({ internshipId: internship._id })">
+            <tr ng-repeat="internship in vm.internships" ui-sref="manager.manage.internships.view({ internshipId: internship._id })">
               <td ng-bind ="internship.student.username"></td>
               <td ng-bind ="internship.student.lastname"></td>
               <td ng-bind ="internship.student.firstname"></td>
               <td ng-bind ="internship.enterprise.name"></td>
               <td ng-bind ="internship.master.username"></td>
               <td ng-bind ="internship.supervisor.supervisor.username"></td>
-              <td>En stage</td>
+              <td ng-bind ="internship.generalStatus"></td>
             </tr>
           </tbody>
         </table>

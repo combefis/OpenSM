@@ -26,12 +26,7 @@
       $http.put('/api/internships/' + vm.internship._id + '/editSupervisor', vm.internship).success(successCallback);
 
       function successCallback(res) {
-        if (vm.authentication.user.roles.includes('admin')) {
-          alert('First Visit Updated!');
-          $state.go('admin.manage.internships.list', {
-            internshipId: res._id
-          });
-        } else if (vm.authentication.user.roles.includes('student')) {
+        if (vm.authentication.user.roles.includes('student')) {
           alert('First Visit Updated!');
           $state.go('student.manage.internships.view', {
             internshipId: res._id

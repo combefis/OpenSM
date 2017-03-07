@@ -13,4 +13,6 @@
   app.registerModule('core.manager.internships.routes', ['ui.router']);
   app.registerModule('core.teacher', ['core']);
   app.registerModule('core.teacher.routes', ['ui.router']);
+  app.registerModule('core.coordinator', ['core']);
+  app.registerModule('core.coordinator.routes', ['ui.router']);
 }(ApplicationConfiguration));

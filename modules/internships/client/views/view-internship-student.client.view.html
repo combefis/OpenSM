@@ -18,15 +18,15 @@
       <div class="col-md-6">
       <div class="row">
         <div class="col-md-4"><strong>Student</strong></div>
-        <div class="col-md-6" ng-bind="vm.internship.student"></div>
+        <div class="col-md-6" ng-bind="vm.internship.student.username"></div>
       </div>
       <div class="row">
         <div class="col-md-4"><strong>Master</strong></div>
-        <div class="col-md-6" ng-bind="vm.internship.master"></div>
+        <div class="col-md-6" ng-bind="vm.internship.master.username"></div>
       </div>               
       <div class="row">
         <div class="col-md-4"><strong>Supervisor</strong></div>
-        <div class="col-md-6" ng-bind="vm.internship.supervisor"></div>
+        <div class="col-md-6" ng-bind="vm.internship.supervisor.username"></div>
       </div>
       <div class="row">
         <div class="col-md-4"><strong>Supervisor status</strong></div>
@@ -34,7 +34,7 @@
       </div>
       <div class="row">
         <div class="col-md-4"><strong>Consulted Teacher</strong></div>
-        <div class="col-md-6" ng-bind="vm.internship.consultedTeacher"></div>
+        <div class="col-md-6" ng-bind="vm.internship.consultedTeacher.username"></div>
       </div> 
     </div>  
   </div>
@@ -164,7 +164,7 @@
           </div>
           </div>
         </div>
-        <br>
+        
         <div class="row" ng-if="vm.internship.proposition.approval.masterComment">
           <div class="col-md-12">
             <div class="col-md-12">
@@ -172,6 +172,15 @@
               <div class="col-md-12" ng-bind="vm.internship.proposition.approval.masterComment"></div>
             </div>
           </div>
+        </div>
+        <div class="row" ng-if="vm.internship.proposition.approval.consultedTeacherComment">
+          <div class="col-md-12">
+            <div class="col-md-12">
+              <h3>Consulted Teacher Comments</h3>
+              <div class="col-md-12" ng-bind="vm.internship.proposition.approval.consultedTeacherComment"></div>
+            </div>
+          </div>
+        </div>
         </div>
       </div>
     </div>
@@ -191,21 +200,20 @@
     <div class = "row">
       <div class = "col-md-12">
         <h2>Supervisor</h2>
-        <div class="alert alert-warning" ng-if="!vm.internship.supervisor.supervisor" ng-bind="'INTERNSHIP.NO_SUPERVISOR' | translate"></div>
-          <div ng-if="vm.internship.supervisor.supervisor">
+        <div class="alert alert-warning" ng-if="!vm.internship.supervisor.proposedSupervisor" ng-bind="'INTERNSHIP.NO_SUPERVISOR' | translate"></div>
+          <div ng-if="vm.internship.supervisor.proposedSupervisor">
           <hr>
               <div class="row">
                 <div class="col-md-7"><strong>Proposed Supervisor</strong></div>
-                <div class="col-md-3" ng-bind="vm.internship.supervisor.supervisor"></div>
+                <div class="col-md-3" ng-bind="vm.internship.supervisor.proposedSupervisor"></div>
               </div>
               <div class="row">
                 <div class="col-md-7"><strong>Response</strong></div>
-                <div class="col-md-1" ng-bind="vm.internship.supervisor.response"></div>
+                <div class="col-md-1" ng-bind="vm.internship.supervisor.propositionResponse"></div>
               </div>
               <div class="row">
                 <div class="col-md-7"><strong>Status</strong></div>
-                <div class="col-md-4" ng-if="vm.internship.supervisor.attributed == true">you have a supervisor</div>
-                <div class="col-md-4" ng-if="vm.internship.supervisor.attributed != true">no supervisor</div>
+                <div class="col-md-4" ng-bind="vm.internship.supervisor.status"></div>
               </div>
           </div>
       </div>

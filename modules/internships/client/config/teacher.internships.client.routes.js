@@ -23,7 +23,34 @@
         data: {
           pageTitle: 'Internships management'
         }
-      });
+      })
+
+      .state('teacher.manage.internships.subjectApproval', {
+        url: '/:internshipId/subjectApproval',
+        templateUrl: 'modules/internships/client/views/form-internship-teacher-subjectApproval.client.view.html',
+        controller: 'InternshipsController',
+        controllerAs: 'vm',
+        resolve: {
+          internshipResolve: getInternship
+        },
+        data: {
+          pageTitle: 'Subject approval'
+        }
+      })
+
+      .state('teacher.manage.internships.supervisorApproval', {
+        url: '/:internshipId/supervisorDemand',
+        templateUrl: 'modules/internships/client/views/form-internship-teacher-supervisorApproval.client.view.html',
+        controller: 'InternshipsController',
+        controllerAs: 'vm',
+        resolve: {
+          internshipResolve: getInternship
+        },
+        data: {
+          pageTitle: 'Supervisor demand'
+        }
+      })
+      ;
   }
 
   getInternship.$inject = ['$stateParams', 'InternshipsService'];

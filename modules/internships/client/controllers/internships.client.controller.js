@@ -21,6 +21,13 @@
     vm.removeSpecificObjective = removeSpecificObjective;
     vm.masterPropositionCommentAdd = masterPropositionCommentAdd;
     vm.masterActivitiesNoteCommentAdd = masterActivitiesNoteCommentAdd;
+    vm.consultedTeacherPropositionCommentAdd = consultedTeacherPropositionCommentAdd;
+    vm.supervisorDecision = supervisorDecision;
+    vm.coordinatorPropositionCommentAdd = coordinatorPropositionCommentAdd;
+
+    if (!internship.proposition.approval){
+      internship.proposition.approval = {};
+    }
 
     if (!internship._id) {
       vm.internship.activitiesNote = {};
@@ -39,7 +46,6 @@
       vm.internship.createOrUpdate()          // appel à la fonction dans le service
         .then(successCallback)
         .catch(errorCallback);
-
 
       function successCallback(res) {
         if (vm.authentication.user.roles.includes('admin')) {
@@ -140,6 +146,74 @@
         if (vm.authentication.user.roles.includes('master')) {
           alert('Action registered!');
           $state.go('master.manage.students.internships.view', {
+            internshipId: res._id
+          });
+        }
+      }
+
+      function errorCallback(res) {
+        console.log(res);
+        vm.error = res.message.message;
+      }
+    }
+
+    function consultedTeacherPropositionCommentAdd(isValid, decision) {
+      if (!isValid) {
+        $scope.$broadcast('show-errors-check-validity', 'vm.form.internshipPropositionConsultedTeacherCommentForm');  // on envoie dans le scope (associé au controleur, et donc la page html)
+        return false;
+           // on envoie dans  <div class="form-group" show-errors>
+      }
+      vm.internship.proposition.approval.consultedTeacherApproval = decision;
+      $http.put('/api/internships/' + vm.internship._id + '/editProposition', vm.internship).success(successCallback);
+
+      function successCallback(res) {
+        if (vm.authentication.user.roles.includes('teacher')) {
+          alert('Action registered!');
+          $state.go('teacher.manage.internships.subjectApproval', {
+            internshipId: res._id
+          });
+        }
+      }
+
+      function errorCallback(res) {
+        console.log(res);
+        vm.error = res.message.message;
+      }
+    }
+
+    function coordinatorPropositionCommentAdd(isValid, decision) {
+      if (!isValid) {
+        $scope.$broadcast('show-errors-check-validity', 'vm.form.internshipPropositionCoordinatorCommentForm');  // on envoie dans le scope (associé au controleur, et donc la page html)
+        return false;
+      }
+
+      vm.internship.proposition.approval.coordinatorApproval = decision;
+      $http.put('/api/internships/' + vm.internship._id + '/editProposition', vm.internship).success(successCallback);
+
+      function successCallback(res) {
+        if (vm.authentication.user.roles.includes('coordinator')) {
+          alert('Action registered!');
+          $state.go('coordinator.manage.internships.list', {
+            internshipId: res._id
+          });
+        }
+      }
+
+      function errorCallback(res) {
+        console.log(res);
+        vm.error = res.message.message;
+      }
+    }    
+
+    function supervisorDecision(response) {
+      vm.internship.supervisor.propositionResponse = response;
+
+      $http.put('/api/internships/' + vm.internship._id + '/editSupervisor', vm.internship).success(successCallback);
+
+      function successCallback(res) {
+        if (vm.authentication.user.roles.includes('teacher')) {
+          alert('Action registered!');
+          $state.go('teacher.manage.internships.list', {
             internshipId: res._id
           });
         }

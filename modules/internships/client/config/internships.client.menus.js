@@ -39,6 +39,12 @@
       roles: ['teacher']
     });
 
+    menuService.addSubMenuItem('topbar', 'coordinator.manage', {
+      title: 'Internships',
+      state: 'coordinator.manage.internships.list',
+      roles: ['coordinator']
+    });
+
 
   }
 }());

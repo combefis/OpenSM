@@ -20,18 +20,18 @@
   <h3>Choose your supervisor</h3>
       <fieldset>         
           <div class="form-group" show-errors>
-            <label class="control-label" for="internshipSupervisorSupervisor" ng-bind="'INTERNSHIP.SUPERVISOR.SUPERVISOR' | translate"></label>
-            <input name="internshipSupervisorSupervisor" ng-model="vm.internship.supervisor.supervisor" id="internshipSupervisorSupervisor" class="form-control" cols="30" rows="5" placeholder="{{'INTERNSHIP.SUPERVISOR' | translate}}" required>
+            <label class="control-label" for="internshipSupervisorProposedSupervisor" ng-bind="'INTERNSHIP.SUPERVISOR.PROPOSEDSUPERVISOR' | translate"></label>
+            <input name="internshipSupervisorProposedSupervisor" ng-model="vm.internship.supervisor.proposedSupervisor" id="internshipSupervisorProposedSupervisor" class="form-control" cols="30" rows="5" placeholder="{{'INTERNSHIP.SUPERVISOR' | translate}}" required>
             </input>
-            <div ng-messages="vm.form.internshipSupervisorForm.supervisor.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.SUPERVISOR.SUPERVISOR' | translate"></p>
+            <div ng-messages="vm.form.internshipSupervisorForm.proposedSupervisor.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.SUPERVISOR.PROPOSEDSUPERVISOR' | translate"></p>
             </div>
           </div>
  
         </fieldset>
 
         <div class="form-group">
-            <button type="submit" class="btn btn-primary">{{vm.internship.supervisor.supervisor? 'GENERAL.UPDATE' : 'GENERAL.CREATE' | translate}}</button>
+            <button type="submit" class="btn btn-primary">{{vm.internship.supervisor.proposedSupervisor? 'GENERAL.UPDATE' : 'GENERAL.CREATE' | translate}}</button>
           </div>
           <div ng-show="vm.error" class="text-danger">
             <strong ng-bind="vm.error"></strong>

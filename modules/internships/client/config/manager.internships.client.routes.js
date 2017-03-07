@@ -23,7 +23,21 @@
         data: {
           pageTitle: 'Internships management'
         }
-      });
+      })
+
+      .state('manager.manage.internships.view', {
+        url: '/:internshipId',
+        templateUrl: 'modules/internships/client/views/view-internship-manager.client.view.html',
+        controller: 'InternshipsController',
+        controllerAs: 'vm',
+        resolve: {
+          internshipResolve: getInternship
+        },
+        data: {
+          pageTitle: 'Supervisor demand'
+        }
+      })
+      ;
   }
 
   getInternship.$inject = ['$stateParams', 'InternshipsService'];

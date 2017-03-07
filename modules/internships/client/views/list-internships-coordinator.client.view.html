@@ -1,0 +1,104 @@
+<section>
+  <div ng-if="!vm.internships.$resolved" class="loading">
+    <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> {{'LOADING' | translate}}
+  </div>
+
+
+  <div ng-if="vm.internships.$resolved">
+    <ol class="breadcrumb">
+      <li class="active"><a ui-sref="coordinator.manage.internships.list" ng-bind="'INTERNSHIP.INTERNSHIPS' | translate"></a></li>
+    </ol>
+
+    <h2 ng-bind="'INTERNSHIP.INTERNSHIPS' | translate"></h2>
+    
+    <div class="row">
+      <div class="col-md-12">
+      <h3>Propositions waiting your approval</h3>
+        <table class="table table-bordered table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Matricule</th>
+              <th>Nom</th>
+              <th>Prenom</th>
+              <th>Entreprise</th>
+              <th>Maitre de stage</th>
+              <th>Superviseur</th>
+              <th>Statut</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="internship in vm.needCoordinatorApprovalList" ui-sref="coordinator.manage.internships.view({ internshipId: internship._id })">
+              <td ng-bind ="internship.student.username"></td>
+              <td ng-bind ="internship.student.lastname"></td>
+              <td ng-bind ="internship.student.firstname"></td>
+              <td ng-bind ="internship.enterprise.name"></td>
+              <td ng-bind ="internship.master.username"></td>
+              <td ng-bind ="internship.supervisor.supervisor.username"></td>
+              <td ng-bind ="internship.generalStatus"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+      <h3>Propositions waiting third party approval</h3>
+        <table class="table table-bordered table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Matricule</th>
+              <th>Nom</th>
+              <th>Prenom</th>
+              <th>Entreprise</th>
+              <th>Maitre de stage</th>
+              <th>Superviseur</th>
+              <th>Statut</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="internship in vm.needOtherApprovalList" ui-sref="coordinator.manage.internships.view({ internshipId: internship._id })">
+              <td ng-bind ="internship.student.username"></td>
+              <td ng-bind ="internship.student.lastname"></td>
+              <td ng-bind ="internship.student.firstname"></td>
+              <td ng-bind ="internship.enterprise.name"></td>
+              <td ng-bind ="internship.master.username"></td>
+              <td ng-bind ="internship.supervisor.supervisor.username"></td>
+              <td ng-bind ="internship.generalStatus"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+      <h3>All internships</h3>
+        <table class="table table-bordered table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Matricule</th>
+              <th>Nom</th>
+              <th>Prenom</th>
+              <th>Entreprise</th>
+              <th>Maitre de stage</th>
+              <th>Superviseur</th>
+              <th>Statut</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="internship in vm.internships" ui-sref="coordinator.manage.internships.view({ internshipId: internship._id })">
+              <td ng-bind ="internship.student.username"></td>
+              <td ng-bind ="internship.student.lastname"></td>
+              <td ng-bind ="internship.student.firstname"></td>
+              <td ng-bind ="internship.enterprise.name"></td>
+              <td ng-bind ="internship.master.username"></td>
+              <td ng-bind ="internship.supervisor.supervisor.username"></td>
+              <td ng-bind ="internship.generalStatus"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

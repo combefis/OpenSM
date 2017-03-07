@@ -62,7 +62,20 @@ exports.invokeRolesPolicies = function () {
       allows: [{
         resources: [
           '/api/internships',
-          '/api/internships/:internshipId'
+          '/api/internships/:internshipId',
+          '/api/internships/:internshipId/editProposition',
+          '/api/internships/:internshipId/editSupervisor'
+        ],
+        permissions: '*'
+      }]
+    },
+    {
+      roles: ['coordinator'],
+      allows: [{
+        resources: [
+          '/api/internships',
+          '/api/internships/:internshipId',
+          '/api/internships/:internshipId/editProposition'
         ],
         permissions: '*'
       }]

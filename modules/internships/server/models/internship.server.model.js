@@ -7,6 +7,10 @@ var mongoose = require('mongoose'),
 
 // Internship Schema
 var IntershipSchema = new Schema({
+
+  generalStatus: String,
+  validatorApproval: Boolean,
+
   student: {
     type: Schema.ObjectId,
     ref: 'User'
@@ -20,7 +24,12 @@ var IntershipSchema = new Schema({
       type: Schema.ObjectId,
       ref: 'User'
     },
-    response: String,
+    proposedSupervisor: {
+      type: Schema.ObjectId,
+      ref: 'User'
+    },
+    propositionResponse: String,
+    status: String,
     attributed: Boolean
   },
   validator: {
@@ -34,7 +43,6 @@ var IntershipSchema = new Schema({
 
   supervisorStatus: String,
   supervisorApproval: Boolean,
-  validatorApproval: Boolean,
   coordinatorApproval: Boolean,
 
   proposition: {
@@ -44,7 +52,9 @@ var IntershipSchema = new Schema({
     description: String,
     approval: {
       consultedTeacherApproval: Boolean,
+      consultedTeacherComment: String,
       coordinatorApproval: Boolean,
+      coordinatorComment: String,
       masterApproval: Boolean,
       masterComment: String,
       approved: Boolean

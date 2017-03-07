@@ -22,8 +22,15 @@
         if ((typeof internship.consultedTeacher !== 'undefined') && (internship.consultedTeacher.username === Authentication.user.username)) {
           vm.subjetApprovalDemands.push(internship);
         }
-        if ((typeof internship.supervisor !== 'undefined') && (typeof internship.supervisor.supervisor !== 'undefined') && (internship.supervisor.supervisor.username === Authentication.user.username)) {
-          vm.supervisorDemands.push(internship);
+
+        if ((typeof internship.supervisor !== 'undefined') && (typeof internship.supervisor.proposedSupervisor !== 'undefined') && (internship.supervisor.proposedSupervisor.username === Authentication.user.username)) {
+
+          if (internship.supervisor.attributed === true) {
+            vm.myInternships.push(internship);
+          } else {
+
+            vm.supervisorDemands.push(internship);
+          }
         }
       });
       console.log("done sorting");

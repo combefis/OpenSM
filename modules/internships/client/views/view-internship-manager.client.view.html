@@ -1,0 +1,372 @@
+<section>
+    <ol class="breadcrumb">
+      <li>
+        <a ui-sref="manager.manage.internships.list" ng-bind="'INTERNSHIP.INTERNSHIPS' | translate"></a>
+      </li>
+      <li ng-if="vm.internship._id" class="active">
+          <a ui-sref="manager.manage.internships.view({ internshipId: vm.internship._id })" ng-bind="vm.internship._id"></a>
+      </li>
+    </ol>
+</section>
+
+<h1 ng-bind="vm.internship._id"></h1>
+
+<uib-tabset>
+  <uib-tab heading="Overview">
+    <div class = "row">
+      <div class = "col-md-12">
+        <h2>Overview</h2>
+        <hr>
+        <h3>Student</h3>
+        <table class="table table-bordered table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Matricule</th>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Année</th>
+            <th>Section</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td ng-bind ="vm.internship.student.username"></td>
+            <td ng-bind ="vm.internship.student.lastname"></td>
+            <td ng-bind ="vm.internship.student.firstname"></td>
+            <td ng-bind ="vm.internship.student.year"></td>
+            <td ng-bind ="vm.internship.student.section"></td>
+          </tr>
+        </tbody>
+        </table>
+
+        <h3>Enterprise & Master</h3>
+        <div class="alert alert-warning" ng-if="!vm.internship.enterprise" ng-bind="'INTERNSHIP.NO_ENTERPRISE' | translate"></div>
+        <table class="table table-bordered table-striped table-hover" ng-if="vm.internship.enterprise">
+        <thead>
+          <tr>
+            <th>Enterprise</th>
+            <th>Location</th>
+            <th>Master</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td ng-bind ="vm.internship.enterprise.name"></td>
+            <td ng-bind ="vm.internship.enterprise.address.city"></td>
+            <td ng-bind ="vm.internship.master.username"></td>
+          </tr>
+        </tbody>
+        </table>  
+
+        <h3>Internship Proposition</h3>
+        <div class="alert alert-warning" ng-if="!vm.internship.proposition" ng-bind="'INTERNSHIP.NO_PROPOSITION' | translate"></div>
+        <table class="table table-bordered table-striped table-hover" ng-if="vm.internship.proposition">
+        <thead>
+          <tr>
+            <th>Encoded</th>
+            <th>Teacher approval</th>
+            <th>Master approval</th>
+            <th>Coordinator approval</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{vm.internship.proposition? 'encoded':'not encoded'}}</td>
+            <td ng-bind = "vm.internship.proposition.approval.consultedTeacherApproval"></td>
+            <td ng-bind = "vm.internship.proposition.approval.masterApproval"></td>
+            <td ng-bind = "vm.internship.proposition.approval.coordinatorApproval"></td>
+          </tr>
+        </tbody>
+        </table>
+
+        <h3>Supervisor</h3>
+        <div class="alert alert-warning" ng-if="!vm.internship.supervisor.proposedSupervisor && !vm.internship.supervisor.supervisor" ng-bind="'INTERNSHIP.NO_SUPERVISOR' | translate"></div>
+        <table class="table table-bordered table-striped table-hover" ng-if="vm.internship.supervisor.proposedSupervisor || vm.internship.supervisor.supervisor">
+          <thead>
+            <tr>
+              <th>Proposed</th>
+              <th>Response</th>
+              <th>Status</th>
+              <th>Attributed Supervisor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td ng-bind = "vm.internship.supervisor.proposedSupervisor.username"></td>
+              <td ng-bind = "vm.internship.supervisor.propositionResponse"></td>
+              <td ng-bind = "vm.internship.supervisor.status"></td>
+              <td ng-bind = "vm.internship.supervisor.supervisor.username"></td>
+            </tr>
+          </tbody>
+        </table>       
+
+        <h3>Final Validation</h3>
+        <table class="table table-bordered table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td ng-bind = "vm.internship.validatorApproval"></td>
+            </tr>
+          </tbody>
+        </table>  
+
+        <hr>
+
+        <h3>Activities Note</h3>
+        <div class="alert alert-warning" ng-if="!vm.internship.activitiesNote.generalObjectives[0]" ng-bind="'INTERNSHIP.NO_ACTIVITIESNOTE' | translate"></div>
+        <table class="table table-bordered table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Encoded</th>
+              <th>Response</th>              
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ vm.internship.activitiesNote.generalObjectives[0]? 'encoded': 'not encoded'}}</td>
+              <td ng-bind = "vm.internship.supervisor.activitiesNote.approval"></td>
+            </tr>
+          </tbody>
+        </table>  
+
+        <h3>Deliverables</h3>
+        <table class="table table-bordered table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Certificate</th>
+            <th>Written report</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td ng-bind = "vm.internship.certificate.handedIn"></td>
+            <td ng-bind = "vm.internship.writtenReport.handedIn"></td>
+          </tr>
+        </tbody>
+        </table>
+
+        <h3>Evaluation Points</h3>
+        <table class="table table-bordered table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Continuous Evaluation</th>
+              <th>Oral presentation</th>
+              <th>Written report</th>
+              <th>Final points</th>
+              <th>Approval</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td ng-bind = "vm.internship.supervisor.proposedSupervisor.username"></td>
+              <td ng-bind = "vm.internship.supervisor.propositionResponse"></td>
+              <td ng-bind = "vm.internship.supervisor.status"></td>
+              <td ng-bind = "vm.internship.supervisor.supervisor.username"></td>
+              <td ng-bind = "vm.internship.supervisor.supervisor.username"></td>
+            </tr>
+          </tbody>
+        </table>         
+
+      </div>
+    </div>      
+  </uib-tab>
+
+  <uib-tab heading="Participants">
+   <div class = "row">
+    <div class = "col-md-12">
+      <h2>Participants</h2>
+      <hr>
+      <div class="col-md-10">
+      <div class="row">
+        <div class="col-md-3"><strong>Master</strong></div>
+        <div class="col-md-6" ng-bind="vm.internship.master"></div>
+      </div> 
+      <div class="row">
+        <div class="col-md-3"><strong>Supervisor</strong></div>
+        <div class="col-md-6" ng-bind="vm.internship.supervisor.supervisor.username"></div>
+      </div>             
+      <div class="row">
+        <div class="col-md-3"><strong>Consulted Teacher</strong></div>
+        <div class="col-md-6" ng-bind="vm.internship.proposition.approval.consultedTeacher"></div>
+      </div>        
+      <div class="row">
+        <div class="col-md-3"><strong>Validator</strong></div>
+        <div class="col-md-6" ng-bind="vm.internship.validator"></div>
+      </div>
+    </div>  
+  </div>
+  </div>
+    <hr>      
+  </uib-tab>  
+
+ <uib-tab heading="Enterprise">
+  <div class="row">
+      <div class="col-md-12">
+        <h2>Enterprise</h2>
+        <hr>
+        <div class="col-md-6">
+          <h3>General information</h3>
+            <div class="row">
+                  <div class="col-md-5"><strong>Name</strong></div>
+                  <div class="col-md-6" ng-bind="vm.internship.enterprise.name"></div>
+              </div>
+              <div class="row">
+                  <div class="col-md-5"><strong>Domain</strong></div>
+                  <div class="col-md-6" ng-bind="vm.internship.enterprise.domain"></div>
+              </div>
+              <div class="row">
+                  <div class="col-md-5"><strong>Representative</strong></div>
+                  <div class="col-md-6" ng-bind="vm.internship.enterprise.representative.name"></div>
+              </div>
+              <div class="row">
+                  <div class="col-md-5"><strong>Representative Position</strong></div>
+                  <div class="col-md-6" ng-bind="vm.internship.enterprise.representative.position"></div>
+              </div>
+              <div class="row">
+                  <div class="col-md-5"><strong>Telephone</strong></div>
+                  <div class="col-md-6" ng-bind="vm.internship.enterprise.phoneNumber"></div>
+              </div>
+              <div class="row">
+                  <div class="col-md-5"><strong>Fax</strong></div>
+                  <div class="col-md-6" ng-bind="vm.internship.enterprise.fax"></div>
+              </div>
+              <div class="row">
+                  <div class="col-md-5"><strong>Mail</strong></div>
+                  <div class="col-md-6" ng-bind="vm.internship.enterprise.mail"></div>
+              </div>
+        </div>
+
+        <div class="col-md-6">
+          <h3>Address</h3>
+          <div class="row">
+                <div class="col-md-3"><strong>Street</strong></div>
+                <div class="col-md-7" ng-bind="vm.internship.enterprise.address.street"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"><strong>Number</strong></div>
+                <div class="col-md-7" ng-bind="vm.internship.enterprise.address.number"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"><strong>PostalCode</strong></div>
+                <div class="col-md-7" ng-bind="vm.internship.enterprise.address.postalCode"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"><strong>City</strong></div>
+                <div class="col-md-7" ng-bind="vm.internship.enterprise.address.city"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"><strong>Country</strong></div>
+                <div class="col-md-7" ng-bind="vm.internship.enterprise.address.country"></div>
+            </div>
+        </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+  </uib-tab>
+
+    <uib-tab heading="Proposition">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Proposition</h2>
+        <hr>
+        <div class="col-md-8">   
+          <h3>General information</h3>
+          <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-2"><strong>Theme</strong></div>
+                <div class="col-md-9" ng-bind="vm.internship.proposition.theme"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"><strong>Domain</strong></div>
+                <div class="col-md-9" ng-bind="vm.internship.proposition.domain"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"><strong>Location</strong></div>
+                <div class="col-md-9" ng-bind="vm.internship.proposition.location"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"><strong>Description</strong></div>
+                <div class="col-md-9" ng-bind="vm.internship.proposition.description"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h3>Approval</h3>  
+          <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-7"><strong>Master</strong></div>
+                <div class="col-md-1" ng-bind="vm.internship.proposition.approval.masterApproval"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-7"><strong>Consulted Teacher</strong></div>
+                <div class="col-md-1" ng-bind="vm.internship.proposition.approval.consultedTeacherApproval"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-7"><strong>Validator</strong></div>
+                <div class="col-md-1" ng-bind="vm.internship.proposition.approval.validatorApproval"></div>
+            </div>
+          </div>                          
+        </div>
+        </div>
+        <br>
+        <div class="row" ng-if="vm.internship.proposition.approval.masterComment">
+          <div class="col-md-12">
+            <div class="col-md-12">
+              <h3>Master Comments</h3>
+              <div class="col-md-12" ng-bind="vm.internship.proposition.approval.masterComment"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row" ng-if="vm.internship.proposition.approval.consultedTeacherComment">
+          <div class="col-md-12">
+            <div class="col-md-12">
+              <h3>Consulted Teacher Comments</h3>
+              <div class="col-md-12" ng-bind="vm.internship.proposition.approval.consultedTeacherComment"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>     
+</uib-tab>
+
+<uib-tab heading="Activities Note">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Activities Note</h2>
+        <hr>
+          <div class="col-md-5"><h3>General Objectives</h3></div><div class="col-md-6"><h3>Specific Objectivies</h3></div>
+            
+            <div class="row" ng-repeat="Gobjective in vm.internship.activitiesNote.generalObjectives">
+              <div class="col-md-5">   
+                <ul>
+                  <li>{{Gobjective.value}}</li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <ul ng-repeat="Sobjective in Gobjective.specificObjectives">
+                  <li>{{Sobjective.value}}</li>
+                </ul>
+              </div>
+            </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="row" ng-if="vm.internship.activitiesNote.masterComment">
+      <div class="col-md-12">
+        <div class="col-md-12">
+          <h3>Master Comments</h3>
+          <div class="col-md-12" ng-bind="vm.internship.activitiesNote.masterComment"></div>
+        </div>
+      </div>
+    </div>
+    <hr>     
+</uib-tab>
+
+</uib-tabset>

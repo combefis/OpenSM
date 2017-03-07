@@ -1,0 +1,114 @@
+<section>
+    <ol class="breadcrumb">
+      <li>
+        <a ui-sref="teacher.manage.internships.list" ng-bind="'INTERNSHIP.INTERNSHIPS' | translate"></a>
+      </li>
+      <li ng-if="vm.internship._id" class="active">
+          <a ui-sref="teacher.manage.internships.subjects({ internshipId: vm.internship._id })" ng-bind="vm.internship._id"></a>
+      </li>
+    </ol>
+</section>
+
+<uib-tabset>
+    <uib-tab heading="Proposition">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Proposition</h2>
+        <div class="alert alert-warning" ng-if="!vm.internship.proposition" ng-bind="'INTERNSHIP.NO_PROPOSITION' | translate"></div>
+        <div ng-if="vm.internship.proposition">
+        <hr>
+        <div class="col-md-8">   
+          <h3>General information</h3>
+          <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-2"><strong>Theme</strong></div>
+                <div class="col-md-9" ng-bind="vm.internship.proposition.theme"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"><strong>Domain</strong></div>
+                <div class="col-md-9" ng-bind="vm.internship.proposition.domain"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"><strong>Location</strong></div>
+                <div class="col-md-9" ng-bind="vm.internship.proposition.location"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"><strong>Description</strong></div>
+                <div class="col-md-9" ng-bind="vm.internship.proposition.description"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h3>Approval</h3>  
+          <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-7"><strong>Master</strong></div>
+                <div class="col-md-1" ng-bind="vm.internship.proposition.approval.masterApproval"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-7"><strong>Consulted Teacher</strong></div>
+                <div class="col-md-1" ng-bind="vm.internship.proposition.approval.consultedTeacherApproval"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-7"><strong>Coordinateur d'année</strong></div>
+                <div class="col-md-1" ng-bind="vm.internship.proposition.approval.coordinatorApproval"></div>
+            </div>
+          </div>                          
+        </div>
+        </div>
+        <br>
+        <div class="row" ng-if="vm.internship.proposition.approval.masterComment">
+          <div class="col-md-12">
+            <div class="col-md-12">
+              <h3>Master Comments</h3>
+              <div class="col-md-12" ng-bind="vm.internship.proposition.approval.masterComment"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row" ng-if="vm.internship.proposition.approval.consultedTeacherComment">
+          <div class="col-md-12">
+            <div class="col-md-12">
+              <h3>Consulted Teacher Comments</h3>
+              <div class="col-md-12" ng-bind="vm.internship.proposition.approval.consultedTeacherComment"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>  
+  
+  <div class="row" ng-if="vm.internship.proposition.approval.consultedTeacherApproval!=true">
+    <form name="vm.form.internshipPropositionConsultedTeacherCommentForm" class="form-horizontal" ng-submit="vm.consultedTeacherPropositionCommentAdd(vm.form.internshipPropositionConsultedTeacherCommentForm.$valid,false)" novalidate>
+    <div class="col-md-12"> 
+        <div class="row">
+          <div class="col-md-5">
+            <button type="button" class="btn btn-primary" ng-click="vm.consultedTeacherPropositionCommentAdd(true,true)">
+              <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>{{'INTERNSHIP.PROPOSITION.ACCEPT' | translate}}
+            </button>
+          </div>    
+          <div class="col-md-6" ">
+              <button type="submit" class="btn btn-primary">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>{{'INTERNSHIP.PROPOSITION.REFUSE' | translate}}
+              </button>
+
+          </div>            
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group" show-errors>
+            <div class = "col-md-12">
+            <h3>Add a comment</h3>
+              <textarea name="propositionMasterComment" ng-model="vm.internship.proposition.approval.consultedTeacherComment" id="internshipProposisionConsultedTeacherComment" class="form-control" cols="30" rows="5" placeholder="{{'INTERNSHIP.PROPOSITION.CONSULTEDTEACHERCOMMENT' | translate}}" required>
+              </textarea>
+              <div ng-messages="vm.form.internshipPropositionConsultedTeacherCommentForm.proposition.masterComment.$error" role="alert">
+                <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.PROPOSITION.DESCRIPTION' | translate"></p>
+              </div>
+            </div>  
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>    
+</uib-tab>
+</uib-tabset>
