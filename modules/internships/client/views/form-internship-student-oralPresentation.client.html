@@ -11,7 +11,7 @@
       </li>
     </ol>
 </section>
-
+<div ng-if="vm.internship.generalStatus === 'prout' ">
     <h2>{{vm.internship._id ? 'INTERNSHIP.FIRSTVISIT.EDIT' : 'INTERNSHIP.JOURNAL.FIRSTVISIT' | translate}}</h2>
 
     <div class="col-md-12">
@@ -47,3 +47,4 @@
           </div>
       </form>
     </div>
+</div>

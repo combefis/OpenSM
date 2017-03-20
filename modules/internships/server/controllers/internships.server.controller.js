@@ -8,24 +8,6 @@ var path = require('path'),
   Internship = mongoose.model('Internship'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
-/**
- * List of rooms
- */
-/*
-exports.listMasterStudents = function (req, res) {
-  console.log('in listMasterStudents function');
-  var query = {};
-  var populateQuery = {};
-  Internship.find(query).populate(populateQuery).exec(function (err, internships) {
-    if (err) {
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
-      });
-    }
-    res.json(internships);
-  });
-}
-*/
 exports.list = function (req, res) {
   console.log('in list function');
   var query = {};
@@ -33,7 +15,7 @@ exports.list = function (req, res) {
 
   if (req.user.roles.includes('student')) {
     query = { 'student': req.user._id };
-    populateQuery = [{ path: 'supervisor.supervisor', select: 'username' }, { path: 'master', select: 'username' }];
+    populateQuery = [{ path: 'supervisor.supervisor', select: 'username' }, { path: 'master', select: 'username' }, { path: 'student', select: 'firstname lastname username' }];
   }
 
   if (req.user.roles.includes('master')) {
@@ -68,8 +50,6 @@ exports.list = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     }
-    console.log("dumping:");
-    // console.log(internships);
     res.json(internships);
   });
 };
@@ -171,14 +151,12 @@ exports.update = function (req, res) {
   internship.enterprise.domain = req.body.enterprise.domain;
   internship.enterprise.fax = req.body.enterprise.fax;
   internship.enterprise.mail = req.body.enterprise.mail;
-
   internship.enterprise.address.street = req.body.enterprise.address.street;
   internship.enterprise.address.number = req.body.enterprise.address.number;
   internship.enterprise.address.postalCode = req.body.enterprise.address.postalCode;
   internship.enterprise.address.city = req.body.enterprise.address.city;
   internship.enterprise.address.country = req.body.enterprise.address.country;
   internship.enterprise.phoneNumber = req.body.enterprise.phoneNumber;
-
   internship.enterprise.representative.name = req.body.enterprise.representative.name;
   internship.enterprise.representative.position = req.body.enterprise.representative.position;
 
@@ -227,7 +205,6 @@ exports.internshipByID = function (req, res, next, id) {
       });
     }
     req.internship = internship;
-    // console.log(internship);
     next();
   });
 };
@@ -288,12 +265,20 @@ exports.updateProposition = function (req, res) {
   if ((req.user.roles.includes('student')) || req.user.roles.includes('admin')) {
     internship.master = req.body.master;
     internship.supervisor = req.body.supervisor;
+    internship.consultedTeacher = req.body.consultedTeacher;
 
     internship.proposition.theme = req.body.proposition.theme;
     internship.proposition.domain = req.body.proposition.domain;
     internship.proposition.location = req.body.proposition.location;
     internship.proposition.description = req.body.proposition.description;
-    internship.consultedTeacher = req.body.consultedTeacher;
+    
+    internship.proposition.approval = {};
+    internship.proposition.approval.masterComment = '';
+    internship.proposition.approval.masterApproval = 'pending';
+    internship.proposition.approval.coordinatorComment = '';
+    internship.proposition.approval.coordinatorApproval = 'pending';
+    internship.proposition.approval.consultedTeacherComment = '';
+    internship.proposition.approval.consultedTeacherApproval = 'pending';
   }
 
   if ((internship.proposition.approval.coordinatorApproval === true) && (internship.proposition.approval.consultedTeacherApproval === true) && (req.body.proposition.approval.masterApproval === true)) {
@@ -449,6 +434,9 @@ function stateMachine(req, internship) {
       if (req.body.proposition.approval.consultedTeacherApproval && req.body.proposition.approval.masterApproval && req.body.proposition.approval.coordinatorApproval) {
         status = 'Supervisor Attribution';
       }
+      break;
+
+    case 'Supervisor Attribution':
       break;
 
     default: status = 'Enterprise Encoding';

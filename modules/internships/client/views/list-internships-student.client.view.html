@@ -18,7 +18,7 @@
         </div>
 
         <div class="list-group" ng-if="vm.internships.length">
-          <a ng-repeat="internship in vm.internships" ui-sref="student.manage.internships.view({ internshipId: internship._id })" class="list-group-item" ng-bind="internship.student"></a>
+          <a ng-repeat="internship in vm.internships" ui-sref="student.manage.internships.view({ internshipId: internship._id })" class="list-group-item" ng-bind="internship.student.username"></a>
         </div>
 
         <div class="alert alert-warning" ng-if="!vm.internships.length" ng-bind="'INTERNSHIP.NO_INTERNSHIP' | translate"></div>

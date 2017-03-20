@@ -18,7 +18,7 @@
       <div class="col-md-6">
       <div class="row">
         <div class="col-md-4"><strong>Student</strong></div>
-        <div class="col-md-6" ng-bind="vm.internship.student.username"></div>
+        <div class="col-md-6" ng-bind="vm.internship.student"></div>
       </div>
       <div class="row">
         <div class="col-md-4"><strong>Master</strong></div>
@@ -184,16 +184,18 @@
         </div>
       </div>
     </div>
-    <hr>   
-    <div class="row">
-      <div class="col-md-4">
-        <a class="btn btn-primary" ui-sref="student.manage.internships.edit.proposition({ internshipId: vm.internship._id })">
-          <i class="glyphicon glyphicon-edit" ng-if="vm.internship.proposition"></i>
-          <span class="glyphicon glyphicon-plus" ng-if="!vm.internship.proposition" aria-hidden="true"></span>
-          <span> {{vm.internship.proposition? 'INTERNSHIP.PROPOSITION.UPDATE':'INTERNSHIP.PROPOSITION.CREATE' | translate}} </span>
-        </a>
-      </div>
-    </div>     
+    <hr>
+    <div ng-if="vm.internship.generalStatus ==='Proposition Encoding'">
+      <div class="row">
+        <div class="col-md-4">
+          <a class="btn btn-primary" ui-sref="student.manage.internships.edit.proposition({ internshipId: vm.internship._id })">
+            <i class="glyphicon glyphicon-edit" ng-if="vm.internship.proposition"></i>
+            <span class="glyphicon glyphicon-plus" ng-if="!vm.internship.proposition" aria-hidden="true"></span>
+            <span> {{vm.internship.proposition? 'INTERNSHIP.PROPOSITION.UPDATE':'INTERNSHIP.PROPOSITION.CREATE' | translate}} </span>
+          </a>
+        </div>
+      </div> 
+    </div>    
   </uib-tab>
   
   <uib-tab heading="Supervisor">
