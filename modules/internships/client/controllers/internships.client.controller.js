@@ -25,7 +25,7 @@
     vm.supervisorDecision = supervisorDecision;
     vm.coordinatorPropositionCommentAdd = coordinatorPropositionCommentAdd;
 
-    if (!internship.proposition.approval){
+    if (internship.proposition && !internship.proposition.approval) {
       internship.proposition.approval = {};
     }
 
@@ -203,7 +203,7 @@
         console.log(res);
         vm.error = res.message.message;
       }
-    }    
+    }
 
     function supervisorDecision(response) {
       vm.internship.supervisor.propositionResponse = response;

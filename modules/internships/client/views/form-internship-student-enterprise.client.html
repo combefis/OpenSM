@@ -76,7 +76,7 @@
 
           <div class="form-group" show-errors>
             <label class="control-label" for="enterprisePhoneNumber" ng-bind="'INTERNSHIP.ENTERPRISE.PHONENUMBER' | translate"></label>
-            <input name="internship.enterprise.phoneNumber" type="text" ng-model="vm.internship.enterprise.phoneNumber" id="enterprisePhoneNumber" class="form-control" placeholder="{{'INTERNSHIP.ENTERPRISE.PHONENUMBER' | translate}}" required />
+            <input name="internship.enterprise.phoneNumber" type="tel" ng-model="vm.internship.enterprise.phoneNumber" id="enterprisePhoneNumber" class="form-control" placeholder="{{'INTERNSHIP.ENTERPRISE.PHONENUMBER' | translate}}" required />
             <div ng-messages="vm.form.internshipEnterpriseForm.enterprise.phoneNumber.$error" role="alert">
               <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.ENTERPRISE.PHONENUMBER_ERROR' | translate"></p>
           </div>
@@ -84,7 +84,7 @@
 
           <div class="form-group" show-errors>
             <label class="control-label" for="enterpriseFax" ng-bind="'INTERNSHIP.ENTERPRISE.FAX' | translate"></label>
-            <input name="internship.enterprise.fax" type="text" ng-model="vm.internship.enterprise.fax" id="enterpriseFax" class="form-control" placeholder="{{'INTERNSHIP.ENTERPRISE.FAX' | translate}}" required />
+            <input name="internship.enterprise.fax" type="tel" ng-model="vm.internship.enterprise.fax" id="enterpriseFax" class="form-control" placeholder="{{'INTERNSHIP.ENTERPRISE.FAX' | translate}}" required />
             <div ng-messages="vm.form.internshipForm.enterprise.fax.$error" role="alert">
               <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.ENTERPRISE.FAX_ERROR' | translate"></p>
           </div>

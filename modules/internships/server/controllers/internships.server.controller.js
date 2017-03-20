@@ -11,7 +11,21 @@ var path = require('path'),
 /**
  * List of rooms
  */
-
+/*
+exports.listMasterStudents = function (req, res) {
+  console.log('in listMasterStudents function');
+  var query = {};
+  var populateQuery = {};
+  Internship.find(query).populate(populateQuery).exec(function (err, internships) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+    res.json(internships);
+  });
+}
+*/
 exports.list = function (req, res) {
   console.log('in list function');
   var query = {};
@@ -23,8 +37,14 @@ exports.list = function (req, res) {
   }
 
   if (req.user.roles.includes('master')) {
-    query = { 'student': req.query.studentId, 'master': req.user._id };
-    populateQuery = [{ path: 'student', select: 'firstname lastname username' }, { path: 'supervisor', select: 'username' }, { path: 'master', select: 'username' }];
+    if (req.query.studentId) {
+      query = { 'student': req.query.studentId, 'master': req.user._id };
+      populateQuery = [{ path: 'student', select: 'firstname lastname username' }, { path: 'supervisor', select: 'username' }, { path: 'master', select: 'username' }];
+    } else {
+      console.log("coucou la frite");
+      query = { 'master': req.user._id };
+      populateQuery = [{ path: 'student', select: 'firstname lastname username' }, { path: 'supervisor.supervisor', select: 'username' }, { path: 'master', select: 'username' }];
+    }
   }
 
   if (req.user.roles.includes('manager.internships')) {
@@ -48,6 +68,8 @@ exports.list = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     }
+    console.log("dumping:");
+    // console.log(internships);
     res.json(internships);
   });
 };

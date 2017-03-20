@@ -5,13 +5,13 @@
   .module('internships')
   .controller('StudentsListController', StudentsListController);
 
-  StudentsListController.$inject = ['StudentsService'];
+  StudentsListController.$inject = ['StudentsService', 'InternshipsService'];
 
 
-  function StudentsListController(StudentsService) {
+  function StudentsListController(StudentsService, InternshipsService) {
     var vm = this;
-
-    vm.students = StudentsService.query();
+    vm.internships = InternshipsService.query({});  // il appelle(crer) le service et il fait query (ce qui appelle un GET dans le service)
+    // vm.students = StudentsService.query();
   }
 
 }());

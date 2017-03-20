@@ -19,20 +19,15 @@
       internships.forEach(function(internship) {
 
         if (internship.generalStatus === 'Proposition Validation') {
-          
-          //if ((typeof internship.proposition.approval !== 'undefined') && (!internship.proposition.approval.coordinatorApproval)) {
-          if ((typeof internship.proposition.approval === 'undefined') || (!internship.proposition.approval.coordinatorApproval)) {  
+          // if ((typeof internship.proposition.approval !== 'undefined') && (!internship.proposition.approval.coordinatorApproval)) {
+          if ((typeof internship.proposition.approval === 'undefined') || (!internship.proposition.approval.coordinatorApproval)) {
             vm.needCoordinatorApprovalList.push(internship);
+          } else {
+            vm.needOtherApprovalList.push(internship);
           }
-
-          else {
-            vm.needOtherApprovalList.push(internship); 
-          }
-          
         }
-
       });
-      console.log("done sorting");
+      console.log('done sorting');
     });
 
     function sort(internship) {
@@ -40,4 +35,3 @@
     }
   }
 }());
-
