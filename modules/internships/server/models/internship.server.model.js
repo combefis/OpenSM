@@ -29,6 +29,7 @@ var IntershipSchema = new Schema({
       ref: 'User'
     },
     propositionResponse: String,
+    propositionResponseComment: String,
     status: String,
     attributed: Boolean
   },

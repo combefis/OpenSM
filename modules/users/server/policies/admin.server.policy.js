@@ -28,7 +28,7 @@ exports.invokeRolesPolicies = function () {
       permissions: '*'
     }]
   }, {
-    roles: ['manager.exams', 'master', 'manager.internships'],
+    roles: ['manager.exams', 'master', 'manager.internships', 'coordinator'],
     allows: [{
       resources: '/api/teachers',
       permissions: ['get']

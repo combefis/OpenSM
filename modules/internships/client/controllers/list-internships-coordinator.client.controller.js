@@ -5,14 +5,15 @@
   .module('internships')
   .controller('InternshipsCoordinatorListController', InternshipsListController);
 
-  InternshipsListController.$inject = ['$scope', '$state', 'InternshipsService', '$window', 'Authentication', '$http', '$filter'];
+  InternshipsListController.$inject = ['$scope', '$state', 'InternshipsService', 'TeachersService', '$window', 'Authentication', '$http', '$filter'];
 
 
-  function InternshipsListController($scope, $state, InternshipsService, $window, Authentication, http, filter) {
+  function InternshipsListController($scope, $state, InternshipsService, TeachersService, $window, Authentication, http, filter) {
     var vm = this;
-    vm.sort = sort;
     vm.needCoordinatorApprovalList = new Array();
     vm.needOtherApprovalList = new Array();
+
+    vm.teachers = TeachersService.query();
 
     vm.internships = InternshipsService.query(function(internships) {
       console.log('sorting');
@@ -29,9 +30,5 @@
       });
       console.log('done sorting');
     });
-
-    function sort(internship) {
-      console.log('coucou');
-    }
   }
 }());

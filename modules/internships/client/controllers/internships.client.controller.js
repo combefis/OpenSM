@@ -205,9 +205,15 @@
       }
     }
 
-    function supervisorDecision(response) {
-      vm.internship.supervisor.propositionResponse = response;
+    function supervisorDecision(isValid, response) {
 
+      if (!isValid) {
+        $scope.$broadcast('show-errors-check-validity', 'vm.form.internshipSupervisorPropositionForm');  // on envoie dans le scope (associé au controleur, et donc la page html)
+        return false;
+      }
+
+      console.log(response);
+      vm.internship.supervisor.propositionResponse = response;
       $http.put('/api/internships/' + vm.internship._id + '/editSupervisor', vm.internship).success(successCallback);
 
       function successCallback(res) {

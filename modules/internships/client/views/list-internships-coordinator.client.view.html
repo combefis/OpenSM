@@ -93,7 +93,11 @@
               <td ng-bind ="internship.student.firstname"></td>
               <td ng-bind ="internship.enterprise.name"></td>
               <td ng-bind ="internship.master.username"></td>
-              <td ng-bind ="internship.supervisor.supervisor.username"></td>
+              <td>
+              <select ng-click="$event.stopPropagation();">
+                <option ng-repeat="teacher in vm.teachers" ng-bind="teacher.username"></option>
+              </select>
+              </td>
               <td ng-bind ="internship.generalStatus"></td>
             </tr>
           </tbody>

@@ -271,7 +271,7 @@ exports.updateProposition = function (req, res) {
     internship.proposition.domain = req.body.proposition.domain;
     internship.proposition.location = req.body.proposition.location;
     internship.proposition.description = req.body.proposition.description;
-    
+
     internship.proposition.approval = {};
     internship.proposition.approval.masterComment = '';
     internship.proposition.approval.masterApproval = 'pending';
@@ -381,6 +381,7 @@ exports.updateSupervisor = function (req, res) {
 
   console.log('in updateSupervisor function');
   var internship = req.internship;
+  console.log(req.body);
 
   if (req.user.roles.includes('student')) {
     internship.supervisor.proposedSupervisor = req.body.supervisor.proposedSupervisor;
@@ -394,10 +395,18 @@ exports.updateSupervisor = function (req, res) {
       internship.supervisor.status = 'waiting coordinator approval';
       console.log("accepted");
     } else if (req.body.supervisor.propositionResponse === "refused") {
-      internship.supervisor.status = 'waiting student proposition';
+      console.log(req.body);
+      // !!!!!!! error!!!!! vm.internship.supervisor.propositionResponseComment
+
+      internship.supervisor.propositionResponseComment = req.body.supervisor.propositionResponseComment;
+      internship.supervisor.status = 'refused, waiting coordinator approval';
       console.log("refused");
     }
     internship.supervisor.propositionResponse = req.body.supervisor.propositionResponse;
+  }
+
+  if (req.user.roles.includes('manager.internships')) {
+    console.log('i am a manager');
   }
 
   internship.generalStatus = stateMachine(req, internship);
