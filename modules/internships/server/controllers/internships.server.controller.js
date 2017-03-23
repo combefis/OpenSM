@@ -41,7 +41,7 @@ exports.list = function (req, res) {
 
   if (req.user.roles.includes('coordinator')) {
     query = {};
-    populateQuery = [{ path: 'student', select: 'firstname lastname username' }, { path: 'supervisor.supervisor', select: 'username' }, { path: 'master', select: 'username' }];
+    populateQuery = [{ path: 'student', select: 'firstname lastname username' }, { path: 'supervisor.supervisor', select: 'username' }, { path: 'master', select: 'username' }, { path: 'consultedTeacher', select: 'username' }, { path: 'supervisor.proposedSupervisor', select: 'username' }];
   }
 
   Internship.find(query).populate(populateQuery).exec(function (err, internships) {
@@ -71,7 +71,7 @@ exports.read = function (req, res) {
   }
 
   if (req.user.roles.includes('coordinator')) {
-    populateQuery = [{ path: 'student', select: 'firstname lastname username' }, { path: 'supervisor.proposedSupervisor', select: 'username' }, { path: 'supervisor.supervisor', select: 'username' }, { path: 'master', select: 'username' }];
+    populateQuery = [{ path: 'student', select: 'firstname lastname username' }, { path: 'supervisor.proposedSupervisor', select: 'username' }, { path: 'supervisor.supervisor', select: 'username' }, { path: 'master', select: 'username' }, { path: 'consultedTeacher', select: 'username' }];
   }
 
   if (req.user.roles.includes('teacher')) {
@@ -274,11 +274,11 @@ exports.updateProposition = function (req, res) {
 
     internship.proposition.approval = {};
     internship.proposition.approval.masterComment = '';
-    internship.proposition.approval.masterApproval = 'pending';
+    internship.proposition.approval.masterApproval = false;
     internship.proposition.approval.coordinatorComment = '';
-    internship.proposition.approval.coordinatorApproval = 'pending';
+    internship.proposition.approval.coordinatorApproval = false;
     internship.proposition.approval.consultedTeacherComment = '';
-    internship.proposition.approval.consultedTeacherApproval = 'pending';
+    internship.proposition.approval.consultedTeacherApproval = false;
   }
 
   if ((internship.proposition.approval.coordinatorApproval === true) && (internship.proposition.approval.consultedTeacherApproval === true) && (req.body.proposition.approval.masterApproval === true)) {

@@ -23,7 +23,8 @@
           // if ((typeof internship.proposition.approval !== 'undefined') && (!internship.proposition.approval.coordinatorApproval)) {
           if ((typeof internship.proposition.approval === 'undefined') || (!internship.proposition.approval.coordinatorApproval)) {
             vm.needCoordinatorApprovalList.push(internship);
-          } else {
+          }
+          if ((typeof internship.proposition.approval === 'undefined') || (!internship.proposition.approval.consultedTeacherApproval) || (!internship.proposition.approval.masterApproval)) {
             vm.needOtherApprovalList.push(internship);
           }
         }

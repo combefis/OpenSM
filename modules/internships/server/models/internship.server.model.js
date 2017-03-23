@@ -52,11 +52,11 @@ var IntershipSchema = new Schema({
     location: String,
     description: String,
     approval: {
-      consultedTeacherApproval: String,
+      consultedTeacherApproval: Boolean,
       consultedTeacherComment: String,
-      coordinatorApproval: String,
+      coordinatorApproval: Boolean,
       coordinatorComment: String,
-      masterApproval: String,
+      masterApproval: Boolean,
       masterComment: String,
       approved: Boolean
     }

@@ -22,7 +22,6 @@
               <th>Prenom</th>
               <th>Entreprise</th>
               <th>Maitre de stage</th>
-              <th>Superviseur</th>
               <th>Statut</th>
             </tr>
           </thead>
@@ -33,7 +32,6 @@
               <td ng-bind ="internship.student.firstname"></td>
               <td ng-bind ="internship.enterprise.name"></td>
               <td ng-bind ="internship.master.username"></td>
-              <td ng-bind ="internship.supervisor.supervisor.username"></td>
               <td ng-bind ="internship.generalStatus"></td>
             </tr>
           </tbody>
@@ -51,8 +49,10 @@
               <th>Nom</th>
               <th>Prenom</th>
               <th>Entreprise</th>
-              <th>Maitre de stage</th>
-              <th>Superviseur</th>
+              <th>Master</th>
+              <th>Master Approval</th>
+              <th>Consulter Teacher</th>
+              <th>Consulted Teacher Approval</th>
               <th>Statut</th>
             </tr>
           </thead>
@@ -63,7 +63,9 @@
               <td ng-bind ="internship.student.firstname"></td>
               <td ng-bind ="internship.enterprise.name"></td>
               <td ng-bind ="internship.master.username"></td>
-              <td ng-bind ="internship.supervisor.supervisor.username"></td>
+              <td ng-bind ="internship.proposition.approval.masterApproval"></td>
+              <td ng-bind ="internship.consultedTeacher.username"></td>
+              <td ng-bind ="internship.proposition.approval.consultedTeacherApproval"></td>
               <td ng-bind ="internship.generalStatus"></td>
             </tr>
           </tbody>
@@ -83,6 +85,7 @@
               <th>Entreprise</th>
               <th>Maitre de stage</th>
               <th>Superviseur</th>
+              <th>Proposed Supervisor</th>
               <th>Statut</th>
             </tr>
           </thead>
@@ -95,9 +98,10 @@
               <td ng-bind ="internship.master.username"></td>
               <td>
               <select ng-click="$event.stopPropagation();">
-                <option ng-repeat="teacher in vm.teachers" ng-bind="teacher.username"></option>
+                <option ng-repeat="teacher in vm.teachers" ng-bind="teacher.username" ng-selected="{{teacher.username == internship.supervisor.proposedSupervisor.username}}"></option>
               </select>
               </td>
+              <td ng-bind="internship.supervisor.proposedSupervisor.username"></td>
               <td ng-bind ="internship.generalStatus"></td>
             </tr>
           </tbody>
@@ -106,3 +110,7 @@
     </div>
   </div>
 </section>
+
+ng-selected="{{item == valueToCheckAgainst}}"
+          ng-repeat="item in items"
+          value="{{item}}"

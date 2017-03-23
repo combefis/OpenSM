@@ -176,11 +176,11 @@
     <hr>
 
   <div class="row">
-    <form name="vm.form.internshipSupervisorPropositionForm" class="form-horizontal" ng-submit="vm.supervisorDecision(vm.form.internshipSupervisorPropositionForm.$valid,'refused')" novalidate>
+    <form name="vm.form.internshipSupervisorPropositionForm" class="form-horizontal" ng-submit="vm.supervisorDecision(vm.form.internshipSupervisorPropositionForm.$valid,false)" novalidate>
     <div class="col-md-12"> 
         <div class="row">
           <div class="col-md-5">
-            <button type="button" class="btn btn-primary" ng-click="vm.supervisorDecision('true', 'accepted')">
+            <button type="button" class="btn btn-primary" ng-click="vm.supervisorDecision('true', false)">
               <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>{{'INTERNSHIP.SUPERVISOR.ACCEPT' | translate}}
             </button>
           </div>    
