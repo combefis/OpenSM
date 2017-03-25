@@ -17,7 +17,8 @@ module.exports = function (app) {
     .get(admin.listTeachers);
   app.route('/api/students').all(adminPolicy.isAllowed)
     .get(admin.listStudents);
-
+  app.route('/api/masters').all(adminPolicy.isAllowed)
+    .get(admin.listMasters);
   // Single user routes
   app.route('/api/users/:userId')
     .get(adminPolicy.isAllowed, admin.read)

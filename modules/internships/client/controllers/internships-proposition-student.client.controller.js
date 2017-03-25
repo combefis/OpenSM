@@ -5,14 +5,24 @@
     .module('internships')
     .controller('InternshipsStudentPropositionController', InternshipsController);
 
-  InternshipsController.$inject = ['$scope', '$state', 'internshipResolve', '$window', 'Authentication', '$http', '$filter'];
+  InternshipsController.$inject = ['$scope', '$state', 'internshipResolve', '$window', 'Authentication', '$http', '$filter', 'TeachersService'];
 
-  function InternshipsController($scope, $state, internship, $window, Authentication, $http, filter) {
+  function InternshipsController($scope, $state, internship, $window, Authentication, $http, filter, TeachersService) {
     var vm = this; // on instancie tout ce qu'on vient de lui passer
 
     vm.authentication = Authentication;
     vm.internship = internship; // le "resolve"
     vm.save = save;
+
+    vm.teachers = TeachersService.query(function(teachers) {
+    });
+
+    $http.get('/api/masters').success(function(masters) {
+      vm.masters = masters;
+    });
+
+    console.log(vm.internship.master);
+    console.log(vm.internship.consultedTeacher);
 
     // Save Internship
     function save(isValid) {
@@ -21,7 +31,7 @@
         console.log('error');
         return false;   // on envoie dans  <div class="form-group" show-errors>
       }
-
+      console.log(vm.internship);
       $http.put('/api/internships/' + vm.internship._id + '/editProposition', vm.internship).success(successCallback);
 
       function successCallback(res) {

@@ -15,7 +15,7 @@ exports.list = function (req, res) {
 
   if (req.user.roles.includes('student')) {
     query = { 'student': req.user._id };
-    populateQuery = [{ path: 'supervisor.supervisor', select: 'username' }, { path: 'master', select: 'username' }, { path: 'student', select: 'firstname lastname username' }];
+    populateQuery = [{ path: 'supervisor.supervisor', select: 'username' }, { path: 'master', select: 'username displayName' }, { path: 'student', select: 'firstname lastname username' }];
   }
 
   if (req.user.roles.includes('master')) {
@@ -41,7 +41,7 @@ exports.list = function (req, res) {
 
   if (req.user.roles.includes('coordinator')) {
     query = {};
-    populateQuery = [{ path: 'student', select: 'firstname lastname username' }, { path: 'supervisor.supervisor', select: 'username' }, { path: 'master', select: 'username' }, { path: 'consultedTeacher', select: 'username' }, { path: 'supervisor.proposedSupervisor', select: 'username' }];
+    populateQuery = [{ path: 'student', select: 'firstname lastname username' }, { path: 'supervisor.supervisor', select: 'username' }, { path: 'master', select: 'username' }, { path: 'consultedTeacher', select: 'username' }, { path: 'supervisor.proposedSupervisor', select: 'username displayName' }];
   }
 
   Internship.find(query).populate(populateQuery).exec(function (err, internships) {
@@ -59,7 +59,7 @@ exports.read = function (req, res) {
   var populateQuery = {};
 
   if (req.user.roles.includes('student')) {
-    populateQuery = [{ path: 'supervisor.supervisor', select: 'username' }, { path: 'master', select: 'username' }, { path: 'consultedTeacher', select: 'username' }];
+    populateQuery = [{ path: 'supervisor.supervisor', select: 'username' }, { path: 'master', select: 'username displayName' }, { path: 'consultedTeacher', select: 'username displayName' }];
   }
 
   if (req.user.roles.includes('master')) {

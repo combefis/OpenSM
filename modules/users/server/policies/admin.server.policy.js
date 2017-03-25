@@ -24,13 +24,19 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/teachers',
       permissions: '*'
     }, {
+      resources: ['/api/masters'],
+      permissions: ['get']
+    }, {
       resources: '/api/students',
       permissions: '*'
     }]
   }, {
-    roles: ['manager.exams', 'master', 'manager.internships', 'coordinator'],
+    roles: ['manager.exams', 'master', 'manager.internships', 'coordinator', 'student'],
     allows: [{
       resources: '/api/teachers',
+      permissions: ['get']
+    }, {
+      resources: ['/api/masters'],
       permissions: ['get']
     }, {
       resources: ['/api/students', '/api/students/:userId'],

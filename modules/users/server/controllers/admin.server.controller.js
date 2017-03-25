@@ -70,6 +70,7 @@ exports.list = function (req, res) {
   });
 };
 
+
 /**
  * List of teachers
  */
@@ -81,6 +82,20 @@ exports.listTeachers = function (req, res) {
       });
     }
     res.json(teachers);
+  });
+};
+
+/**
+ * List of masters
+ */
+exports.listMasters = function (req, res) {
+  User.find({ 'roles': 'master' }).exec(function (err, masters) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+    res.json(masters);
   });
 };
 

@@ -85,7 +85,6 @@
               <th>Entreprise</th>
               <th>Maitre de stage</th>
               <th>Superviseur</th>
-              <th>Proposed Supervisor</th>
               <th>Statut</th>
             </tr>
           </thead>
@@ -96,21 +95,29 @@
               <td ng-bind ="internship.student.firstname"></td>
               <td ng-bind ="internship.enterprise.name"></td>
               <td ng-bind ="internship.master.username"></td>
-              <td>
-              <select ng-click="$event.stopPropagation();">
-                <option ng-repeat="teacher in vm.teachers" ng-bind="teacher.username" ng-selected="{{teacher.username == internship.supervisor.proposedSupervisor.username}}"></option>
-              </select>
+              <td ng-click="$event.stopPropagation();">
+              <input type="text" placeholder="{{'NO SUPERVISOR' | translate}}" ng-model="internship.supervisor.supervisor.displayName" uib-typeahead="teacher as teacher.displayName for teacher in vm.teachers | filter: $viewValue | limitTo: 8" class="form-control">
               </td>
-              <td ng-bind="internship.supervisor.proposedSupervisor.username"></td>
               <td ng-bind ="internship.generalStatus"></td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
+    <div>
+      <button type="submit" class="btn btn-primary pull-right" ng-click="vm.attributeSupervisors()">
+        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Attribute Supervisors
+      </button>
+    </div>
   </div>
+    <div ng-repeat="internship in vm.internships">
+      val:{{internship.supervisor.supervisor}}
+    </div>
 </section>
 
-ng-selected="{{item == valueToCheckAgainst}}"
-          ng-repeat="item in items"
-          value="{{item}}"
+
+ng-init="internship.supervisor.supervisor = vm.teachers[1]">
+ng-repeat="teacher in vm.teachers" ng-value="teacher.username">{{teacher.username}}
+ng-model="internship.supervisor.supervisor" ng-click="$event.stopPropagation();"
+ng-selected="{{teacher.username.toString() == internship.supervisor.proposedSupervisor.username.toString()}}"
+option value="" disabled="" selected="selected">Choose /option>

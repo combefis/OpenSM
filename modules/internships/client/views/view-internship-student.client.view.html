@@ -22,11 +22,11 @@
       </div>
       <div class="row">
         <div class="col-md-4"><strong>Master</strong></div>
-        <div class="col-md-6" ng-bind="vm.internship.master.username"></div>
+        <div class="col-md-6" ng-bind="vm.internship.master.displayName"></div>
       </div>               
       <div class="row">
         <div class="col-md-4"><strong>Supervisor</strong></div>
-        <div class="col-md-6" ng-bind="vm.internship.supervisor.username"></div>
+        <div class="col-md-6" ng-bind="vm.internship.supervisor.supervisor.username"></div>
       </div>
       <div class="row">
         <div class="col-md-4"><strong>Supervisor status</strong></div>
@@ -34,7 +34,7 @@
       </div>
       <div class="row">
         <div class="col-md-4"><strong>Consulted Teacher</strong></div>
-        <div class="col-md-6" ng-bind="vm.internship.consultedTeacher.username"></div>
+        <div class="col-md-6" ng-bind="vm.internship.consultedTeacher.displayName"></div>
       </div> 
     </div>  
   </div>
@@ -185,7 +185,7 @@
       </div>
     </div>
     <hr>
-    <div ng-if="vm.internship.generalStatus ==='Proposition Encoding'">
+    <div ng-if="vm.internship.generalStatus !=='Pfroposition Encoding'">
       <div class="row">
         <div class="col-md-4">
           <a class="btn btn-primary" ui-sref="student.manage.internships.edit.proposition({ internshipId: vm.internship._id })">
