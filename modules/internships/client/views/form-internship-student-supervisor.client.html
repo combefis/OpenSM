@@ -21,8 +21,9 @@
       <fieldset>         
           <div class="form-group" show-errors>
             <label class="control-label" for="internshipSupervisorProposedSupervisor" ng-bind="'INTERNSHIP.SUPERVISOR.PROPOSEDSUPERVISOR' | translate"></label>
-            <input name="internshipSupervisorProposedSupervisor" ng-model="vm.internship.supervisor.proposedSupervisor" id="internshipSupervisorProposedSupervisor" class="form-control" cols="30" rows="5" placeholder="{{'INTERNSHIP.SUPERVISOR' | translate}}" required>
-            </input>
+            
+            <input name="internshipSupervisorProposedSupervisor" type="text" placeholder="{{'INTERNSHIP.SUPERVISOR' | translate}}" ng-model="vm.internship.supervisor.proposedSupervisor" id="internshipSupervisorProposedSupervisor" class="form-control" uib-typeahead="teacher as teacher.displayName for teacher in vm.teachers | filter: $viewValue | limitTo: 8" class="form-control" required>
+
             <div ng-messages="vm.form.internshipSupervisorForm.proposedSupervisor.$error" role="alert">
               <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.SUPERVISOR.PROPOSEDSUPERVISOR' | translate"></p>
             </div>

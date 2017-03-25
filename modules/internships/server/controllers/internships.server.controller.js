@@ -59,7 +59,7 @@ exports.read = function (req, res) {
   var populateQuery = {};
 
   if (req.user.roles.includes('student')) {
-    populateQuery = [{ path: 'supervisor.supervisor', select: 'username' }, { path: 'master', select: 'username displayName' }, { path: 'consultedTeacher', select: 'username displayName' }];
+    populateQuery = [{ path: 'supervisor.supervisor', select: 'username displayName' }, { path: 'supervisor.proposedSupervisor', select: 'username displayName' }, { path: 'master', select: 'username displayName' }, { path: 'consultedTeacher', select: 'username displayName' }];
   }
 
   if (req.user.roles.includes('master')) {

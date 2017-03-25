@@ -5,14 +5,17 @@
     .module('internships')
     .controller('InternshipsStudentSupervisorController', InternshipsController);
 
-  InternshipsController.$inject = ['$scope', '$state', 'internshipResolve', '$window', 'Authentication', '$http', '$filter'];
+  InternshipsController.$inject = ['$scope', '$state', 'internshipResolve', '$window', 'Authentication', '$http', '$filter', 'TeachersService'];
 
-  function InternshipsController($scope, $state, internship, $window, Authentication, $http, filter) {
+  function InternshipsController($scope, $state, internship, $window, Authentication, $http, filter, TeachersService) {
     var vm = this; // on instancie tout ce qu'on vient de lui passer
 
     vm.authentication = Authentication;
     vm.internship = internship; // le "resolve"
     vm.save = save;
+
+    vm.teachers = TeachersService.query(function(teachers) {
+    });
 
     // console.log(internship.supervisor.supervisor);
     // Save Internship

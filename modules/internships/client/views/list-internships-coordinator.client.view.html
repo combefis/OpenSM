@@ -110,14 +110,4 @@
       </button>
     </div>
   </div>
-    <div ng-repeat="internship in vm.internships">
-      val:{{internship.supervisor.supervisor}}
-    </div>
 </section>
-
-
-ng-init="internship.supervisor.supervisor = vm.teachers[1]">
-ng-repeat="teacher in vm.teachers" ng-value="teacher.username">{{teacher.username}}
-ng-model="internship.supervisor.supervisor" ng-click="$event.stopPropagation();"
-ng-selected="{{teacher.username.toString() == internship.supervisor.proposedSupervisor.username.toString()}}"
-option value="" disabled="" selected="selected">Choose /option>

@@ -185,7 +185,7 @@
       </div>
     </div>
     <hr>
-    <div ng-if="vm.internship.generalStatus !=='Pfroposition Encoding'">
+    <div ng-if="vm.internship.generalStatus ==='Proposition Encoding'">
       <div class="row">
         <div class="col-md-4">
           <a class="btn btn-primary" ui-sref="student.manage.internships.edit.proposition({ internshipId: vm.internship._id })">
@@ -207,7 +207,7 @@
           <hr>
               <div class="row">
                 <div class="col-md-7"><strong>Proposed Supervisor</strong></div>
-                <div class="col-md-3" ng-bind="vm.internship.supervisor.proposedSupervisor"></div>
+                <div class="col-md-3" ng-bind="vm.internship.supervisor.proposedSupervisor.displayName"></div>
               </div>
               <div class="row">
                 <div class="col-md-7"><strong>Status</strong></div>
