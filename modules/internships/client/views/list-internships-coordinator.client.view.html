@@ -73,9 +73,10 @@
       </div>
     </div>
 
+    <form>
     <div class="row">
       <div class="col-md-12">
-      <h3>All internships</h3>
+      <h3>All Internships & Supervisors</h3>
         <table class="table table-bordered table-striped table-hover">
           <thead>
             <tr>
@@ -84,7 +85,9 @@
               <th>Prenom</th>
               <th>Entreprise</th>
               <th>Maitre de stage</th>
-              <th>Superviseur</th>
+              <th>Proposed Supervisor</th>
+              <th>Has supervisor?</th>
+              <th>Supervisor</th>
               <th>Statut</th>
             </tr>
           </thead>
@@ -95,8 +98,10 @@
               <td ng-bind ="internship.student.firstname"></td>
               <td ng-bind ="internship.enterprise.name"></td>
               <td ng-bind ="internship.master.username"></td>
+              <td ng-bind ="internship.supervisor.proposedSupervisor.username"></td>
+              <td><span class="glyphicon glyphicon-print"></span></td>
               <td ng-click="$event.stopPropagation();">
-              <input type="text" placeholder="{{'NO SUPERVISOR' | translate}}" ng-model="internship.supervisor.supervisor.displayName" uib-typeahead="teacher as teacher.displayName for teacher in vm.teachers | filter: $viewValue | limitTo: 8" class="form-control">
+              <input type="text" placeholder="{{'NO SUPERVISOR' | translate}}" ng-model="internship.supervisor.supervisor" uib-typeahead="teacher as teacher.displayName for teacher in vm.teachers | filter: $viewValue | limitTo: 8" class="form-control">
               </td>
               <td ng-bind ="internship.generalStatus"></td>
             </tr>
@@ -109,5 +114,6 @@
         <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Attribute Supervisors
       </button>
     </div>
+    </form>
   </div>
 </section>

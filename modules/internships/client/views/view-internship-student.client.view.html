@@ -203,7 +203,7 @@
       <div class = "col-md-12">
         <h2>Supervisor</h2>
         <div class="alert alert-warning" ng-if="!vm.internship.supervisor.proposedSupervisor" ng-bind="'INTERNSHIP.NO_SUPERVISOR' | translate"></div>
-          <div ng-if="vm.internship.supervisor.proposedSupervisor">
+          <div ng-if="vm.internship.supervisor.proposedSupervisor && !vm.internship.supervisor.supervisor">
           <hr>
               <div class="row">
                 <div class="col-md-7"><strong>Proposed Supervisor</strong></div>
@@ -214,10 +214,17 @@
                 <div class="col-md-4" ng-bind="vm.internship.supervisor.status"></div>
               </div>
           </div>
+          <div ng-if="vm.internship.supervisor.supervisor">
+          <hr>
+              <div class="row">
+                <div class="col-md-7"><strong>Supervisor</strong></div>
+                <div class="col-md-3" ng-bind="vm.internship.supervisor.supervisor.displayName"></div>
+              </div>
+          </div>          
       </div>
     </div>
     <hr>
-    <div class="row">
+    <div ng-if="!vm.internship.supervisor.supervisor && (vm.internship.generalStatus ==='Supervisor Attribution' || vm.internship.generalStatus ==='Proposition Validation')" class="row">
       <div class="col-md-4">
         <a class="btn btn-primary" ui-sref="student.manage.internships.edit.supervisor({ internshipId: vm.internship._id })">
           <i class="glyphicon glyphicon-edit" ng-if="vm.internship.supervisor"></i>

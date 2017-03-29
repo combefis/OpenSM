@@ -17,8 +17,6 @@
     vm.teachers = TeachersService.query(function(teachers) {
     });
 
-    // console.log(internship.supervisor.supervisor);
-    // Save Internship
     function save(isValid) {
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'vm.form.internshipSupervisorForm');  // on envoie dans le scope (associé au controleur, et donc la page html)
@@ -30,7 +28,7 @@
 
       function successCallback(res) {
         if (vm.authentication.user.roles.includes('student')) {
-          alert('First Visit Updated!');
+          alert('Success! Internship updated.');
           $state.go('student.manage.internships.view', {
             internshipId: res._id
           });

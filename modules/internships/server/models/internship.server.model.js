@@ -28,7 +28,7 @@ var IntershipSchema = new Schema({
       type: Schema.ObjectId,
       ref: 'User'
     },
-    propositionResponse: String,
+    propositionResponse: Boolean,
     propositionResponseComment: String,
     status: String,
     attributed: Boolean

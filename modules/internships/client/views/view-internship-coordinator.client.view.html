@@ -319,5 +319,29 @@
     </div>
     <hr>     
 </uib-tab>
+  <uib-tab heading="Supervisor">
+    <div class = "row">
+      <div class = "col-md-12">
+        <h2>Supervisor</h2>
+        <div class="alert alert-warning" ng-if="!vm.internship.supervisor.proposedSupervisor" ng-bind="'INTERNSHIP.NO_SUPERVISOR' | translate"></div>
+          <div ng-if="vm.internship.supervisor.proposedSupervisor">
+          <hr>
+              <div class="row">
+                <div class="col-md-3"><strong>Proposed Supervisor</strong></div>
+                <div class="col-md-3" ng-bind="vm.internship.supervisor.proposedSupervisor"></div>
+              </div>
+              <div class="row">
+                <div class="col-md-3"><strong>Response</strong></div>
+                <div class="col-md-1" ng-bind="vm.internship.supervisor.propositionResponse"></div>
+              </div>
+              <div class="row">
+                <div class="col-md-3"><strong>Comment</strong></div>
+                <div class="col-md-8" ng-bind="vm.internship.supervisor.propositionResponseComment"></div>
+              </div>              
+          </div>
+      </div>
+    </div>
+    <hr>      
+  </uib-tab>
 
 </uib-tabset>

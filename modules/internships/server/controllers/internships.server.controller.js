@@ -41,7 +41,7 @@ exports.list = function (req, res) {
 
   if (req.user.roles.includes('coordinator')) {
     query = {};
-    populateQuery = [{ path: 'student', select: 'firstname lastname username' }, { path: 'supervisor.supervisor', select: 'username' }, { path: 'master', select: 'username' }, { path: 'consultedTeacher', select: 'username' }, { path: 'supervisor.proposedSupervisor', select: 'username displayName' }];
+    populateQuery = [{ path: 'student', select: 'firstname lastname username' }, { path: 'supervisor.supervisor', select: 'username displayName' }, { path: 'master', select: 'username' }, { path: 'consultedTeacher', select: 'username' }, { path: 'supervisor.proposedSupervisor', select: 'username displayName' }];
   }
 
   Internship.find(query).populate(populateQuery).exec(function (err, internships) {
@@ -63,11 +63,12 @@ exports.read = function (req, res) {
   }
 
   if (req.user.roles.includes('master')) {
-    populateQuery = [{ path: 'student', select: 'firstname lastname username' }, { path: 'supervisor', select: 'username' }, { path: 'master', select: 'username' }];
+    populateQuery = [{ path: 'student', select: 'firstname lastname username' }];
+    // populateQuery = [{ path: 'student', select: 'firstname lastname username' }, { path: 'supervisor', select: 'username' }, { path: 'master', select: 'username' }];
   }
 
   if (req.user.roles.includes('manager.internships')) {
-    populateQuery = [{ path: 'student', select: 'firstname lastname username' }, { path: 'supervisor.proposedSupervisor', select: 'username' }, { path: 'supervisor.supervisor', select: 'username' }, { path: 'master', select: 'username' }];
+    populateQuery = [{ path: 'student', select: 'firstname lastname username' }, { path: 'supervisor.proposedSupervisor', select: 'username' }, { path: 'supervisor.supervisor', select: 'username, displayName' }, { path: 'master', select: 'username' }];
   }
 
   if (req.user.roles.includes('coordinator')) {
@@ -93,11 +94,14 @@ exports.create = function (req, res) {
   console.log('in create function');
   var internship = new Internship(req.body); // req.body permet de TOUT lui mettre, on mettra des infos en plus plus loin si besoin.
 
-  internship.generalStatus = stateMachine(req, internship);
-  console.log(internship);  // par exemple (non utilisé, a supprimer)
+  // ! si un student crée le stage, le statut est d'office 'Enterprise Encoding'
+  // si c'est un admin ou autre, ca dépendra du contenu.
+
   if (req.user.roles.includes('student')) {
     internship.student = req.user._id;
+    internship.generalStatus = 'Enterprise Encoding';
   }
+
   internship.save(function (err) {  // pas besoin de mettre function (err, internship) pas besoin de lui passer qqchose pour le save.
     if (err) {
       return res.status(400).send({
@@ -122,6 +126,25 @@ exports.remove = function (req, res) {
   });
 };
 
+exports.updateSupervisors = function (req, res) {
+  console.log("in updateSupervisors function");
+  req.body.internships.forEach(function(internship) {
+
+    internship.generalStatus = stateMachine(internship, internship.generalStatus);
+    console.log(internship.generalStatus);
+
+    if (internship.supervisor) {
+      Internship.update({ _id: internship._id }, { $set: { 'supervisor.supervisor': internship.supervisor.supervisor } }, function(err) {
+        if (err) {
+          console.log(errorHandler.getErrorMessage(err));
+          return res.status(400).send({ message: 'was unable to update internship' });
+        }
+      });
+    }
+  });
+  res.status(202).send({ message: 'internships updated' });
+
+};
 
 exports.update = function (req, res) {
 
@@ -175,7 +198,7 @@ exports.update = function (req, res) {
   internship.deadlines.writtenReport = req.body.deadlines.writtenReport;
   internship.deadlines.certificate = req.body.deadlines.certificate;
 
-  internship.generalStatus = stateMachine(req, internship);
+  internship.generalStatus = stateMachine(internship, internship.generalStatus);
   internship.save(function (err) {
     if (err) {
       return res.status(422).send({
@@ -230,7 +253,7 @@ exports.updateEnterprise = function (req, res) {
   internship.enterprise.representative.name = req.body.enterprise.representative.name;
   internship.enterprise.representative.position = req.body.enterprise.representative.position;
 
-  internship.generalStatus = stateMachine(req, internship);
+  internship.generalStatus = stateMachine(internship, internship.generalStatus);
   internship.save(function (err) {
     if (err) {
       return res.status(422).send({
@@ -285,7 +308,7 @@ exports.updateProposition = function (req, res) {
     internship.proposition.approval.approved = true;
   }
 
-  internship.generalStatus = stateMachine(req, internship);
+  internship.generalStatus = stateMachine(internship, internship.generalStatus);
   internship.save(function (err) {
     if (err) {
       return res.status(422).send({
@@ -306,7 +329,7 @@ exports.updateJournal = function (req, res) {
     note: req.body.note
   });
 
-  internship.generalStatus = stateMachine(req, internship);
+  internship.generalStatus = stateMachine(internship, internship.generalStatus);
   internship.save(function (err) {
     if (err) {
       return res.status(422).send({
@@ -323,7 +346,7 @@ exports.updateFirstVisit = function (req, res) {
   var internship = req.internship;
   internship.firstVisit.date = req.body.firstVisit.date;
   internship.firstVisit.location = req.body.firstVisit.location;
-  internship.generalStatus = stateMachine(req, internship);
+  internship.generalStatus = stateMachine(internship, internship.generalStatus);
   internship.save(function (err) {
     if (err) {
       return res.status(422).send({
@@ -347,7 +370,7 @@ exports.updateActivitiesNote = function (req, res) {
     internship.activitiesNote.generalObjectives = req.body.activitiesNote.generalObjectives;
   }
 
-  internship.generalStatus = stateMachine(req, res);
+  internship.generalStatus = stateMachine(internship, internship.generalStatus);
   internship.save(function (err) {
     if (err) {
       return res.status(422).send({
@@ -363,10 +386,9 @@ exports.updateOralPresentation = function (req, res) {
   console.log('in updateOralPresentation function');
 
   var internship = req.internship;
-  console.log(req.body.oralPresentation);
   internship.oralPresentation = req.body.oralPresentation;
 
-  internship.generalStatus = stateMachine(req, internship);
+  internship.generalStatus = stateMachine(internship, internship.generalStatus);
   internship.save(function (err) {
     if (err) {
       return res.status(422).send({
@@ -381,7 +403,6 @@ exports.updateSupervisor = function (req, res) {
 
   console.log('in updateSupervisor function');
   var internship = req.internship;
-  console.log(req.body);
 
   if (req.user.roles.includes('student')) {
     internship.supervisor.proposedSupervisor = req.body.supervisor.proposedSupervisor;
@@ -391,13 +412,10 @@ exports.updateSupervisor = function (req, res) {
 
   if (req.user.roles.includes('teacher')) {
 
-    if (req.body.supervisor.propositionResponse === "accepted") {
-      internship.supervisor.status = 'waiting coordinator approval';
+    if (req.body.supervisor.propositionResponse === true) {
+      internship.supervisor.status = 'accepted, waiting coordinator approval';
       console.log("accepted");
-    } else if (req.body.supervisor.propositionResponse === "refused") {
-      console.log(req.body);
-      // !!!!!!! error!!!!! vm.internship.supervisor.propositionResponseComment
-
+    } else if (req.body.supervisor.propositionResponse === false) {
       internship.supervisor.propositionResponseComment = req.body.supervisor.propositionResponseComment;
       internship.supervisor.status = 'refused, waiting coordinator approval';
       console.log("refused");
@@ -407,9 +425,13 @@ exports.updateSupervisor = function (req, res) {
 
   if (req.user.roles.includes('manager.internships')) {
     console.log('i am a manager');
+    internship.supervisor.supervisor = req.body.supervisor.supervisor;
+    internship.supervisor.status = 'manager attributed supervisor';
   }
 
-  internship.generalStatus = stateMachine(req, internship);
+  internship.generalStatus = stateMachine(internship, internship.generalStatus);
+  console.log(internship.generalStatus);
+
   internship.save(function (err) {
     if (err) {
       return res.status(422).send({
@@ -420,36 +442,52 @@ exports.updateSupervisor = function (req, res) {
   });
 };
 
-function stateMachine(req, internship) {
+function stateMachine(internship, status) {
 
-// ! verifier qu'on envoie bien (req, internship)  en appelant la fonciotn
+  console.log(internship);
+  console.log("begin, status: " + status);
+  console.log("begin Enterprise" + internship.enterprise);
+  console.log("begin Proposition" + internship.proposition);
 
-  var status = internship.generalStatus;
-
-  switch (internship.generalStatus) {
-    case 'Enterprise Encoding':
-      if (req.body.enterprise) {
-        status = 'Proposition Encoding';
-      }
-      break;
-
-    case 'Proposition Encoding':
-      if (req.body.proposition) {
-        status = 'Proposition Validation';
-      }
-      break;
-
-    case 'Proposition Validation':
-      if (req.body.proposition.approval.consultedTeacherApproval && req.body.proposition.approval.masterApproval && req.body.proposition.approval.coordinatorApproval) {
-        status = 'Supervisor Attribution';
-      }
-      break;
-
-    case 'Supervisor Attribution':
-      break;
-
-    default: status = 'Enterprise Encoding';
+  if (!status) {
+    console.log("1");
+    status = 'Enterprise Encoding';
   }
-  return (status);
 
+  if (status === 'Enterprise Encoding') {
+    console.log("2");
+    console.log("Enterprise" + internship.enterprise);
+    console.log("Proposition" + internship.proposition);
+    if (internship.enterprise) {
+      status = 'Proposition Encoding';
+    }
+  }
+
+  if (status === 'Proposition Encoding') {
+    console.log("3");
+    if (internship.proposition) {
+      status = 'Proposition Validation';
+    }
+  }
+
+  if (status === 'Proposition Validation') {
+    console.log("4");
+    if (internship.proposition && internship.proposition.approval && internship.proposition.approval.consultedTeacherApproval && internship.proposition.approval.masterApproval && internship.proposition.approval.coordinatorApproval) {
+      status = 'Supervisor Attribution';
+    }
+  }
+
+  if (status === 'Supervisor Attribution') {
+    console.log("5");
+    if (internship.supervisor && internship.supervisor.supervisor) {
+      status = 'Final Release';
+    }
+  }
+
+  if (status === 'Final Release') {
+    console.log('final Release');
+  }
+
+  console.log("return value: " + status);
+  return status;
 }
