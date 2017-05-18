@@ -9,9 +9,19 @@
       <li class="active"><a ui-sref="admin.manage.internships.list" ng-bind="'INTERNSHIP.INTERNSHIPS' | translate"></a></li>
     </ol>
 
-    <h2 ng-bind="'INTERNSHIP.INTERNSHIPS' | translate"></h2>
+<uib-tabset>
+  <uib-tab heading="Internships">
 
+    <h2 ng-bind="'INTERNSHIP.INTERNSHIPS' | translate"></h2>
     <div class="row">
+    <div class="col-md-12">
+      <label for="filterSelect">Select Filter: </label><br>
+      <select ng-model="vm.filterSelect" ng-options="option for option in vm.filterOptions"></select>
+    </div>
+    </div>
+    <br>
+    <div class="row">
+    <form>
       <div class="col-md-12">
         <table class="table table-bordered table-striped table-hover">
           <thead>
@@ -19,10 +29,28 @@
               <th>Matricule</th>
               <th>Nom</th>
               <th>Prenom</th>
-              <th>Entreprise</th>
-              <th>Maitre de stage</th>
-              <th>Superviseur</th>
-              <th>Statut</th>
+              <th ng-if="vm.filterSelect==='enterprise'">Entreprise</th>
+              <th ng-if="vm.filterSelect==='enterprise'">Maitre de stage</th>
+              
+              <th ng-if="vm.filterSelect==='supervisor'">Proposed Supervisor</th>
+              <th ng-if="vm.filterSelect==='supervisor'">Response</th>
+              <th ng-if="vm.filterSelect==='supervisor'">Supervisor</th>
+              <th ng-if="vm.filterSelect==='supervisor'">Has Supervisor?</th>
+
+              <th ng-if="vm.filterSelect==='proposition'">Master</th>
+              <th ng-if="vm.filterSelect==='proposition'">Approval</th>
+              <th ng-if="vm.filterSelect==='proposition'">Consulted Teacher </th>
+              <th ng-if="vm.filterSelect==='proposition'">Approval</th>
+              <th ng-if="vm.filterSelect==='proposition'">Coordinator Approval</th>
+
+              <th ng-if="vm.filterSelect==='convention'">Convention given?</th>
+              <th ng-if="vm.filterSelect==='convention'">Convention validated?</th>
+              <th ng-if="vm.filterSelect==='convention'">Start Internship</th>
+              <th ng-if="vm.filterSelect==='convention'">End Internship</th>
+              
+              <th ng-if="vm.filterSelect==='overview'">Status</th>
+
+
             </tr>
           </thead>
           <tbody>
@@ -30,14 +58,88 @@
               <td ng-bind ="internship.student.username"></td>
               <td ng-bind ="internship.student.lastname"></td>
               <td ng-bind ="internship.student.firstname"></td>
-              <td ng-bind ="internship.enterprise.name"></td>
-              <td ng-bind ="internship.master.username"></td>
-              <td ng-bind ="internship.supervisor.supervisor.username"></td>
-              <td ng-bind ="internship.generalStatus"></td>
+              
+              <td ng-if="vm.filterSelect==='enterprise'" ng-bind ="internship.enterprise.name"></td>
+              <td ng-if="vm.filterSelect==='enterprise'" ng-bind ="internship.master.username"></td>
+              
+              <td ng-if="vm.filterSelect==='supervisor'" ng-bind ="internship.supervisor.proposedSupervisor.username"></td>             
+              <td ng-if="vm.filterSelect==='supervisor'">{{internship.supervisor.propositionResponse === null? 'pending' : internship.supervisor.propositionResponse}}</td>               
+              <td ng-if="vm.filterSelect==='supervisor'" ng-bind ="internship.supervisor.supervisor.username"></td>
+              <td ng-if="vm.filterSelect==='supervisor'">
+                <span ng-if="internship.supervisor.supervisor" class="glyphicon glyphicon-ok"></span>
+                <span ng-if="!internship.supervisor.supervisor" class="glyphicon glyphicon-remove"></span>
+              </td>
+
+              <td ng-if="vm.filterSelect==='proposition'" ng-bind="internship.master.username"></td>
+              <td ng-if="vm.filterSelect==='proposition'">{{internship.proposition.approval.masterApproval===null? 'pending' : internship.proposition.approval.masterApproval}}</td>
+              <td ng-if="vm.filterSelect==='proposition'" ng-bind="internship.consultedTeacher.username"></td>
+              <td ng-if="vm.filterSelect==='proposition'">{{internship.proposition.approval.consultedTeacherApproval===null? 'pending' : internship.proposition.approval.consultedTeacherApproval}}</td>
+              <td ng-if="vm.filterSelect==='proposition'">{{internship.proposition.approval.coordinatorApproval===null? 'pending' : internship.proposition.approval.coordinatorApproval}}</td>
+
+              
+
+              <td ng-if="vm.filterSelect==='convention'" ng-click="$event.stopPropagation();">
+                <span ng-if="internship.convention.given" class="glyphicon glyphicon-ok"></span>
+                <button ng-if="!internship.convention.given" class="btn btn-primary" ng-click="vm.giveConventions(internship)">give convention</button>
+              </td>            
+              <td ng-if="vm.filterSelect==='convention'" ng-click="$event.stopPropagation();">
+                <span ng-if="internship.convention.validation" class="glyphicon glyphicon-ok"></span>
+                <button ng-if="!internship.convention.validation" class="btn btn-primary" ng-click="vm.validateConventions(internship)">validate convention</button>
+              </td>
+              <td ng-if="vm.filterSelect==='convention'" ng-click="$event.stopPropagation();">
+                <div class="form-group">
+                    <div class="controls">
+                      <div class="input-group">
+                        <input ng-click="vm.open(internship,'startPopup','startInternship')" name="deadlinesStartInternship"  type="date" class="form-control" show-button-bar="false" uib-datepicker-popup ng-model="internship.deadlines.startInternship" is-open="internship.startPopup.opened"/><span ng-click="vm.open(internship,'startPopup','startInternship')" class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                      </div>
+                    </div>
+                </div>
+              </td>
+              <td ng-if="vm.filterSelect==='convention'" ng-click="$event.stopPropagation();">
+                <div class="form-group">
+                    <div class="controls">
+                      <div class="input-group">
+                        <input ng-click="vm.open(internship,'endPopup','endInternship')" name="deadlinesEndInternship"  type="date" class="form-control" show-button-bar="false" uib-datepicker-popup ng-model="internship.deadlines.endInternship" is-open="internship.endPopup.opened"/><span ng-click="vm.open(internship,'endPopup','endInternship')" class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                      </div>
+                    </div>
+                </div>
+              </td>
+              <td ng-if="vm.filterSelect==='overview'" ng-bind ="internship.generalStatus"></td>
             </tr>
           </tbody>
         </table>
       </div>
+      
+      <div class="row">
+      <div class="col-md-12">
+      <div class="col-md-2 pull-right">
+        <button ng-if="vm.filterSelect==='convention'" type="submit" class="btn btn-primary" ng-click="vm.saveDates()">
+          Save Dates <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+        </button>
+      </div>
+      </div>
+      </div>
+      </form>
+    </div>
+</uib-tab>
+
+<uib-tab heading="Deadlines">
+  <h2>Deadlines</h2>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="action-box">
+        <a class="btn btn-primary" ng-click="vm.createDeadlines()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> {{'DEADLINES.CREATE' | translate}}</a>
+      </div>
+
+      <div class="list-group" ng-if="vm.deadlinesCollection.length">
+        <a ng-repeat="deadlines in vm.deadlinesCollection" ui-sref="manager.manage.internships.deadlines({ deadlinesId: deadlines._id })" class="list-group-item" ng-bind="deadlines.academicYear"></a>
+      </div>
+
+      <div class="alert alert-warning" ng-if="!vm.deadlinesCollection.length" ng-bind="'DEADLINES.NO_DEADLINES' | translate"></div>
     </div>
   </div>
+</uib-tab>
+</uib-tabset>
+
+</div>
 </section>
