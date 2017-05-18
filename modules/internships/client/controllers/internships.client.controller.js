@@ -24,6 +24,12 @@
     vm.consultedTeacherPropositionCommentAdd = consultedTeacherPropositionCommentAdd;
     vm.supervisorDecision = supervisorDecision;
     vm.coordinatorPropositionCommentAdd = coordinatorPropositionCommentAdd;
+    vm.addNoteField = addNoteField;
+
+    if (vm.internship.firstVisit.supervisorNotes.length === 0) {
+      console.log('uh-oh');
+      vm.internship.firstVisit.supervisorNotes.push({});
+    }
 
     if (internship.proposition && !internship.proposition.approval) {
       internship.proposition.approval = {};
@@ -106,6 +112,9 @@
       vm.internship.activitiesNote.specificObjectives.splice(index, 1);
     }
 
+    function addNoteField() {
+      vm.internship.firstVisit.supervisorNotes.push({});
+    }
 
     function masterActivitiesNoteCommentAdd(isValid, decision) {
       if (!isValid) {

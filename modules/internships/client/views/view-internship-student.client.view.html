@@ -11,36 +11,248 @@
 
 <uib-tabset>
   <uib-tab heading="Overview">
-      <div class = "row">
-    <div class = "col-md-12">
-      <h2>Overview of Internship</h2>
-      <hr>
-      <div class="col-md-6">
-      <div class="row">
-        <div class="col-md-4"><strong>Student</strong></div>
-        <div class="col-md-6" ng-bind="vm.internship.student"></div>
+    <div class="row">
+    <div class="widget-body">
+      <form id="wizard-1" novalidate="novalidate">
+        <div id="bootstrap-wizard-1" class="col-sm-12">
+          <div class="form-bootstrapWizard">
+                
+                <ul class="bootstrapWizard form-wizard">
+                
+                <li ng-class="{'active': vm.internship.generalStatus === 'Enterprise Encoding'}">
+                    <a class="active"> <span class="step">1</span> <span class="title">
+                      Enterprise Encoding
+                    </span> </a>
+                </li>
+                <li ng-class="{'active': (vm.internship.generalStatus === 'Proposition Validation') || (vm.internship.generalStatus === 'Proposition Reincoding') || (vm.internship.generalStatus === 'Proposition Encoding')}">
+                    <a><span class="step">2</span> <span class="title">
+                      Proposition</span> </a>
+                </li>
+                <li ng-class="{'active': vm.internship.generalStatus === 'Supervisor Attribution'}">
+                    <a> <span class="step">3</span> <span class="title">
+                      Supervisor</span> </a>
+                </li>
+                <li ng-class="{'active': (vm.internship.generalStatus === 'Convention Signing') || (vm.internship.generalStatus === 'Validation')}">
+                    <a> <span class="step">4</span> <span class="title">
+                      Convention</span> </a>
+                </li>                
+                <li ng-class="{'active': vm.internship.generalStatus === 'Activities Note Encoding'}">
+                    <a> <span class="step">6</span> <span class="title">
+                      Activities Note</span> </a>
+                </li>                 
+                <li ng-class="{'active': vm.internship.generalStatus === 'First Visit'}">
+                    <a> <span class="step">7</span> <span class="title">
+                      First Visit</span> </a>
+                </li>                                 
+                <li ng-class="{'active': vm.internship.generalStatus === 'Oral Presentation'}">
+                    <a> <span class="step">8</span> <span class="title">
+                      Oral Presentation</span> </a>
+                </li>                
+                <li ng-class="{'active': vm.internship.generalStatus === 'Written Report'}">
+                    <a> <span class="step">9</span> <span class="title">
+                      Délivrables finaux</span> </a>
+                </li>                
+              </ul>
+              <div class="clearfix"></div>
+          </div>
+        </div>
+      </form>
+    </div>
+    </div>
+    <br>
+    <hr>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="col-md-6">
+          <div class="row">
+            <h3>Internship State:</h3> 
+            {{vm.internship.state}}
+
+            <h3>Internship Status:</h3>
+            <div class="row">
+              <div class = "col-md-2"><strong>Step</strong></div><div class = "col-md-8" ng-bind="vm.title"></div>
+            </div>
+            <div class="row">
+              <div class = "col-md-2"><strong>Status</strong></div><div class = "col-md-8" ng-bind="vm.status"></div>
+            </div>
+            <div class="row">
+              <div class = "col-md-2"><strong>Info</strong></div><div class = "col-md-8" ng-bind="vm.instructions"></div>
+              </div>
+
+            <h3>Participants</h3>
+            <div class="row">
+              <div class="col-md-4">Master: </div>
+              <div class="col-md-4">{{!vm.internship.master?'no master yet':vm.internship.master.displayName}} </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">Supervisor: </div>
+              <div class="col-md-4">{{!vm.internship.supervisor.supervisor?'no supervisor yet':vm.internship.supervisor.supervisor.displayName}} </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">Consulted Teacher: </div>
+               <div class="col-md-4">{{!vm.internship.consultedTeacher.displayName?'no proposition yet':vm.internship.consultedTeacher.displayName}} </div>
+            </div>
+            </div>
+          </div>
+         <div class="col-md-6">
+          <div class="panel panel-default">
+            <div class="panel-heading">Deadlines</div>
+            <div class="panel-body">
+            <label>Demande de stage à l'étranger</label>
+            <p>{{vm.internship.deadlines.deadlines.foreignInternshipDemand | amDateFormat: 'ddd D MMM YYYY'}}</p>
+              <hr>
+            <label>Rencontre avec le coorindateur en cas de non stage.</label>
+            <p>{{vm.internship.deadlines.deadlines.coordinatorMeeting | amDateFormat: 'ddd D MMM YYYY'}}</p>
+              <hr>
+            <label>Remise de la note d'activitées.</label>
+            <p>{{vm.internship.deadlines.deadlines.activitiesNote | amDateFormat: 'ddd D MMM YYYY'}}</p>
+              <hr>
+            <label>Remise de la convention de stage.</label>
+            <p>{{vm.internship.deadlines.deadlines.convention | amDateFormat: 'ddd D MMM YYYY'}}</p>
+              <hr>
+            <label>Date limite de la première visite du superviseur en entreprise.</label>
+            <p>{{vm.internship.deadlines.deadlines.firstVisit | amDateFormat: 'ddd D MMM YYYY'}}</p>
+              <hr>
+            <label>Auto-Évaluation du stage.</label>
+            <p>{{vm.internship.deadlines.deadlines.autoEvaluation | amDateFormat: 'ddd D MMM YYYY'}}</p>
+              <hr>
+            <label>Date limite de la présentation orale du stage.</label>
+            <p>{{vm.internship.deadlines.deadlines.oralPresentation | amDateFormat: 'ddd D MMM YYYY'}}</p>
+              <hr>
+            <label>Rapport écrit.</label>
+            <p>{{vm.internship.deadlines.deadlines.writtenReport | amDateFormat: 'ddd D MMM YYYY'}}</p>
+              <hr>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="row">
-        <div class="col-md-4"><strong>Master</strong></div>
-        <div class="col-md-6" ng-bind="vm.internship.master.displayName"></div>
-      </div>               
-      <div class="row">
-        <div class="col-md-4"><strong>Supervisor</strong></div>
-        <div class="col-md-6" ng-bind="vm.internship.supervisor.supervisor.username"></div>
-      </div>
-      <div class="row">
-        <div class="col-md-4"><strong>Supervisor status</strong></div>
-        <div class="col-md-6" ng-bind="vm.internship.supervisor.status"></div>
-      </div>
-      <div class="row">
-        <div class="col-md-4"><strong>Consulted Teacher</strong></div>
-        <div class="col-md-6" ng-bind="vm.internship.consultedTeacher.displayName"></div>
-      </div> 
-    </div>  
-  </div>
-  </div>
+    </div>
   </uib-tab>
 
+<style type="text/css">
+
+/*Start Wizard*/
+
+.bootstrapWizard {
+    display: block;
+    list-style: none;
+    padding: 0;
+    position: relative;
+    width: 100%
+}
+
+.bootstrapWizard a:hover,.bootstrapWizard a:active,.bootstrapWizard a:focus {
+    text-decoration: none
+}
+
+.bootstrapWizard li {
+    display: block;
+    float: left;
+    width: 12.5%;
+    text-align: center;
+    padding-left: 0
+}
+
+.bootstrapWizard li:before {
+    border-top: 3px solid #55606E;
+    content: "";
+    display: block;
+    font-size: 0;
+    overflow: hidden;
+    position: relative;
+    top: 11px;
+    right: 1px;
+    width: 100%;
+    z-index: 1
+}
+
+.bootstrapWizard li:first-child:before {
+    left: 50%;
+    max-width: 50%
+}
+
+.bootstrapWizard li:last-child:before {
+    max-width: 50%;
+    width: 50%
+}
+
+.bootstrapWizard li.complete .step {
+    background: #0aa66e;
+    padding: 1px 6px;
+    border: 3px solid #55606E
+}
+
+.bootstrapWizard li .step i {
+    font-size: 10px;
+    font-weight: 400;
+    position: relative;
+    top: -1.5px
+}
+
+.bootstrapWizard li .step {
+    background: #B2B5B9;
+    color: #fff;
+    display: inline;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 12px;
+    padding: 7px 13px;
+    border: 3px solid transparent;
+    border-radius: 50%;
+    line-height: normal;
+    position: relative;
+    text-align: center;
+    z-index: 2;
+    transition: all .1s linear 0s
+}
+
+.bootstrapWizard li.active .step,.bootstrapWizard li.active.complete .step {
+    background: #0091d9;
+    color: #fff;
+    font-weight: 700;
+    padding: 7px 13px;
+    font-size: 15px;
+    border-radius: 50%;
+    border: 3px solid #55606E
+}
+
+.bootstrapWizard li.complete .title,.bootstrapWizard li.active .title {
+    color: #2B3D53
+}
+
+.bootstrapWizard li .title {
+    color: #bfbfbf;
+    display: block;
+    font-size: 13px;
+    line-height: 15px;
+    max-width: 100%;
+    position: relative;
+    table-layout: fixed;
+    text-align: center;
+    top: 20px;
+    word-wrap: break-word;
+    z-index: 104
+}
+
+.wizard-actions {
+    display: block;
+    list-style: none;
+    padding: 0;
+    position: relative;
+    width: 100%
+}
+
+.wizard-actions li {
+    display: inline
+}
+
+.tab-content.transparent {
+    background-color: transparent
+}
+
+/*End Wizard*/
+  
+</style>
   <uib-tab heading="Enterprise">
   <div class="row">
       <div class="col-md-12">
@@ -151,41 +363,70 @@
             <div class="col-md-12">
               <div class="row">
                   <div class="col-md-7"><strong>Master</strong></div>
-                  <div class="col-md-1" ng-bind="vm.internship.proposition.approval.masterApproval"></div>
+                  <div class="col-md-1">{{vm.internship.proposition.approval.masterApproval===null? 'pending' : vm.internship.proposition.approval.masterApproval}}</div>
               </div>
               <div class="row">
                   <div class="col-md-7"><strong>Consulted Teacher</strong></div>
-                  <div class="col-md-1" ng-bind="vm.internship.proposition.approval.consultedTeacherApproval"></div>
+                  <div class="col-md-1">{{vm.internship.proposition.approval.consultedTeacherApproval===null? 'pending' : vm.internship.proposition.approval.consultedTeacherApproval}}</div>
               </div>
               <div class="row">
                   <div class="col-md-7"><strong>Year Coordinator</strong></div>
-                  <div class="col-md-1" ng-bind="vm.internship.proposition.approval.coordinatorApproval"></div>
+                  <div class="col-md-1">{{vm.internship.proposition.approval.coordinatorApproval===null? 'pending' : vm.internship.proposition.approval.coordinatorApproval}}</div>
               </div>                        
           </div>
           </div>
         </div>
-        
-        <div class="row" ng-if="vm.internship.proposition.approval.masterComment">
-          <div class="col-md-12">
-            <div class="col-md-12">
-              <h3>Master Comments</h3>
-              <div class="col-md-12" ng-bind="vm.internship.proposition.approval.masterComment"></div>
-            </div>
-          </div>
-        </div>
-        <div class="row" ng-if="vm.internship.proposition.approval.consultedTeacherComment">
-          <div class="col-md-12">
-            <div class="col-md-12">
-              <h3>Consulted Teacher Comments</h3>
-              <div class="col-md-12" ng-bind="vm.internship.proposition.approval.consultedTeacherComment"></div>
-            </div>
-          </div>
-        </div>
-        </div>
       </div>
     </div>
     <hr>
-    <div ng-if="vm.internship.generalStatus ==='Proposition Encoding'">
+<div class = "row">
+  <div calss = "col-md-12">
+
+    <div class="row col-md-12" ng-if="vm.internship.proposition.approval.masterComment">
+      <div class="col-md-12">
+        <div class="panel-group">
+          <div class="panel panel-default">
+          <div class="panel-heading">
+            Master Comments
+          </div>
+          <div class="panel-body" ng-bind="vm.internship.proposition.approval.masterComment">
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <div class="row col-md-12" ng-if="vm.internship.proposition.approval.consultedTeacherComment">
+      <div class="col-md-12">
+        <div class="panel-group">
+          <div class="panel panel-default">
+          <div class="panel-heading">
+            Consulted Teacher Comments
+          </div>
+          <div class="panel-body" ng-bind="vm.internship.proposition.approval.consultedTeacherComment">
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <div class="row col-md-12" ng-if="vm.internship.proposition.approval.coordinatorComment">
+      <div class="col-md-12">
+        <div class="panel-group">
+          <div class="panel panel-default">
+          <div class="panel-heading">
+            Coordinator Comments
+          </div>
+          <div class="panel-body" ng-bind="vm.internship.proposition.approval.coordinatorComment">
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+  </div> 
+    <hr>
+    <div ng-if="(vm.internship.generalStatus ==='Proposition Encoding') || (vm.internship.generalStatus === 'Proposition Reincoding')">
       <div class="row">
         <div class="col-md-4">
           <a class="btn btn-primary" ui-sref="student.manage.internships.edit.proposition({ internshipId: vm.internship._id })">
@@ -202,7 +443,7 @@
     <div class = "row">
       <div class = "col-md-12">
         <h2>Supervisor</h2>
-        <div class="alert alert-warning" ng-if="!vm.internship.supervisor.proposedSupervisor" ng-bind="'INTERNSHIP.NO_SUPERVISOR' | translate"></div>
+        <div class="alert alert-warning" ng-if="!vm.internship.supervisor.proposedSupervisor && !vm.internship.supervisor.supervisor" ng-bind="'INTERNSHIP.NO_SUPERVISOR' | translate"></div>
           <div ng-if="vm.internship.supervisor.proposedSupervisor && !vm.internship.supervisor.supervisor">
           <hr>
               <div class="row">
@@ -256,20 +497,32 @@
                 </ul>
               </div>
             </div>
-
         </div>
       </div>
     </div>
-    <div class="row" ng-if="vm.internship.activitiesNote.masterComment">
-      <div class="col-md-12">
-        <div class="col-md-12">
-          <h3>Master Comments</h3>
-          <div class="col-md-12" ng-bind="vm.internship.activitiesNote.masterComment"></div>
-        </div>
-      </div>
-    </div>
-    <hr>   
+    
     <div class="row">
+      <div class="col-md-12">
+      <div class="col-md-12">
+      <h3>Master Approval</h3>
+        <div class= "row">
+          <div class="col-md-12">
+          <div class="col-md-3"><strong>Master Approval</strong></div>
+          <div class="col-md-2"> {{ vm.internship.activitiesNote.approval===null ? 'pending' : vm.internship.activitiesNote.approval }}</div>
+          </div>
+        </div>
+        <div class= "row">
+        <div class="col-md-12">
+          <div class="col-md-3"><strong>Master Comment</strong></div>
+          <div class="col-md-9">{{vm.internship.activitiesNote.masterComment===null ? 'pending' : vm.internship.activitiesNote.masterComment }}</div>
+        </div>
+        </div>        
+      </div>
+      </div>
+    </div>
+
+    <hr>   
+    <div class="row" ng-if="vm.internship.generalStatus === 'Activities Note Encoding' && vm.internship.activitiesNote.approval!==null">
       <div class="col-md-4">
         <a class="btn btn-primary" ui-sref="student.manage.internships.edit.activitiesNote({ internshipId: vm.internship._id })">
           <i class="glyphicon glyphicon-edit" ng-if="vm.internship.activitiesNote"></i>
@@ -302,14 +555,19 @@
           </div>
         </div>  
         </div>
-        <div class="row">
-          <div class="col-md-12" ng-if="vm.internship.firstVisit.supervisorNotes">
-            <h3>Supervisor notes</h3>
-              <div class="row">
-                <div class="col-md-10" ng-bind="vm.internship.firstVisit.supervisorNotes"></div>
-              </div>  
-          </div>
+      <div class="row" ng-if="vm.internship.firstVisit.supervisorNotes">
+        <div class="col-md-12">
+          <h3>Supervisor notes</h3>
+
+            <div class="panel-group">
+              <div class="panel panel-default" ng-repeat="note in vm.internship.firstVisit.supervisorNotes">
+                <div class="panel-body">
+                {{note.value}}
+                </div>
+              </div>
+            </div> 
         </div>
+      </div>
       </div>
     </div>
     </div>
@@ -335,7 +593,7 @@
       <hr>
         <div class="row">
           <div class="col-md-12">
-          <h3>Genreal information</h3>
+          <h3>General information</h3>
             <div class="col-md-10">
             <div class="row">
               <div class="col-md-3"><strong>Location</strong></div>
