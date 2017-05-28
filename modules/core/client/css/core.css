@@ -28,6 +28,13 @@ div.roommap {
   overflow: scroll;
 }
 
+.success-icon {
+	color: #090;
+}
+.failed-icon {
+	color: #900;
+}
+
 /* MEAN.js */
 .content {
   margin-top: 50px;

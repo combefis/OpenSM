@@ -128,7 +128,8 @@ module.exports.initSession = function (app, db) {
 
   // Set the current academic year in the session
   app.use(function setValues(req, res, next) {
-    req.session.academicyear = new Date().getFullYear();
+//    req.session.academicyear = new Date().getFullYear();
+    req.session.academicyear = 2016;
     next();
   });
 

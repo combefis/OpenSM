@@ -131,8 +131,13 @@ exports.list = function (req, res) {
  * Exam session middleware
  */
 exports.examsessionByCode = function (req, res, next, code) {
+  var examFields = 'title date course';
+  if (req.user.roles.includes('printer') || req.user.roles.includes('manager.exams')) {
+    examFields += ' validation';
+  }
+
   ExamSession.findOne({ 'code': code }, 'code name description start end exams')
-  .populate('exams', 'title date course')
+  .populate('exams', examFields)
   .exec(function (err, examsession) {
     if (err) {
       return next(err);
