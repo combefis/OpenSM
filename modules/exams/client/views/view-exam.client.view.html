@@ -67,11 +67,12 @@
                 <a ng-click="vm.validateCopies()" class="btn btn-primary"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> {{'EXAM.COPY.VALIDATE' | translate}}</a>
               </div>
             </div>
+
             <div ng-if="cvm.hasAnyRole(['printer'])" class="clearfix">
               <div class="action-box">
-                <a ng-click="vm.generateCopies()" class="btn btn-primary"><span class="glyphicon glyphicon-screenshot" aria-hidden="true"></span> {{'EXAM.COPY.GENERATE' | translate}}</a>
-                <a href="/api/exams/{{vm.exam._id}}/copies/download" class="btn btn-primary"><span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> {{'EXAM.COPY.DOWNLOAD' | translate}}</a>
-                <a ng-if="vm.exam.validation.copies && vm.exam.validation.registrations && !vm.exam.validation.printings" ng-click="vm.markCopiesPrinted()" class="btn btn-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> {{'EXAM.COPY.MARK_PRINTED' | translate}}</a>
+                <a ng-if="vm.examstep === 3" ng-click="vm.generateCopies()" class="btn btn-primary"><span class="glyphicon glyphicon-screenshot" aria-hidden="true"></span> {{'EXAM.COPY.GENERATE' | translate}}</a>
+                <a ng-if="vm.examstep > 2" href="/api/exams/{{vm.exam._id}}/copies/download" class="btn btn-primary"><span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> {{'EXAM.COPY.DOWNLOAD' | translate}}</a>
+                <a ng-if="vm.examstep === 3" ng-if="vm.exam.validation.copies && vm.exam.validation.registrations && !vm.exam.validation.printings" ng-click="vm.markCopiesPrinted()" class="btn btn-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> {{'EXAM.COPY.MARK_PRINTED' | translate}}</a>
               </div>
             </div>
             <div ng-if="vm.exam.copies.length">
@@ -83,6 +84,7 @@
                     <button ng-if="cvm.hasAnyRole(['teacher']) && !vm.exam.copies[i].validated" ng-click="vm.validateCopy(i)" class="btn btn-default btn-xs" ng-disabled="!vm.exam.copies[i].name && !vm.uploading[i]" tooltip-placement="bottom" uib-tooltip="{{'EXAM.COPY.VALIDATE' | translate}}"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
                     <button ng-if="cvm.hasAnyRole(['teacher']) && !vm.exam.copies[i].validated" ng-click="vm.removeCopy(i)" class="btn btn-default btn-xs" tooltip-placement="bottom" uib-tooltip="{{'EXAM.COPY.DELETE' | translate}}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
                   </div>
+
                   <div><b>{{'EXAM.COPY.COPY' | translate}} {{vm.getLetter(i+1)}}</b></div>
                   <div ng-if="vm.exam.copies[i].name && !vm.uploading[i]">
                     <span ng-if="cvm.hasAnyRole(['teacher']) && vm.canManageCopies()"><a href="/api/exams/{{vm.exam._id}}/copy/{{i}}/download?orig=true" target="_blank" ng-bind="vm.exam.copies[i].origname"></a><br/></span>
