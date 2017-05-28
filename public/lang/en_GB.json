@@ -168,7 +168,10 @@
     "ADD_EXAM": "Add an exam",
     "SUCCESSFUL_EXAMADD": "The exam \"{{title}}\" has been successfully added to the \"{{code}}\" session!",
     "NB_EXAMS": "Number of exams",
-    "SHOW_MY_EXAMS": "Only show my exams"
+    "SHOW_MY_EXAMS": "Only show my exams",
+    "PAST_EXAMSESSIONS": "Past sessions",
+    "CURRENT_EXAMSESSIONS": "Current sessions",
+    "FUTURE_EXAMSESSIONS": "Future sessions"
   },
   "GENERAL": {
     "ACADEMICYEAR": "Academic year",
