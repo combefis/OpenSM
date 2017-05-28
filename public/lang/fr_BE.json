@@ -146,7 +146,9 @@
       "COPIES_UPLOADED": "questionnaires chargés",
       "REGISTRATIONS_VALIDATED": "inscriptions validées",
       "PRINTED": "questionnaires imprimés"
-    }
+    },
+    "REGISTRATIONS": "Inscriptions",
+    "PRINTINGS": "Impressions"
   },
   "EXAMSESSION": {
     "EXAMSESSIONS": "Sessions d'examens",

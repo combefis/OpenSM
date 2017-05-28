@@ -147,7 +147,9 @@
       "COPIES_UPLOADED": "copies uploaded",
       "REGISTRATIONS_VALIDATED": "registrations validated",
       "PRINTED": "copies printed"
-    }
+    },
+    "REGISTRATIONS": "Registrations",
+    "PRINTINGS": "Printings"
   },
   "EXAMSESSION": {
     "EXAMSESSIONS": "Exam sessions",
