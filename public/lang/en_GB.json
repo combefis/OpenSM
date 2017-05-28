@@ -118,7 +118,8 @@
       "FILE_UPLOADED_ON": "File uploaded on",
       "GENERATE": "Generate copies",
       "MARK_PRINTED": "Mark as printed",
-      "SUCCESSFUL_VALIDATION": "The questionnaires have been successfully validated!"
+      "SUCCESSFUL_VALIDATION": "The questionnaires have been successfully validated!",
+      "SUCCESSFUL_MARKASPRINTED": "The questionnaires have been successfully marked as printed!"
     },
     "ROOM": {
       "DELETE": "@:GENERAL.DELETE",

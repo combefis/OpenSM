@@ -727,6 +727,25 @@ exports.downloadCopies = function (req, res) {
 };
 
 /**
+ * Mark the copies of an exam as printed
+ */
+exports.markCopiesPrinted = function (req, res) {
+  var exam = req.exam;
+
+  // Mark the copies as printed and save the exam
+  exam.validation.printings = new Date();
+  exam.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+
+    res.json(exam.validation);
+  });
+};
+
+/**
  * Exam middleware
  */
 exports.examByID = function (req, res, next, id) {

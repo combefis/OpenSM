@@ -54,6 +54,8 @@ module.exports = function (app) {
     .post(exams.generateCopies);
   app.route('/api/exams/:examId/copies/download').all(examsPolicy.isAllowed)
     .get(exams.downloadCopies);
+  app.route('/api/exams/:examId/copies/markasprinted').all(examsPolicy.isAllowed)
+    .post(exams.markCopiesPrinted);
 
   // Finish by binding the exam middleware
   app.param('examId', exams.examByID);

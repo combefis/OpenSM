@@ -90,7 +90,8 @@ exports.invokeRolesPolicies = function () {
       permissions: ['get']
     }, {
       resources: [
-        '/api/exams/:examId/copies/generate'
+        '/api/exams/:examId/copies/generate',
+        '/api/exams/:examId/copies/markasprinted'
       ],
       permissions: ['post']
     }]
