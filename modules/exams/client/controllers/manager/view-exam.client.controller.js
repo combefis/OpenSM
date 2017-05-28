@@ -71,6 +71,19 @@
       });
     });
 
+    // Compute the step number in the exam process
+    function examstep(validation) {
+      if (validation && validation.printings) {
+        return 4;
+      } else if (validation && validation.registrations) {
+        return 3;
+      } else if (validation && validation.copies) {
+        return 2;
+      }
+      return 1;
+    }
+    vm.examstep = examstep(vm.exam.validation);
+
     // Remove existing exam
     function remove() {
       if ($window.confirm('Are you sure you want to delete this exam?')) {
@@ -106,6 +119,7 @@
             startseat: vm.exam.rooms[i].startseat,
             registrations: getRegistrations(i)
           };
+          vm.examstep = examstep(vm.exam.validation);
         }
 
         Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAM.SUCCESSFUL_VALIDATION') });

@@ -45,6 +45,19 @@
       vm.examsession = data;
     });
 
+    // Compute the step number in the exam process
+    function examstep(validation) {
+      if (validation && validation.printings) {
+        return 4;
+      } else if (validation && validation.registrations) {
+        return 3;
+      } else if (validation && validation.copies) {
+        return 2;
+      }
+      return 1;
+    }
+    vm.examstep = examstep(vm.exam.validation);
+
     // Get registrations for a room
     function getRegistrations (i) {
       return $filter('filter')(vm.exam.registrations, function (element) {
@@ -159,6 +172,7 @@
 
       function onSuccess(response) {
         vm.exam.validation = response.data;
+        vm.examstep = examstep(vm.exam.validation);
 
         Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAM.COPY.SUCCESSFUL_MARKASPRINTED') });
       }

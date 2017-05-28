@@ -142,9 +142,12 @@
     "SEATS_ASSIGNED": "Seats successfully assigned!",
     "SEAT": "Seat",
     "SUCCESSFUL_VALIDATION": "Exam successfully validated!",
-    "REGISTRATIONS": "Registrations",
-    "PRINTINGS": "Printings",
-    "VALIDATED_ON": "validated on "
+    "STATUS": {
+      "CREATED": "exam created",
+      "COPIES_UPLOADED": "copies uploaded",
+      "REGISTRATIONS_VALIDATED": "registrations validated",
+      "PRINTED": "copies printed"
+    }
   },
   "EXAMSESSION": {
     "EXAMSESSIONS": "Exam sessions",

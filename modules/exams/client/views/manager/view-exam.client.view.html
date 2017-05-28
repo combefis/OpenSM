@@ -22,21 +22,30 @@
 
         <uib-tabset>
           <uib-tab heading="{{'INFORMATIONS' | translate}}">
-            <h3 ng-bind="'EXAM.STATE' | translate"></h3>
-            <ul class="list-unstyled">
-              <li>
-                <span class="well well-lg glyphicon glyphicon-book" aria-hidden="true"></span>
-                {{'EXAM.COPY.COPIES' | translate}} <span ng-if="vm.exam.validation.copies">{{'EXAM.VALIDATED_ON' | translate}} {{vm.exam.validation.copies | amDateFormat:'ddd D MMM YYYY HH:mm'}}</span>
-              </li>
-              <li>
-                <span class="well well-lg glyphicon glyphicon-equalizer" aria-hidden="true"></span>
-                {{'EXAM.REGISTRATIONS' | translate}} <span ng-if="vm.exam.validation.registrations">{{'EXAM.VALIDATED_ON' | translate}} {{vm.exam.validation.registrations | amDateFormat:'ddd D MMM YYYY HH:mm'}}</span>
-              </li>
-              <li>
-                <span class="well well-lg glyphicon glyphicon-print" aria-hidden="true"></span>
-                {{'EXAM.PRINTINGS' | translate}} <span ng-if="vm.exam.validation.printings">{{'EXAM.VALIDATED_ON' | translate}} {{vm.exam.validation.printings | amDateFormat:'ddd D MMM YYYY HH:mm'}}</span>
-              </li>
-            </ul>
+            <style>
+              .f1-step { width: 25% }
+            </style>
+            <div class="f1-steps">
+              <div class="f1-progress">
+                <div class="f1-progress-line" ng-style="{width: (12.5 + (vm.examstep - 1) * 25) + '%'}"></div>
+              </div>
+              <div class="f1-step" ng-class="[{active: vm.examstep === 1, activated: vm.examstep > 1}]">
+                <div class="f1-step-icon"><i class="glyphicon glyphicon-file"></i></div>
+                <p ng-bind="'EXAM.STATUS.CREATED' | translate"></p>
+              </div>
+              <div class="f1-step" ng-class="[{active: vm.examstep === 2, activated: vm.examstep > 2}]">
+                <div class="f1-step-icon"><i class="glyphicon glyphicon-book"></i></div>
+                <p>{{'EXAM.STATUS.COPIES_UPLOADED' | translate}}<br /><small>{{vm.exam.validation.copies | amDateFormat:'D MMM YYYY HH:mm'}}</small></p>
+              </div>
+              <div class="f1-step" ng-class="[{active: vm.examstep === 3, activated: vm.examstep > 3}]">
+                <div class="f1-step-icon"><i class="glyphicon glyphicon-equalizer"></i></div>
+                <p>{{'EXAM.STATUS.REGISTRATIONS_VALIDATED' | translate}}<br /><small>{{vm.exam.validation.registrations | amDateFormat:'D MMM YYYY HH:mm'}}</small></p>
+              </div>
+              <div class="f1-step" ng-class="[{active: vm.examstep === 4}]">
+                <div class="f1-step-icon"><i class="glyphicon glyphicon-print"></i></div>
+                <p>{{'EXAM.STATUS.PRINTED' | translate}}<br /><small>{{vm.exam.validation.printings | amDateFormat:'D MMM YYYY HH:mm'}}</small></p>
+              </div>
+            </div>
           </uib-tab>
           <uib-tab heading="{{'EXAM.STUDENTS' | translate}}">
             <div ng-if="!vm.exam.validation.registrations && cvm.hasAnyRole(['manager.exams'])" class="clearfix">
