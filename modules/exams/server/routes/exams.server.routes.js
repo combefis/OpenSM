@@ -36,6 +36,8 @@ module.exports = function (app) {
     .delete(exams.deleteRoom);
   app.route('/api/exams/:examId/room/:i/configure').all(examsPolicy.isAllowed)
     .post(exams.configureRoom);
+  app.route('/api/exams/:examId/room/:i/map').all(examsPolicy.isAllowed)
+    .get(exams.downloadRoomMap);
 
   // Exam copies routes
   app.route('/api/exams/:examId/copy').all(examsPolicy.isAllowed)

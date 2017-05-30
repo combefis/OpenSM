@@ -403,6 +403,92 @@ exports.configureRoom = function (req, res) {
 };
 
 /**
+ * Download a room map of an exam
+ */
+exports.downloadRoomMap = function (req, res) {
+  var exam = req.exam;
+
+  var configuration = exam.rooms[req.params.i];
+  var map = configuration.room.map;
+  var content = '\\documentclass{standalone}\\usepackage{pgf,tikz}\\begin{document}\\begin{tikzpicture}[x=1mm,y=-1mm,font=\\sf]\\useasboundingbox (-10,-10) rectangle (' + (map.width + 10) + ', ' + (map.height + 10) + ');\\draw (0,0) rectangle (' + map.width + ', ' + map.height + ');';
+
+  // Draw room info
+  content += '\\node[scale=2,anchor=south west] at (5, 15) {' + (configuration.room.code + ' -- ' + configuration.room.name) + '};';
+  content += '\\node[scale=2,anchor=south east] at (' + (map.width - 5) + ', 15) {' + (exam.course.code + ' ' + exam.course.name) + '};';
+  content += '\\node[scale=2,anchor=south east] at (' + (map.width - 5) + ', 30) {' + moment(exam.date).format('DD/MM/YYYY HH:mm') + '};';
+
+  // Draw the seats
+  for (var i = 0; i < map.seats.length; i++) {
+    var seat = map.seats[i];
+    var rect = seat.rect;
+    content += '\\fill[red!0!green!0!blue!90,opacity=0.2] (' + rect.x + ', ' + rect.y + ') rectangle (' + (rect.x + rect.width) + ', ' + (rect.y + rect.height) + ');';
+    content += '\\node[scale=2,anchor=south west] at (' + seat.x + ', ' + seat.y + ') {' + ('\\#' + (i + 1)) + '};';
+  }
+
+  // Draw the shapes
+  map.shapes.forEach(function (shape) {
+    var attr = shape.attr;
+    switch (shape.type) {
+      case 'rectangle':
+        content += '\\draw (' + attr.x + ', ' + attr.y + ') rectangle (' + (attr.x + attr.width) + ', ' + (attr.y + attr.height) + ');';
+        break;
+    }
+  });
+
+  // Draw the configuration
+  if (configuration.configuration !== null) {
+    var config = configuration.room.configurations[configuration.configuration];
+    for (var j = 0; j < config.seats.length; j++) {
+      var s = map.seats[config.seats[j].seat];
+      content += '\\node[scale=2,anchor=south west] at (' + s.x + ', ' + (s.y + 15) + ') {' + getLetter(config.seats[j].serie + 1) + '};';
+    }
+
+    // Draw the seats assignment
+    if (exam.registrations) {
+      exam.registrations.forEach(function (element) {
+        if (element.room === parseInt(req.params.i, 10)) {
+          var s = map.seats[config.seats[element.seat].seat];
+          content += '\\node[scale=2,anchor=south west] at (' + s.x + ', ' + (s.y + 25) + ') {' + element.student.lastname + '};';
+          content += '\\node[scale=2,anchor=south west] at (' + s.x + ', ' + (s.y + 35) + ') {' + element.student.firstname + '};';
+        }
+      });
+    }
+  }
+
+  content += '\\end{tikzpicture}\\end{document}';
+
+  // Create the .tex file
+  var filename = exam.examsession.code + '_' + exam.course.code + '_room_' + configuration.room.code;
+  var dest = path.dirname(require.main.filename) + '/copies/' + exam._id + '/' + filename + '.tex';
+  fs.writeFileSync(dest, content, { flag: 'w', encoding: 'utf8' });
+
+  // Remove previous files
+  var pdffile = path.dirname(require.main.filename) + '/copies/' + exam._id + '/' + filename + '.pdf';
+  fs.removeSync(pdffile);
+
+  // Compile the .tex file
+  process.chdir(path.dirname(dest));
+  child_process.execFile('pdflatex', ['-interaction=nonstopmode', path.basename(dest)], function (err, stdout, stderr) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+
+    fs.readFile(pdffile, function (err, content) {
+      if (err) {
+        return res.status(400).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      }
+
+      res.writeHead('200', { 'Content-Type': 'application/pdf' });
+      res.end(content);
+    });
+  });
+};
+
+/**
  * Add a copy to an exam
  */
 exports.addCopy = function (req, res) {

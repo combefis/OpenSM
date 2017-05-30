@@ -108,8 +108,9 @@
             <div ng-if="vm.exam.rooms.length">
               <uib-tabset>
                 <uib-tab ng-repeat="i in cvm.getNumber(vm.exam.rooms.length)" heading="{{vm.exam.rooms[i].room.code}}">
-                  <div ng-if="!vm.exam.validation.registrations && cvm.hasAnyRole(['manager.exams'])" class="pull-right">
-                    <button ng-click="vm.removeRoom(i)" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+                  <div ng-if="cvm.hasAnyRole(['manager.exams'])" class="pull-right">
+                    <button ng-if="vm.exam.validation && vm.exam.validation.registrations" ng-click="vm.downloadMap(i)" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span></button>
+                    <button ng-if="!vm.exam.validation.registrations" ng-click="vm.removeRoom(i)" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
                   </div>
                   <div>
                     <h3 ng-bind="vm.exam.rooms[i].room.name"></h3>

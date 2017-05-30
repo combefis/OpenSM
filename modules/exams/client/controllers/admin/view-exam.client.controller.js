@@ -35,6 +35,7 @@
       };
     });
     vm.changeConfiguration = changeConfiguration;
+    vm.downloadMap = downloadMap;
 
     // Copies management
     var nbCopies = vm.exam.copies.length;
@@ -238,6 +239,11 @@
           Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('ROOM.CONFIGURATION_CHANGED') });
         });
       }
+    }
+
+    // Download the map of a room
+    function downloadMap(i) {
+      $window.open('/api/exams/' + vm.exam._id + '/room/' + i + '/map');
     }
 
     // Add a copy to the exam

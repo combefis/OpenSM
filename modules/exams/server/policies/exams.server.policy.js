@@ -25,12 +25,15 @@ exports.invokeRolesPolicies = function () {
         '/api/exams/:examId/room',
         '/api/exams/:examId/room/:i',
         '/api/exams/:examId/room/:i/configure',
+        '/api/exams/:examId/room/:i/map',
         '/api/exams/:examId/copy',
         '/api/exams/:examId/copy/:i',
         '/api/exams/:examId/copy/:i/download',
         '/api/exams/:examId/copy/:i/upload',
         '/api/exams/:examId/copy/:i/validate',
-        '/api/exams/:examId/copies/validate'
+        '/api/exams/:examId/copies/validate',
+        '/api/exams/:examId/copies/generate',
+        '/api/exams/:examId/copies/markasprinted'
       ],
       permissions: '*'
     }]
@@ -50,7 +53,10 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/exams/:examId',
       permissions: ['get', 'put', 'delete']
     }, {
-      resources: '/api/exams/:examId/copy/:i/download',
+      resources: [
+        '/api/exams/:examId/copy/:i/download',
+        '/api/exams/:examId/room/:i/map'
+      ],
       permissions: ['get']
     }, {
       resources: [
