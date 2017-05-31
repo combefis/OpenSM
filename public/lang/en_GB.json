@@ -1,4 +1,7 @@
 {
+  "ACADEMICYEAR": {
+    "ACADEMICYEARS": "Academic years"
+  },
   "ACTIVITY": {
     "ACTIVITIES": "Activities",
     "CREATE": "Create an activity",
