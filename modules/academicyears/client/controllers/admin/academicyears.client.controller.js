@@ -57,7 +57,7 @@
         vm.academicyear.start = null;
         vm.academicyear.end = null;
 
-        $state.go('admin.manage.academicyear.view', {
+        $state.go('admin.manage.academicyears.view', {
           academicyearCode: code
         });
       }
