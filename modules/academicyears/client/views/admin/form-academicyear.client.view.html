@@ -1,0 +1,70 @@
+<section>
+  <div ng-if="vm.academicyear._id && !vm.academicyear.$resolved" class="loading">
+    <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> {{'LOADING' | translate}}
+  </div>
+
+  <div ng-if="!vm.academicyear._id || vm.academicyear.$resolved">
+    <ol class="breadcrumb">
+      <li><a ui-sref="admin.manage.academicyears.list" ng-bind="'ACADEMICYEAR.ACADEMICYEARS' | translate"></a></li>
+      <li ng-if="!vm.academicyear._id" class="active"><a ui-sref="admin.manage.academicyears.create" ng-bind="'GENERAL.CREATE' | translate"></a></li>
+      <li ng-if="vm.academicyear._id"><a ui-sref="admin.manage.academicyears.view({ academicyearCode: vm.academicyear.code })" ng-bind="vm.academicyear.code"></a></li>
+      <li ng-if="vm.academicyear._id" class="active"><a ui-sref="admin.manage.academicyears.edit({ academicyearCode: vm.academicyear.code })" ng-bind="'GENERAL.EDIT' | translate"></a></li>
+    </ol>
+
+    <h2><span ng-if="vm.academicyear._id" ng-bind="vm.academicyear.code"></span><span ng-if="!vm.academicyear._id" ng-bind="'ACADEMICYEAR.CREATE' | translate"></span></h2>
+
+    <div class="col-md-12">
+      <form name="vm.form.academicyearForm" class="form-horizontal" ng-submit="vm.save(vm.form.academicyearForm.$valid)" novalidate>
+        <fieldset>
+          <div class="form-group" show-errors>
+            <label class="control-label" for="code" ng-bind="'ACADEMICYEAR.CODE' | translate"></label>
+            <input name="code" type="text" ng-model="vm.academicyear.code" id="code" class="form-control" placeholder="{{'ACADEMICYEAR.CODE' | translate}}" required ng-disabled="vm.academicyear._id" />
+            <div ng-messages="vm.form.academicyearForm.code.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'ACADEMICYEAR.CODE_ERROR' | translate"></p>
+            </div>
+          </div>
+          <div class="form-group" show-errors>
+            <label class="control-label" for="start" ng-bind="'ACADEMICYEAR.START' | translate"></label>
+            <div class="controls">
+              <div class="dropdown">
+                <a class="dropdown-toggle" id="startDropdown" role="button" data-toggle="dropdown" data-target="#" href="#">
+                  <div class="input-group">
+                    <input name="start" type="date" ng-model="vm.academicyear.start" id="start" class="form-control" placeholder="{{'ACADEMICYEAR.START' | translate}}" required /><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span></div>
+                </a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="startLabel">
+                  <datetimepicker ng-model="vm.academicyear.start" data-datetimepicker-config="{ dropdownSelector: '#startDropdown', startView:'day', minView:'day' }"></datetimepicker>
+                </ul>
+              </div>
+            </div>
+            <div ng-messages="vm.form.academicyearForm.start.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'ACADEMICYEAR.START_ERROR' | translate"></p>
+            </div>
+          </div>
+          <div class="form-group" show-errors>
+            <label class="control-label" for="end" ng-bind="'ACADEMICYEAR.END' | translate"></label>
+            <div class="controls">
+              <div class="dropdown">
+                <a class="dropdown-toggle" id="endDropdown" role="button" data-toggle="dropdown" data-target="#" href="#">
+                  <div class="input-group">
+                    <input name="end" type="date" ng-model="vm.academicyear.end" id="end" class="form-control" placeholder="{{'ACADEMICYEAR.END' | translate}}" required /><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span></div>
+                </a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="endLabel">
+                  <datetimepicker ng-model="vm.academicyear.end" data-datetimepicker-config="{ dropdownSelector: '#endDropdown', startView:'day', minView:'day' }"></datetimepicker>
+                </ul>
+              </div>
+            </div>
+            <div ng-messages="vm.form.academicyearForm.end.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'ACADEMICYEAR.END_ERROR' | translate"></p>
+            </div>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary">{{vm.academicyear._id ? 'GENERAL.UPDATE' : 'GENERAL.CREATE' | translate}}</button>
+          </div>
+          <div ng-show="vm.error" class="text-danger">
+            <strong ng-bind="vm.error"></strong>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</section>

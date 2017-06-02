@@ -1,8 +1,15 @@
 {
   "ACADEMICYEAR": {
     "ACADEMICYEARS": "Années académiques",
+    "CREATE": "Créer une année académique",
     "NO_ACADEMICYEAR": "Aucune année académique.",
     "NB_ACADEMICYEARS": "Nombre d'années académiques",
+    "CODE": "Code",
+    "CODE_ERROR": "Veuillez spécifier le code.",
+    "START": "Date de début",
+    "START_ERROR": "Veuillez spécifier la date de début.",
+    "END": "Date de fin",
+    "END_ERROR": "Veuillez spécifier la date de fin.",
     "FROM": "Du",
     "TO": "au"
   },

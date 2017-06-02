@@ -1,8 +1,15 @@
 {
   "ACADEMICYEAR": {
     "ACADEMICYEARS": "Academic years",
+    "CREATE": "Create an academic year",
     "NO_ACADEMICYEAR": "No academic years yet.",
     "NB_ACADEMICYEARS": "Number of academic years",
+    "CODE": "Code",
+    "CODE_ERROR": "Please fill in the code.",
+    "START": "Start date",
+    "START_ERROR": "Please fill in the start date.",
+    "END": "End date",
+    "END_ERROR": "Please fill in the end date.",
     "FROM": "From",
     "TO": "to"
   },
