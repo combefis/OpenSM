@@ -1,6 +1,10 @@
 {
   "ACADEMICYEAR": {
-    "ACADEMICYEARS": "Academic years"
+    "ACADEMICYEARS": "Academic years",
+    "NO_ACADEMICYEAR": "No academic years yet.",
+    "NB_ACADEMICYEARS": "Number of academic years",
+    "FROM": "From",
+    "TO": "to"
   },
   "ACTIVITY": {
     "ACTIVITIES": "Activities",

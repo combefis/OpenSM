@@ -17,7 +17,7 @@
         </div>
 
         <div class="list-group" ng-if="vm.academicyears.length">
-          <a ng-repeat="academicyear in vm.academicyears" ui-sref="admin.manage.academicyears.view({ academicyearCode: academicyear.code })" class="list-group-item"><b>{{examsession.code}}</b><br /><small><i>{{'ACADEMICYEAR.FROM' | translate}} {{academicyear.start | amDateFormat:'ddd D MMM YYYY'}} {{'ACADEMICYEAR.TO' | translate}} {{academicyear.end | amDateFormat:'ddd D MMM YYYY'}}</i></small></a>
+          <a ng-repeat="academicyear in vm.academicyears" ui-sref="admin.manage.academicyears.view({ academicyearCode: academicyear.code })" class="list-group-item"><b>{{academicyear.code}}</b><br /><small><i>{{'ACADEMICYEAR.FROM' | translate}} {{academicyear.start | amDateFormat:'ddd D MMM YYYY'}} {{'ACADEMICYEAR.TO' | translate}} {{academicyear.end | amDateFormat:'ddd D MMM YYYY'}}</i></small></a>
         </div>
 
         <div class="alert alert-warning" ng-if="!vm.academicyears.length" ng-bind="'ACADEMICYEAR.NO_ACADEMICYEAR' | translate"></div>
