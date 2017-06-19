@@ -78,6 +78,22 @@
     <hr>
   </uib-tab>
 
+<uib-tab heading="Participants">
+   <div class = "row">
+    <div class = "col-md-12">
+      <h2>Participants</h2>
+      <hr>
+      <div class="col-md-10">
+      <div class="row">
+        <div class="col-md-3"><strong>Master</strong></div>
+        <div class="col-md-6" ng-bind="vm.internship.master.username"></div>
+      </div> 
+    </div>  
+  </div>
+  </div>
+  <hr>      
+  </uib-tab>  
+
 <uib-tab heading="Proposition">
     <div class="row">
       <div class="col-md-12">
@@ -111,41 +127,42 @@
           <div class="col-md-12">
             <div class="row">
                 <div class="col-md-7"><strong>Master</strong></div>
-                <div class="col-md-1" ng-bind="vm.internship.proposition.approval.masterApproval"></div>
+                <div class="col-md-1">{{vm.internship.proposition.approval.masterApproval===null? 'pending' : vm.internship.proposition.approval.masterApproval}}</div>
             </div>
             <div class="row">
                 <div class="col-md-7"><strong>Consulted Teacher</strong></div>
-                <div class="col-md-1" ng-bind="vm.internship.proposition.approval.consultedTeacherApproval"></div>
+                <div class="col-md-1">{{vm.internship.proposition.approval.consultedTeacherApproval===null? 'pending' : vm.internship.proposition.approval.consultedTeacherApproval}}</div>
             </div>
             <div class="row">
-                <div class="col-md-7"><strong>Coordinateur d'année</strong></div>
-                <div class="col-md-1" ng-bind="vm.internship.proposition.approval.coordinatorApproval"></div>
+                <div class="col-md-7"><strong>Coordinator</strong></div>
+                <div class="col-md-1">{{vm.internship.proposition.approval.coordinatorApproval===null? 'pending' : vm.internship.proposition.approval.coordinatorApproval}}</div>
             </div>
           </div>                          
         </div>
         </div>
         <br>
-        <div class="row" ng-if="vm.internship.proposition.approval.masterComment">
+        <div class="row">
           <div class="col-md-12">
             <div class="col-md-12">
-              <h3>Master Comments</h3>
-              <div class="col-md-12" ng-bind="vm.internship.proposition.approval.masterComment"></div>
+              <h3>Comments</h3>
+                <div class="row" ng-if="vm.internship.proposition.approval.consultedTeacherComment">
+                  <div class="col-md-3"><strong>Your comment:</strong></div>
+                  <div class="col-md-9">{{vm.internship.proposition.approval.consultedTeacherComment}}</div>
+                </div>
+                <div class="row" ng-if="vm.internship.proposition.approval.masterComment">
+                  <div class="col-md-3"><strong>Master comment:</strong></div>
+                  <div class="col-md-9">{{vm.internship.proposition.approval.masterComment}}</div>
+                </div>
+                <div class="row" ng-if="vm.internship.proposition.approval.coordinatorComment">
+                  <div class="col-md-3"><strong>Coordinator comment:</strong></div>
+                  <div class="col-md-9">{{vm.internship.proposition.approval.coordinatorComment}}</div>
+                </div>
             </div>
           </div>
         </div>
-        <div class="row" ng-if="vm.internship.proposition.approval.consultedTeacherComment">
-          <div class="col-md-12">
-            <div class="col-md-12">
-              <h3>Consulted Teacher Comments</h3>
-              <div class="col-md-12" ng-bind="vm.internship.proposition.approval.consultedTeacherComment"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
     <hr>  
   
-  <div class="row" ng-if="vm.internship.proposition.approval.consultedTeacherApproval!=true">
+  <div class="row" ng-if="vm.internship.proposition.approval.consultedTeacherApproval === null">
     <form name="vm.form.internshipPropositionConsultedTeacherCommentForm" class="form-horizontal" ng-submit="vm.consultedTeacherPropositionCommentAdd(vm.form.internshipPropositionConsultedTeacherCommentForm.$valid,false)" novalidate>
     <div class="col-md-12"> 
         <div class="row">

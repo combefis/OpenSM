@@ -35,6 +35,18 @@
 
     menuService.addSubMenuItem('topbar', 'teacher.manage', {
       title: 'Internships',
+      state: 'teacher.manage.validator.internships.validationlist',
+      roles: ['validator']
+    });
+
+    menuService.addSubMenuItem('topbar', 'teacher.manage', {
+      title: 'Internships',
+      state: 'teacher.manage.coordinator.internships.list',
+      roles: ['coordinator']
+    });
+
+    menuService.addSubMenuItem('topbar', 'teacher.manage', {
+      title: 'My Internships',
       state: 'teacher.manage.internships.list',
       roles: ['teacher']
     });

@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('core.manager.internships')
+    .module('core.teacher')
     .run(menuConfig);
 
   menuConfig.$inject = ['menuService'];
@@ -12,7 +12,7 @@
       title: 'Manage',
       state: 'teacher.manage',
       type: 'dropdown',
-      roles: ['teacher']
+      roles: ['teacher', 'coordinator', 'validator']
     });
   }
 

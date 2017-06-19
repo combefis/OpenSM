@@ -1,0 +1,145 @@
+<section>
+  <div ng-if="!vm.internships.$resolved" class="loading">
+    <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> {{'LOADING' | translate}}
+  </div>
+
+
+  <div ng-if="vm.internships.$resolved">
+    <ol class="breadcrumb">
+      <li class="active"><a ui-sref="validator.manage.internships.list" ng-bind="'INTERNSHIP.INTERNSHIPS' | translate"></a></li>
+    </ol>
+
+    <h2 ng-bind="'INTERNSHIP.INTERNSHIPS' | translate"></h2>
+    <div class="alert alert-warning" ng-if="!vm.internships.length" ng-bind="'INTERNSHIP.NO_INTERNSHIP' | translate"></div>
+    <div class="row">
+    <div class="col-md-12">
+      <label for="filterSelect">Select Filter: </label><br>
+      <select ng-model="vm.filterSelect" ng-options="option for option in vm.filterOptions"></select>
+    </div>
+    </div>
+    <div class="row" ng-if="vm.filterSelect === 'view all'">
+    <form>
+      <div class="col-md-12">
+      <h3>All Internships</h3>
+        <table class="table table-bordered table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Matricule</th>
+              <th>Nom</th>
+              <th>Prenom</th>
+              <th>Entreprise</th>
+              <th>Représentant</th>
+              <th>Superviseur</th>
+              <th ng-if="!vm.allManagerValidated">Validated?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="internship in vm.internships" ui-sref="teacher.manage.validator.internships.view({ internshipId: internship._id })">
+              <td ng-bind ="internship.student.username"></td>
+              <td ng-bind ="internship.student.lastname"></td>
+              <td ng-bind ="internship.student.firstname"></td>
+              <td ng-bind ="internship.enterprise.name"></td>
+              <td ng-bind ="internship.enterprise.representative.name"></td>
+              <td ng-bind ="internship.supervisorText"></td>
+              <td ng-if="!vm.allManagerValidated">
+                <span ng-if="internship.validatorApproval" class="glyphicon glyphicon-ok"></span>
+                <span ng-if="!internship.validatorApproval" class="glyphicon glyphicon-remove"></span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      </form>
+    </div>
+<div class="row" ng-if="vm.filterSelect === 'ready for validation'">
+    <form>
+      <div class="col-md-12">
+      <h3>Internships ready for validation </h3>
+        <table class="table table-bordered table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Matricule</th>
+              <th>Nom</th>
+              <th>Prenom</th>
+              <th>Entreprise</th>
+              <th>Maitre de stage</th>
+              <th>Superviseur</th>
+              <th>Validated?</th>
+              <th><input type="checkbox" ng-model="vm.checkSelectAllVal" ng-click="vm.selectAllValidation()"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="internship in vm.readyList" ui-sref="teacher.manage.validator.internships.view({ internshipId: internship._id })">
+              <td ng-bind ="internship.student.username"></td>
+              <td ng-bind ="internship.student.lastname"></td>
+              <td ng-bind ="internship.student.firstname"></td>
+              <td ng-bind ="internship.enterprise.name"></td>
+              <td ng-bind ="internship.master.username"></td>
+              <td ng-bind ="internship.supervisor.supervisor.username"></td>
+              <td>
+                <span ng-if="internship.validatorApproval" class="glyphicon glyphicon-ok"></span>
+                <span ng-if="!internship.validatorApproval" class="glyphicon glyphicon-remove"></span>
+              </td>
+              <td ng-click="$event.stopPropagation();">
+                <input type="checkbox" ng-model="internship.valCheck" ng-click="vm.updateSelection(internship)" ng-disabled="internship.generalStatus!=='Validation'">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-primary pull-right" ng-click="vm.validateInternships()">
+          Validate Internships <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+        </button>
+      </div>
+      </form>
+    </div>
+
+<div class="row" ng-if="vm.filterSelect === 'supervisors'">
+  <form>
+      <div class="col-md-12">
+      <h3>Supervisors</h3>
+        <table class="table table-bordered table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Matricule</th>
+              <th>Entreprise</th>
+              <th>Maitre de stage</th>
+              <th>Proposed Supervisor</th>
+              <th>Response</th>
+              <th style="text-align: center;">Supervisor</th>
+              <th><input type="checkbox" ng-model="vm.checkSelectAllSup" ng-click="vm.selectAllSupervisor()"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="internship in vm.internships" ui-sref="teacher.manage.validator.internships.view({ internshipId: internship._id })">
+              <td ng-bind ="internship.student.firstname"></td>
+              <td ng-bind ="internship.enterprise.name"></td>
+              <td ng-bind ="internship.master.username"></td>
+              <td ng-bind ="internship.supervisor.proposedSupervisor.username"></td>
+              <td>{{internship.supervisor.propositionResponse !== null?internship.supervisor.propositionResponse:'pending'}}</td>
+              <td ng-click="$event.stopPropagation();">
+                <div style="display: inline; float: left;">
+                  <span ng-if="!internship.noSupervisor" class="glyphicon glyphicon-ok"></span>
+                  <span ng-if="internship.noSupervisor" class="glyphicon glyphicon-remove"></span>
+                </div>
+                <div ng-if="!internship.managerApproval">
+                  <input style="float:right; width: auto;" type="text" placeholder="{{'NO SUPERVISOR' | translate}}" ng-model="internship.supervisor.supervisor" uib-typeahead="teacher as teacher.displayName for teacher in vm.teachers | filter: $viewValue | limitTo: 8" class="form-control">
+                </div>
+                <span class="pull-right" ng-if="internship.managerApproval">{{internship.supervisor.supervisor?internship.supervisor.supervisor.displayname:'no supervisor'}}</span>
+              </td>
+              <td ng-click="$event.stopPropagation();">
+                <input type="checkbox" ng-model="internship.supCheck" ng-click="vm.updateSelection(internship)" ng-disabled="!internship.noSupervisor">
+              </td>              
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    <div>
+      <button type="submit" class="btn btn-primary pull-right" ng-click="vm.attributeSupervisors()">
+        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Attribute Supervisors
+      </button>
+    </div>
+    </form>        
+  </div>
+</section>

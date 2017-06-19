@@ -14,7 +14,39 @@
     vm.internship = internship; // le "resolve"
     vm.save = save;
 
-    if (typeof vm.internship.firstVisit != 'undefined') vm.internship.firstVisit.date = new Date(internship.firstVisit.date);
+    if (!vm.internship.intermediateEvaluation || !vm.internship.intermediateEvaluation.date) {
+      vm.internship.intermediateEvaluation = {};
+    } else if (typeof vm.internship.intermediateEvaluation != 'undefined') {
+      vm.internship.intermediateEvaluation.date = new Date(internship.intermediateEvaluation.date);
+    }
+
+    vm.format = 'yyyy/MM/dd';
+
+    vm.inlineOptions = {
+      minDate: new Date(),
+      showWeeks: true
+    };
+
+    vm.dateOptions = {
+      dateDisabled: 'disabled',
+      formatYear: 'yy',
+      maxDate: new Date(2020, 5, 22),
+      minDate: new Date(),
+      startingDay: 1
+    };
+
+    vm.open1 = function() {
+      vm.internship.intermediateEvaluation.date = new Date();
+      vm.popup1.opened = true;
+    };
+
+    vm.setDate = function(year, month, day) {
+      vm.internship.intermediateEvaluation.date = new Date(year, month, day);
+    };
+
+    vm.popup1 = {
+      opened: false
+    };
 
     // Save Internship
     function save(isValid) {

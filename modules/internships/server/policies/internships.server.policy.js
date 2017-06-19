@@ -25,6 +25,7 @@ exports.invokeRolesPolicies = function () {
       allows: [{
         resources: [
           '/api/internships',
+          '/api/internships/deadlines',
           '/api/internships/:internshipId',
           '/api/internships/:internshipId/editEnterprise',
           '/api/internships/:internshipId/editProposition',
@@ -32,6 +33,7 @@ exports.invokeRolesPolicies = function () {
           '/api/internships/:internshipId/editFirstVisit',
           '/api/internships/:internshipId/editActivitiesNote',
           '/api/internships/:internshipId/editOralPresentation',
+          '/api/internships/:internshipId/editIntermediateEvaluation',
           '/api/internships/:internshipId/editSupervisor'],
         permissions: '*'
       }]
@@ -43,6 +45,9 @@ exports.invokeRolesPolicies = function () {
           '/api/internships',
           '/api/internships/:internshipId',
           '/api/internships/:internshipId/editProposition',
+          '/api/internships/:internshipId/editFirstVisit',
+          '/api/internships/:internshipId/editOralPresentation',
+          '/api/internships/:internshipId/editIntermediateEvaluation',
           '/api/internships/:internshipId/editActivitiesNote'],
         permissions: '*'
       }]
@@ -53,8 +58,15 @@ exports.invokeRolesPolicies = function () {
         resources: [
           '/api/internships',
           '/api/internships/supervisors',
+          '/api/internships/convention',
+          '/api/internships/startEndDates',
+          '/api/internships/deadlines',
+          '/api/internships/deadlines/:deadlinesId',
           '/api/internships/:internshipId',
-          '/api/internships/:internshipId/editSupervisor'
+          '/api/internships/validation',
+          '/api/internships/:internshipId/editSupervisor',
+          '/api/internships/:internshipId/deliverables',
+          '/api/internships/:internshipId/editEnterprise'
         ],
         permissions: '*'
       }]
@@ -66,7 +78,10 @@ exports.invokeRolesPolicies = function () {
           '/api/internships',
           '/api/internships/:internshipId',
           '/api/internships/:internshipId/editProposition',
-          '/api/internships/:internshipId/editSupervisor'
+          '/api/internships/:internshipId/editFirstVisit',
+          '/api/internships/:internshipId/editSupervisor',
+          '/api/internships/:internshipId/editOralPresentation',
+          '/api/internships/:internshipId/editActivitiesNote'
         ],
         permissions: '*'
       }]
@@ -77,6 +92,20 @@ exports.invokeRolesPolicies = function () {
         resources: [
           '/api/internships',
           '/api/internships/supervisors',
+          '/api/internships/:internshipId',
+          '/api/internships/:internshipId/editProposition'
+        ],
+        permissions: '*'
+      }]
+    },
+    {
+      roles: ['validator'],
+      allows: [{
+        resources: [
+          '/api/internships',
+          '/api/teachers/',
+          '/api/internships/supervisors',
+          '/api/internships/validation',
           '/api/internships/:internshipId',
           '/api/internships/:internshipId/editProposition'
         ],
@@ -93,6 +122,8 @@ exports.invokeRolesPolicies = function () {
 exports.isAllowed = function (req, res, next) {
   var roles = (req.user) ? req.user.roles : ['guest'];
 
+  if (true) { console.log('mettre toutes les conditions ici. suivi dun res403 si pas bon et rien si ok. ');}
+
   // Check for user roles
   acl.areAnyRolesAllowed(roles, req.route.path, req.method.toLowerCase(), function (err, isAllowed) {
     if (err) {
@@ -101,6 +132,8 @@ exports.isAllowed = function (req, res, next) {
     }
     if (isAllowed) {
       // Access granted! Invoke next middleware
+      // un gros if de la mort qui tue. on aura des if dans tous les sens.
+      //
       return next();
     }
     return res.status(403).json({

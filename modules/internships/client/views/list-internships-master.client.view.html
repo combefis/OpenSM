@@ -10,7 +10,7 @@
         <a ui-sref="master.manage.students.list" ng-bind="'INTERNSHIP.STUDENTS' | translate"></a>
       </li>
       <li class="active">
-        <a>?student name?</a>
+        <a ng-bind="vm.student.username"></a>
       </li>
       <li class="active">
         <a ui-sref="master.manage.students.internships.list({ studentId: vm.studentId })" ng-bind="'INTERNSHIP.INTERNSHIPS' | translate"></a>

@@ -22,7 +22,7 @@
           <div class="form-group" show-errors>
             <label class="control-label" for="internshipSupervisorProposedSupervisor" ng-bind="'INTERNSHIP.SUPERVISOR.PROPOSEDSUPERVISOR' | translate"></label>
             
-            <input name="internshipSupervisorProposedSupervisor" type="text" placeholder="{{'INTERNSHIP.SUPERVISOR' | translate}}" ng-model="vm.internship.supervisor.proposedSupervisor" id="internshipSupervisorProposedSupervisor" class="form-control" uib-typeahead="teacher as teacher.displayName for teacher in vm.teachers | filter: $viewValue | limitTo: 8" class="form-control" required>
+            <input name="internshipSupervisorProposedSupervisor" type="text" placeholder="{{'INTERNSHIP.SUPERVISOR' | translate}}" ng-model="vm.internship.supervisor.proposedSupervisor" id="internshipSupervisorProposedSupervisor" class="form-control" uib-typeahead="teacher as teacher.displayName for teacher in vm.teachers | filter: $viewValue | limitTo: 8" class="form-control" required autocomplete="off">
 
             <div ng-messages="vm.form.internshipSupervisorForm.proposedSupervisor.$error" role="alert">
               <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.SUPERVISOR.PROPOSEDSUPERVISOR' | translate"></p>
@@ -33,7 +33,7 @@
 
         <div class="form-group">
             <button type="submit" class="btn btn-primary">{{vm.internship.supervisor.proposedSupervisor? 'GENERAL.UPDATE' : 'GENERAL.CREATE' | translate}}</button>
-          </div>
+        </div>
           <div ng-show="vm.error" class="text-danger">
             <strong ng-bind="vm.error"></strong>
           </div>

@@ -103,13 +103,13 @@ exports.listMasters = function (req, res) {
  * List of students
  */
 exports.listStudents = function (req, res) {
-  User.find({ 'roles': 'student' }, 'username displayName').exec(function (err, teachers) {
+  User.find({ 'roles': 'student' }, 'username displayName firstname lastname').exec(function (err, students) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     }
-    res.json(teachers);
+    res.json(students);
   });
 };
 

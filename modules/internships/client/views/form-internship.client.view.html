@@ -14,460 +14,766 @@
     </ol>
 </section>
 
-    <h2>{{vm.internship._id ? 'INTERNSHIP.EDIT' : 'INTERNSHIP.CREATE' | translate}}</h2>
+  <h2>{{vm.internship._id ? 'INTERNSHIP.EDIT' : 'INTERNSHIP.CREATE' | translate}}</h2>
+  <hr>
 
+  <div class="col-md-12">
+  <form name="vm.form.internshipForm" class="form-horizontal" ng-submit="vm.save(vm.form.internshipForm.$valid)">
+  <div class="form-group">
+    <button ng-click="vm.save()" class="btn btn-primary">{{'GENERAL.UPDATE' | translate}}</button>
+  </div>
+  <div class ="row" >
     <div class="col-md-12">
-      <form name="vm.form.internshipForm" class="form-horizontal" ng-submit="vm.save(vm.form.internshipForm.$valid)" novalidate>
-      
-    <h3>People:</h3>
-
-        <fieldset>
-          <div class="form-group" show-errors>
-            <label class="control-label" for="studentId" ng-bind="'INTERNSHIP.STUDENT' | translate"></label>
-            <input name="internship.student" type="text" ng-model="vm.internship.student" id="student" class="form-control" placeholder="5810c73167f35ee81f7a30b5" required>5810c73167f35ee81f7a30b5</input>
-            <div ng-messages="vm.form.internshipForm.student.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.STUDENT_ERROR' | translate"></p>
-            </div>
-          </div>
-
-              <div class="form-group" show-errors>
-              <label class="control-label" for="InternshipMaster" ng-bind="'INTERNSHIP.MASTER' | translate"></label>
-              <input name="internship.master" type="text" ng-model="vm.internship.master" id="master" class="form-control" placeholder="5810c73167f35ee81f7a30b5" required />
-              <div ng-messages="vm.form.internship.master.$error" role="alert">
-                <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.MASTER' | translate"></p>
-            </div>
-            </div>
-
-          <div class="form-group" show-errors>
-            <label class="control-label" for="InternshipSupervisor" ng-bind="'INTERNSHIP.SUPERVISOR' | translate"></label>
-            <input name="internship.supervisor" type="text" ng-model="vm.internship.supervisor" id="master" class="form-control" placeholder="5810c73167f35ee81f7a30b5" required />
-            <div ng-messages="vm.form.internship.supervisor.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.SUPERVISOR' | translate"></p>
-          </div>
-          </div>
-
-          <div class="form-group" show-errors>
-            <label class="control-label" for="InternshipValidator" ng-bind="'INTERNSHIP.VALIDATOR' | translate"></label>
-            <input name="internship.validator" type="text" ng-model="vm.internship.validator" id="master" class="form-control" placeholder="5810c73167f35ee81f7a30b5" required />
-            <div ng-messages="vm.form.internship.validator.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.VALIDATOR' | translate"></p>
-          </div>
-          </div>
-        </fieldset>
-
-    <h3>Enterprise:</h3>
-        <fieldset>
-           <div class="form-group" show-errors>
-            <label class="control-label" for="enterpriseName" ng-bind="'INTERNSHIP.ENTERPRISE.NAME' | translate"></label>
-            <input name="internship.enterprise.name" type="text" ng-model="vm.internship.enterprise.name" id="enterpriseName" class="form-control" placeholder="{{'INTERNSHIP.ENTERPRISE.NAME' | translate}}" required />
-            <div ng-messages="vm.form.internshipForm.enterprise.name.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.ENTERPRISE.NAME_ERROR' | translate"></p>
-            </div>
-          </div>
-
-          <div class="form-group" show-errors>
-            <label class="control-label" for="enterpriseDomain" ng-bind="'INTERNSHIP.ENTERPRISE.DOMAIN' | translate"></label>
-            <input name="internship.enterprise.domain" type="text" ng-model="vm.internship.enterprise.domain" id="enterpriseDomain" class="form-control" placeholder="{{'INTERNSHIP.ENTERPRISE.DOMAIN' | translate}}" required />
-            <div ng-messages="vm.form.internshipForm.enterprise.domain.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.ENTERPRISE.DOMAIN_ERROR' | translate"></p>
-          </div>
-          </div>
-
-          <div class="form-group" show-errors>
-            <label class="control-label" for="enterpriseAddressStreet" ng-bind="'INTERNSHIP.ENTERPRISE.ADDRESS.STREET' | translate"></label>
-            <input name="internship.enterprise.address.street" type="text" ng-model="vm.internship.enterprise.address.street" id="enterpriseAddressStreet" class="form-control" placeholder="{{'INTERNSHIP.ENTERPRISE.ADDRESS.STREET' | translate}}" required />
-            <div ng-messages="vm.form.internshipForm.enterprise.address.street.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.ENTERPRISE.ADDRESS.STREET_ERROR' | translate"></p>
-          </div>
-          </div>
-
-          <div class="form-group" show-errors>
-            <label class="control-label" for="enterpriseAddressNumber" ng-bind="'INTERNSHIP.ENTERPRISE.ADDRESS.NUMBER' | translate"></label>
-            <input name="internship.enterprise.address.number" type="text" ng-model="vm.internship.enterprise.address.number" id="enterpriseAddressNumber" class="form-control" placeholder="{{'INTERNSHIP.ENTERPRISE.ADDRESS.NUMBER' | translate}}" required />
-            <div ng-messages="vm.form.internshipForm.enterprise.address.number.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.ENTERPRISE.ADDRESS.NUMBER_ERROR' | translate"></p>
-          </div>
-          </div>
-
-          <div class="form-group" show-errors>
-            <label class="control-label" for="enterpriseAddressPostalCode" ng-bind="'INTERNSHIP.ENTERPRISE.ADDRESS.POSTALCODE' | translate"></label>
-            <input name="internship.enterprise.address.postalCode" type="text" ng-model="vm.internship.enterprise.address.postalCode" id="enterpriseAddressPostalCode" class="form-control" placeholder="{{'INTERNSHIP.ENTERPRISE.ADDRESS.POSTALCODE' | translate}}" required />
-            <div ng-messages="vm.form.internshipForm.enterprise.address.postalCode.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.ENTERPRISE.ADDRESS.POSTALCODE_ERROR' | translate"></p>
-          </div>
-          </div>
-
-          <div class="form-group" show-errors>
-            <label class="control-label" for="enterpriseAddressCity" ng-bind="'INTERNSHIP.ENTERPRISE.ADDRESS.CITY' | translate"></label>
-            <input name="internship.enterprise.address.City" type="text" ng-model="vm.internship.enterprise.address.city" id="enterpriseAddressCity" class="form-control" placeholder="{{'INTERNSHIP.ENTERPRISE.ADDRESS.CITY' | translate}}" required />
-            <div ng-messages="vm.form.internshipForm.enterprise.address.city.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.ENTERPRISE.ADDRESS.CITY_ERROR' | translate"></p>
-          </div>
-          </div>
-
-          <div class="form-group" show-errors>
-            <label class="control-label" for="enterpriseAddressCountry" ng-bind="'INTERNSHIP.ENTERPRISE.ADDRESS.COUNTRY' | translate"></label>
-            <input name="internship.enterprise.address.City" type="text" ng-model="vm.internship.enterprise.address.country" id="enterpriseAddressCountry" class="form-control" placeholder="{{'INTERNSHIP.ENTERPRISE.ADDRESS.COUNTRY' | translate}}" required />
-            <div ng-messages="vm.form.internshipForm.enterprise.address.country.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.ENTERPRISE.ADDRESS.COUNTRY_ERROR' | translate"></p>
-          </div>
-          </div>
-
-          <div class="form-group" show-errors>
-            <label class="control-label" for="enterprisePhoneNumber" ng-bind="'INTERNSHIP.ENTERPRISE.PHONENUMBER' | translate"></label>
-            <input name="internship.enterprise.phoneNumber" type="text" ng-model="vm.internship.enterprise.phoneNumber" id="enterprisePhoneNumber" class="form-control" placeholder="{{'INTERNSHIP.ENTERPRISE.PHONENUMBER' | translate}}" required />
-            <div ng-messages="vm.form.internshipForm.enterprise.phoneNumber.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.ENTERPRISE.PHONENUMBER_ERROR' | translate"></p>
-          </div>
-          </div>
-
-          <div class="form-group" show-errors>
-            <label class="control-label" for="enterpriseFax" ng-bind="'INTERNSHIP.ENTERPRISE.FAX' | translate"></label>
-            <input name="internship.enterprise.fax" type="text" ng-model="vm.internship.enterprise.fax" id="enterpriseFax" class="form-control" placeholder="{{'INTERNSHIP.ENTERPRISE.FAX' | translate}}" required />
-            <div ng-messages="vm.form.internshipForm.enterprise.fax.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.ENTERPRISE.FAX_ERROR' | translate"></p>
-          </div>
-          </div>
-
-          <div class="form-group" show-errors>
-            <label class="control-label" for="enterpriseMail" ng-bind="'INTERNSHIP.ENTERPRISE.MAIL' | translate"></label>
-            <input name="internship.enterprise.mail" type="text" ng-model="vm.internship.enterprise.mail" id="enterpriseMail" class="form-control" placeholder="{{'INTERNSHIP.ENTERPRISE.MAIL' | translate}}" required />
-            <div ng-messages="vm.form.internshipForm.enterprise.mail.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.ENTERPRISE.MAIL_ERROR' | translate"></p>
-          </div>
-          </div>
-
-          <div class="form-group" show-errors>
-            <label class="control-label" for="enterpriseRepresentativeName" ng-bind="'INTERNSHIP.ENTERPRISE.REPRESENTATIVE.NAME' | translate"></label>
-            <input name="internship.enterprise.Representative.Name" type="text" ng-model="vm.internship.enterprise.representative.name" id="enterpriseRepresentative.Name" class="form-control" placeholder="{{'INTERNSHIP.ENTERPRISE.REPRESENTATIVE.NAME' | translate}}" required />
-            <div ng-messages="vm.form.internshipForm.enterprise.representative.name.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.ENTERPRISE.REPRESENTATIVE.NAME_ERROR' | translate"></p>
-          </div>
-          </div>
-
-          <div class="form-group" show-errors>
-            <label class="control-label" for="enterpriseRepresentativePosition" ng-bind="'INTERNSHIP.ENTERPRISE.REPRESENTATIVE.POSITION' | translate"></label>
-            <input name="internship.enterprise.Representative.Position" type="text" ng-model="vm.internship.enterprise.representative.position" id="enterpriseRepresentativePosition" class="form-control" placeholder="{{'INTERNSHIP.ENTERPRISE.REPRESENTATIVE.POSITION' | translate}}" required />
-            <div ng-messages="vm.form.internshipForm.enterprise.representative.position.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.ENTERPRISE.REPRESENTATIVE.POSITION_ERROR' | translate"></p>
-          </div>
-          </div>
-      </fieldset>
-
-  <h3>Proposition:</h3>
-      <fieldset>
-          <div class="form-group" show-errors>
-            <label class="control-label" for="propositionTheme" ng-bind="'INTERNSHIP.PROPOSITION.THEME' | translate"></label>
-            <input name="internship.proposition.theme" type="text" ng-model="vm.internship.proposition.theme" id="propositionTheme" class="form-control" placeholder="{{'INTERNSHIP.PROPOSITION.THEME' | translate}}" required />
-            <div ng-messages="vm.form.internshipForm.proposition.theme.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.PROPOSITION.THEME' | translate"></p>
-          </div>
-          </div>
-
-          <div class="form-group" show-errors>
-            <label class="control-label" for="propositionDomain" ng-bind="'INTERNSHIP.PROPOSITION.DOMAIN' | translate"></label>
-            <input name="internship.proposition.domain" type="text" ng-model="vm.internship.proposition.domain" id="propositionDomain" class="form-control" placeholder="{{'INTERNSHIP.PROPOSITION.DOMAIN' | translate}}" required />
-            <div ng-messages="vm.form.internshipForm.proposition.domain.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.PROPOSITION.DOMAIN' | translate"></p>
-          </div>
-          </div>
-
-          <div class="form-group" show-errors>
-            <label class="control-label" for="propositionLocation" ng-bind="'INTERNSHIP.PROPOSITION.LOCATION' | translate"></label>
-            <input name="internship.proposition.location" type="text" ng-model="vm.internship.proposition.location" id="propositionLocation" class="form-control" placeholder="{{'INTERNSHIP.PROPOSITION.LOCATION' | translate}}" required />
-            <div ng-messages="vm.form.internshipForm.proposition.location.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.PROPOSITION.LOCATION' | translate"></p>
-          </div>
-          </div>               
-
-          <div class="form-group" show-errors>
-            <label class="control-label" for="InternshipPropositionDescription" ng-bind="'INTERNSHIP.PROPOSITION.DESCRIPTION' | translate"></label>
-            <textarea name="internshipDescription" ng-model="vm.internship.proposition.description" id="internsipProposisiontDescription" class="form-control" cols="30" rows="5" placeholder="{{'INTERNSHIP.PROPOSITION.DESCRIPTION' | translate}}" required></textarea>
-            <div ng-messages="vm.form.internshipForm.proposition.description.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.PROPOSITION.DESCRIPTION' | translate"></p>
-            </div>
-          </div>
-
-          <div class="form-group" show-errors>
-            <label class="control-label" for="InternshipPropositionApprovalConsultedTeacher" ng-bind="'INTERNSHIP.PROPOSITION.APPROVAL.CONSULTEDTEACHER' | translate"></label>
-            <input 
-            name="internship.proposition.approval.consultedTeacher" 
-            type="text" 
-            ng-model="vm.internship.proposition.approval.consultedTeacher" id="propositionApprovalConsultedTeacher" class="form-control" placeholder="5810c73167f35ee81f7a30b5" required />
-            <div ng-messages="vm.form.internshipForm.proposition.approval.consultedTeacher.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.PROPOSITION.APPROVAL.CONSULTEDTEACHER' | translate"></p>
-          </div>
-          </div>
-
-          <div class="form-group" show-errors>
-            <label class="control-label" for="InternshipPropositionApprovalConsultedTeacherApproval" ng-bind="'INTERNSHIP.PROPOSITION.APPROVAL.CONSULTEDTEACHER.APPROVAL' | translate"></label>
-            <input 
-            name="internship.proposition.approval.consultedTeacherApproval" 
-            ng-true-value = "true"
-            ng-false-value = "false"
-            type="checkbox" 
-            ng-model="vm.internship.proposition.approval.consultedTeacherApproval" 
-            id="propositionApprovalConsultedTeacherApproval" 
-            class="form-control" 
-            />
-            <div ng-messages="vm.form.internshipForm.proposition.approval.consultedTeacherApproval.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.PROPOSITION.APPROVAL.CONSULTEDTEACHERAPPROVAL' | translate"></p>
-          </div>
-          </div>
-
-          <div class="form-group" show-errors>
-            <label class="control-label" for="InternshipPropositionApprovalUnitChiefApproval" ng-bind="'INTERNSHIP.PROPOSITION.APPROVAL.UNITCHIEFAPPROVAL' | translate"></label>
-            <input 
-            name="internship.proposition.approval.unitChiefApproval" 
-            type="checkbox" 
-            ng-true-value = "true"
-            ng-false-value = "false"
-            ng-model="vm.internship.proposition.approval.unitChiefApproval" 
-            id="propositionApprovalUnitChiefApproval" 
-            class="form-control" 
-            />
-            <div ng-messages="vm.form.internshipForm.proposition.approval.unitChiefApproval.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.PROPOSITION.APPROVAL.UNITCHIEFAPPROVAL' | translate"></p>
-          </div>
-          </div>          
-
-          <div class="form-group" show-errors>
-            <label class="control-label" for="InternshipPropositionApprovalMasterApproval" ng-bind="'INTERNSHIP.PROPOSITION.APPROVAL.MASTERAPPROVAL' | translate"></label>
-            <input 
-            name="internship.proposition.approval.masterApproval" 
-            type="checkbox" 
-            ng-true-value = "true"
-            ng-false-value = "false"
-            ng-model="vm.internship.proposition.approval.masterApproval" 
-            id="propositionApprovalMasterApproval" 
-            class="form-control" 
-            />
-            <div ng-messages="vm.form.internshipForm.proposition.approval.masterApproval.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.PROPOSITION.APPROVAL.MASTERAPPROVAL' | translate"></p>
-          </div>
-          </div>
-
-          <div class="form-group" show-errors>
-            <label class="control-label" for="InternshipPropositionsSupervisorApproval" ng-bind="'INTERNSHIP.PROPOSITION.APPROVAL.SUPERVISORAPPROVAL' | translate"></label>
-            <input 
-            name="internship.proposition.approval.supervisorApproval" 
-            type="checkbox" 
-            ng-true-value = "true"
-            ng-false-value = "false"
-            ng-model="vm.internship.proposition.approval.supervisorApproval" 
-            id="propositionApprovalMasterApproval" 
-            class="form-control" 
-            />
-            <div ng-messages="vm.form.internshipForm.proposition.approval.supervisorApproval.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.PROPOSITION.APPROVAL.SUPERVISORAPPROVAL' | translate"></p>
-          </div>
-          </div>
-
-          <div class="form-group" show-errors>
-            <label class="control-label" for="InternshipPropositionApprovalValidatorApproval" ng-bind="'INTERNSHIP.PROPOSITION.APPROVAL.VALIDATORAPPROVAL' | translate"></label>
-            <input 
-            name="internship.proposition.approval.validatorApproval" 
-            type="checkbox"
-            ng-true-value = "true"
-            ng-false-value = "false" 
-            ng-model="vm.internship.proposition.approval.validatorApproval" 
-            id="propositionApprovalValidatorApproval" 
-            class="form-control" 
-            />
-            <div ng-messages="vm.form.internshipForm.proposition.approval.validatorApproval.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.PROPOSITION.APPROVAL.VALIDATORAPPROVAL' | translate"></p>
-          </div>
-          </div>
-
-
-
-        </fieldset>
-
-    <h3>Convention</h3>
-        <fieldset>
-          <div class="form-group" show-errors>
-            <label class="control-label" for="InternshipConventionValidation" ng-bind="'INTERNSHIP.CONVENTION.VALIDATION' | translate"></label>
-            <input 
-            name="internship.convention.validation" 
-            ng-true-value = "true"
-            ng-false-value = "false"
-            type="checkbox"  
-            ng-model="vm.internship.convention.validation" 
-            id="conventionValidation" 
-            class="form-control" 
-            />
-            <div ng-messages="vm.form.internshipForm.convetion.validation.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.CONVENTION.VALIDATION' | translate"></p>
-          </div>
-          </div>          
-        </fieldset>
-
-    <h3>Activities Note</h3>
-        <fieldset>
-          <div  class="form-group" show-errors>
-            <label class="control-label" for="InternshipActivitiesNoteGeneralObjectives" ng-bind="'INTERNSHIP.ACTIVITIESNOTE.GENERALOBJECTIVES' | translate"></label>
-            
-              <div ng-repeat="Gobjective in vm.internship.activitiesNote.generalObjectives">
-                <a role="button">
-                  <div class="input-group">
-                    <input type="text" ng-model="Gobjective.value" class="form-control" id="vm.activitiesNote.generalObjective" name="internship.activititesNote.generalObjective" placeholder="INTERNSHIP.ACTIVITIESNOTE.GENERALOBJECTIVE' | translate" required/>
-                    <span class="input-group-addon" ng-click="vm.removeGeneralObjective(Gobjective)"><i class="glyphicon glyphicon-trash"></i></span>
-                  </div>
-                </a>
-                <div ng-messages="item.$error" role="alert">
-                  <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.ACTIVITIESNOTE.GENERALOBJECTIVES' | translate"></p>
-                </div>
-              </div>
-
-              <div>
-              <a class="btn btn-primary" ng-click="vm.addGeneralObjective()">
-                <i class="glyphicon glyphicon-plus"></i>
-                <span>Add General Objective</span>
-              </a> 
-              </div>             
-          </div>
-
-          <div  class="form-group" show-errors>
-            <label class="control-label" for="InternshipActivitiesNoteSpecificObjectives" ng-bind="'INTERNSHIP.ACTIVITIESNOTE.SPECIFICOBJECTIVES' | translate"></label>
-            
-              <div ng-repeat="Sobjective in vm.internship.activitiesNote.specificObjectives">
-                <a role="button">
-                  <div class="input-group">
-                    <input type="text" ng-model="Sobjective.value" id="vm.activitiesNote.specificObjective" class="form-control" name="internship.activititesNote.specificObjective" placeholder="INTERNSHIP.ACTIVITIESNOTE.SPECIFICOBJECTIVE' | translate" required/>
-                    <span class="input-group-addon" ng-click="vm.removeSpecificObjective(Sobjective)"><i class="glyphicon glyphicon-trash"></i></span>
-                  </div>
-                </a>
-                <div ng-messages="item.$error" role="alert">
-                  <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.ACTIVITIESNOTE.SPECIFICOBJECTIVES' | translate"></p>
-                </div>
-              </div>
-
-              <div>
-              <a class="btn btn-primary" ng-click="vm.addSpecificObjective()">
-                <i class="glyphicon glyphicon-plus"></i>
-                <span>Add Specific Objective</span>
-              </a> 
-              </div>             
-          </div>
-
-      <div class="form-group" show-errors>
-        <label class="control-label" for="InternshipActivitiesNoteApproval" ng-bind="'INTERNSHIP.ACTIVITIESNOTE.APPROVAL' | translate"></label>
-          <input 
-            name="internship.activititesNote.approval" 
-            ng-true-value = "true"
-            ng-false-value = "false"
-            type="checkbox" 
-            ng-model="vm.internship.activitiesNote.approval" 
-            id="activitiesNoteApproval" 
-            class="form-control" 
-          />
-          <div ng-messages="vm.form.internshipForm.convention.validation.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.CONVENTION.APPROVAL' | translate"></p>
-          </div>
-      </div>          
-    </fieldset>
-
-
-
-      <h3>Certificate</h3>
-        <fieldset>
-        <div class="form-group" show-errors>
-            <label class="control-label" for="InternshipCertificateHandedIn" ng-bind="'INTERNSHIP.CERTIFICATE.HANDEDIN '| translate"></label>
-            <input type = "checkbox"
-            name="internship.certificate.handedIn" 
-            ng-true-value = "true"
-            ng-false-value = "false"
-            ng-model="vm.internship.certificate.handedIn" 
-            id="certificateHandedIn" class="form-control" 
-            placeholder="INTERNSHIP.CERTIFICATE.HANDEDIN | translate" 
-            />
-            <div ng-messages="vm.form.internshipForm.certificate.handedIn.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.CERTIFICATE.HANDEDIN' | translate"></p>
-          </div>
-        </div>          
-        </fieldset> 
-
-      <h3>Deadlines</h3>
-       <fieldset>
-        <div class="form-group" show-errors>
-            <label class="control-label" for="InternshipDeadlinesStartInternship" ng-bind="'INTERNSHIP.DEADLINES.STARTINTERNSHIP' | translate"></label>
-            <div class="controls">
-              <div class="dropdown">
-                <a class="dropdown-toggle" id="InternshipDropdown" role="button" data-toggle="dropdown" data-target="#" href="#">
-                  <div class="input-group">
-                    <input name="DeadlineStartInternship" type="date" ng-model="vm.internship.deadlines.startInternship" id="endInternship" class="form-control" placeholder="{{'INTERNSHIP.DEADLINES.STARTINTERNSHIP' | translate}}" required /><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span></div>
-                </a>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="startLabel">
-                  <datetimepicker ng-model="vm.internship.deadlines.startInternship" data-datetimepicker-config="{ dropdownSelector: '#startDropdown', startView:'day', minView:'day' }"></datetimepicker>
-                </ul>
-              </div>
-            </div>
-            <div ng-messages="vm.internship.deadlines.startInternship.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.DEADLINES.STARTINTERNSHIP_ERROR' | translate"></p>
-            </div>
-        </div>
-
-        <div class="form-group" show-errors>
-            <label class="control-label" for="InternshipDeadlinesEndInternship" ng-bind="'INTERNSHIP.DEADLINES.ENDINTERNSHIP' | translate"></label>
-            <div class="controls">
-              <div class="dropdown">
-                <a class="dropdown-toggle" id="InternshipDropdown" role="button" data-toggle="dropdown" data-target="#" href="#">
-                  <div class="input-group">
-                    <input name="DeadlineEndInternship" type="date" ng-model="vm.internship.deadlines.endInternship" id="endInternship" class="form-control" placeholder="{{'INTERNSHIP.DEADLINES.ENDINTERNSHIP' | translate}}" required /><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span></div>
-                </a>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="endLabel">
-                  <datetimepicker ng-model="vm.internship.deadlines.endInternship" data-datetimepicker-config="{ dropdownSelector: '#endDropdown', startView:'day', minView:'day' }"></datetimepicker>
-                </ul>
-              </div>
-            </div>
-            <div ng-messages="vm.internship.deadlines.endInternship.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.DEADLINES.ENDINTERNSHIP_ERROR' | translate"></p>
-            </div>
-        </div>
-
-        <div class="form-group" show-errors>
-            <label class="control-label" for="InternshipDeadlineswrittenReport" ng-bind="'INTERNSHIP.DEADLINES.WRITTENREPORT' | translate"></label>
-            <div class="controls">
-              <div class="dropdown">
-                <a class="dropdown-toggle" id="InternshipDropdown" role="button" data-toggle="dropdown" data-target="#" href="#">
-                  <div class="input-group">
-                    <input name="DeadlineWrittenReport" type="date" ng-model="vm.internship.deadlines.writtenReport" id="WrittenReport" class="form-control" placeholder="{{'INTERNSHIP.DEADLINES.WRITTENREPORT' | translate}}" required /><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span></div>
-                </a>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="endLabel">
-                  <datetimepicker ng-model="vm.internship.deadlines.writteReport" data-datetimepicker-config="{ dropdownSelector: '#endDropdown', startView:'day', minView:'day' }"></datetimepicker>
-                </ul>
-              </div>
-            </div>
-            <div ng-messages="vm.internship.deadlines.writtenReport.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.DEADLINES.WRITTENREPORT_ERROR' | translate"></p>
-            </div>
-        </div>
-
-        <div class="form-group" show-errors>
-            <label class="control-label" for="InternshipDeadlineswrittenCertificate" ng-bind="'INTERNSHIP.DEADLINES.CERTIFICATE' | translate"></label>
-            <div class="controls">
-              <div class="dropdown">
-                <a class="dropdown-toggle" id="InternshipDropdown" role="button" data-toggle="dropdown" data-target="#" href="#">
-                  <div class="input-group">
-                    <input name="DeadlineCertificate" type="date" ng-model="vm.internship.deadlines.certificate" id="Certificate" class="form-control" placeholder="{{'INTERNSHIP.DEADLINES.CERTIFICATE' | translate}}" required /><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span></div>
-                </a>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="endLabel">
-                  <datetimepicker ng-model="vm.internship.deadlines.certificate" data-datetimepicker-config="{ dropdownSelector: '#endDropdown', startView:'day', minView:'day' }"></datetimepicker>
-                </ul>
-              </div>
-            </div>
-            <div ng-messages="vm.internship.deadlines.certificate.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.DEADLINES.CERTIFICATE_ERROR' | translate"></p>
-            </div>
-        </div>
-
-    </fieldset>
-
-          <div class="form-group">
-            <button type="submit" class="btn btn-primary">{{vm.internship._id ? 'GENERAL.UPDATE' : 'GENERAL.CREATE' | translate}}</button>
-          </div>
-          <div ng-show="vm.error" class="text-danger">
-            <strong ng-bind="vm.error"></strong>
-          </div>
-      </form>
+      <h2>General Status</h2>
+      <div class="col-md-12">
+      <label for="statusSelect">Status: </label><br>
+        <select ng-model="vm.internship.generalStatus" ng-options="option for option in vm.filterOptions"></select>
+      </div>
     </div>
+  </div>
+  <div class = "row">
+    <div class = "col-md-12">
+      <h2>Participants</h2>
+      <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-5"><strong>Student</strong></div>
+        <div class="col-md-6"><input name="internship.student" type="text" placeholder="{{'NO_STUDENT' | translate}}" ng-model="vm.internship.student" id="internshipStudent" class="form-control" uib-typeahead="student as student.displayName for student in vm.students | filter: $viewValue | limitTo: 8" class="form-control" autocomplete="off">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-5"><strong>Master</strong></div>
+        <div class="col-md-6"><input name="internship.master" type="text" placeholder="{{'NO_MASTERTZ' | translate}}" ng-model="vm.internship.master" id="propositionMaster" class="form-control" uib-typeahead="master as master.displayName for master in vm.masters | filter: $viewValue | limitTo: 8" class="form-control" autocomplete="off">
+        </div>
+      </div>        
+      <div class="row">
+        <div class="col-md-5"><strong>Consulted Teacher</strong></div>
+        <div class="col-md-6">
+          <input name="internshipConsultedTeacher" type="text" placeholder="{{'INTERNSHIP.CONSULTEDTEACHER' | translate}}" ng-model="vm.internship.consultedTeacher" id="internshipConsultedTeacher" class="form-control" uib-typeahead="teacher as teacher.displayName for teacher in vm.teachers | filter: $viewValue | limitTo: 8" class="form-control" autocomplete="off">
+        </div>
+      </div>        
+      <div class="row">
+        <div class="col-md-5"><strong>Supervisor</strong></div>
+        <div class="col-md-6">
+          <input name="internshipSupervisorSupervisor" type="text" placeholder="{{'INTERNSHIP.SUPERVISOR' | translate}}" ng-model="vm.internship.supervisor.supervisor" id="internshipSupervisorSupervisor" class="form-control" uib-typeahead="teacher as teacher.displayName for teacher in vm.teachers | filter: $viewValue | limitTo: 8" class="form-control" autocomplete="off">
+        </div>
+      </div>
+    </div>  
+  </div>
+  </div>
+  <hr>
+
+  <div class="row">
+      <div class="col-md-12">
+        <h2>Enterprise</h2>
+        <div class="col-md-6">
+          <h3>General information</h3>
+            <div class="row">
+                  <div class="col-md-5"><strong>Name</strong></div>
+                  <div class="col-md-6">
+                    <input name="internship.enterprise.name" type="text" ng-model="vm.internship.enterprise.name" id="enterpriseName" class="form-control" placeholder="{{'INTERNSHIP.ENTERPRISE.NAME' | translate}}"/>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-5"><strong>Domain</strong></div>
+                  <div class="col-md-6">
+                     <input name="internship.enterprise.domain" type="text" ng-model="vm.internship.enterprise.domain" id="enterpriseDomain" class="form-control" placeholder="{{'INTERNSHIP.ENTERPRISE.DOMAIN' | translate}}"/>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-5"><strong>Representative</strong></div>
+                  <div class="col-md-6">
+                    <input name="internship.enterprise.Representative.Name" type="text" ng-model="vm.internship.enterprise.representative.name" id="enterpriseRepresentative.Name" class="form-control" placeholder="{{'INTERNSHIP.ENTERPRISE.REPRESENTATIVE.NAME' | translate}}" />
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-5"><strong>Representative Position</strong></div>
+                  <div class="col-md-6">
+                    <input name="internship.enterprise.Representative.Position" type="text" ng-model="vm.internship.enterprise.representative.position" id="enterpriseRepresentativePosition" class="form-control" placeholder="{{'INTERNSHIP.ENTERPRISE.REPRESENTATIVE.POSITION' | translate}}" />
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-5"><strong>Telephone</strong></div>
+                  <div class="col-md-6">
+                    <input name="internship.enterprise.phoneNumber" type="tel" ng-model="vm.internship.enterprise.phoneNumber" id="enterprisePhoneNumber" class="form-control" placeholder="{{'INTERNSHIP.ENTERPRISE.PHONENUMBER' | translate}}"/>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-5"><strong>Fax</strong></div>
+                  <div class="col-md-6">
+                    <input name="internship.enterprise.fax" type="tel" ng-model="vm.internship.enterprise.fax" id="enterpriseFax" class="form-control" placeholder="{{'INTERNSHIP.ENTERPRISE.FAX' | translate}}"/>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-5"><strong>Mail</strong></div>
+                  <div class="col-md-6">
+                    <input name="internship.enterprise.mail" type="text" ng-model="vm.internship.enterprise.mail" id="enterpriseMail" class="form-control" placeholder="{{'INTERNSHIP.ENTERPRISE.MAIL' | translate}}"/>
+                  </div>
+              </div>
+        </div>
+
+        <div class="col-md-6">
+          <h3>Address</h3>
+          <div class="row">
+                <div class="col-md-3"><strong>Street</strong></div>
+                <div class="col-md-7" >
+                  <input name="internship.enterprise.address.street" type="text" ng-model="vm.internship.enterprise.address.street" id="enterpriseAddressStreet" class="form-control" placeholder="{{'INTERNSHIP.ENTERPRISE.ADDRESS.STREET' | translate}}" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"><strong>Number</strong></div>
+                <div class="col-md-7">
+                  <input name="internship.enterprise.address.number" type="text" ng-model="vm.internship.enterprise.address.number" id="enterpriseAddressNumber" class="form-control" placeholder="{{'INTERNSHIP.ENTERPRISE.ADDRESS.NUMBER' | translate}}" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"><strong>PostalCode</strong></div>
+                <div class="col-md-7"><input name="internship.enterprise.address.postalCode" type="text" ng-model="vm.internship.enterprise.address.postalCode" id="enterpriseAddressPostalCode" class="form-control" placeholder="{{'INTERNSHIP.ENTERPRISE.ADDRESS.POSTALCODE' | translate}}"/></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"><strong>City</strong></div>
+                <div class="col-md-7">
+                  <input name="internship.enterprise.address.City" type="text" ng-model="vm.internship.enterprise.address.city" id="enterpriseAddressCity" class="form-control" placeholder="{{'INTERNSHIP.ENTERPRISE.ADDRESS.CITY' | translate}}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"><strong>Country</strong></div>
+                <div class="col-md-7">
+                  <input name="internship.enterprise.address.City" type="text" ng-model="vm.internship.enterprise.address.country" id="enterpriseAddressCountry" class="form-control" placeholder="{{'INTERNSHIP.ENTERPRISE.ADDRESS.COUNTRY' | translate}}"/>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <hr>    
+
+    <div class="row">
+    <div class="col-md-12">
+        <h2>Proposition</h2>
+        <div class="col-md-8">   
+          <h3>Contents</h3>
+          <br>
+            <div class="row">
+                <div class="col-md-2"><strong>Theme</strong></div>
+                <div class="col-md-9">
+                  <input name="internship.proposition.theme" type="text" ng-model="vm.internship.proposition.theme" id="propositionTheme" class="form-control" placeholder="{{'INTERNSHIP.PROPOSITION.THEME' | translate}}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"><strong>Domain</strong></div>
+                <div class="col-md-9">
+                  <input name="internship.proposition.domain" type="text" ng-model="vm.internship.proposition.domain" id="propositionDomain" class="form-control" placeholder="{{'INTERNSHIP.PROPOSITION.DOMAIN' | translate}}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"><strong>Location</strong></div>
+                <div class="col-md-9">
+                  <input name="internship.proposition.location" type="text" ng-model="vm.internship.proposition.location" id="propositionLocation" class="form-control" placeholder="{{'INTERNSHIP.PROPOSITION.LOCATION' | translate}}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"><strong>Description</strong></div>
+                <div class="col-md-9">
+                  <textarea name="internshipDescription" ng-model="vm.internship.proposition.description" id="internsipProposisiontDescription" class="form-control" cols="30" rows="5" placeholder="{{'INTERNSHIP.PROPOSITION.DESCRIPTION' | translate}}">
+                  </textarea>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+          <h3>Approval</h3>  
+          <br>
+          <table width="100%">
+            <tr>
+              <td width="85%">Consulted Teacher:</td>
+              <td width="15%">
+                <input 
+                  name="internship.proposition.approval.consultedTeacherApproval" 
+                  type="checkbox" 
+                  ng-true-value = "true"
+                  ng-false-value = "false"
+                  ng-model="vm.internship.proposition.approval.consultedTeacherApproval" 
+                  id="propositionApprovalConsultedTeacherApproval" 
+                  />
+              </td>
+            </tr>          
+            <tr>
+              <td width="85%">Master:</td>
+              <td width="15%">
+                <input style="text-align: right;" 
+                  name="internship.proposition.approval.masterApproval" 
+                  type="checkbox" 
+                  ng-true-value = "true"
+                  ng-false-value = "false"
+                  ng-model="vm.internship.proposition.approval.masterApproval" 
+                  id="propositionApprovalMasterApproval"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td width="85%">Coordinator:</td>
+              <td width="15%">
+                <input 
+                  name="internship.proposition.approval.coordinatorApproval" 
+                  type="checkbox" 
+                  ng-true-value = "true"
+                  ng-false-value = "false"
+                  ng-model="vm.internship.proposition.approval.coordinatorApproval" 
+                  id="propositionApprovalCoordinatorApproval" 
+                  />
+              </td>
+            </tr>
+          </table>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-12">
+          <div class="col-md-12">
+              <h3>Comments</h3>
+                <div class="row">
+                  <div class="col-md-2"><strong>Teacher comment:</strong></div>
+                  <div class="col-md-10">
+                    <textarea name="propositionMasterComment" ng-model="vm.internship.proposition.approval.consultedTeacherComment" id="internshipProposisionConsultedTeacherComment" class="form-control" cols="30" rows="5" placeholder="{{'INTERNSHIP.PROPOSITION.CONSULTEDTEACHERCOMMENT' | translate}}">
+                    </textarea>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-2"><strong>Master comment:</strong></div>
+                  <div class="col-md-10">
+                    <textarea name="propositionMasterComment" ng-model="vm.internship.proposition.approval.masterComment" id="internshipProposisionMasterComment" class="form-control" cols="30" rows="5" placeholder="{{'INTERNSHIP.PROPOSITION.MASTERCOMMENT' | translate}}">
+                    </textarea>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-2"><strong>Coordinator comment:</strong></div>
+                  <div class="col-md-10">
+                    <textarea name="propositionCoordinatorComment" ng-model="vm.internship.proposition.approval.coordinatorComment" id="internshipProposisionCoordinatorComment" class="form-control" cols="30" rows="5" placeholder="{{'INTERNSHIP.PROPOSITION.COORDINATORCOMMENT' | translate}}">
+                    </textarea>
+                  </div>
+                </div>
+            </div>
+        </div>
+        </div>        
+      </div>
+    </div>
+  <hr>
+
+<div class="row">
+<h2>Activities Note</h2>
+  <div class="row">
+  <div class="col-md-12">
+  <div class="col-md-12">
+  <h3>Contents</h3>
+    <div class="form-group">
+      <div ng-repeat="Gobjective in vm.internship.activitiesNote.generalObjectives">
+
+        <div class="col-md-6">
+          <label class="control-label" for="InternshipActivitiesNoteGeneralObjectives" ng-bind="'INTERNSHIP.ACTIVITIESNOTE.GENERALOBJECTIVES' | translate"></label>
+          <div>
+            <a role="button">
+              <div class="input-group">
+                <input type="text" ng-model="Gobjective.value" class="form-control" id="vm.activitiesNote.generalObjective" name="internship.activititesNote.generalObjective" placeholder="INTERNSHIP.ACTIVITIESNOTE.GENERALOBJECTIVE' | translate"/>
+                <span class="input-group-addon" ng-click="vm.removeGeneralObjective(Gobjective)"><i class="glyphicon glyphicon-trash"></i></span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <label class="control-label" for="InternshipActivitiesNoteSpecificObjectives" ng-bind="'INTERNSHIP.ACTIVITIESNOTE.SPECIFICOBJECTIVES' | translate"></label>
+          <div ng-repeat="Sobjective in Gobjective.specificObjectives">
+            <a role="button">
+              <div class="input-group">
+                <input type="text" ng-model="Sobjective.value" id="vm.activitiesNote.specificObjective" class="form-control" name="internship.activititesNote.specificObjective" placeholder="INTERNSHIP.ACTIVITIESNOTE.SPECIFICOBJECTIVE' | translate"/>
+                <span class="input-group-addon" ng-click="vm.removeSpecificObjective(Gobjective,Sobjective)"><i class="glyphicon glyphicon-trash"></i></span>
+              </div>
+            </a>
+          </div>
+          <div>
+            <a class="btn btn-primary" ng-click="vm.addSpecificObjective(Gobjective)">
+              <i class="glyphicon glyphicon-plus"></i>
+              <span>Add Specific Objective</span>
+            </a> 
+          </div>
+        </div>
+      </div>
+      </div>
+      <div class="form-group">
+        <a class="btn btn-primary" ng-click="vm.addGeneralObjective()">
+          <i class="glyphicon glyphicon-plus"></i>
+          <span>Add General Objective</span>
+        </a> 
+      </div>
+    </div>
+    </div> 
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="col-md-12">
+        <h3>Approval</h3> 
+          <table width="100%">
+            <tr>
+              <td width="10%">Master:</td>
+              <td>
+                <input 
+                  name="activitiesNoteApprovalMasterApproval" 
+                  type="checkbox" 
+                  ng-true-value = "true"
+                  ng-false-value = "false"
+                  ng-model="vm.internship.activitiesNote.approval.masterApproval" 
+                  id="activitiesNoteApprovalMasterApproval" 
+                  />
+              </td>
+            </tr>          
+            <tr>
+              <td width="10%">Supervisor:</td>
+              <td>
+                <input 
+                  name="activitiesNoteApprovalSupervisorApproval" 
+                  type="checkbox" 
+                  ng-true-value = "true"
+                  ng-false-value = "false"
+                  ng-model="vm.internship.activitiesNote.approval.supervisorApproval" 
+                  id="activitiesNoteApprovalSupervisorApproval" 
+                  />
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="col-md-12">
+        <h3>Comments</h3>
+          <div class="row">
+            <div class="col-md-2"><strong>Master comment:</strong></div>
+            <div class="col-md-10">
+              <textarea name="activitiesNoteMasterComment" ng-model="vm.internship.activitiesNote.masterComment" id="internshipActivitiesNoteMasterComment" class="form-control" cols="30" rows="5" placeholder="{{'INTERNSHIP.ACTIVITIESNOTE.MASTERCOMMENT' | translate}}">
+              </textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2"><strong>Supervisor comment:</strong></div>
+            <div class="col-md-10">
+              <textarea name="propositionSupervisorComment" ng-model="vm.internship.activitiesNote.supervisorComment" id="internshipActivitiesNoteSupervisorComment" class="form-control" cols="30" rows="5" placeholder="{{'INTERNSHIP.ACTIVITIESNOTE.SUPERVISORCOMMENT' | translate}}">
+              </textarea>
+            </div>
+          </div>        
+        </div>
+      </div>
+    </div>
+  </div>  
+<hr>    
+
+
+<div class="row">
+<div class="col-md-12">
+<h2>Deliverables</h2>
+  <div class="col-md-3">
+  <h3>Convention (given)</h3>
+  <div class="row">
+      <div class="col-md-3"><strong>Status</strong></div>
+      <div class="col-md-7">
+        <input 
+        name="conventionGiven" 
+        type="checkbox" 
+        ng-true-value = "true"
+        ng-false-value = "false"
+        ng-model="vm.internship.convention.given" 
+        id="conventionHandedIn" 
+        />
+      </div>
+  </div>
+</div>
+<div class="col-md-3">
+  <h3>Convention (validated)</h3>
+  <div class="row">
+      <div class="col-md-3"><strong>Status</strong></div>
+      <div class="col-md-7">
+        <input 
+        name="conventionValidation" 
+        type="checkbox" 
+        ng-true-value = "true"
+        ng-false-value = "false"
+        ng-model="vm.internship.convention.validation" 
+        id="conventionValidation" 
+        />
+      </div>
+  </div>
+</div>
+<div class="col-md-3">
+  <h3>Certificate</h3>
+  <div class="row">
+      <div class="col-md-3"><strong>Status</strong></div>
+      <div class="col-md-7">
+        <input 
+        name="certificateHandedIn" 
+        type="checkbox" 
+        ng-true-value = "true"
+        ng-false-value = "false"
+        ng-model="vm.internship.certificate.handedIn" 
+        id="certificateHandedIn" 
+        />
+      </div>
+      </div>
+  </div>
+<div class="col-md-3">
+  <h3>Written report</h3>
+  <div class="row">
+      <div class="col-md-3"><strong>Status</strong></div>
+      <div class="col-md-7">
+        <input 
+        name="writtenReportHandedIn" 
+        type="checkbox" 
+        ng-true-value = "true"
+        ng-false-value = "false"
+        ng-model="vm.internship.writtenReport.handedIn" 
+        id="writtentReportHandedIn" 
+        />
+      </div>
+  </div>
+</div>
+</div>
+</div>
+<hr>
+
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Deadlines</h2>
+        <div class="col-md-3">
+          <h3>Internship start</h3>
+          <div class="row">
+                <div class="col-md-10">
+                  <input ng-click="vm.open(vm.internship,'startPopup','startInternship')" name="deadlinesStartInternship"  type="date" class="form-control" show-button-bar="false" uib-datepicker-popup ng-model="vm.internship.deadlines.startInternship" is-open="vm.internship.startPopup.opened"/><span ng-click="vm.open(vm.internship,'startPopup','startInternship')" class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <h3>Certificate</h3>
+          <div class="row">
+                <div class="col-md-10" ng-bind="vm.internship.deadlines.certificate | amDateFormat:'ddd D MMM YYYY'"></div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <h3>Written report</h3>
+          <div class="row">
+                <div class="col-md-10" ng-bind="vm.internship.deadlines.writtenReport | amDateFormat:'ddd D MMM YYYY'"></div>
+          </div>
+        </div>        
+        <div class="col-md-3">
+          <h3>Internship end</h3>
+          <div class="row">
+                <div class="col-md-10">
+                  <input ng-click="vm.open(vm.internship,'endPopup','endInternship')" name="deadlinesEndInternship"  type="date" class="form-control" show-button-bar="false" uib-datepicker-popup ng-model="vm.internship.deadlines.endInternship" is-open="vm.internship.endPopup.opened"/><span ng-click="vm.open(vm.internship,'endPopup','endInternship')" class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+
+  <div class="row">
+  <div class="col-md-12">
+  <h2>First Meeting</h2>
+    <div class="col-md-12">
+      <h3>General information</h3>
+        <div class="col-md-6">
+        <h4>Location & Date</h4>
+        <label class="control-label" for="start" ng-bind="'INTERNSHIP.FIRSTVISIT.DATE' | translate"></label>
+        <div class="controls">
+          <div class="input-group">
+            <input ng-click="vm.open1()" name="internshipFirstVisitDate"  type="date" class="form-control" show-button-bar="false" uib-datepicker-popup ng-model="vm.internship.firstVisit.date" is-open="vm.popup1.opened"/><span ng-click="vm.open1()" class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+          </div>
+        <label class="control-label" for="InternshipFirstVisitLocation" ng-bind="'INTERNSHIP.FIRSTVISIT.LOCATION' | translate"></label>
+        <textarea name="internshipFirstVisitLocation" ng-model="vm.internship.firstVisit.location" id="internshipFirstVisitLocation" class="form-control" cols="30" rows="5" placeholder="{{'INTERNSHIP.FIRSTVISIT.LOCATION' | translate}}">
+        </textarea>          
+        </div>
+      </div>     
+      <div class="col-md-6">
+        <h4>Validation</h4>
+        <div class="col-md-12">
+          <div class="col-md-4">Supervisor</div>
+          <div class="col-md-2">
+            <input 
+              name="firstVisitSupervisorValidation" 
+              type="checkbox" 
+              ng-true-value = "true"
+              ng-false-value = "false"
+              ng-model="vm.internship.firstVisit.supervisorValidation" 
+              id="firstVisitSupervisorValidation" 
+              />
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="col-md-4">Master</div>
+          <div class="col-md-2">
+            <input 
+              name="firstVisitMasterValidation" 
+              type="checkbox" 
+              ng-true-value = "true"
+              ng-false-value = "false"
+              ng-model="vm.internship.firstVisit.masterValidation" 
+              id="firstVisitSupervisorValidation" 
+              />
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="col-md-4">Done?</div>
+          <div class="col-md-2">
+            <input 
+              name="firstVisitDone" 
+              type="checkbox" 
+              ng-true-value = "true"
+              ng-false-value = "false"
+              ng-model="vm.internship.firstVisit.done" 
+              id="firstVisitDone" 
+              />
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+  <div class="col-md-12">
+  <h3>Notes</h3>
+    <div class="col-md-12">
+      <div>
+      <h4>Supervisor Notes</h4>
+      <fieldset>
+          <div class="row" ng-repeat="Note in vm.internship.firstVisit.supervisorNotes">
+            <div class="col-md-12">
+              <label class="control-label" for="internshipFirstVisitSupervisorNotes" ng-bind="'INTERNSHIP.FIRSTVISIT.SUPERVISORNOTES' | translate"></label>
+              <textarea name="internshipFirstVisitSupervisorNoteValue" ng-model="Note.value" id="internshipFirstVisitSupervisorNoteValue" class="form-control" cols="30" rows="5" placeholder="{{'INTERNSHIP.FIRSTVISIT.SUPERVISORNOTE.VALUE' | translate}}" >
+              </textarea>
+              <br>
+              <a ng-if="$index !== 0" class="btn btn-primary" ng-click="vm.removeVisitNoteField($index,'teacher')">
+                <i class="glyphicon glyphicon-trash"></i>
+                <span>Remove field</span>
+              </a>
+            </div>      
+        </div>
+      </fieldset>
+      <a class="btn btn-primary" ng-click="vm.addVisitNoteField('teacher')">
+        <i class="glyphicon glyphicon-plus"></i>
+          <span>Add extra field</span>
+      </a>
+
+       <h4>Master Notes</h4>              
+      <fieldset>
+          <div class="row" ng-repeat="Note in vm.internship.firstVisit.masterNotes">
+            <div class="col-md-12">
+              <label class="control-label" for="internshipFirstVisitMasterNotes" ng-bind="'INTERNSHIP.FIRSTVISIT.MASTERRNOTES' | translate"></label>
+              <textarea name="internshipFirstVisitMasterNoteValue" ng-model="Note.value" id="internshipFirstVisitMasterNoteValue" class="form-control" cols="30" rows="5" placeholder="{{'INTERNSHIP.FIRSTVISIT.MASTERNOTE.VALUE' | translate}}">
+              </textarea>
+              <br>
+              <a ng-if="$index !== 0" class="btn btn-primary" ng-click="vm.removeVisitNoteField($index,'master')">
+                <i class="glyphicon glyphicon-trash"></i>
+                <span>Remove field</span>
+              </a>
+            </div>
+          </div>  
+    </fieldset>
+      <a class="btn btn-primary" ng-click="vm.addVisitNoteField('master')">
+        <i class="glyphicon glyphicon-plus"></i>
+          <span>Add extra field</span>
+      </a>                        
+    </div>
+  </div>
+  </div>
+  
+</div>
+</div>
+<hr>
+
+
+  <div class="row">
+  <div class="col-md-12">
+  <h2>Oral Presentation</h2>
+    <div class="col-md-12">
+      <h3>General information</h3>
+        <div class="col-md-6">
+        <h4>Location & Date</h4>
+        <label class="control-label" for="start" ng-bind="'INTERNSHIP.ORALPRESENTATION.DATE' | translate"></label>
+        <div class="controls">
+          <div class="input-group">
+            <input ng-click="vm.open2()" name="internshipOralPresentationDate"  type="date" class="form-control" show-button-bar="false" uib-datepicker-popup ng-model="vm.internship.oralPresentation.date" is-open="vm.popup2.opened"/><span ng-click="vm.open2()" class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+          </div>
+        </div>
+        <label class="control-label" for="InternshipOralPresentationLocation" ng-bind="'INTERNSHIP.ORALPRESENTATION.LOCATION' | translate"></label>
+        <textarea name="internshipOralPresentationLocation" ng-model="vm.internship.oralPresentation.location" id="internshipOralPresentationLocation" class="form-control" cols="30" rows="5" placeholder="{{'INTERNSHIP.ORALPRESENTATION.LOCATION' | translate}}">
+        </textarea>          
+      </div>     
+      <div class="col-md-6">
+      <h4>Validation</h4>
+        <div class="col-md-12">
+          <div class="col-md-4">Supervisor</div>
+          <div class="col-md-2">
+            <input 
+              name="oralPresentationSupervisorValidation" 
+              type="checkbox" 
+              ng-true-value = "true"
+              ng-false-value = "false"
+              ng-model="vm.internship.oralPresentation.supervisorValidation" 
+              id="oralPresentationSupervisorValidation" 
+              />
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="col-md-4">Master</div>
+          <div class="col-md-2">
+            <input 
+              name="oralPresentationMasterValidation" 
+              type="checkbox" 
+              ng-true-value = "true"
+              ng-false-value = "false"
+              ng-model="vm.internship.oralPresentation.masterValidation" 
+              id="oralPresentationSupervisorValidation" 
+              />
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="col-md-4">Done?</div>
+          <div class="col-md-2">
+            <input 
+              name="oralPresentationDone" 
+              type="checkbox" 
+              ng-true-value = "true"
+              ng-false-value = "false"
+              ng-model="vm.internship.oralPresentation.done" 
+              id="oralPresentationDone" 
+              />
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <div class="col-md-12">
+  <h3>Notes</h3>
+    <div class="col-md-12">
+      <div>
+      <h4>Supervisor Notes</h4>
+      <fieldset>
+          <div class="row" ng-repeat="Note in vm.internship.oralPresentation.supervisorNotes">
+            <div class="col-md-12">
+              <label class="control-label" for="internshipOralPresentationSupervisorNotes" ng-bind="'INTERNSHIP.ORALPRESENTATION.SUPERVISORNOTES' | translate"></label>
+              <textarea name="internshipOralPresentationSupervisorNoteValue" ng-model="Note.value" id="internshipOralPresentationSupervisorNoteValue" class="form-control" cols="30" rows="5" placeholder="{{'INTERNSHIP.ORALPRESENTATION.SUPERVISORNOTE.VALUE' | translate}}">
+              </textarea>
+              <br>
+              <a ng-if="$index !== 0" class="btn btn-primary" ng-click="vm.removeOralNoteField($index,'teacher')">
+                <i class="glyphicon glyphicon-trash"></i>
+                <span>Remove field</span>
+              </a>
+            </div>      
+        </div>
+      </fieldset>
+      <a class="btn btn-primary" ng-click="vm.addOralNoteField('teacher')">
+        <i class="glyphicon glyphicon-plus"></i>
+          <span>Add extra field</span>
+      </a>
+
+       <h4>Master Notes</h4>              
+      <fieldset>
+          <div class="row" ng-repeat="Note in vm.internship.oralPresentation.masterNotes">
+            <div class="col-md-12">
+              <label class="control-label" for="internshipOralPresentationMasterNotes" ng-bind="'INTERNSHIP.ORALPRESENTATION.MASTERRNOTES' | translate"></label>
+              <textarea name="internshipFirstOralPresentationNoteValue" ng-model="Note.value" id="internshipOralPresentationMasterNoteValue" class="form-control" cols="30" rows="5" placeholder="{{'INTERNSHIP.ORALPRESENTATION.MASTERNOTE.VALUE' | translate}}">
+              </textarea>
+              <br>
+              <a ng-if="$index !== 0" class="btn btn-primary" ng-click="vm.removeOralNoteField($index,'master')">
+                <i class="glyphicon glyphicon-trash"></i>
+                <span>Remove field</span>
+              </a>
+            </div>
+          </div>  
+    </fieldset>
+      <a class="btn btn-primary" ng-click="vm.addOralNoteField('master')">
+        <i class="glyphicon glyphicon-plus"></i>
+          <span>Add extra field</span>
+      </a>                        
+    </div>
+  </div>
+  </div>
+  
+</div>
+</div>
+  <hr>
+
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Intermediate Evaluation</h2>
+        <div class="col-md-8">
+          <h3>Master notes</h3>
+          <div class="row">
+                <div class="col-md-12" ng-bind="vm.internship.intermediateEvaluation.masterNotes"></div>
+          </div>
+        </div>
+        <div class="col-md-4">
+        <h3>General information</h3>
+            <div class="row">
+                  <div class="col-md-5"><strong>Date</strong></div>
+                  <div class="col-md-6" ng-bind="vm.internship.intermediateEvaluation.date | amDateFormat:'ddd D MMM YYYY'"></div>
+              </div>
+              <div class="row">
+                  <div class="col-md-5"><strong>Location</strong></div>
+                  <div class="col-md-6" ng-bind="vm.internship.intermediateEvaluation.location"></div>
+              </div>
+        </div>
+      </div>
+      </div>
+    </div>
+    <hr>
+
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Continuous Evaluation</h2>
+        <div class="col-md-3">
+          <h3>Points</h3>
+          <div class="row">
+              <ul><li ng-repeat="i in cvm.getNumber(vm.internship.continuousEvaluation.points.length)">
+              {{vm.internship.continuousEvaluation.points[i]}}</li>
+              </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Oral Presentation</h2>
+        <div class="col-md-3">
+          <h3>Points</h3>
+          <div class="row">
+                <ul><li ng-repeat="i in cvm.getNumber(vm.internship.oralPresentation.points.length)">
+                  {{vm.internship.oralPresentation.points[i]}}</li>
+              </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>    
+
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Written Report</h2>
+        <div class="col-md-3">
+          <h3>Points</h3>
+          <div class="row">
+                <ul><li ng-repeat="i in cvm.getNumber(vm.internship.writtenReport.points.length)">
+                  {{vm.internship.writtenReport.points[i]}}</li>
+              </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>    
+  </div>
+  </div>
+
+
+
+
+
+
+
+
+

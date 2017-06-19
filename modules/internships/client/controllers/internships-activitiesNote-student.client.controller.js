@@ -22,7 +22,7 @@
     function save(isValid) {
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'vm.form.InternshipActivitiesNoteForm');  // on envoie dans le scope (associé au controleur, et donc la page html)
-        console.log('error');
+        alert('please fill in everything!');
         return false;   // on envoie dans  <div class="form-group" show-errors>
       }
 
@@ -35,7 +35,7 @@
             internshipId: res._id
           });
         } else if (vm.authentication.user.roles.includes('student')) {
-          alert('First Visit Updated!');
+          alert('activities Note Updated!');
           $state.go('student.manage.internships.view', {
             internshipId: res._id
           });

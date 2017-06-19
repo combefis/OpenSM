@@ -1,0 +1,50 @@
+<section>
+    <ol class="breadcrumb">
+      <li>
+        <a ui-sref="teacher.manage.internships.list" ng-bind="'INTERNSHIP.INTERNSHIPS' | translate"></a>
+      </li>
+      <li ng-if="vm.internship._id" class="active">
+          <a ui-sref="teacher.manage.internships.view({ internshipId: vm.internship._id })" ng-bind="vm.internship._id"></a>
+      </li>
+      <li ng-if="vm.internship._id" class="active">
+          <a ui-sref="teacher.manage.internships.intermediateEvaluationNotes({ internshipId: vm.internship._id })" ng-bind="'GENERAL.EDIT' | translate"></a>
+      </li>
+    </ol>
+</section>
+
+<h2>{{'INTERNSHIP.INTERMEDIATEEVALUATION.MASTERNOTES' | translate}}</h2>
+<div class="col-md-12">
+  <h3>Notes and Comments during intermediateEvaluation</h3>
+  <form name="vm.form.internshipIntermediateEvaluationForm" class="form-horizontal" ng-submit="vm.save(vm.form.internshipIntermediateEvaluationForm.$valid)" novalidate>
+    <fieldset>
+          <div class="row" ng-repeat="Note in vm.internship.intermediateEvaluation.masterNotes">
+            <div class="col-md-12">
+            <div class="form-group" show-errors>
+              <label class="control-label" for="internshipIntermediateEvaluationMasterNotes" ng-bind="'INTERNSHIP.INTERMEDIATEEVALUATION.MASTERNOTES' | translate"></label>
+              <textarea name="internshipintermediateEvaluationtMasterNoteValue" ng-model="Note.value" id="internshipintermediateEvaluationMasterNoteValue" class="form-control" cols="30" rows="5" placeholder="{{'INTERNSHIP.intermediateEvaluation.MASTERNOTE.VALUE' | translate}}" required>
+              </textarea>
+              <div ng-messages="Note.$error" role="alert">
+                <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.INTERMEDIATEEVALUATION.MASTERNOTE.VALUE' | translate"></p>
+              </div>
+              <br>
+              <a ng-if="$index !== 0" class="btn btn-primary" ng-click="vm.removeNoteField($index)">
+                <i class="glyphicon glyphicon-trash"></i>
+                <span>Remove field</span>
+              </a>
+            </div>
+        </div>
+      </div>  
+    </fieldset>
+
+    <div class="form-group">
+      <a class="btn btn-primary" ng-click="vm.addNoteField()">
+        <i class="glyphicon glyphicon-plus"></i>
+          <span>Add extra field</span>
+      </a>
+      <button type="submit" class="btn btn-primary">{{'SUBMIT' | translate}}</button>
+    </div>
+</form>
+</div>
+
+
+

@@ -17,11 +17,14 @@
 
       .state('admin.manage.internships.list', {
         url: '',
-        templateUrl: 'modules/internships/client/views/list-internships.client.view.html',
-        controller: 'InternshipsListController',
+        templateUrl: 'modules/internships/client/views/list-internships-admin.client.view.html',
+        controller: 'InternshipsListAdminController',
         controllerAs: 'vm',
         data: {
           pageTitle: 'Internships management'
+        },
+        resolve: {
+          internshipResolve: newInternship
         }
       })
 

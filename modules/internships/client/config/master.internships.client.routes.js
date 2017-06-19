@@ -45,7 +45,7 @@
     .state('master.manage.students.internships.view', {
       url: '/:internshipId/edit',
       templateUrl: 'modules/internships/client/views/view-internship-master.client.view.html',
-      controller: 'InternshipsController',
+      controller: 'InternshipMasterController',
       controllerAs: 'vm',
       resolve: {
         internshipResolve: getInternship
@@ -55,6 +55,44 @@
       }
     })
 
+    .state('master.manage.students.internships.firstVisitNotes', {
+      url: '/:internshipId/edit/firstVisit',
+      templateUrl: 'modules/internships/client/views/form-internship-master-firstVisitNotes.client.view.html',
+      controller: 'InternshipFirstVisitController',
+      controllerAs: 'vm',
+      resolve: {
+        internshipResolve: getInternship
+      },
+      data: {
+        pageTitle: 'First Visit management'
+      }
+    })
+
+    .state('master.manage.students.internships.intermediateEvaluationNotes', {
+      url: '/:internshipId/edit/intermediateEvaluation',
+      templateUrl: 'modules/internships/client/views/form-internship-master-intermediateEvaluationNotes.client.view.html',
+      controller: 'InternshipIntermediateEvaluationMasterController',
+      controllerAs: 'vm',
+      resolve: {
+        internshipResolve: getInternship
+      },
+      data: {
+        pageTitle: 'First Visit management'
+      }
+    })
+
+    .state('master.manage.students.internships.oralPresentationNotes', {
+      url: '/:internshipId/edit/firstVisit',
+      templateUrl: 'modules/internships/client/views/form-internship-master-oralPresentationNotes.client.view.html',
+      controller: 'InternshipOralPresentationController',
+      controllerAs: 'vm',
+      resolve: {
+        internshipResolve: getInternship
+      },
+      data: {
+        pageTitle: 'First Visit management'
+      }
+    })
     ;
   }
 

@@ -16,14 +16,35 @@ module.exports = function(app) {
   app.route('/api/internships/supervisors').all(internshipsPolicy.isAllowed)
     .put(internships.updateSupervisors);
 
+  app.route('/api/internships/convention').all(internshipsPolicy.isAllowed)
+    .put(internships.updateConvention);
+
+  app.route('/api/internships/validation').all(internshipsPolicy.isAllowed)
+    .put(internships.validateInternships);
+
+  app.route('/api/internships/deadlines').all(internshipsPolicy.isAllowed)
+    .get(internships.listDeadlines)
+    .post(internships.createDeadlines);
+
+  app.route('/api/internships/startEndDates').all(internshipsPolicy.isAllowed)
+    .put(internships.editStartEnd);
+
   app.param('internshipId', internships.internshipByID);
+  app.param('deadlinesId', internships.deadlinesByID);
   // toutes les routes qui ont internshipID devront passer par a fonction internshiByID,
   // puis par le .all(inter), pui .get etc..
+
+  app.route('/api/internships/deadlines/:deadlinesId').all(internshipsPolicy.isAllowed)
+    .get(internships.readDeadlines)
+    .put(internships.updateDeadlines);
 
   app.route('/api/internships/:internshipId').all(internshipsPolicy.isAllowed)
     .get(internships.read)
     .delete(internships.remove)
     .put(internships.update);
+
+  app.route('/api/internships/:internshipId/deliverables').all(internshipsPolicy.isAllowed)
+    .put(internships.updateDeliverables);
 
   app.route('/api/internships/:internshipId/editEnterprise').all(internshipsPolicy.isAllowed)
     .put(internships.updateEnterprise);
@@ -42,6 +63,9 @@ module.exports = function(app) {
 
   app.route('/api/internships/:internshipId/editOralPresentation').all(internshipsPolicy.isAllowed)
     .put(internships.updateOralPresentation);
+
+  app.route('/api/internships/:internshipId/editIntermediateEvaluation').all(internshipsPolicy.isAllowed)
+    .put(internships.updateIntermediateEvaluation);
 
   app.route('/api/internships/:internshipId/editSupervisor').all(internshipsPolicy.isAllowed)
     .put(internships.updateSupervisor);

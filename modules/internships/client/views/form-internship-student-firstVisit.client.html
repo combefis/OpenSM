@@ -18,26 +18,32 @@
       <form name="vm.form.internshipFirstVisitForm" class="form-horizontal" ng-submit="vm.save(vm.form.internshipFirstVisitForm.$valid)" novalidate>
       
   <h3>Create first internship visit</h3>
-      <fieldset>
+  <fieldset>        
 
-          <div class="form-group" show-errors>
-            <label class="control-label" for="InternshipFirstVisitDate" ng-bind="'INTERNSHIP.FIRSTVISIT.DATE' | translate"></label>
-            <input name="internshipFirstVisitDate" type="date" ng-model="vm.internship.firstVisit.date" id="firstVisitDate" class="form-control" required />
-            <div ng-messages="vm.form.internshipFirstVisitForm.firstVisit.date.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.FIRSTVISIT.DATE' | translate"></p>
-          </div>
-          </div>            
+  <div class="form-group" show-errors>
+    <label class="control-label" for="start" ng-bind="'INTERNSHIP.FIRSTVISIT.DATE' | translate"></label>
+    
+    <div class="controls">
+      <div class="input-group">
+        <input ng-click="vm.open1()" name="internshipFirstVisitDate"  type="date" class="form-control" show-button-bar="false" uib-datepicker-popup ng-model="vm.internship.firstVisit.date" is-open="vm.popup1.opened" ng-required="true"/><span ng-click="vm.open1()" class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+      </div>
+    </div>
 
-          <div class="form-group" show-errors>
-            <label class="control-label" for="InternshipFirstVisitLocation" ng-bind="'INTERNSHIP.FIRSTVISIT.LOCATION' | translate"></label>
-            <textarea name="internshipFirstVisitLocation" ng-model="vm.internship.firstVisit.location" id="internshipFirstVisitLocation" class="form-control" cols="30" rows="5" placeholder="{{'INTERNSHIP.FIRSTVISIT.LOCATION' | translate}}" required>
-            </textarea>
-            <div ng-messages="vm.form.internshipFirstVisitForm.firstVisit.location.note.$error" role="alert">
-              <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.FIRSTVISIT.LOCATION' | translate"></p>
-            </div>
-          </div>
- 
-        </fieldset>
+    <div ng-messages="vm.form.examsessionForm.start.$error" role="alert">
+      <p class="help-block error-text" ng-message="required" ng-bind="'EXAMSESSION.START_ERROR' | translate"></p>
+    </div>
+  </div>     
+
+    <div class="form-group" show-errors>
+      <label class="control-label" for="InternshipFirstVisitLocation" ng-bind="'INTERNSHIP.FIRSTVISIT.LOCATION' | translate"></label>
+      <textarea name="internshipFirstVisitLocation" ng-model="vm.internship.firstVisit.location" id="internshipFirstVisitLocation" class="form-control" cols="30" rows="5" placeholder="{{'INTERNSHIP.FIRSTVISIT.LOCATION' | translate}}" required>
+      </textarea>
+      <div ng-messages="vm.form.internshipFirstVisitForm.firstVisit.location.note.$error" role="alert">
+        <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.FIRSTVISIT.LOCATION' | translate"></p>
+      </div>
+    </div>  
+  
+  </fieldset>
 
         <div class="form-group">
             <button type="submit" class="btn btn-primary">{{vm.internship.firstVisti? 'GENERAL.UPDATE' : 'GENERAL.CREATE' | translate}}</button>

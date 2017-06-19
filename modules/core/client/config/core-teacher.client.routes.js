@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('core.manager.internships.routes')
+    .module('core.teacher.routes')
     .config(routeConfig);
 
   routeConfig.$inject = ['$stateProvider'];
@@ -11,10 +11,10 @@
     $stateProvider
       .state('teacher', {
         abstract: true,
-        url: '/teacher',
+        url: '',
         template: '<ui-view/>',
         data: {
-          roles: ['teacher']
+          roles: ['teacher', 'coordinator', 'validator']
         }
       })
       .state('teacher.manage', {
@@ -22,7 +22,7 @@
         url: '/manage',
         template: '<ui-view/>',
         data: {
-          roles: ['teacher']
+          roles: ['teacher', 'coordinator', 'validator']
         }
       });
   }

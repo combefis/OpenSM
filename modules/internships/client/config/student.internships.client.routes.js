@@ -32,7 +32,7 @@
     .state('student.manage.internships.view', {
       url: '/:internshipId',
       templateUrl: 'modules/internships/client/views/view-internship-student.client.view.html',
-      controller: 'InternshipsController',
+      controller: 'InternshipsStudentViewController',
       controllerAs: 'vm',
       resolve: {
         internshipResolve: getInternship
@@ -103,6 +103,19 @@
       url: '/oralPresentation',
       templateUrl: 'modules/internships/client/views/form-internship-student-oralPresentation.client.html',
       controller: 'InternshipsStudentOralPresentationController',
+      controllerAs: 'vm',
+      resolve: {
+        internshipResolve: getInternship
+      },
+      data: {
+        pageTitle: 'FirstVisit'
+      }
+    })
+
+    .state('student.manage.internships.edit.intermediateEvaluation', {
+      url: '/intermediateEvaluation',
+      templateUrl: 'modules/internships/client/views/form-internship-student-intermediateEvaluation.client.html',
+      controller: 'InternshipsStudentIntermediateEvaluationController',
       controllerAs: 'vm',
       resolve: {
         internshipResolve: getInternship

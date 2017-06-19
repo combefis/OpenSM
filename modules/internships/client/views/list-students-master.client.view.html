@@ -7,7 +7,7 @@
   <div ng-if="vm.internships.$resolved">
     <ol class="breadcrumb">
       <li class="active">
-        <a ui-sref="master.manage.internships.students" ng-bind="'INTERNSHIP.STUDENTS' | translate"></a>
+        <a ui-sref="master.manage.students.list" ng-bind="'INTERNSHIP.STUDENTS' | translate"></a>
       </li>
     </ol>
 
@@ -17,8 +17,8 @@
       <div class="col-md-9">
 
         <div class="list-group" ng-if="vm.internships.length">
-          <a ng-repeat="internships in vm.internships" 
-          ui-sref="master.manage.students.internships.list({ studentId: internship.student._id, studentName: internship.student.name })" class="list-group-item" ng-bind="internships.student.username">test</a>
+          <a ng-repeat="internship in vm.internships" ng-click="vm.pushStudent(internship)"
+          ui-sref="master.manage.students.internships.list({ studentId: internship.student._id, studentName: internship.student.name })" class="list-group-item" ng-bind="internship.student.username">test</a>
         </div>
 
         <div class="alert alert-warning" ng-if="!vm.internships.length" ng-bind="'INTERNSHIP.NO_STUDENTS' | translate"></div>

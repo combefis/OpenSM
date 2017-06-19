@@ -35,7 +35,8 @@
               <th ng-if="vm.filterSelect==='supervisor'">Proposed Supervisor</th>
               <th ng-if="vm.filterSelect==='supervisor'">Response</th>
               <th ng-if="vm.filterSelect==='supervisor'">Supervisor</th>
-              <th ng-if="vm.filterSelect==='supervisor'">Has Supervisor?</th>
+              <th ng-if="((vm.filterSelect==='supervisor')&&(!vm.allValidated))">Has Supervisor?</th>
+              <th ng-if="((vm.filterSelect==='supervisor')&&(!vm.allValidated))">Validated?</th>
 
               <th ng-if="vm.filterSelect==='proposition'">Master</th>
               <th ng-if="vm.filterSelect==='proposition'">Approval</th>
@@ -47,6 +48,9 @@
               <th ng-if="vm.filterSelect==='convention'">Convention validated?</th>
               <th ng-if="vm.filterSelect==='convention'">Start Internship</th>
               <th ng-if="vm.filterSelect==='convention'">End Internship</th>
+
+              <th ng-if="vm.filterSelect==='delivrables'">Certificate given?</th>
+              <th ng-if="vm.filterSelect==='delivrables'">Written report given?</th>
               
               <th ng-if="vm.filterSelect==='overview'">Status</th>
 
@@ -65,9 +69,13 @@
               <td ng-if="vm.filterSelect==='supervisor'" ng-bind ="internship.supervisor.proposedSupervisor.username"></td>             
               <td ng-if="vm.filterSelect==='supervisor'">{{internship.supervisor.propositionResponse === null? 'pending' : internship.supervisor.propositionResponse}}</td>               
               <td ng-if="vm.filterSelect==='supervisor'" ng-bind ="internship.supervisor.supervisor.username"></td>
-              <td ng-if="vm.filterSelect==='supervisor'">
+              <td ng-if="((vm.filterSelect==='supervisor')&&(!vm.allValidated))">
                 <span ng-if="internship.supervisor.supervisor" class="glyphicon glyphicon-ok"></span>
                 <span ng-if="!internship.supervisor.supervisor" class="glyphicon glyphicon-remove"></span>
+              </td>
+              <td ng-if="((vm.filterSelect==='supervisor')&&(!vm.allValidated))">
+                <span ng-if="internship.validatorApproval" class="glyphicon glyphicon-ok"></span>
+                <span ng-if="!internship.validatorApproval" class="glyphicon glyphicon-remove"></span>
               </td>
 
               <td ng-if="vm.filterSelect==='proposition'" ng-bind="internship.master.username"></td>
@@ -104,6 +112,14 @@
                     </div>
                 </div>
               </td>
+              <td ng-if="vm.filterSelect==='delivrables'" ng-click="$event.stopPropagation();">
+                <span ng-if="internship.certificate.handedIn" class="glyphicon glyphicon-ok"></span>
+                <button ng-if="!internship.certificate.handedIn" class="btn btn-primary" ng-click="vm.validateDeliverables(internship,'certificate')">validate certificate</button>
+              </td>            
+              <td ng-if="vm.filterSelect==='delivrables'" ng-click="$event.stopPropagation();">
+                <span ng-if="internship.writtenReport.handedIn" class="glyphicon glyphicon-ok"></span>
+                <button ng-if="!internship.writtenReport.handedIn" class="btn btn-primary" ng-click="vm.validateDeliverables(internship,'writtenReport')">validate written report</button>
+              </td>              
               <td ng-if="vm.filterSelect==='overview'" ng-bind ="internship.generalStatus"></td>
             </tr>
           </tbody>
@@ -115,6 +131,9 @@
       <div class="col-md-2 pull-right">
         <button ng-if="vm.filterSelect==='convention'" type="submit" class="btn btn-primary" ng-click="vm.saveDates()">
           Save Dates <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+        </button>
+        <button ng-if="((vm.filterSelect==='supervisor')&&(!vm.allValidated))" type="submit" class="btn btn-danger" ng-click="vm.validateAll()">
+          Validate all <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
         </button>
       </div>
       </div>

@@ -11,6 +11,16 @@
     var vm = this; // on instancie tout ce qu'on vient de lui passer
     vm.saveDates = saveDates;
     vm.updateSelection = updateSelection;
+    vm.validateAll = validateAll;
+    vm.deadlinesCollection = DeadlinesService.query();
+    vm.deadlines = deadlinesResolve;
+    vm.open = open;
+    vm.validateConventions = validateConventions;
+    vm.giveConventions = giveConventions;
+    vm.createDeadlines = createDeadlines;
+    vm.validateDeliverables = validateDeliverables;
+    vm.filterSelect = 'overview';
+    vm.filterOptions = ['overview', 'enterprise', 'proposition', 'supervisor', 'convention', 'delivrables', 'deadlines'];
 
     vm.internships = InternshipsService.query(function(internships) {
       internships.forEach(function(internship) {
@@ -24,11 +34,31 @@
         internship.startPopup = { opened: false };
         internship.endPopup = { opened: false };
       });
+      vm.allValidated = internships.every(function(internship) {return internship.managerApproval;});
     });
 
+    function validateAll() {
+      var nb = vm.internships.length;
+      vm.internships.forEach(function(internship, i) {
+        internship.managerApproval = true;
+        if (i === (nb - 1)) {
+          send();
+        }
+      });
+
+      function send() {
+        $http.put('/api/internships/validation', { 'internships': vm.internships }).success(successCallback);
+      }
+
+      function successCallback(res) {
+        alert('Success! internships validated.');
+        vm.allValidated = vm.internships.every(function(internship) {return internship.managerApproval;});
+      // location.reload();
+      // $state.go('coordinator.manage.internships.list');
+      }
+    }
+
     function saveDates() {
-
-
       $http.put('/api/internships/startEndDates', { 'internships': vm.internships }).success(successCallback);
 
       function successCallback(res) {
@@ -37,21 +67,6 @@
       // $state.go('coordinator.manage.internships.list');
       }
     }
-
-    vm.deadlinesCollection = DeadlinesService.query();
-    vm.deadlines = deadlinesResolve;
-    vm.open = open;
-
-    vm.validateConventions = validateConventions;
-    vm.giveConventions = giveConventions;
-
-    vm.selectAllValidate = selectAllValidate;
-    vm.selectAllGive = selectAllGive;
-
-    vm.createDeadlines = createDeadlines;
-
-    vm.filterSelect = 'overview';
-    vm.filterOptions = ['overview', 'enterprise', 'proposition', 'supervisor', 'convention', 'deadlines'];
 
     vm.format = 'yyyy/MM/dd';
     vm.inlineOptions = {
@@ -76,7 +91,6 @@
     }
 
     function createDeadlines() {
-
       vm.deadlines.academicYear = prompt("Please enter academic year.", "2016-2017");
       vm.deadlines.createOrUpdate()          // appel à la fonction dans le service
         .then(successCallback)
@@ -112,29 +126,26 @@
 
     function giveConventions(internship) {
       var internshipsConventionGivenList = [];
-
       internship.convention.given = true;
       internshipsConventionGivenList.push(internship);
-
       $http.put('/api/internships/convention', { 'internships': internshipsConventionGivenList }).success(successCallback);
-
       function successCallback(res) {
         alert('Success! internship updated.');
       }
     }
 
-    function selectAllValidate() {
-      console.log('selectAll');
-      vm.internships.forEach(function(internship) {
-        internship.checkConventionValid = vm.checkConventionValidateAll;
-      });
-    }
-
-    function selectAllGive() {
-      console.log('selectAll');
-      vm.internships.forEach(function(internship) {
-        internship.checkConventionGiven = vm.checkConventionGiveAll;
-      });
+    function validateDeliverables(internship, deliverable) {
+      if (deliverable === 'certificate') {
+        internship.certificate.handedIn = true;
+      }
+      if (deliverable === 'writtenReport') {
+        internship.writtenReport.handedIn = true;
+      }
+      console.log(internship);
+      $http.put('/api/internships/' + internship._id + '/deliverables', internship).success(successCallback);
+      function successCallback(res) {
+        alert('Success! internships updated.');
+      }
     }
   }
 

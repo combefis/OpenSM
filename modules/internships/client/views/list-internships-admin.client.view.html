@@ -14,13 +14,29 @@
     <div class="row">
       <div class="col-md-9">
         <div class="action-box">
-          <a ui-sref="admin.manage.internships.create" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> {{'INTERNSHIP.CREATE' | translate}}</a>
+          <a ng-click="vm.createNew()" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> {{'INTERNSHIP.CREATE' | translate}}</a>
         </div>
 
-        <div class="list-group" ng-if="vm.internships.length">
-          <a ng-repeat="internship in vm.internships" ui-sref="admin.manage.internships.view({ internshipId: internship._id })" class="list-group-item" ng-bind="internship.student"></a>
+        <div>
+          <table class="table table-bordered table-striped table-hover">
+            <thead>
+            <tr>
+              <th>Matricule</th>
+              <th>Nom</th>
+              <th>Prénom</th>
+              <th>Entreprise</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="internship in vm.internships" ui-sref="admin.manage.internships.view({ internshipId: internship._id })">
+              <td ng-bind = internship.student.username></td>
+              <td ng-bind = internship.student.lastname></td>
+              <td ng-bind = internship.student.firstname></td>
+              <td> {{internship.enterprise.name?internship.enterprise.name:'no enterprise'}} </td>
+            </tr>
+            </tbody>
+          </table>
         </div>
-
         <div class="alert alert-warning" ng-if="!vm.internships.length" ng-bind="'INTERNSHIP.NO_INTERNSHIP' | translate"></div>
       </div>
 

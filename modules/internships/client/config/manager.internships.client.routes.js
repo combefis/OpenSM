@@ -22,6 +22,22 @@
         controllerAs: 'vm',
         data: {
           pageTitle: 'Internships management'
+        },
+        resolve: {
+          deadlinesResolve: newDeadlinesCollection
+        }
+      })
+
+      .state('manager.manage.internships.deadlines', {
+        url: '/:deadlinesId',
+        templateUrl: 'modules/internships/client/views/form-deadlines-manager.client.view.html',
+        controller: 'InternshipsManagerDeadlinesController',
+        controllerAs: 'vm',
+        resolve: {
+          deadlinesResolve: getDeadlines
+        },
+        data: {
+          pageTitle: 'Manage Deadlines'
         }
       })
 
@@ -37,10 +53,30 @@
           pageTitle: 'Manage Internship'
         }
       })
+
+      .state('manager.manage.internships.edit', {
+        url: '/:internshipId/edit',
+        template: '<ui-view/>'
+      })
+
+      .state('manager.manage.internships.edit.enterprise', {
+        url: '/:internshipId/edit/enterprise',
+        templateUrl: 'modules/internships/client/views/form-internship-manager-enterprise.client.view.html',
+        controller: 'InternshipsManagerController',
+        controllerAs: 'vm',
+        resolve: {
+          internshipResolve: getInternship
+        },
+        data: {
+          pageTitle: 'Edit Enterprise'
+        }
+      })
+
       ;
   }
 
   getInternship.$inject = ['$stateParams', 'InternshipsService'];
+  getDeadlines.$inject = ['$stateParams', 'DeadlinesService'];
 
   function getInternship($stateParams, InternshipsService) {
     return InternshipsService.get({
@@ -48,10 +84,16 @@
     }).$promise;
   }
 
-  newInternship.$inject = ['InternshipsService'];
+  function getDeadlines($stateParams, DeadlinesService) {
+    return DeadlinesService.get({
+      deadlinesId: $stateParams.deadlinesId // $stateParams = "prends dans l'url"
+    }).$promise;
+  }
 
-  function newInternship(InternshipsService) {
-    return new InternshipsService();
+  newDeadlinesCollection.$inject = ['DeadlinesService'];
+
+  function newDeadlinesCollection(DeadlinesService) {
+    return new DeadlinesService();
   }
 
 }());

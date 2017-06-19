@@ -10,7 +10,6 @@
 
   function InternshipsListController($scope, $state, InternshipsService, $window, Authentication, http, filter) {
     var vm = this;
-    vm.sort = sort;
     vm.subjetApprovalDemands = new Array();
     vm.supervisorDemands = new Array();
     vm.myInternships = new Array();
@@ -20,24 +19,25 @@
       console.log('sorting');
       internships.forEach(function(internship) {
         if ((typeof internship.consultedTeacher !== 'undefined') && (internship.consultedTeacher.username === Authentication.user.username)) {
-          vm.subjetApprovalDemands.push(internship);
-        }
-
-        if ((typeof internship.supervisor !== 'undefined') && (typeof internship.supervisor.proposedSupervisor !== 'undefined') && (internship.supervisor.proposedSupervisor.username === Authentication.user.username)) {
-
-          if (internship.supervisor.attributed === true) {
-            vm.myInternships.push(internship);
-          } else {
-
-            vm.supervisorDemands.push(internship);
+          if (internship.proposition.approval.consultedTeacherApproval === null) {
+            vm.subjetApprovalDemands.push(internship);
           }
         }
+
+        if (internship.supervisor && ((internship.supervisor.proposedSupervisor) || (internship.supervisor.supervisor))) {
+          if ((internship.supervisor.proposedSupervisor) && (internship.supervisor.proposedSupervisor.username === Authentication.user.username)) {
+            if ((!internship.managerApproval) && ((internship.supervisor.propositionResponse === null) || (internship.supervisor.propositionResponse))) {
+              vm.supervisorDemands.push(internship);
+            }
+          }
+          console.log(internship);
+          if (internship.supervisor.supervisor && (internship.supervisor.supervisor.username === Authentication.user.username) && (internship.managerApproval)) {
+            vm.myInternships.push(internship);
+          }
+        }
+
       });
       console.log("done sorting");
     });
-
-    function sort(internship) {
-      console.log('coucou');
-    }
   }
 }());

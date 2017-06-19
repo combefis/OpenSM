@@ -54,7 +54,6 @@
     }
 
     function handleError(error) {
-      // Log error
       console.log(error);
     }
   }

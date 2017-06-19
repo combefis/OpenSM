@@ -21,9 +21,6 @@
       vm.masters = masters;
     });
 
-    console.log(vm.internship.master);
-    console.log(vm.internship.consultedTeacher);
-
     // Save Internship
     function save(isValid) {
       if (!isValid) {
@@ -31,7 +28,7 @@
         console.log('error');
         return false;   // on envoie dans  <div class="form-group" show-errors>
       }
-      console.log(vm.internship);
+
       $http.put('/api/internships/' + vm.internship._id + '/editProposition', vm.internship).success(successCallback);
 
       function successCallback(res) {

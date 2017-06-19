@@ -11,9 +11,9 @@
       </li>
     </ol>
 </section>
-<div class="alert alert-warning" ng-if="vm.internship.generalStatus !=='Proposition Encoding'" ng-bind="'INTERNSHIP.CANT_EDIT' | translate"></div>
+<div class="alert alert-warning" ng-if="(vm.internship.generalStatus !=='Proposition Encoding') && (vm.internship.generalStatus !=='Proposition Reincoding')" ng-bind="'INTERNSHIP.CANT_EDIT' | translate"></div>
 
-<div ng-if="vm.internship.generalStatus ==='Proposition Encoding'">
+<div ng-if="(vm.internship.generalStatus ==='Proposition Encoding')||(vm.internship.generalStatus ==='Proposition Reincoding')">
     <h2>{{vm.internship._id ? 'INTERNSHIP.EDIT' : 'INTERNSHIP.CREATE' | translate}}</h2>
 
     <div class="col-md-12">
@@ -56,7 +56,7 @@
           <div class="form-group" show-errors>
             <label class="control-label" for="InternshipConsultedTeacher" ng-bind="'INTERNSHIP.CONSULTEDTEACHER' | translate"></label>
 
-            <input name="internship.consultedTeacher" type="text" placeholder="{{'NO_CONSULTEDTEACHER' | translate}}" ng-model="vm.internship.consultedTeacher" id="propositionConsultedTeacher" class="form-control" uib-typeahead="teacher as teacher.displayName for teacher in vm.teachers | filter: $viewValue | limitTo: 8" class="form-control" required>
+            <input name="internship.consultedTeacher" type="text" placeholder="{{'NO_CONSULTEDTEACHER' | translate}}" ng-model="vm.internship.consultedTeacher" id="propositionConsultedTeacher" class="form-control" uib-typeahead="teacher as teacher.displayName for teacher in vm.teachers | filter: $viewValue | limitTo: 8" class="form-control" required autocomplete="off">
             
             <div ng-messages="vm.form.internshipProposistionForm.consultedTeacher.$error" role="alert">
               <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.CONSULTEDTEACHER' | translate"></p>
@@ -66,7 +66,7 @@
           <div class="form-group" show-errors>
             <label class="control-label" for="InternshipMaster" ng-bind="'INTERNSHIP.MASTER' | translate"></label>
             
-            <input name="internship.master" type="text" placeholder="{{'NO_MASTER' | translate}}" ng-model="vm.internship.master" id="propositionMaster" class="form-control" uib-typeahead="master as master.displayName for master in vm.masters | filter: $viewValue | limitTo: 8" class="form-control" required>     
+            <input name="internship.master" type="text" placeholder="{{'NO_MASTER' | translate}}" ng-model="vm.internship.master" id="propositionMaster" class="form-control" uib-typeahead="master as master.displayName for master in vm.masters | filter: $viewValue | limitTo: 8" class="form-control" required autocomplete="off">     
 
             <div ng-messages="vm.form.internshipProposistionForm.master.$error" role="alert">
               <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.MASTER' | translate"></p>

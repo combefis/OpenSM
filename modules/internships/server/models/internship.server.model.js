@@ -9,7 +9,10 @@ var mongoose = require('mongoose'),
 var IntershipSchema = new Schema({
 
   generalStatus: String,
-  validatorApproval: Boolean,
+  state: String,
+
+  validatorApproval: { type: Boolean, default: false },
+  managerApproval: { type: Boolean, default: false },
 
   student: {
     type: Schema.ObjectId,
@@ -52,15 +55,17 @@ var IntershipSchema = new Schema({
     location: String,
     description: String,
     approval: {
-      consultedTeacherApproval: Boolean,
+      consultedTeacherApproval: { type: Boolean, default: null },
       consultedTeacherComment: String,
-      coordinatorApproval: Boolean,
+      coordinatorApproval: { type: Boolean, default: null },
       coordinatorComment: String,
-      masterApproval: Boolean,
+      masterApproval: { type: Boolean, default: null },
       masterComment: String,
-      approved: Boolean
+      approved: { type: Boolean, default: null }
     }
   },
+
+  propositionLog: Array,
 
   enterprise: {
     name: String,
@@ -81,6 +86,7 @@ var IntershipSchema = new Schema({
     }
   },
   convention: {
+    given: { type: Boolean, default: 'false' },
     validation: { type: Boolean, default: 'false' }
   },
   activitiesNote: {
@@ -94,18 +100,40 @@ var IntershipSchema = new Schema({
                   { id: false, _id: false })]
       }, { id: false, _id: false })]
     },
-    approval: Boolean,
-    masterComment: String
+    approval: {
+      supervisorApproval: { type: Boolean, default: null },
+      masterApproval: { type: Boolean, default: null }
+    },
+    masterComment: String,
+    supervisorComment: String
   },
+
+  activitiesNoteLog: Array,
+
   firstVisit: {
     date: Date,
     location: String,
-    supervisorNotes: String
+    done: { type: Boolean, default: null },
+    supervisorNotes: {
+      type: [new Schema({ value: String }, { id: false, _id: false })],
+      default: []
+    },
+    masterNotes: {
+      type: [new Schema({ value: String }, { id: false, _id: false })],
+      default: []
+    },
+    supervisorValidation: { type: Boolean, default: false },
+    masterValidation: { type: Boolean, default: false }
   },
   intermediateEvaluation: {
     location: String,
     date: Date,
-    masterNotes: String
+    done: { type: Boolean, default: null },
+    masterValidation: { type: Boolean, default: false },
+    masterNotes: {
+      type: [new Schema({ value: String }, { id: false, _id: false })],
+      default: []
+    }
   },
   continuousEvaluation: {
     points: [Number]
@@ -119,7 +147,18 @@ var IntershipSchema = new Schema({
   oralPresentation: {
     date: Date,
     location: String,
-    points: [Number]
+    points: [Number],
+    done: { type: Boolean, default: null },
+    supervisorNotes: {
+      type: [new Schema({ value: String }, { id: false, _id: false })],
+      default: []
+    },
+    masterNotes: {
+      type: [new Schema({ value: String }, { id: false, _id: false })],
+      default: []
+    },
+    supervisorValidation: { type: Boolean, default: false },
+    masterValidation: { type: Boolean, default: false }
   },
   writtenReport: {
     handedIn: { type: Boolean, default: 'false' },
@@ -131,8 +170,10 @@ var IntershipSchema = new Schema({
   deadlines: {
     startInternship: Date,
     endInternship: Date,
-    writtenReport: Date,
-    certificate: Date
+    deadlines: {
+      type: Schema.ObjectId,
+      ref: 'Deadlines'
+    }
   },
   finalPoints: { type: Number }
 });

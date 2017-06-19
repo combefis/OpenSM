@@ -1,0 +1,111 @@
+<section>
+  <div ng-if="!vm.internships.$resolved" class="loading">
+    <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> {{'LOADING' | translate}}
+  </div>
+
+
+  <div ng-if="vm.internships.$resolved">
+    <ol class="breadcrumb">
+      <li class="active"><a ui-sref="admin.manage.internships.list" ng-bind="'INTERNSHIP.INTERNSHIPS' | translate"></a></li>
+    </ol>
+
+<h2>Deadlines</h2>
+    <div class='row'>
+    <form>
+    <div class="col-md-12">
+      <div class="form-group">
+        <label class="control-label" for="start" ng-bind="'INTERNSHIPS.DEADLINES.COORDINATORMEETING' | translate"></label>
+          <div class="controls">
+            <div class="input-group">
+              <input ng-click="vm.open1()" name="deadlinesCoordinatorMeeting" class="form-control" show-button-bar="false" uib-datepicker-popup ng-model="vm.deadlines.coordinatorMeeting" is-open="vm.popup1.opened"/><span ng-click="vm.open1()" class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            </div>
+          </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label" for="start" ng-bind="'INTERNSHIPS.DEADLINES.FOREIGNINTERNSHIPDEMAND' | translate"></label>
+          <div class="controls">
+            <div class="input-group">
+              <input ng-click="vm.open2()" name="deadlinesForeignInternshipDemand"  type="date" class="form-control" show-button-bar="false" uib-datepicker-popup ng-model="vm.deadlines.foreignInternshipDemand" is-open="vm.popup2.opened"/><span ng-click="vm.open2()" class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            </div>
+          </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label" for="start" ng-bind="'INTERNSHIPS.DEADLINES.CONVENTION' | translate"></label>
+          <div class="controls">
+            <div class="input-group">
+              <input ng-click="vm.open3()" name="deadlinesConvention"  type="date" class="form-control" show-button-bar="false" uib-datepicker-popup ng-model="vm.deadlines.convention" is-open="vm.popup3.opened"/><span ng-click="vm.open3()" class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            </div>
+          </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label" for="start" ng-bind="'INTERNSHIPS.DEADLINES.ACTIVITESNOTE' | translate"></label>
+          <div class="controls">
+            <div class="input-group">
+              <input ng-click="vm.open4()" name="deadlinesActivitiesNote"  type="date" class="form-control" show-button-bar="false" uib-datepicker-popup ng-model="vm.deadlines.activitiesNote" is-open="vm.popup4.opened"/><span ng-click="vm.open4()" class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            </div>
+          </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label" for="start" ng-bind="'INTERNSHIPS.DEADLINES.FIRSTVISIT' | translate"></label>
+          <div class="controls">
+            <div class="input-group">
+              <input ng-click="vm.open5()" name="deadlinesFirstVisit"  type="date" class="form-control" show-button-bar="false" uib-datepicker-popup ng-model="vm.deadlines.firstVisit" is-open="vm.popup5.opened"/><span ng-click="vm.open5()" class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            </div>
+          </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label" for="start" ng-bind="'INTERNSHIPS.DEADLINES.AUTOEVALUATION' | translate"></label>
+          <div class="controls">
+            <div class="input-group">
+              <input ng-click="vm.open6()" name="deadlinesAutoEvaluation"  type="date" class="form-control" show-button-bar="false" uib-datepicker-popup ng-model="vm.deadlines.autoEvaluation" is-open="vm.popup6.opened"/><span ng-click="vm.open6()" class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            </div>
+          </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label" for="start" ng-bind="'INTERNSHIPS.DEADLINES.ORALPRESENTATION' | translate"></label>
+          <div class="controls">
+            <div class="input-group">
+              <input ng-click="vm.open7()" name="deadlinesOralPresentation"  type="date" class="form-control" show-button-bar="false" uib-datepicker-popup ng-model="vm.deadlines.oralPresentation" is-open="vm.popup7.opened"/><span ng-click="vm.open7()" class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            </div>
+          </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label" for="start" ng-bind="'INTERNSHIPS.DEADLINES.WRITTENREPORT' | translate"></label>
+          <div class="controls">
+            <div class="input-group">
+              <input ng-click="vm.open8()" name="deadlinesWrittenReport"  type="date" class="form-control" show-button-bar="false" uib-datepicker-popup ng-model="vm.deadlines.writtenReport" is-open="vm.popup8.opened"/><span ng-click="vm.open8()" class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            </div>
+          </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label" for="start" ng-bind="'INTERNSHIPS.DEADLINES.COMPLETEEVALUATION' | translate"></label>
+          <div class="controls">
+            <div class="input-group">
+              <input ng-click="vm.open9()" name="deadlinesCompleteEvaluation"  type="date" class="form-control" show-button-bar="false" uib-datepicker-popup ng-model="vm.deadlines.completeEvaluation" is-open="vm.popup9.opened"/><span ng-click="vm.open9()" class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            </div>
+          </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2">
+        <button type="submit" class="btn btn-primary" ng-click="vm.updateDeadlines()">
+            Update Deadlines <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+    </form>
+    </div>
+  </div>
+
+</div>
+</section>

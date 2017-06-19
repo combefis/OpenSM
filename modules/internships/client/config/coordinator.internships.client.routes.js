@@ -9,13 +9,20 @@
 
   function routeConfig($stateProvider) {
     $stateProvider
-      .state('coordinator.manage.internships', {
+
+      .state('teacher.manage.coordinator', {
+        abstract: true,
+        url: '/',
+        template: '<ui-view/>'
+      })
+
+      .state('teacher.manage.coordinator.internships', {
         abstract: true,
         url: '/internships',
         template: '<ui-view/>'
       })
 
-      .state('coordinator.manage.internships.list', {
+      .state('teacher.manage.coordinator.internships.list', {
         url: '',
         templateUrl: 'modules/internships/client/views/list-internships-coordinator.client.view.html',
         controller: 'InternshipsCoordinatorListController',
@@ -25,10 +32,10 @@
         }
       })
 
-      .state('coordinator.manage.internships.view', {
+      .state('teacher.manage.coordinator.internships.view', {
         url: '/:internshipId',
         templateUrl: 'modules/internships/client/views/view-internship-coordinator.client.view.html',
-        controller: 'InternshipsController',
+        controller: 'InternshipCoordinatorController',
         controllerAs: 'vm',
         resolve: {
           internshipResolve: getInternship
@@ -36,8 +43,7 @@
         data: {
           pageTitle: 'Supervisor demand'
         }
-      })
-      ;
+      });
   }
 
   getInternship.$inject = ['$stateParams', 'InternshipsService'];

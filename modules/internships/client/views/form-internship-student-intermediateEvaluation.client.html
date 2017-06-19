@@ -1,0 +1,55 @@
+<section>
+    <ol class="breadcrumb">
+      <li>
+        <a ui-sref="student.manage.internships.list" ng-bind="'INTERNSHIP.INTERNSHIPS' | translate"></a>
+      </li>
+      <li ng-if="vm.internship._id" class="active">
+          <a ui-sref="student.manage.internships.view({ internshipId: vm.internship._id })" ng-bind="vm.internship._id"></a>
+      </li>
+      <li ng-if="vm.internship._id" class="active">
+          <a ui-sref="student.manage.internships.edit.intermediateEvaluation({ internshipId: vm.internship._id })" ng-bind="'GENERAL.EDIT' | translate"></a>
+      </li>
+    </ol>
+</section>
+
+    <h2>{{vm.internship._id ? 'INTERNSHIP.INTERMEDIATEEVALUATION.EDIT' : 'INTERNSHIP.JOURNAL.INTERMEDIATEEVALUATION' | translate}}</h2>
+
+    <div class="col-md-12">
+      <form name="vm.form.internshipIntermediateEvaluationForm" class="form-horizontal" ng-submit="vm.save(vm.form.internshipIntermediateEvaluationForm.$valid)" novalidate>
+      
+  <h3>Oral Presentation</h3>
+  <fieldset>        
+
+  <div class="form-group" show-errors>
+    <label class="control-label" for="start" ng-bind="'INTERNSHIP.INTERMEDIATEEVALUATION.DATE' | translate"></label>
+    
+    <div class="controls">
+      <div class="input-group">
+        <input ng-click="vm.open1()" name="internshipIntermediateEvaluationDate"  type="date" class="form-control" show-button-bar="false" uib-datepicker-popup ng-model="vm.internship.intermediateEvaluation.date" is-open="vm.popup1.opened" ng-required="true"/><span ng-click="vm.open1()" class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+      </div>
+    </div>
+
+    <div ng-messages="vm.form.internshipintermediateEvaluationForm.date.$error" role="alert">
+      <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.INTERMEDIATEEVALUATION.DATE_ERROR' | translate"></p>
+    </div>
+  </div>     
+
+    <div class="form-group" show-errors>
+      <label class="control-label" for="InternshipOintermediateEvaluationLocation" ng-bind="'INTERNSHIP.INTERMEDIATEEVALUATION.LOCATION' | translate"></label>
+      <textarea name="internshipIntermediateEvaluationLocation" ng-model="vm.internship.intermediateEvaluation.location" id="internshipIntermediateEvaluationLocation" class="form-control" cols="30" rows="5" placeholder="{{'INTERNSHIP.INTERMEDIATEEVALUATION.LOCATION' | translate}}" required>
+      </textarea>
+      <div ng-messages="vm.form.internshipIntermediateEvaluationForm.location.note.$error" role="alert">
+        <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.INTERMEDIATEEVALUATION.LOCATION' | translate"></p>
+      </div>
+    </div>  
+  
+  </fieldset>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">{{vm.internship.firstVisti? 'GENERAL.UPDATE' : 'GENERAL.CREATE' | translate}}</button>
+          </div>
+          <div ng-show="vm.error" class="text-danger">
+            <strong ng-bind="vm.error"></strong>
+          </div>
+      </form>
+    </div>
