@@ -413,9 +413,9 @@ exports.downloadRoomMap = function (req, res) {
   var content = '\\documentclass{standalone}\\usepackage{pgf,tikz}\\begin{document}\\begin{tikzpicture}[x=1mm,y=-1mm,font=\\sf]\\useasboundingbox (-10,-10) rectangle (' + (map.width + 10) + ', ' + (map.height + 10) + ');\\draw (0,0) rectangle (' + map.width + ', ' + map.height + ');';
 
   // Draw room info
-  content += '\\node[scale=2,anchor=south west] at (5, 15) {' + (configuration.room.code + ' -- ' + configuration.room.name) + '};';
-  content += '\\node[scale=2,anchor=south east] at (' + (map.width - 5) + ', 15) {' + (exam.course.code + ' ' + exam.course.name) + '};';
-  content += '\\node[scale=2,anchor=south east] at (' + (map.width - 5) + ', 30) {' + moment(exam.date).format('DD/MM/YYYY HH:mm') + '};';
+  content += '\\node[scale=5,anchor=south west] at (5, 25) {{\\bfseries' + (configuration.room.code + '} -- ' + configuration.room.name) + '};';
+  content += '\\node[scale=5,anchor=south east] at (' + (map.width - 5) + ', 25) {' + (exam.course.code + ' ' + exam.course.name) + '};';
+  content += '\\node[scale=5,anchor=south east] at (' + (map.width - 5) + ', 50) {' + moment(exam.date).format('DD/MM/YYYY HH:mm') + '};';
 
   // Draw the seats
   for (var i = 0; i < map.seats.length; i++) {
