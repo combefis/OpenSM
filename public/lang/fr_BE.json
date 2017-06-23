@@ -222,6 +222,8 @@
     "CODE": "Code",
     "CODE_ERROR": "Veuillez spécifier le code.",
     "NAME": "Nom",
+    "BUILDING": "Bâtiment",
+    "FLOOR": "Étage",
     "NB_SEATS": "Nombre de sièges",
     "NB_SEATS_ERROR": "Veuillez spécifier le nombre de sièges.",
     "ROOM": "Local",

@@ -46,6 +46,8 @@ exports.update = function (req, res) {
 
   room.code = req.body.code;
   room.name = req.body.name;
+  room.building = req.body.building;
+  room.floor = req.body.floor;
   room.nbseats = req.body.nbseats;
 
   room.save(function (err) {
@@ -115,7 +117,7 @@ exports.list = function (req, res) {
  * Room middleware
  */
 exports.roomByCode = function (req, res, next, code) {
-  Room.findOne({ 'code': code }, 'code name nbseats equipments pictures map configurations')
+  Room.findOne({ 'code': code }, 'code name building floor nbseats equipments pictures map configurations')
   .exec(function (err, room) {
     if (err) {
       return next(err);

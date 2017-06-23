@@ -27,6 +27,14 @@
             <label class="control-label" for="name" ng-bind="'ROOM.NAME' | translate"></label>
             <input name="name" type="text" ng-model="vm.room.name" id="name" class="form-control" placeholder="{{'ROOM.NAME' | translate}}" />
           </div>
+          <div class="form-group">
+            <label class="control-label" for="building" ng-bind="'ROOM.BUILDING' | translate"></label>
+            <input name="building" type="text" ng-model="vm.room.building" id="building" class="form-control" placeholder="{{'ROOM.BUILDING' | translate}}" />
+          </div>
+          <div class="form-group">
+            <label class="control-label" for="floor" ng-bind="'ROOM.FLOOR' | translate"></label>
+            <input name="floor" type="number" ng-model="vm.room.floor" id="floor" class="form-control" placeholder="{{'ROOM.FLOOR' | translate}}" />
+          </div>
           <div class="form-group" show-errors>
             <label class="control-label" for="nbseats" ng-bind="'ROOM.NB_SEATS' | translate"></label>
             <input name="nbseats" type="number" ng-model="vm.room.nbseats" id="nbseats" class="form-control" placeholder="{{'ROOM.NB_SEATS' | translate}}" required />

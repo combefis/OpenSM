@@ -223,6 +223,8 @@
     "CODE": "Code",
     "CODE_ERROR": "Please fill in the code.",
     "NAME": "Name",
+    "BUILDING": "Building",
+    "FLOOR": "Floor",
     "NB_SEATS": "Number of seats",
     "NB_SEATS_ERROR": "Please fill in the number of seats.",
     "ROOM": "Room",

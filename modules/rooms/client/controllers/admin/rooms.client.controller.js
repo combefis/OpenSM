@@ -43,6 +43,8 @@
         // Clear form fields
         vm.room.code = '';
         vm.room.name = '';
+        vm.room.building = '';
+        vm.room.floor = '';
         vm.room.nbseats = '';
 
         if (roomId) {

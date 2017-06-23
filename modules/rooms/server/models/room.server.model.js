@@ -20,6 +20,13 @@ var RoomSchema = new Schema({
     type: String,
     trim: true
   },
+  building: {
+    type: String,
+    trim: true
+  },
+  floor: {
+    type: Number
+  },
   nbseats: {
     type: Number,
     required: 'Please fill in the number of seats of the room.'
