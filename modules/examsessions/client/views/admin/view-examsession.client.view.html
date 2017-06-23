@@ -25,6 +25,20 @@
 
         <div class="list-group" ng-if="vm.examsession.exams.length">
           <a ng-repeat="exam in vm.examsession.exams | orderBy: '+date'" ui-sref="admin.manage.exams.view({ examId: exam._id })" class="list-group-item">
+            <div class="pull-right" ng-if="cvm.hasAnyRole(['admin'])">
+              <span class="glyphicon glyphicon-book" aria-hidden="true" tooltip-placement="left" uib-tooltip="{{'EXAM.COPY.COPIES' | translate}}"></span>
+              <span ng-if="exam.validation.copies" class="glyphicon glyphicon-ok success-icon" aria-hidden="true"></span>
+              <span ng-if="!exam.validation.copies" class="glyphicon glyphicon-remove failed-icon" aria-hidden="true"></span><br/>
+
+              <span class="glyphicon glyphicon-equalizer" aria-hidden="true" tooltip-placement="left" uib-tooltip="{{'EXAM.REGISTRATIONS' | translate}}"></span>
+              <span ng-if="exam.validation.registrations" class="glyphicon glyphicon-ok success-icon" aria-hidden="true"></span>
+              <span ng-if="!exam.validation.registrations" class="glyphicon glyphicon-remove failed-icon" aria-hidden="true"></span><br/>
+
+              <span class="glyphicon glyphicon-print" aria-hidden="true" tooltip-placement="left" uib-tooltip="{{'EXAM.PRINTINGS' | translate}}"></span>
+              <span ng-if="exam.validation.printings" class="glyphicon glyphicon-ok success-icon" aria-hidden="true"></span>
+              <span ng-if="!exam.validation.printings" class="glyphicon glyphicon-remove failed-icon" aria-hidden="true"></span>
+            </div>
+
             <b>{{exam.course.code}} — {{exam.course.name}}</b><br />
             <i>{{exam.title}}</i><br />
             <small><i>{{exam.date | amDateFormat:'ddd D MMM YYYY'}}</i></small>

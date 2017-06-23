@@ -1,9 +1,9 @@
 <section>
-  <div ng-if="!vm.examsessions.$resolved" class="loading">
+  <div ng-if="!vm.examsessions.loaded" class="loading">
     <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> {{'LOADING' | translate}}
   </div>
 
-  <div ng-if="vm.examsessions.$resolved">
+  <div ng-if="vm.examsessions.loaded">
     <ol class="breadcrumb">
       <li class="active"><a ui-sref="admin.manage.examsessions.list" ng-bind="'EXAMSESSION.EXAMSESSIONS' | translate"></a></li>
     </ol>
@@ -16,11 +16,25 @@
           <a ui-sref="admin.manage.examsessions.create" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> {{'GENERAL.CREATE' | translate}}</a>
         </div>
 
-        <div class="list-group" ng-if="vm.examsessions.length">
-          <a ng-repeat="examsession in vm.examsessions" ui-sref="admin.manage.examsessions.view({ examsessionCode: examsession.code })" class="list-group-item"><b>{{examsession.code}}</b> – {{examsession.name}}<br /><small><i>{{'EXAMSESSION.FROM' | translate}} {{examsession.start | amDateFormat:'ddd D MMM YYYY'}} {{'EXAMSESSION.TO' | translate}} {{examsession.end | amDateFormat:'ddd D MMM YYYY'}}</i></small></a>
+        <div class="list-group" ng-if="vm.examsessions.current.length">
+          <h3 ng-bind="'EXAMSESSION.CURRENT_EXAMSESSIONS' | translate"></h3>
+
+          <a ng-repeat="examsession in vm.examsessions.current" ui-sref="admin.manage.examsessions.view({ examsessionCode: examsession.code })" class="list-group-item"><b>{{examsession.code}}</b> – {{examsession.name}}<br /><small><i>{{'EXAMSESSION.FROM' | translate}} {{examsession.start | amDateFormat:'ddd D MMM YYYY'}} {{'EXAMSESSION.TO' | translate}} {{examsession.end | amDateFormat:'ddd D MMM YYYY'}}</i></small></a>
         </div>
 
-        <div class="alert alert-warning" ng-if="!vm.examsessions.length" ng-bind="'EXAMSESSION.NO_EXAMSESSION' | translate"></div>
+        <div class="list-group" ng-if="vm.examsessions.future.length">
+          <h3 ng-bind="'EXAMSESSION.FUTURE_EXAMSESSIONS' | translate"></h3>
+
+          <a ng-repeat="examsession in vm.examsessions.future" ui-sref="admin.manage.examsessions.view({ examsessionCode: examsession.code })" class="list-group-item"><b>{{examsession.code}}</b> – {{examsession.name}}<br /><small><i>{{'EXAMSESSION.FROM' | translate}} {{examsession.start | amDateFormat:'ddd D MMM YYYY'}} {{'EXAMSESSION.TO' | translate}} {{examsession.end | amDateFormat:'ddd D MMM YYYY'}}</i></small></a>
+        </div>
+
+        <div class="list-group" ng-if="vm.examsessions.past.length">
+          <h3 ng-bind="'EXAMSESSION.PAST_EXAMSESSIONS' | translate"></h3>
+
+          <a ng-repeat="examsession in vm.examsessions.past" ui-sref="admin.manage.examsessions.view({ examsessionCode: examsession.code })" class="list-group-item"><b>{{examsession.code}}</b> – {{examsession.name}}<br /><small><i>{{'EXAMSESSION.FROM' | translate}} {{examsession.start | amDateFormat:'ddd D MMM YYYY'}} {{'EXAMSESSION.TO' | translate}} {{examsession.end | amDateFormat:'ddd D MMM YYYY'}}</i></small></a>
+        </div>
+
+        <div class="alert alert-warning" ng-if="!(vm.examsessions.past.length || vm.examsessions.current.length || vm.examsessions.future.length)" ng-bind="'EXAMSESSION.NO_EXAMSESSION' | translate"></div>
       </div>
 
       <div class="col-md-3">
@@ -29,7 +43,7 @@
           <div class="panel-body">
             <dl>
               <dt ng-bind="'EXAMSESSION.NB_EXAMSESSIONS' | translate"></dt>
-              <dd ng-bind="vm.examsessions.length"></dd>
+              <dd ng-bind="vm.examsessions.current.length + vm.examsessions.future.length + vm.examsessions.past.length"></dd>
             </dl>
           </div>
         </div>
