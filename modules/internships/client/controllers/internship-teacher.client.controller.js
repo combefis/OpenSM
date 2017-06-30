@@ -22,9 +22,9 @@
     vm.coordinatorPropositionCommentAdd = coordinatorPropositionCommentAdd;
     vm.addNoteField = addNoteField;
 
-    if (vm.internship.firstVisit.supervisorNotes.length === 0) {
+/*    if (vm.internship.firstVisit.supervisorNotes.length === 0) {
       vm.internship.firstVisit.supervisorNotes.push({});
-    }
+    } */
 
     if (internship.proposition && !internship.proposition.approval) {
       internship.proposition.approval = {};

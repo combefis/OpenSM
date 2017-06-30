@@ -12,8 +12,8 @@
     var vm = this;
 
     vm.internships = InternshipsService.query();  // il appelle(crer) le service et il fait query (ce qui appelle un GET dans le service)
-	vm.createNew = createNew;
     vm.internship = internship;
+    vm.createNew = createNew;
 
     console.log('enter');
 
@@ -27,10 +27,8 @@
         console.log('all is good');
         vm.internships = InternshipsService.query();
         console.log(vm.internship._id);
-        $state.go("admin.manage.internships.view", { 
-        	internshipId: vm.internship._id
-        });
-        //delete vm.internship._id;
+        $state.go("admin.manage.internships.view", { internshipId: vm.internship._id });
+        // delete vm.internship._id;
       }
 
       function errorCallback(res) {

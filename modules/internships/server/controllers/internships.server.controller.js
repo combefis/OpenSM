@@ -691,8 +691,9 @@ exports.editStartEnd = function (req, res) {
   req.body.internships.forEach(function(internship) {
 
     if (!internship.deadlines) {internship.deadlines = {}; }
+    internship = stateMachine(internship);
 
-    Internship.update({ _id: internship._id }, { $set: { 'deadlines.startInternship': internship.deadlines.startInternship, 'deadlines.endInternship': internship.deadlines.endInternship } }, function(err) {
+    Internship.update({ _id: internship._id }, { $set: { 'deadlines.startInternship': internship.deadlines.startInternship, 'deadlines.endInternship': internship.deadlines.endInternship, 'generalStatus': internship.generalStatus } }, function(err) {
       if (err) {
         return res.status(400).send({
           message: errorHandler.getErrorMessage(err)
@@ -771,7 +772,7 @@ function stateMachine(internship) {
       status = 'Internship Start';
     }
   }
-/*
+
   if (status === 'Internship Start') {
     console.log('8');
     state = 'In Internship';
@@ -779,7 +780,7 @@ function stateMachine(internship) {
       status = 'Activities Note Encoding';
     }
   }
-*/
+
   if ((status === 'Activities Note Encoding') || (status === 'Activities Note Reincoding')) {
     console.log('9');
     state = 'In Internship';
@@ -832,7 +833,7 @@ function stateMachine(internship) {
 
   if (status === 'Intermediate Evaluation') {
     console.log('14');
-    if (internship.intermediateEvaluation) {
+    if (internship.intermediateEvaluation.masterValidation) {
       status = 'Oral Presentation';
     }
   }

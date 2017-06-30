@@ -687,7 +687,7 @@ li#intermediate.active a span#intermediateTitle {
     </div>
     </div>
     <hr>
-    <div class="row" ng-if="((!vm.internship.intermediateEvaluation.Locked) && (vm.internship.generalStatus === 'Intermediate Evaluation'))">
+    <div class="row" ng-if="((!vm.internship.intermediateEvaluationLocked) && (vm.internship.generalStatus === 'Intermediate Evaluation'))">
       <div class="col-md-4">
         <a class="btn btn-primary" ui-sref="student.manage.internships.edit.intermediateEvaluation({ internshipId: vm.internship._id })">
           <i class="glyphicon glyphicon-edit" ng-if="vm.internship.intermediateEvaluation"></i>
@@ -736,7 +736,7 @@ li#intermediate.active a span#intermediateTitle {
     </div>
     </div>
     <hr>
-    <div class="row" ng-if="((vm.internship.generalStatus==='Oral Presentation')&&(true))">
+    <div class="row" ng-if="((vm.internship.generalStatus==='Oral Presentation')&&(!vm.internship.oralPresentationLocked))">
       <div class="col-md-4">
         <a class="btn btn-primary" ui-sref="student.manage.internships.edit.oralPresentation({ internshipId: vm.internship._id })">
           <i class="glyphicon glyphicon-edit" ng-if="vm.internship.oralPresentation"></i>

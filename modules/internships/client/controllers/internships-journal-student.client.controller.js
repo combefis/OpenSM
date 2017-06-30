@@ -9,11 +9,26 @@
 
   function InternshipsController($scope, $state, internship, $window, Authentication, $http, filter) {
     var vm = this; // on instancie tout ce qu'on vient de lui passer
-
-    vm.authentication = Authentication;
-    vm.journalDate = new Date();
-    vm.internship = internship; // le "resolve"
     vm.save = save;
+    vm.authentication = Authentication;
+    vm.internship = internship;
+
+    var today = new Date;
+    today = [today.getDate(), today.getMonth(), today.getFullYear()];
+
+    vm.journalEntry = {
+      'date': new Date,
+      'note': ''
+    };
+
+    vm.internship.journal.entries.forEach(function(entry) {
+      var journalDate = new Date(entry.date);
+      journalDate = [journalDate.getDate(), journalDate.getMonth(), journalDate.getFullYear()];
+      if (journalDate.toString() === today.toString()) {
+        entry.date = new Date(entry.date);
+        vm.journalEntry = entry;
+      }
+    });
 
     // Save Internship
     function save(isValid) {
@@ -24,7 +39,7 @@
 
       }
 
-      $http.post('/api/internships/' + vm.internship._id + '/editJournal', { 'date': vm.journalDate, 'note': vm.journalNote }).success(successCallback);
+      $http.post('/api/internships/' + vm.internship._id + '/editJournal', { 'date': vm.journalEntry.date, 'note': vm.journalEntry.note }).success(successCallback);
 
       function successCallback(res) {
         if (vm.authentication.user.roles.includes('admin')) {

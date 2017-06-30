@@ -32,7 +32,6 @@
       if (vm.readyList.length <= 0) {vm.filterOptions.splice(vm.filterOptions.indexOf('ready for validation'), 1);}
 
       internships.forEach(function(internship) {
-        console.log(internship.generalStatus);
         if (!internship.supervisor || !internship.supervisor.supervisor) {
           internship.noSupervisor = true;
         }
@@ -43,7 +42,7 @@
           if ((internship.supervisor) && (internship.supervisor.supervisor)) {
             internship.supervisorText = internship.supervisor.supervisor.username;
           } else if ((internship.supervisor) && (internship.supervisor.proposedSupervisor)) {
-            internship.supervisor.supervisor = internship.supervisor.proposedSupervisor;
+            // internship.supervisor.supervisor = internship.supervisor.proposedSupervisor;
             internship.supervisorText = internship.supervisor.proposedSupervisor.username + ' (proposed) ';
           }
         });
@@ -81,7 +80,6 @@
     function attributeSupervisors() {
       var internshipsCheckedList = [];
       vm.internships.forEach(function(internship) {
-        console.log("test");
         if (internship.supCheck === true) {
           internshipsCheckedList.push(internship);
         }
@@ -106,7 +104,7 @@
     function selectAllSupervisor() {
       console.log('selectAll');
       vm.internships.forEach(function(internship) {
-        if ((!internship.supervisor) || (!internship.supervisor.supervisor)) {
+        if (((!internship.supervisor) || (!internship.supervisor.supervisor)) && (!internship.managerApproval)) {
           internship.supCheck = vm.checkSelectAllSup;
         }
       });

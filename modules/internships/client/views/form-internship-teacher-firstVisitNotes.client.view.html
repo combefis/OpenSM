@@ -25,11 +25,13 @@
               <label class="control-label" for="internshipFirstVisitSupervisorNotes" ng-bind="'INTERNSHIP.FIRSTVISIT.SUPERVISORNOTES' | translate"></label>
               <textarea name="internshipFirstVisitSupervisorNoteValue" ng-model="Note.value" id="internshipFirstVisitSupervisorNoteValue" class="form-control" cols="30" rows="5" placeholder="{{'INTERNSHIP.FIRSTVISIT.SUPERVISORNOTE.VALUE' | translate}}" required>
               </textarea>
-              <div ng-messages="Note.$error" role="alert">
+
+              <div ng-messages="vm.form.internshipFirstVisitForm.$error" role="alert">
                 <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.FIRSTVISIT.SUPERVISORNOTE.VALUE' | translate"></p>
               </div>
+
               <br>
-              <a ng-if="$index !== 0" class="btn btn-primary" ng-click="vm.removeNoteField($index)">
+              <a class="btn btn-primary" ng-click="vm.removeNoteField($index)">
                 <i class="glyphicon glyphicon-trash"></i>
                 <span>Remove field</span>
               </a>

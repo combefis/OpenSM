@@ -118,6 +118,7 @@
               <td ng-bind ="internship.master.username"></td>
               <td ng-bind ="internship.supervisor.proposedSupervisor.username"></td>
               <td>{{internship.supervisor.propositionResponse !== null?internship.supervisor.propositionResponse:'pending'}}</td>
+
               <td ng-click="$event.stopPropagation();">
                 <div style="display: inline; float: left;">
                   <span ng-if="!internship.noSupervisor" class="glyphicon glyphicon-ok"></span>
@@ -126,10 +127,11 @@
                 <div ng-if="!internship.managerApproval">
                   <input style="float:right; width: auto;" type="text" placeholder="{{'NO SUPERVISOR' | translate}}" ng-model="internship.supervisor.supervisor" uib-typeahead="teacher as teacher.displayName for teacher in vm.teachers | filter: $viewValue | limitTo: 8" class="form-control">
                 </div>
-                <span class="pull-right" ng-if="internship.managerApproval">{{internship.supervisor.supervisor?internship.supervisor.supervisor.displayname:'no supervisor'}}</span>
+                <span class="pull-right" ng-if="internship.managerApproval">{{internship.supervisor.supervisor?internship.supervisor.supervisor.displayName:'no supervisor'}}</span>
               </td>
+
               <td ng-click="$event.stopPropagation();">
-                <input type="checkbox" ng-model="internship.supCheck" ng-click="vm.updateSelection(internship)" ng-disabled="!internship.noSupervisor">
+                <input type="checkbox" ng-model="internship.supCheck" ng-click="vm.updateSelection(internship)" ng-disabled="(!internship.noSupervisor) || (internship.managerApproval)">
               </td>              
             </tr>
           </tbody>

@@ -22,7 +22,7 @@
 
           <div class="form-group" show-errors>
             <label class="control-label" for="journalEntryDate" ng-bind="'INTERNSHIP.JOURNAL.ENTRY.DATE' | translate"></label>
-            <input name="internshipJournalEntryDate" type="date" ng-disabled="true" ng-model="vm.journalDate" id="journalEntryDate" class="form-control" placeholder="{{vm.todayDate}}" required />
+            <input name="internshipJournalEntryDate" type="date" ng-disabled="true" ng-model="vm.journalEntry.date" id="journalEntryDate" class="form-control" required />
             <div ng-messages="vm.form.internshipJournalForm.journal.entry.date.$error" role="alert">
               <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.JOURNAL.ENTRY.DATE' | translate"></p>
           </div>
@@ -30,7 +30,7 @@
 
           <div class="form-group" show-errors>
             <label class="control-label" for="InternshipEntryNote" ng-bind="'INTERNSHIP.JOURNAL.ENTRY.NOTE' | translate"></label>
-            <textarea name="internshipJournalEntryNote" ng-model="vm.journalNote" id="internshipJournalEntryNote" class="form-control" cols="30" rows="5" placeholder="{{'INTERNSHIP.JOURNAL.ENTRY.NOTE' | translate}}" required></textarea>
+            <textarea name="internshipJournalEntryNote" ng-model="vm.journalEntry.note" id="internshipJournalEntryNote" class="form-control" cols="30" rows="5" placeholder="{{'INTERNSHIP.JOURNAL.ENTRY.NOTE' | translate}}" required></textarea>
             <div ng-messages="vm.form.internshipJournalForm.journal.entry.note.$error" role="alert">
               <p class="help-block error-text" ng-message="required" ng-bind="'INTERNSHIP.JOURNAL.ENTRY.NOTE' | translate"></p>
             </div>

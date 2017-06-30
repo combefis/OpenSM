@@ -46,10 +46,8 @@
 
     // Save Internship
     function save(isValid) {
-      console.log(internship.firstVisit);
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'vm.form.internshipFirstVisitForm');  // on envoie dans le scope (associé au controleur, et donc la page html)
-        console.log('error');
         return false;   // on envoie dans  <div class="form-group" show-errors>
       }
 

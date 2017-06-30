@@ -10,8 +10,14 @@
   function InternshipsController($scope, $state, internship, $window, Authentication, DeadlinesService, $http, filter) {
     var vm = this; // on instancie tout ce qu'on vient de lui passer
 
+
     vm.authentication = Authentication;
     vm.internship = internship; // le "resolve"
+    vm.internship.journal.entries.sort(function(a, b) {
+      var aDate = new Date(a.date);
+      var bDate = new Date(b.date);
+      return bDate.getTime() - aDate.getTime();
+    });
     vm.title = '';
 
     if ((vm.internship.firstVisit.masterValidation) || (vm.internship.firstVisit.supervisorValidation) || (vm.internship.firstVisit.masterNotes.length > 0) || (vm.internship.firstVisit.supervisorNotes.length > 0)) {
@@ -20,6 +26,10 @@
 
     if ((vm.internship.intermediateEvaluation.masterValidation) || (vm.internship.intermediateEvaluation.masterNotes.length > 0)) {
       vm.internship.intermediateEvaluationLocked = true;
+    }
+
+    if ((vm.internship.oralPresentation.masterValidation) || (vm.internship.oralPresentation.supervisorValidation) || (vm.internship.oralPresentation.masterNotes.length > 0) || (vm.internship.oralPresentation.supervisorNotes.length > 0)) {
+      vm.internship.oralPresentationLocked = true;
     }
 
     if (vm.internship.generalStatus === 'Enterprise Encoding') {
@@ -74,7 +84,6 @@
     }
 
     if (internship.generalStatus === 'Convention Signing') {
-      console.log(vm.internship.convention);
       if (internship.convention.given) {
         vm.title = 'Convention de stage';
         vm.status = 'Validation de la convention de stage.';
@@ -135,6 +144,19 @@
       if (internship.firstVisit.masterValidation) {
         vm.instructions = 'Feedback du maître de stage encodé';
       }
+    }
+
+    if (internship.generalStatus === 'Intermediate Evaluation') {
+      vm.title = "évaluation intermédiaire";
+      if (!internship.intermediateEvaluation.date || !internship.intermediateEvaluation.location) {
+        vm.status = 'encodage Lieu et Date';
+        vm.instructions = 'En consultation avec le Maître de stage emerci de convenir d\'un lieu ainsi que d\'une date pour effecture l\'évaluation intermédiaire';
+      }
+      if (internship.intermediateEvaluation.date && internship.intermediateEvaluation.location && !internship.intermediateEvaluation.masterValidation) {
+        vm.status = 'Lieu et date encodés';
+        vm.instructions = 'En attente du déroulement de l\'évaluation intermédiaire et de l\'évaluation du maître de stage';
+      }
+
     }
 
     if (internship.generalStatus === 'Oral Presentation') {

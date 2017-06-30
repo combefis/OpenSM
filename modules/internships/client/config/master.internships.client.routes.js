@@ -82,7 +82,7 @@
     })
 
     .state('master.manage.students.internships.oralPresentationNotes', {
-      url: '/:internshipId/edit/firstVisit',
+      url: '/:internshipId/edit/oralPresentation',
       templateUrl: 'modules/internships/client/views/form-internship-master-oralPresentationNotes.client.view.html',
       controller: 'InternshipOralPresentationController',
       controllerAs: 'vm',
