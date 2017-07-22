@@ -34,7 +34,7 @@
         internship.startPopup = { opened: false };
         internship.endPopup = { opened: false };
       });
-      vm.allValidated = internships.every(function(internship) {return internship.managerApproval;});
+      vm.allValidated = internships.every(function(internship) {return ((internship.managerApproval) && (internship.validatorApproval));});
     });
 
     function validateAll() {

@@ -9,6 +9,7 @@
 
   function InternshipsListController($scope, $state, InternshipsService, TeachersService, $window, Authentication, $http, $filter, $rootScope) {
     var vm = this; // on instancie tout ce qu'on vient de lui passer
+    vm.readyList = [];
     vm.teachers = TeachersService.query(function(teachers) {});
     vm.updateSelection = updateSelection;
     vm.attributeSupervisors = attributeSupervisors;
@@ -16,7 +17,6 @@
     vm.selectAllSupervisor = selectAllSupervisor;
     vm.selectAllValidation = selectAllValidation;
     vm.allManagerValidated = false;
-    vm.filterSelect = 'All';
     vm.filterSelect = 'view all';
     vm.filterOptions = ['view all', 'supervisors', 'ready for validation'];
 
@@ -25,10 +25,10 @@
       if (internships.every(function(internship) {
         return ((typeof internship.supervisor !== 'undefined') && (internship.supervisor.supervisor));
       })) {
-        vm.filterOptions.splice(vm.filterOptions.indexOf('supervisor'), 1);
+        vm.filterOptions.splice(vm.filterOptions.indexOf('supervisor') - 1, 1);
       }
 
-      vm.readyList = internships.filter(function(internship) { return internship.generalStatus === 'Validation';});
+      vm.readyList = internships.filter(function(internship) { return ((internship.generalStatus === 'Validation') && (internship.validatorApproval !== true));});
       if (vm.readyList.length <= 0) {vm.filterOptions.splice(vm.filterOptions.indexOf('ready for validation'), 1);}
 
       internships.forEach(function(internship) {
@@ -47,6 +47,8 @@
           }
         });
       });
+      console.log(vm.readyList.length);
+      console.log(vm.filterOptions);
     });
 
     if ($scope.internships) {
