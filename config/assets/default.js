@@ -1,5 +1,7 @@
 'use strict';
 
+/* eslint comma-dangle:[0, "only-multiline"] */
+
 module.exports = {
   client: {
     lib: {
@@ -38,13 +40,14 @@ module.exports = {
         'public/lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
         'public/lib/angular-translate-storage-cookie/angular-translate-storage-cookie.js',
         'public/lib/angular-translate-storage-local/angular-translate-storage-local.js',
-        'public/lib/angular-ui-notification/dist/angular-ui-notification.js'
+        'public/lib/angular-ui-notification/dist/angular-ui-notification.js',
+        'public/lib/angular-mocks/angular-mocks.js'
         // endbower
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']
     },
     css: [
-      'modules/*/client/css/*.css'
+      'modules/*/client/{css,less,scss}/*.css'
     ],
     less: [
       'modules/*/client/less/*.less'
@@ -68,7 +71,6 @@ module.exports = {
     templates: ['build/templates.js']
   },
   server: {
-    gruntConfig: ['gruntfile.js'],
     gulpConfig: ['gulpfile.js'],
     allJS: ['server.js', 'config/**/*.js', 'modules/*/server/**/*.js'],
     models: 'modules/*/server/models/**/*.js',

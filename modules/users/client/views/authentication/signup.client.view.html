@@ -15,6 +15,7 @@
           <input type="text" id="lastname" name="lastname" class="form-control" ng-model="vm.credentials.lastname" placeholder="Lastname" required />
           <div ng-messages="vm.userForm.lastname.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Please fill in your lastname.</p>
+
           </div>
         </div>
         <div class="form-group" show-errors>
@@ -27,9 +28,10 @@
         </div>
         <div class="form-group" show-errors>
           <label for="username">Username</label>
-          <input type="text" id="username" name="username" class="form-control" ng-model="vm.credentials.username" placeholder="Username" lowercase required />
+          <input type="text" id="username" name="username" class="form-control" ng-model="vm.credentials.username" ng-pattern="vm.usernameRegex" placeholder="Username" lowercase required>
           <div ng-messages="vm.userForm.username.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Please choose a username.</p>
+            <p class="help-block error-text" ng-message="required">Username is required.</p>
+            <p class="help-block error-text" ng-message="pattern">Please enter a valid username: 3+ characters long, non restricted word, characters "_-.", no consecutive dots, does not begin or end with dots, letters a-z and numbers 0-9.</p>
           </div>
         </div>
         <div class="form-group" show-errors>
@@ -43,14 +45,13 @@
           </div>
         </div>
         <div class="form-group" ng-show="!vm.userForm.password.$error.required">
-          <label>Password requirements</label>
+          <label>Password Requirements</label>
           <uib-progressbar value="requirementsProgress" type="{{requirementsColor}}"><span style="color:white; white-space:nowrap;">{{requirementsProgress}}%</span></uib-progressbar>
         </div>
-        <div class="form-group">
+        <div class="text-center form-group">
           <button type="submit" class="btn btn-primary">Sign up</button>
-        </div>
-        <div ng-show="vm.error" class="text-center text-danger">
-          <strong ng-bind="vm.error"></strong>
+          &nbsp; or&nbsp;
+          <a ui-sref="authentication.signin" class="show-signup">Sign in</a>
         </div>
       </fieldset>
     </form>

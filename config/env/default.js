@@ -7,9 +7,14 @@ module.exports = {
     keywords: 'School Management',
     googleAnalyticsTrackingID: process.env.GOOGLE_ANALYTICS_TRACKING_ID || 'GOOGLE_ANALYTICS_TRACKING_ID'
   },
+  db: {
+    promise: global.Promise
+  },
   port: process.env.PORT || 3000,
   host: process.env.HOST || '0.0.0.0',
-  templateEngine: 'swig',
+  // DOMAIN config should be set to the fully qualified application accessible
+  // URL. For example: https://www.myapp.com (including port if required).
+  domain: process.env.DOMAIN,
   // Session Cookie settings
   sessionCookie: {
     // session expiration is set by default to 24 hours
@@ -24,26 +29,39 @@ module.exports = {
   },
   // sessionSecret should be changed for security measures and concerns
   sessionSecret: process.env.SESSION_SECRET || 'MEAN',
-  // sessionKey is set to the generic sessionId key used by PHP applications
-  // for obsecurity reasons
+  // sessionKey is the cookie session name
   sessionKey: 'sessionId',
   sessionCollection: 'sessions',
   // Lusca config
   csrf: {
     csrf: false,
-    csp: { /* Content Security Policy object */},
+    csp: false,
     xframe: 'SAMEORIGIN',
     p3p: 'ABCDEF',
     xssProtection: true
   },
   logo: 'modules/core/client/img/opensm-logo.png',
   favicon: 'modules/core/client/img/opensm-favicon.png',
+  illegalUsernames: ['meanjs', 'administrator', 'password', 'admin', 'user',
+    'unknown', 'anonymous', 'null', 'undefined', 'api'
+  ],
   uploads: {
-    profileUpload: {
-      dest: './modules/users/client/img/profile/uploads/', // Profile upload destination path
-      limits: {
-        fileSize: 1 * 1024 * 1024 // Max file size in bytes (1 MB)
+    profile: {
+      image: {
+        dest: './modules/users/client/img/profile/uploads/',
+        limits: {
+          fileSize: 1 * 1024 * 1024 // Max file size in bytes (1 MB)
+        }
       }
+    }
+  },
+  shared: {
+    owasp: {
+      allowPassphrases: true,
+      maxLength: 128,
+      minLength: 10,
+      minPhraseLength: 20,
+      minOptionalTestsToPass: 4
     }
   }
 };

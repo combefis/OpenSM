@@ -1,5 +1,7 @@
 'use strict';
 
+/* eslint comma-dangle:[0, "only-multiline"] */
+
 module.exports = {
   client: {
     lib: {
@@ -38,7 +40,8 @@ module.exports = {
         'public/lib/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js',
         'public/lib/angular-translate-storage-cookie/angular-translate-storage-cookie.min.js',
         'public/lib/angular-translate-storage-local/angular-translate-storage-local.min.js',
-        'public/lib/angular-ui-notification/dist/angular-ui-notification.min.js'
+        'public/lib/angular-ui-notification/dist/angular-ui-notification.min.js',
+        'public/lib/angular-mocks/angular-mocks.js'
         // endbower
       ]
     },

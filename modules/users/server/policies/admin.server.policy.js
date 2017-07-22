@@ -9,7 +9,11 @@ var acl = require('acl');
 acl = new acl(new acl.memoryBackend());
 
 /**
+<<<<<<< HEAD
  * Invoke admin permissions
+=======
+ * Invoke Admin Permissions
+>>>>>>> remotes/meanjs/master
  */
 exports.invokeRolesPolicies = function () {
   acl.allow([{
