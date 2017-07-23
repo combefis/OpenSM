@@ -7,8 +7,7 @@
       <span class="icon-bar"></span>
     </button>
     <a ui-sref="home" class="navbar-brand">
-      <img src="modules/core/client/img/opensm-logo.png"
-      alt="OpenSM logo" width="64" height="37" />
+      <img src="/modules/core/client/img/opensm-logo.png" alt="OpenSM logo" width="64" height="37" />
     </a>
   </div>
   <nav class="navbar-collapse" uib-collapse="!vm.isCollapsed" role="navigation">
@@ -26,7 +25,7 @@
     <ul class="nav navbar-nav navbar-right" ng-show="vm.authentication.user">
       <li class="dropdown" uib-dropdown>
         <a class="dropdown-toggle user-header-dropdown-toggle" uib-dropdown-toggle role="button">
-          <img ng-src="{{vm.authentication.user.profileImageURL}}" alt="{{vm.authentication.user.displayName}}" class="header-profile-image" />
+          <img ng-src="/{{vm.authentication.user.profileImageURL}}" alt="{{vm.authentication.user.displayName}}" class="header-profile-image" />
           <span ng-bind="vm.authentication.user.displayName"></span> <b class="caret"></b>
         </a>
         <ul class="dropdown-menu" role="menu">
