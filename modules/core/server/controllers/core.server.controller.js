@@ -23,7 +23,6 @@ exports.renderIndex = function (req, res) {
       additionalProvidersData: req.user.additionalProvidersData
     };
   }
-
   res.render('modules/core/server/views/index', {
     user: JSON.stringify(safeUserObject),
     sharedConfig: JSON.stringify(config.shared)
@@ -44,19 +43,18 @@ exports.renderServerError = function (req, res) {
  * Performs content-negotiation on the Accept HTTP header
  */
 exports.renderNotFound = function (req, res) {
-
   res.status(404).format({
-    'text/html': function () {
+    'text/html': function() {
       res.render('modules/core/server/views/404', {
         url: req.originalUrl
       });
     },
-    'application/json': function () {
+    'application/json': function() {
       res.json({
         error: 'Path not found'
       });
     },
-    'default': function () {
+    'default': function() {
       res.send('Path not found');
     }
   });

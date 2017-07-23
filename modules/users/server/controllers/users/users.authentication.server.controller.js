@@ -7,6 +7,7 @@ var path = require('path'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   mongoose = require('mongoose'),
   passport = require('passport'),
+  AcademicYear = mongoose.model('AcademicYear'),
   User = mongoose.model('User');
 
 // URLs for which user can't be redirected on signin
@@ -65,7 +66,20 @@ exports.signin = function (req, res, next) {
         if (err) {
           res.status(400).send(err);
         } else {
-          res.json(user);
+          // Load the academic year in the session
+          req.session.academicyear = undefined;
+          AcademicYear.findOne({
+            $and: [
+              { start: { $lte: new Date() } },
+              { end: { $gte: new Date() } }
+            ]
+          }, 'code')
+          .exec(function (err, academicyear) {
+            if (!err && academicyear) {
+              req.session.academicyear = academicyear.code;
+            }
+            res.json(user);
+          });
         }
       });
     }
