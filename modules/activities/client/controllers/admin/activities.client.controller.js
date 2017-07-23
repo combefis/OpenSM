@@ -13,11 +13,17 @@
     vm.activity = activity;
     vm.activityname = activity.name;
     vm.authentication = Authentication;
-    vm.error = null;
     vm.form = {};
     vm.save = save;
     vm.loadTeachers = loadTeachers;
     vm.isFormReady = isFormReady;
+
+    // Initialise the list of evaluations
+    var evaluationsList = ['written', 'oral', 'assignment', 'project'];
+    vm.activityevaluations = {};
+    evaluationsList.forEach(function(element) {
+      vm.activityevaluations[element] = vm.activity.evaluations.includes(element);
+    });
 
     var activityId = activity._id;
 
@@ -37,6 +43,14 @@
         return false;
       }
 
+      // Build the list of evaluations
+      vm.activity.evaluations = [];
+      evaluationsList.forEach(function(element) {
+        if (vm.activityevaluations[element]) {
+          vm.activity.evaluations.push(element);
+        }
+      });
+
       // Create a new activity, or update the current instance
       vm.activity.createOrUpdate()
         .then(successCallback)
@@ -44,11 +58,6 @@
 
       function successCallback(res) {
         var code = vm.activity.code;
-        // Clear form fields
-        vm.activity.code = '';
-        vm.activity.name = '';
-        vm.activity.teachers = [];
-        vm.activity.description = '';
 
         if (activityId) {
           $state.go('admin.manage.activities.view', {
@@ -57,11 +66,16 @@
         } else {
           $state.go('admin.manage.activities.list');
         }
-        Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')(activityId ? 'ACTIVITY.SUCCESSFUL_UPDATE' : 'ACTIVITY.SUCCESSFUL_CREATION', { code: code }) });
+        Notification.success({
+          message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')(activityId ? 'ACTIVITY.SUCCESSFUL_UPDATE' : 'ACTIVITY.SUCCESSFUL_CREATION', { code: code })
+        });
       }
 
       function errorCallback(res) {
-        vm.error = res.data.message;
+        Notification.error({
+          title: '<i class="glyphicon glyphicon-remove"></i> Activity save error!',
+          message: res.data.message
+        });
       }
     }
 

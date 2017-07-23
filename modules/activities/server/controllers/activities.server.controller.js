@@ -18,7 +18,7 @@ exports.create = function (req, res) {
 
   activity.save(function (err) {
     if (err) {
-      return res.status(400).send({
+      return res.status(422).send({
         message: errorHandler.getErrorMessage(err)
       });
     }
@@ -36,7 +36,7 @@ exports.read = function (req, res) {
 };
 
 /**
- * Update an exam session
+ * Update an activity
  */
 exports.update = function (req, res) {
   var activity = req.activity;
@@ -44,6 +44,8 @@ exports.update = function (req, res) {
   activity.code = req.body.code;
   activity.name = req.body.name;
   activity.teachers = req.body.teachers;
+  activity.hours = req.body.hours;
+  activity.evaluations = req.body.evaluations;
   activity.description = req.body.description;
 
   activity.save(function (err) {
@@ -65,7 +67,7 @@ exports.list = function (req, res) {
   .sort({ code: 1 })
   .exec(function (err, activities) {
     if (err) {
-      return res.status(400).send({
+      return res.status(422).send({
         message: errorHandler.getErrorMessage(err)
       });
     }
@@ -77,7 +79,7 @@ exports.list = function (req, res) {
  * Activity middleware
  */
 exports.activityByCode = function (req, res, next, code) {
-  Activity.findOne({ code: code }, 'code name teachers description')
+  Activity.findOne({ code: code }, 'code name teachers hours evaluations description')
   .populate('teachers', 'firstname lastname displayName')
   .exec(function (err, activity) {
     if (err) {
@@ -85,7 +87,7 @@ exports.activityByCode = function (req, res, next, code) {
     }
     if (!activity) {
       return res.status(404).send({
-        message: 'No activity with that identifier has been found.'
+        message: 'No activity with that code has been found.'
       });
     }
     req.activity = activity;

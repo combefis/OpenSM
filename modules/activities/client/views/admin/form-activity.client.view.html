@@ -1,9 +1,9 @@
 <section>
-  <div ng-if="vm.activity._id && !vm.activity.$resolved" class="loading">
+  <div ng-if="(vm.activity._id && !vm.activity.$resolved) || !vm.isFormReady()" class="loading">
     <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> {{'LOADING' | translate}}
   </div>
 
-  <div ng-if="!vm.activity._id || vm.activity.$resolved">
+  <div ng-if="(!vm.activity._id || vm.activity.$resolved) && vm.isFormReady()">
     <ol class="breadcrumb">
       <li><a ui-sref="admin.manage.activities.list" ng-bind="'ACTIVITY.ACTIVITIES' | translate"></a></li>
       <li ng-if="!vm.activity._id" class="active"><a ui-sref="admin.manage.activities.create" ng-bind="'GENERAL.CREATE' | translate"></a></li>
@@ -37,6 +37,22 @@
             </tags-input>
             <div ng-messages="vm.form.activityForm.teachers.$error" role="alert">
               <p class="help-block error-text" ng-message="minTags" ng-bind="'ACTIVITY.TEACHER_MISSING_ERROR' | translate"></p>
+            </div>
+          </div>
+          <div class="form-group" show-errors>
+            <label class="control-label" for="hours" ng-bind="'ACTIVITY.HOURS' | translate"></label>
+            <input name="hours" type="number" ng-model="vm.activity.hours" id="hours" class="form-control" placeholder="{{'ACTIVITY.HOURS' | translate}}" required />
+            <div ng-messages="vm.form.activityForm.hours.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'ACTIVITY.HOURS_ERROR' | translate"></p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label" ng-bind="'ACTIVITY.EVALUATIONS' | translate"></label>
+            <div>
+              <input name="evaluation_written" type="checkbox" ng-model="vm.activityevaluations.written" id="evaluations" />&nbsp;{{'EVALUATION.WRITTEN' | translate}}<br />
+              <input name="evaluation_oral" type="checkbox" ng-model="vm.activityevaluations.oral" id="evaluations" />&nbsp;{{'EVALUATION.ORAL' | translate}}<br />
+              <input name="evaluation_assignment" type="checkbox" ng-model="vm.activityevaluations.assignment" id="evaluations" />&nbsp;{{'EVALUATION.ASSIGNMENT' | translate}}<br />
+              <input name="evaluation_project" type="checkbox" ng-model="vm.activityevaluations.project" id="evaluations" />&nbsp;{{'EVALUATION.PROJECT' | translate}}
             </div>
           </div>
           <div class="form-group">

@@ -25,6 +25,9 @@
     "TEACHERS": "Enseignants",
     "ADD_TEACHER": "Ajouter un enseignant",
     "TEACHER_MISSING_ERROR": "Veuillez spécifier au moins un enseignant.",
+    "HOURS": "Heures",
+    "HOURS_ERROR": "Veuillez spécifier le nombre d'heures.",
+    "EVALUATIONS": "Évaluations",
     "DESCRIPTION": "Description",
     "NO_DESCRIPTION": "@:GENERAL.NO_DESCRIPTION",
     "SUCCESSFUL_CREATION": "L'activité \"{{code}}\" a été créée avec succès !",
@@ -90,6 +93,12 @@
       "SCORE": "Score"
     },
     "CREATE": "Créer une grille d'évaluation"
+  },
+  "EVALUATION": {
+    "WRITTEN": "Écrit",
+    "ORAL": "Oral",
+    "ASSIGNMENT": "Travail",
+    "PROJECT": "Projet"
   },
   "EXAM": {
     "EXAMS": "Examens",

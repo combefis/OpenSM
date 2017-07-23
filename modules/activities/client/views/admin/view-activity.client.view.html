@@ -32,6 +32,10 @@
               <dd ng-bind="vm.activity.name"></dd>
               <dt ng-bind="'ACTIVITY.TEACHERS' | translate"></dt>
               <dd><span ng-repeat="teacher in vm.activity.teachers | orderBy: '+lastname'" ng-bind="teacher.firstname + ' ' + teacher.lastname + ($last ? '' : ', ')"></span></dd>
+              <dt ng-bind="'ACTIVITY.HOURS' | translate"></dt>
+              <dd ng-bind="vm.activity.hours"></dd>
+              <dt ng-bind="'ACTIVITY.EVALUATIONS' | translate"></dt>
+              <dd><span ng-repeat="evaluation in vm.activity.evaluations" ng-bind="evaluation + ($last ? '' : ', ')"></span></dd>
             </dl>
           </div>
         </div>

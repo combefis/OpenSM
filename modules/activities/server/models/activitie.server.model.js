@@ -27,6 +27,17 @@ var ActivitySchema = new Schema({
     }],
     required: 'Please fill in the teacher(s) of the activity.'
   },
+  hours: {
+    type: Number,
+    required: 'Please fill in the number of hours of the activity.'
+  },
+  evaluations: {
+    type: [{
+      type: String,
+      enum: ['written', 'oral', 'assignment', 'project']
+    }],
+    default: []
+  },
   description: {
     type: String,
     trim: true

@@ -16,7 +16,7 @@
       })
       .state('admin.manage.activities.list', {
         url: '',
-        templateUrl: 'modules/activities/client/views/admin/list-activities.client.view.html',
+        templateUrl: '/modules/activities/client/views/admin/list-activities.client.view.html',
         controller: 'ActivitiesListAdminController',
         controllerAs: 'vm',
         data: {
@@ -26,7 +26,7 @@
       })
       .state('admin.manage.activities.create', {
         url: '/create',
-        templateUrl: 'modules/activities/client/views/admin/form-activity.client.view.html',
+        templateUrl: '/modules/activities/client/views/admin/form-activity.client.view.html',
         controller: 'ActivitiesAdminController',
         controllerAs: 'vm',
         resolve: {
@@ -39,7 +39,7 @@
       })
       .state('admin.manage.activities.view', {
         url: '/:activityCode',
-        templateUrl: 'modules/activities/client/views/admin/view-activity.client.view.html',
+        templateUrl: '/modules/activities/client/views/admin/view-activity.client.view.html',
         controller: 'ActivitiesAdminController',
         controllerAs: 'vm',
         resolve: {
@@ -52,7 +52,7 @@
       })
       .state('admin.manage.activities.edit', {
         url: '/:activityCode/edit',
-        templateUrl: 'modules/activities/client/views/admin/form-activity.client.view.html',
+        templateUrl: '/modules/activities/client/views/admin/form-activity.client.view.html',
         controller: 'ActivitiesAdminController',
         controllerAs: 'vm',
         resolve: {

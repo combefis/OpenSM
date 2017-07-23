@@ -25,6 +25,9 @@
     "TEACHERS": "Teachers",
     "ADD_TEACHER": "Add a teacher",
     "TEACHER_MISSING_ERROR": "Please select at least one teacher.",
+    "HOURS": "Hours",
+    "HOURS_ERROR": "Please fill in the hours.",
+    "EVALUATIONS": "Evaluations",
     "DESCRIPTION": "Description",
     "NO_DESCRIPTION": "@:GENERAL.NO_DESCRIPTION",
     "SUCCESSFUL_CREATION": "The activity \"{{code}}\" has been successfully created!",
@@ -91,6 +94,12 @@
     },
     "CREATE": "Create an evaluation grid",
     "SUCCESSFUL_DELETE": "The evaluation grid \"{{code}}\" has been successfully deleted!"
+  },
+  "EVALUATION": {
+    "WRITTEN": "Written",
+    "ORAL": "Oral",
+    "ASSIGNMENT": "Assignment",
+    "PROJECT": "Project"
   },
   "EXAM": {
     "EXAMS": "Exams",

@@ -5,10 +5,10 @@
     .module('activities.services')
     .factory('ActivitiesService', ActivitiesService);
 
-  ActivitiesService.$inject = ['$resource'];
+  ActivitiesService.$inject = ['$resource', '$log'];
 
-  function ActivitiesService($resource) {
-    var Activity = $resource('api/activities/:activityCode', {
+  function ActivitiesService($resource, $log) {
+    var Activity = $resource('/api/activities/:activityCode', {
       activityCode: ''
     }, {
       update: {
@@ -46,7 +46,7 @@
 
     function handleError(error) {
       // Log error
-      console.log(error);
+      $log.error(error);
     }
   }
 }());
