@@ -17,7 +17,8 @@ exports.invokeRolesPolicies = function() {
     allows: [{
       resources: [
         '/api/academicyears',
-        '/api/academicyears/:academicyearCode'
+        '/api/academicyears/:academicyearCode',
+        '/api/academicyears/current'
       ],
       permissions: '*'
     }]

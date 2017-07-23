@@ -39,9 +39,9 @@
         </ul>
       </li>
     </ul>
-    <ul class="nav navbar-nav navbar-right" ng-show="vm.authentication.user">
+    <ul class="nav navbar-nav navbar-right" ng-show="vm.authentication.user && vm.academicyear !== null">
       <li class="dropdown" dropdown>
-        <a class="dropdown-toggle" dropdown-toggle role="button">2015&ndash;2016</a>
+        <a class="dropdown-toggle" dropdown-toggle role="button">{{vm.academicyear.code}}&ndash;{{vm.academicyear.code+1}}</a>
       </li>
     </ul>
   </nav>

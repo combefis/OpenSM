@@ -5,10 +5,10 @@
     .module('academicyears.services')
     .factory('AcademicYearsService', AcademicYearsService);
 
-  AcademicYearsService.$inject = ['$resource'];
+  AcademicYearsService.$inject = ['$resource', '$log'];
 
-  function AcademicYearsService($resource) {
-    var AcademicYear = $resource('api/academicyears/:academicyearCode', {
+  function AcademicYearsService($resource, $log) {
+    var AcademicYear = $resource('/api/academicyears/:academicyearCode', {
       academicyearCode: ''
     }, {
       update: {
@@ -46,7 +46,7 @@
 
     function handleError(error) {
       // Log error
-      console.log(error);
+      $log.error(error);
     }
   }
 }());

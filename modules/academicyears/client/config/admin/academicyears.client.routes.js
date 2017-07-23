@@ -16,7 +16,7 @@
       })
       .state('admin.manage.academicyears.list', {
         url: '',
-        templateUrl: 'modules/academicyears/client/views/admin/list-academicyears.client.view.html',
+        templateUrl: '/modules/academicyears/client/views/admin/list-academicyears.client.view.html',
         controller: 'AcademicYearsListAdminController',
         controllerAs: 'vm',
         data: {
@@ -26,7 +26,7 @@
       })
       .state('admin.manage.academicyears.create', {
         url: '/create',
-        templateUrl: 'modules/academicyears/client/views/admin/form-academicyear.client.view.html',
+        templateUrl: '/modules/academicyears/client/views/admin/form-academicyear.client.view.html',
         controller: 'AcademicYearsAdminController',
         controllerAs: 'vm',
         resolve: {
@@ -39,7 +39,7 @@
       })
       .state('admin.manage.academicyears.view', {
         url: '/:academicyearCode',
-        templateUrl: 'modules/academicyears/client/views/admin/view-academicyear.client.view.html',
+        templateUrl: '/modules/academicyears/client/views/admin/view-academicyear.client.view.html',
         controller: 'AcademicYearsAdminController',
         controllerAs: 'vm',
         resolve: {
@@ -47,12 +47,12 @@
         },
         data: {
           roles: ['admin'],
-          pageTitle: '{{academicyearResolve.code}}'
+          pageTitle: '{{academicyearResolve.code}} – {{academicyearResolve.code+1}}'
         }
       })
       .state('admin.manage.academicyears.edit', {
         url: '/:academicyearCode/edit',
-        templateUrl: 'modules/academicyears/client/views/admin/form-academicyear.client.view.html',
+        templateUrl: '/modules/academicyears/client/views/admin/form-academicyear.client.view.html',
         controller: 'AcademicYearsAdminController',
         controllerAs: 'vm',
         resolve: {

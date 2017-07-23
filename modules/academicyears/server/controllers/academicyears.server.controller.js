@@ -118,6 +118,31 @@ exports.list = function (req, res) {
 };
 
 /**
+ * Get the current academic year
+ */
+exports.current = function (req, res) {
+  AcademicYear.findOne({
+    $and: [
+      { start: { $lte: new Date() } },
+      { end: { $gte: new Date() } }
+    ]
+  }, 'code start end')
+  .exec(function (err, academicyear) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+    if (!academicyear) {
+      return res.status(404).send({
+        message: 'No academic year now.'
+      });
+    }
+    res.json(academicyear);
+  });
+};
+
+/**
  * Academic year middleware
  */
 exports.academicyearByCode = function (req, res, next, code) {
@@ -128,7 +153,7 @@ exports.academicyearByCode = function (req, res, next, code) {
     }
     if (!academicyear) {
       return res.status(404).send({
-        message: 'No academic year with that identifier has been found.'
+        message: 'No academic year with that code has been found.'
       });
     }
     req.academicyear = academicyear;

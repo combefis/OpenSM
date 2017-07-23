@@ -12,6 +12,10 @@ module.exports = function (app) {
     .get(academicyears.list)
     .post(academicyears.create);
 
+  // Current academic year routes
+  app.route('/api/academicyears/current').all(academicyearsPolicy.isAllowed)
+    .get(academicyears.current);
+
   // Single academic year routes
   app.route('/api/academicyears/:academicyearCode').all(academicyearsPolicy.isAllowed)
     .get(academicyears.read)
