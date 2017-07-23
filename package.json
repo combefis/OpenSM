@@ -30,8 +30,7 @@
     "test:client": "gulp test:client",
     "test:e2e": "gulp test:e2e",
     "test:coverage": "gulp test:coverage",
-    "postinstall": "npm run bower",
-    "generate-ssl-certs": "scripts/generate-ssl-certs.sh"
+    "postinstall": "npm run bower"
   },
   "dependencies": {
     "acl": "~0.4.10",
