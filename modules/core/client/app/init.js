@@ -36,7 +36,7 @@
   function translationConfig($translateProvider) {
     $translateProvider.useSanitizeValueStrategy('escape');
     $translateProvider.useStaticFilesLoader({
-      prefix: 'lang/',
+      prefix: '/lang/',
       suffix: '.json'
     });
     $translateProvider.preferredLanguage('en_GB');
