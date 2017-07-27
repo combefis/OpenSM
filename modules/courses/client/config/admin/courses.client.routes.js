@@ -1,4 +1,4 @@
-(function () {
+(function() {
   'use strict';
 
   angular
@@ -7,7 +7,7 @@
 
   routeConfig.$inject = ['$stateProvider'];
 
-  function routeConfig($stateProvider) {
+  function routeConfig ($stateProvider) {
     $stateProvider
       .state('admin.manage.courses', {
         abstract: true,
@@ -16,7 +16,7 @@
       })
       .state('admin.manage.courses.list', {
         url: '',
-        templateUrl: 'modules/courses/client/views/admin/list-courses.client.view.html',
+        templateUrl: '/modules/courses/client/views/admin/list-courses.client.view.html',
         controller: 'CoursesListAdminController',
         controllerAs: 'vm',
         data: {
@@ -26,7 +26,7 @@
       })
       .state('admin.manage.courses.create', {
         url: '/create',
-        templateUrl: 'modules/courses/client/views/admin/form-course.client.view.html',
+        templateUrl: '/modules/courses/client/views/admin/form-course.client.view.html',
         controller: 'CoursesAdminController',
         controllerAs: 'vm',
         resolve: {
@@ -39,7 +39,7 @@
       })
       .state('admin.manage.courses.view', {
         url: '/:courseCode',
-        templateUrl: 'modules/courses/client/views/admin/view-course.client.view.html',
+        templateUrl: '/modules/courses/client/views/admin/view-course.client.view.html',
         controller: 'CoursesAdminController',
         controllerAs: 'vm',
         resolve: {
@@ -52,7 +52,7 @@
       })
       .state('admin.manage.courses.edit', {
         url: '/:courseCode/edit',
-        templateUrl: 'modules/courses/client/views/admin/form-course.client.view.html',
+        templateUrl: '/modules/courses/client/views/admin/form-course.client.view.html',
         controller: 'CoursesAdminController',
         controllerAs: 'vm',
         resolve: {
@@ -67,7 +67,7 @@
 
   getCourse.$inject = ['$stateParams', 'CoursesService'];
 
-  function getCourse($stateParams, CoursesService) {
+  function getCourse ($stateParams, CoursesService) {
     return CoursesService.get({
       courseCode: $stateParams.courseCode
     }).$promise;
@@ -75,7 +75,7 @@
 
   newCourse.$inject = ['CoursesService'];
 
-  function newCourse(CoursesService) {
+  function newCourse (CoursesService) {
     return new CoursesService();
   }
 }());

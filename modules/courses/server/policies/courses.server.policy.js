@@ -11,7 +11,7 @@ acl = new acl(new acl.memoryBackend());
 /**
  * Invoke courses permissions
  */
-exports.invokeRolesPolicies = function () {
+exports.invokeRolesPolicies = function() {
   acl.allow([{
     roles: ['admin'],
     allows: [{

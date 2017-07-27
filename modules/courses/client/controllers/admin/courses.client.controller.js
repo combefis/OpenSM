@@ -1,4 +1,4 @@
-(function () {
+(function() {
   'use strict';
 
   angular
@@ -7,13 +7,12 @@
 
   CoursesAdminController.$inject = ['$scope', '$state', '$http', 'courseResolve', '$window', 'Authentication', 'Notification', '$filter'];
 
-  function CoursesAdminController($scope, $state, $http, course, $window, Authentication, Notification, $filter) {
+  function CoursesAdminController ($scope, $state, $http, course, $window, Authentication, Notification, $filter) {
     var vm = this;
 
     vm.course = course;
     vm.coursename = course.name;
     vm.authentication = Authentication;
-    vm.error = null;
     vm.form = {};
     vm.save = save;
     vm.loadTeachers = loadTeachers;
@@ -31,20 +30,20 @@
 
     // Load the list of teachers for the tags-input
     var teachersList = [];
-    $http.get('/api/teachers').success(function(data, status, headers, config) {
+    $http.get('/api/teachers').success(function (data, status, headers, config) {
       teachersList = data;
       tagsInputListsLoaded[0] = true;
     });
 
     // Load the list of activities for the tags-input
     var activitiesList = [];
-    $http.get('/api/activities').success(function(data, status, headers, config) {
+    $http.get('/api/activities').success(function (data, status, headers, config) {
       activitiesList = data;
       tagsInputListsLoaded[1] = true;
     });
 
     // Save course
-    function save(isValid) {
+    function save (isValid) {
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'vm.form.courseForm');
         return false;
@@ -61,6 +60,7 @@
         vm.course.code = '';
         vm.course.name = '';
         vm.course.coordinator = [];
+        vm.course.credits = '';
         vm.course.description = '';
         vm.course.activities = [];
 
@@ -68,30 +68,40 @@
           $state.go('admin.manage.courses.view', {
             courseCode: code
           });
+          Notification.success({
+            title: '<i class="glyphicon glyphicon-exclamation-pencil"></i> ' + $filter('translate')('COURSE.UPDATE'),
+            message: $filter('translate')('COURSE.SUCCESSFUL_UPDATE', { code: code })
+          });
         } else {
           $state.go('admin.manage.courses.list');
+          Notification.success({
+            title: '<i class="glyphicon glyphicon-exclamation-add"></i> ' + $filter('translate')('COURSE.CREATION'),
+            message: $filter('translate')('COURSE.SUCCESSFUL_CREATION', { code: code })
+          });
         }
-        Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')(courseId ? 'COURSE.SUCCESSFUL_UPDATE' : 'COURSE.SUCCESSFUL_CREATION', { code: code }) });
       }
 
       function errorCallback(res) {
-        vm.error = res.data.message;
+        Notification.error({
+          title: '<i class="glyphicon glyphicon-remove"></i> ' + $filter('translate')('GENERAL.ERROR'),
+          message: res.data.message
+        });
       }
     }
 
     // Generate list of teachers
-    function loadTeachers(query) {
+    function loadTeachers (query) {
       return $filter('filter')(teachersList, query);
     }
 
     // Generate list of activities
-    function loadActivities(query) {
+    function loadActivities (query) {
       return $filter('filter')(activitiesList, query);
     }
 
     // Test whether the form is ready to be displayed and used
     function isFormReady() {
-      return tagsInputListsLoaded.every(function(data) {return data;});
+      return tagsInputListsLoaded.every(function (data) { return data; });
     }
   }
 }());

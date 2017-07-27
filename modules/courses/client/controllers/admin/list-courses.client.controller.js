@@ -1,4 +1,4 @@
-(function () {
+(function() {
   'use strict';
 
   angular
@@ -7,7 +7,7 @@
 
   CoursesListAdminController.$inject = ['CoursesService'];
 
-  function CoursesListAdminController(CoursesService) {
+  function CoursesListAdminController (CoursesService) {
     var vm = this;
 
     vm.courses = CoursesService.query({ filter: 'all' });

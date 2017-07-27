@@ -8,7 +8,7 @@ var path = require('path'),
   Course = mongoose.model('Course'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
-/*
+/**
  * Generate the team of teachers of a course
  */
 function getTeam (course) {
@@ -24,30 +24,38 @@ function getTeam (course) {
 }
 
 /**
+ * Compute total number of hours
+ */
+function getHours (course) {
+  var hours = 0;
+  course.activities.forEach(function (element) {
+    hours += element.hours;
+  });
+  return hours;
+}
+
+/**
  * Create a course
  */
 exports.create = function (req, res) {
   var course = new Course(req.body);
-  course.user = req.user;
-  course.coordinator = req.body.coordinator[0];
-  course.academicyear = 2016;
-
-  // Generate team of teachers
-  Course.populate(course, { path: 'activities', select: 'teachers', model: 'Activity' }, function (err, course) {
+  Course.populate(course, { path: 'activities', select: 'teachers hours', model: 'Activity' }, function (err, course) {
     if (err || !course) {
       return res.status(404).send({
         message: 'Error while retrieving information about the course.'
       });
     }
-
+    course.coordinator = req.body.coordinator[0];
+    course.hours = getHours(course);
     course.team = getTeam(course);
+    course.academicyear = req.session.academicyear;
+    course.user = req.user;
     course.save(function (err) {
       if (err) {
-        return res.status(400).send({
+        return res.status(422).send({
           message: errorHandler.getErrorMessage(err)
         });
       }
-
       res.json(course);
     });
   });
@@ -67,22 +75,28 @@ exports.read = function (req, res) {
  */
 exports.update = function (req, res) {
   var course = req.course;
-
-  course.code = req.body.code;
-  course.name = req.body.name;
-  course.coordinator = req.body.coordinator[0];
-  course.team = getTeam(course);
-  course.description = req.body.description;
   course.activities = req.body.activities;
-
-  course.save(function (err) {
-    if (err) {
-      return res.status(422).send({
-        message: errorHandler.getErrorMessage(err)
+  Course.populate(course, { path: 'activities', select: 'teachers hours', model: 'Activity' }, function (err, course) {
+    if (err || !course) {
+      return res.status(404).send({
+        message: 'Error while retrieving information about the course.'
       });
     }
-
-    res.json(course);
+    course.code = req.body.code;
+    course.name = req.body.name;
+    course.coordinator = req.body.coordinator[0];
+    course.hours = getHours(course);
+    course.credits = req.body.credits;
+    course.team = getTeam(course);
+    course.description = req.body.description;
+    course.save(function (err) {
+      if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      }
+      res.json(course);
+    });
   });
 };
 
@@ -100,11 +114,10 @@ exports.list = function (req, res) {
       .sort({ code: 1 })
       .exec(function (err, courses) {
         if (err) {
-          return res.status(400).send({
+          return res.status(422).send({
             message: errorHandler.getErrorMessage(err)
           });
         }
-
         res.json(courses);
       });
       break;
@@ -115,11 +128,10 @@ exports.list = function (req, res) {
       .sort({ code: 1 })
       .exec(function (err, courses) {
         if (err) {
-          return res.status(400).send({
+          return res.status(422).send({
             message: errorHandler.getErrorMessage(err)
           });
         }
-
         var teacherCourses = [];
         courses.forEach(function (course) {
           if (course.coordinator.equals(req.user.id) || course.team.some(function (element) { return element.equals(req.user.id); })) {
@@ -139,27 +151,25 @@ exports.list = function (req, res) {
  * Course middleware
  */
 exports.courseByCode = function (req, res, next, code) {
-  Course.findOne({ code: code }, 'code name coordinator team description activities')
+  Course.findOne({ code: code }, 'code name coordinator hours credits team description activities')
   .populate('coordinator', 'displayName')
   .populate('team', 'firstname lastname displayName')
-  .populate('activities', 'code name teachers')
+  .populate('activities', 'code name hours teachers')
   .exec(function (err, course) {
     if (err) {
       return next(err);
     }
     if (!course) {
       return res.status(404).send({
-        message: 'No course with that identifier has been found.'
+        message: 'No course with that code has been found.'
       });
     }
-
     Course.populate(course, { path: 'activities.teachers', select: 'firstname lastname displayName', model: 'User' }, function (err, course) {
       if (err || !course) {
         return res.status(404).send({
           message: 'Error while retrieving information about the course.'
         });
       }
-
       req.course = course;
       next();
     });

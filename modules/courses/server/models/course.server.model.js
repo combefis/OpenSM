@@ -26,6 +26,14 @@ var CourseSchema = new Schema({
     ref: 'User',
     required: 'Please fill in the coordinator of the course.'
   },
+  hours: {
+    type: Number,
+    required: 'Please fill the number of hours of the course.'
+  },
+  credits: {
+    type: Number,
+    required: 'Please fill in the number of ECTS of the course.'
+  },
   team: {
     type: [{
       type: Schema.ObjectId,
@@ -45,7 +53,8 @@ var CourseSchema = new Schema({
     default: []
   },
   academicyear: {
-    type: Number
+    type: Number,
+    required: 'Please fill in the academic year of the course.'
   },
   created: {
     type: Date,

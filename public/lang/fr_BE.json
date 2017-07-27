@@ -53,6 +53,9 @@
     "COORDINATOR": "Coordinateur",
     "COORDINATOR_MISSING_ERROR": "Veuillez spécifier le coordinateur.",
     "COORDINATOR_TOOMUCH_ERROR": "Veuillez ne spécifier qu'un seul coordinateur.",
+    "CREDITS": "Crédits",
+    "CREDITS_REQUIRED_ERROR": "Veuillez spécifier le nombre de crédits.",
+    "HOURS": "Heures",
     "TEAM": "Équipe",
     "DESCRIPTION": "Description",
     "NO_DESCRIPTION": "@:GENERAL.NO_DESCRIPTION",
@@ -60,7 +63,10 @@
     "ADD_ACTIVITIES": "Ajouter une activité",
     "NO_ACTIVITY": "Pas d'activité.",
     "NB_ACTIVITIES": "@:ACTIVITY.NB_ACTIVITIES",
+    "ACTIVITY_HOURS": "h",
+    "CREATION": "@:GENERAL.CREATION",
     "SUCCESSFUL_CREATION": "Le cours \"{{code}}\" a été créé avec succès !",
+    "UPDATE": "@:GENERAL.UPDATE",
     "SUCCESSFUL_UPDATE": "Le cours \"{{code}}\" a été mis à jour avec succès !"
   },
   "DASHBOARD": {

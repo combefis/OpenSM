@@ -1,14 +1,14 @@
-(function () {
+(function() {
   'use strict';
 
   angular
     .module('courses.services')
     .factory('CoursesService', CoursesService);
 
-  CoursesService.$inject = ['$resource'];
+  CoursesService.$inject = ['$resource', '$log'];
 
-  function CoursesService($resource) {
-    var Course = $resource('api/courses/:courseCode', {
+  function CoursesService ($resource, $log) {
+    var Course = $resource('/api/courses/:courseCode', {
       courseCode: ''
     }, {
       update: {
@@ -25,28 +25,28 @@
 
     return Course;
 
-    function createOrUpdate(course) {
+    function createOrUpdate (course) {
       if (course._id) {
         return course.$update({ courseCode: course.code }, onSuccess, onError);
       }
       return course.$save(onSuccess, onError);
 
       // Handle successful response
-      function onSuccess(course) {
+      function onSuccess (course) {
         // Any required internal processing from inside the service, goes here.
       }
 
       // Handle error response
-      function onError(errorResponse) {
+      function onError (errorResponse) {
         var error = errorResponse.data;
         // Handle error internally
         handleError(error);
       }
     }
 
-    function handleError(error) {
+    function handleError (error) {
       // Log error
-      console.log(error);
+      $log.error(error);
     }
   }
 }());
