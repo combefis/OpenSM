@@ -1,4 +1,4 @@
-(function () {
+(function() {
   'use strict';
 
   // https://gist.github.com/rhutchison/c8c14946e88a1c8f9216
@@ -9,7 +9,7 @@
 
   showErrors.$inject = ['$timeout', '$interpolate'];
 
-  function showErrors($timeout, $interpolate) {
+  function showErrors ($timeout, $interpolate) {
     var directive = {
       restrict: 'A',
       require: '^form',
@@ -18,7 +18,7 @@
 
     return directive;
 
-    function compile(elem, attrs) {
+    function compile (elem, attrs) {
       if (attrs.showErrors.indexOf('skipFormGroupCheck') === -1) {
         if (!(elem.hasClass('form-group') || elem.hasClass('input-group'))) {
           throw new Error('show-errors element does not have the \'form-group\' or \'input-group\' class');
@@ -27,7 +27,7 @@
 
       return linkFn;
 
-      function linkFn(scope, el, attrs, formCtrl) {
+      function linkFn (scope, el, attrs, formCtrl) {
         var inputEl,
           inputName,
           inputNgEl,
@@ -46,14 +46,14 @@
           throw new Error('show-errors element has no child input elements with a \'name\' attribute class');
         }
 
-        scope.$watch(function () {
+        scope.$watch(function() {
           return formCtrl[inputName] && formCtrl[inputName].$invalid;
         }, toggleClasses);
 
         scope.$on('show-errors-check-validity', checkValidity);
         scope.$on('show-errors-reset', reset);
 
-        function checkValidity(event, name) {
+        function checkValidity (event, name) {
           if (angular.isUndefined(name) || formCtrl.$name === name) {
             initCheck = true;
             showValidationMessages = true;
@@ -62,7 +62,7 @@
           }
         }
 
-        function reset(event, name) {
+        function reset (event, name) {
           if (angular.isUndefined(name) || formCtrl.$name === name) {
             return $timeout(function () {
               el.removeClass('has-error');
@@ -72,7 +72,7 @@
           }
         }
 
-        function toggleClasses(invalid) {
+        function toggleClasses (invalid) {
           el.toggleClass('has-error', showValidationMessages && invalid);
 
           if (showSuccess) {

@@ -1,4 +1,4 @@
-(function () {
+(function() {
   'use strict';
 
   // Focus the element on page load
@@ -9,7 +9,7 @@
 
   autofocus.$inject = ['$timeout', '$window'];
 
-  function autofocus($timeout, $window) {
+  function autofocus ($timeout, $window) {
     var directive = {
       restrict: 'A',
       link: link
@@ -17,7 +17,7 @@
 
     return directive;
 
-    function link(scope, element, attrs) {
+    function link (scope, element, attrs) {
       if ($window.innerWidth >= 800) {
         $timeout(function() {
           var el = element[0];

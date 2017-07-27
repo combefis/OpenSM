@@ -1,12 +1,12 @@
-(function () {
+(function() {
   'use strict';
 
   angular.module('core')
     .directive('pageTitle', pageTitle);
 
-  pageTitle.$inject = ['$rootScope', '$interpolate', '$state'];
+  pageTitle.$inject = ['$rootScope', '$timeout', '$interpolate', '$state'];
 
-  function pageTitle($rootScope, $interpolate, $state) {
+  function pageTitle ($rootScope, $timeout, $interpolate, $state) {
     var directive = {
       restrict: 'A',
       link: link
@@ -14,18 +14,25 @@
 
     return directive;
 
-    function link(scope, element) {
+    function link (scope, element) {
       $rootScope.$on('$stateChangeSuccess', listener);
 
-      function listener(event, toState) {
-        var applicationCoreTitle = 'MEAN.js',
-          separeteBy = ' - ';
-        if (toState.data && toState.data.pageTitle) {
-          var stateTitle = $interpolate(toState.data.pageTitle)($state.$current.locals.globals);
-          element.html(applicationCoreTitle + separeteBy + stateTitle);
-        } else {
-          element.html(applicationCoreTitle);
+      function listener (event, toState) {
+        var title = (getTitle($state.$current));
+        $timeout(function() {
+          element.text(title);
+        }, 0, false);
+      }
+
+      function getTitle (currentState) {
+        var applicationCoreTitle = 'OpenSM';
+        var workingState = currentState;
+        if (currentState.data) {
+          workingState = (typeof workingState.locals !== 'undefined') ? workingState.locals.globals : workingState;
+          var stateTitle = $interpolate(currentState.data.pageTitle)(workingState);
+          return applicationCoreTitle + ' | ' + stateTitle;
         }
+        return applicationCoreTitle;
       }
     }
   }
