@@ -58,6 +58,8 @@ module.exports = {
     js: [
       'modules/core/client/app/config.js',
       'modules/core/client/app/init.js',
+      'modules/core/client/*.js',
+      'modules/core/client/**/*.js',
       'modules/*/client/*.js',
       'modules/*/client/**/*.js'
     ],

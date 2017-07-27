@@ -10,7 +10,7 @@
   function menuConfig(menuService) {
     // Add the dropdown list item
     menuService.addSubMenuItem('topbar', 'admin.manage', {
-      title: 'Academic Years',
+      title: 'Academic years',
       state: 'admin.manage.academicyears.list',
       roles: ['admin']
     });
