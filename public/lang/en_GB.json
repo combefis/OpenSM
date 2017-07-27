@@ -26,12 +26,14 @@
     "ADD_TEACHER": "Add a teacher",
     "TEACHER_MISSING_ERROR": "Please select at least one teacher.",
     "HOURS": "Hours",
-    "HOURS_ERROR": "Please fill in the hours.",
+    "HOURS_ERROR": "Please fill in the number of hours.",
     "EVALUATIONS": "Evaluations",
     "DESCRIPTION": "Description",
     "NO_DESCRIPTION": "@:GENERAL.NO_DESCRIPTION",
-    "SUCCESSFUL_CREATION": "The activity \"{{code}}\" has been successfully created!",
-    "SUCCESSFUL_UPDATE": "The activity \"{{code}}\" has been successfully updated!"
+    "CREATION": "@:GENERAL.CREATION",
+    "SUCCESSFUL_CREATION": "The \"{{code}}\" activity has been successfully created!",
+    "UPDATE": "@:GENERAL.UPDATE",
+    "SUCCESSFUL_UPDATE": "The \"{{code}}\" activity has been successfully updated!"
   },
   "AUTHENTICATION": {
     "SIGN_IN": "Sign in",
@@ -96,8 +98,8 @@
     "SUCCESSFUL_DELETE": "The evaluation grid \"{{code}}\" has been successfully deleted!"
   },
   "EVALUATION": {
-    "WRITTEN": "Written",
-    "ORAL": "Oral",
+    "WRITTEN": "Written exam",
+    "ORAL": "Oral exam",
     "ASSIGNMENT": "Assignment",
     "PROJECT": "Project"
   },
@@ -204,13 +206,15 @@
   },
   "GENERAL": {
     "ACADEMICYEAR": "Academic year",
+    "ADD": "Add",
     "CREATE": "Create",
-    "EDIT": "Edit",
-    "UPDATE": "Update",
+    "CREATION": "Creation",
     "DELETE": "Delete",
     "DELETE_CONFIRMATION": "Are you sure you want to delete {{name}}?",
-    "ADD": "Add",
-    "NO_DESCRIPTION": "No description."
+    "EDIT": "Edit",
+    "ERROR": "Error",
+    "NO_DESCRIPTION": "No description.",
+    "UPDATE": "Update"
   },
   "HOME": {
     "LEAD": "Welcome on the OpenSM platform!",

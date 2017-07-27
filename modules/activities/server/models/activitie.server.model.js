@@ -43,7 +43,8 @@ var ActivitySchema = new Schema({
     trim: true
   },
   academicyear: {
-    type: Number
+    type: Number,
+    required: 'Please fill in the academic year of the activity.'
   },
   created: {
     type: Date,

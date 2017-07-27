@@ -1,4 +1,4 @@
-(function () {
+(function() {
   'use strict';
 
   angular
@@ -7,7 +7,7 @@
 
   ActivitiesListAdminController.$inject = ['ActivitiesService'];
 
-  function ActivitiesListAdminController(ActivitiesService) {
+  function ActivitiesListAdminController (ActivitiesService) {
     var vm = this;
 
     vm.activities = ActivitiesService.query();

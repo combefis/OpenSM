@@ -1,4 +1,4 @@
-(function () {
+(function() {
   'use strict';
 
   angular
@@ -7,7 +7,7 @@
 
   routeConfig.$inject = ['$stateProvider'];
 
-  function routeConfig($stateProvider) {
+  function routeConfig ($stateProvider) {
     $stateProvider
       .state('admin.manage.activities', {
         abstract: true,
@@ -67,7 +67,7 @@
 
   getActivity.$inject = ['$stateParams', 'ActivitiesService'];
 
-  function getActivity($stateParams, ActivitiesService) {
+  function getActivity ($stateParams, ActivitiesService) {
     return ActivitiesService.get({
       activityCode: $stateParams.activityCode
     }).$promise;
@@ -75,7 +75,7 @@
 
   newActivity.$inject = ['ActivitiesService'];
 
-  function newActivity(ActivitiesService) {
+  function newActivity (ActivitiesService) {
     return new ActivitiesService();
   }
 }());

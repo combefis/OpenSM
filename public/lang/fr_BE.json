@@ -30,7 +30,9 @@
     "EVALUATIONS": "Évaluations",
     "DESCRIPTION": "Description",
     "NO_DESCRIPTION": "@:GENERAL.NO_DESCRIPTION",
+    "CREATION": "@:GENERAL.CREATION",
     "SUCCESSFUL_CREATION": "L'activité \"{{code}}\" a été créée avec succès !",
+    "UPDATE": "@:GENERAL.UPDATE",
     "SUCCESSFUL_UPDATE": "L'activité \"{{code}}\" a été mise à jour avec succès !"
   },
   "AUTHENTICATION": {
@@ -95,8 +97,8 @@
     "CREATE": "Créer une grille d'évaluation"
   },
   "EVALUATION": {
-    "WRITTEN": "Écrit",
-    "ORAL": "Oral",
+    "WRITTEN": "Examen écrit",
+    "ORAL": "Examen oral",
     "ASSIGNMENT": "Travail",
     "PROJECT": "Projet"
   },
@@ -203,13 +205,15 @@
   },
   "GENERAL": {
     "ACADEMICYEAR": "Année académique",
+    "ADD": "Ajouter",
     "CREATE": "Créer",
-    "EDIT": "Éditer",
-    "UPDATE": "Mettre à jour",
+    "CREATION": "Création",
     "DELETE": "Supprimer",
     "DELETE_CONFIRMATION": "Êtes-vous sûr de vouloir supprimer {{name}} ?",
-    "ADD": "Ajouter",
-    "NO_DESCRIPTION": "No description."
+    "EDIT": "Éditer",
+    "ERROR": "Erreur",
+    "NO_DESCRIPTION": "No description.",
+    "UPDATE": "Mettre à jour"
   },
   "HOME": {
     "LEAD": "Bienvenue sur la plateforme OpenSM !",
