@@ -41,6 +41,25 @@
     "FORGOT_PASSWORD": "Forgot your password?"
   },
   "BY": "By",
+  "COMPANY": {
+    "COMPANIES": "Companies",
+    "CREATE": "Create a company",
+    "NO_COMPANY": "No companies yet.",
+    "NB_COMPANIES": "Number of companies",
+    "NAME": "Name",
+    "NAME_REQUIRED_ERROR": "Please fill in the name.",
+    "ADDRESS": {
+      "STREET_REQUIRED_ERROR": "Please fill in the street.",
+      "NUMBER_REQUIRED_ERROR": "Please fill in the number.",
+      "ZIPCODE_REQUIRED_ERROR": "Please fill in the zipcode.",
+      "CITY_REQUIRED_ERROR": "Please fill in the city.",
+      "COUNTRY_REQUIRED_ERROR": "Please fill in the country."
+    },
+    "CREATION": "@:GENERAL.CREATION",
+    "SUCCESSFUL_CREATION": "The \"{{name}}\" company has been successfully created!",
+    "UPDATE": "@:GENERAL.UPDATE",
+    "SUCCESSFUL_UPDATE": "The \"{{name}}\" company has been successfully updated!"
+  },
   "COURSE": {
     "COURSES": "Courses",
     "CREATE": "Create a course",
@@ -213,6 +232,13 @@
   "GENERAL": {
     "ACADEMICYEAR": "Academic year",
     "ADD": "Add",
+    "ADDRESS": {
+      "STREET": "Street",
+      "NUMBER": "Number",
+      "ZIPCODE": "Zip code",
+      "CITY": "City",
+      "COUNTRY": "Country"
+    },
     "CREATE": "Create",
     "CREATION": "Creation",
     "DELETE": "Delete",

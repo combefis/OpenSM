@@ -1,0 +1,74 @@
+<section>
+  <div ng-if="vm.company._id && !vm.company.$resolved" class="loading">
+    <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> {{'LOADING' | translate}}
+  </div>
+
+  <div ng-if="!vm.company._id || vm.company.$resolved">
+    <ol class="breadcrumb">
+      <li><a ui-sref="admin.manage.companies.list" ng-bind="'COMPANY.COMPANIES' | translate"></a></li>
+      <li ng-if="!vm.company._id" class="active"><a ui-sref="admin.manage.companies.create" ng-bind="'GENERAL.CREATE' | translate"></a></li>
+      <li ng-if="vm.company._id"><a ui-sref="admin.manage.companies.view({ companyId: vm.company._id })" ng-bind="vm.companyname"></a></li>
+      <li ng-if="vm.company._id" class="active"><a ui-sref="admin.manage.companies.edit({ companyId: vm.company._id })" ng-bind="'GENERAL.EDIT' | translate"></a></li>
+    </ol>
+
+    <h2><span ng-if="vm.company._id" ng-bind="vm.companyname"></span><span ng-if="!vm.company._id" ng-bind="'COMPANY.CREATE' | translate"></span></h2>
+
+    <div class="row">
+      <div class="col-md-12">
+        <form name="vm.form.companyForm" ng-submit="vm.save(vm.form.companyForm.$valid)" novalidate>
+          <fieldset>
+            <div class="form-group" show-errors>
+              <label class="control-label" for="name" ng-bind="'COMPANY.NAME' | translate"></label>
+              <input name="name" type="text" ng-model="vm.company.name" id="name" class="form-control" placeholder="{{'COMPANY.NAME' | translate}}" required />
+              <div ng-messages="vm.form.companyForm.name.$error" role="alert">
+                <p class="help-block error-text" ng-message="required" ng-bind="'COMPANY.NAME_REQUIRED_ERROR' | translate"></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-10" show-errors>
+                <label class="control-label" for="name" ng-bind="'GENERAL.ADDRESS.STREET' | translate"></label>
+                <input name="street" type="text" ng-model="vm.company.address.street" id="street" class="form-control" placeholder="{{'GENERAL.ADDRESS.STREET' | translate}}" required />
+                <div ng-messages="vm.form.companyForm.street.$error" role="alert">
+                  <p class="help-block error-text" ng-message="required" ng-bind="'COMPANY.ADDRESS.STREET_REQUIRED_ERROR' | translate"></p>
+                </div>
+              </div>
+              <div class="form-group col-md-2" show-errors>
+                <label class="control-label" for="number" ng-bind="'GENERAL.ADDRESS.NUMBER' | translate"></label>
+                <input name="number" type="number" ng-model="vm.company.address.number" id="number" class="form-control" placeholder="{{'GENERAL.ADDRESS.NUMBER' | translate}}" required />
+                <div ng-messages="vm.form.companyForm.number.$error" role="alert">
+                  <p class="help-block error-text" ng-message="required" ng-bind="'COMPANY.ADDRESS.NUMBER_REQUIRED_ERROR' | translate"></p>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-2" show-errors>
+                <label class="control-label" for="zipcode" ng-bind="'GENERAL.ADDRESS.ZIPCODE' | translate"></label>
+                <input name="zipcode" type="number" ng-model="vm.company.address.zipcode" id="zipcode" class="form-control" placeholder="{{'GENERAL.ADDRESS.ZIPCODE' | translate}}" required />
+                <div ng-messages="vm.form.companyForm.zipcode.$error" role="alert">
+                  <p class="help-block error-text" ng-message="required" ng-bind="'COMPANY.ADDRESS.ZIPCODE_REQUIRED_ERROR' | translate"></p>
+                </div>
+              </div>
+              <div class="form-group col-md-6" show-errors>
+                <label class="control-label" for="city" ng-bind="'GENERAL.ADDRESS.CITY' | translate"></label>
+                <input name="city" type="text" ng-model="vm.company.address.city" id="city" class="form-control" placeholder="{{'GENERAL.ADDRESS.CITY' | translate}}" required />
+                <div ng-messages="vm.form.companyForm.city.$error" role="alert">
+                  <p class="help-block error-text" ng-message="required" ng-bind="'COMPANY.ADDRESS.CITY_REQUIRED_ERROR' | translate"></p>
+                </div>
+              </div>
+              <div class="form-group col-md-4" show-errors>
+                <label class="control-label" for="country" ng-bind="'GENERAL.ADDRESS.COUNTRY' | translate"></label>
+                <input name="country" type="text" ng-model="vm.company.address.country" id="country" class="form-control" placeholder="{{'GENERAL.ADDRESS.COUNTRY' | translate}}" required />
+                <div ng-messages="vm.form.companyForm.country.$error" role="alert">
+                  <p class="help-block error-text" ng-message="required" ng-bind="'COMPANY.ADDRESS.COUNTRY_REQUIRED_ERROR' | translate"></p>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary" ng-bind="vm.company._id ? 'GENERAL.UPDATE' : 'GENERAL.CREATE' | translate"></button>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

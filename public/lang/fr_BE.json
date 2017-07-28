@@ -41,6 +41,25 @@
     "FORGOT_PASSWORD": "Mot de passe oublié ?"
   },
   "BY": "Par",
+  "COMPANY": {
+    "COMPANIES": "Entreprises",
+    "CREATE": "Créer une entreprise",
+    "NO_COMPANY": "Aucune entreprise.",
+    "NB_COMPANIES": "Nombre d'entreprises",
+    "NAME": "Nom",
+    "NAME_REQUIRED_ERROR": "Veuillez spécifier le nom.",
+    "ADDRESS": {
+      "STREET_REQUIRED_ERROR": "Veuillez spécifier la rue.",
+      "NUMBER_REQUIRED_ERROR": "Veuillez spécifier le numéro.",
+      "ZIPCODE_REQUIRED_ERROR": "Veuillez spécifier le code postal.",
+      "CITY_REQUIRED_ERROR": "Veuillez spécifier la ville.",
+      "COUNTRY_REQUIRED_ERROR": "Veuillez spécifier le pays."
+    },
+    "CREATION": "@:GENERAL.CREATION",
+    "SUCCESSFUL_CREATION": "L'entreprise \"{{name}}\" a été créée avec succès !",
+    "UPDATE": "@:GENERAL.UPDATE",
+    "SUCCESSFUL_UPDATE": "L'entreprise \"{{name}}\" a été mise à jour avec succès !"
+  },
   "COURSE": {
     "COURSES": "Cours",
     "CREATE": "Créer un cours",
@@ -212,6 +231,13 @@
   "GENERAL": {
     "ACADEMICYEAR": "Année académique",
     "ADD": "Ajouter",
+    "ADDRESS": {
+      "STREET": "Rue",
+      "NUMBER": "Numéro",
+      "ZIPCODE": "Code postal",
+      "CITY": "Ville",
+      "COUNTRY": "Pays"
+    },
     "CREATE": "Créer",
     "CREATION": "Création",
     "DELETE": "Supprimer",
