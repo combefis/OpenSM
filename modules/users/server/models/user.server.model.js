@@ -12,7 +12,7 @@ var mongoose = require('mongoose'),
   generatePassword = require('generate-password'),
   owasp = require('owasp-password-strength-test');
 
-  owasp.config(config.shared.owasp);
+owasp.config(config.shared.owasp);
 
 /**
  * A Validation function for local strategy properties
