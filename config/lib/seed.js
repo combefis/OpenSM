@@ -6,7 +6,7 @@ var _ = require('lodash'),
   chalk = require('chalk'),
   crypto = require('crypto');
 
-// global seed options object
+// Global seed options object
 var seedOptions = {};
 
 function removeUser (user) {

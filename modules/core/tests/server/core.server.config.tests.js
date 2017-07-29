@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Module dependencies.
+ * Module dependencies
  */
 var _ = require('lodash'),
   should = require('should'),
@@ -517,7 +517,7 @@ describe('Configuration Tests:', function () {
         process.env.NODE_ENV = env;
 
         // Gget application
-        app = express.init(mongoose);
+        app = express.init(mongoose.connection.db);
         agent = request.agent(app);
 
         // Get rendered layout
