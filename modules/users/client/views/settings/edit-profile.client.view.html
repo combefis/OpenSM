@@ -3,16 +3,16 @@
     <form name="vm.userForm" ng-submit="vm.updateUserProfile(vm.userForm.$valid)" class="signin" novalidate autocomplete="off">
       <fieldset>
         <div class="form-group" show-errors>
-          <label for="firstName">First Name</label>
-          <input type="text" id="firstName" name="firstName" class="form-control" ng-model="vm.user.firstName" placeholder="First Name" required autofocus>
-          <div ng-messages="vm.userForm.firstName.$error" role="alert">
+          <label for="firstname">Firstname</label>
+          <input type="text" id="firstname" name="firstname" class="form-control" ng-model="vm.user.firstname" placeholder="First Name" required autofocus>
+          <div ng-messages="vm.userForm.firstname.$error" role="alert">
             <p class="help-block error-text" ng-message="required">First name is required.</p>
           </div>
         </div>
         <div class="form-group" show-errors>
-          <label for="lastName">Last Name</label>
-          <input type="text" id="lastName" name="lastName" class="form-control" ng-model="vm.user.lastName" placeholder="Last Name" required>
-          <div ng-messages="vm.userForm.lastName.$error" role="alert">
+          <label for="lastname">Lastname</label>
+          <input type="text" id="lastname" name="lastname" class="form-control" ng-model="vm.user.lastname" placeholder="Last Name" required>
+          <div ng-messages="vm.userForm.lastname.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Last name is required.</p>
           </div>
         </div>

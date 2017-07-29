@@ -176,8 +176,8 @@ exports.saveOAuthUserProfile = function (req, providerUserProfile, done) {
 
         User.findUniqueUsername(possibleUsername, null, function (availableUsername) {
           user = new User({
-            firstName: providerUserProfile.firstName,
-            lastName: providerUserProfile.lastName,
+            firstname: providerUserProfile.firstname,
+            lastname: providerUserProfile.lastname,
             username: availableUsername,
             displayName: providerUserProfile.displayName,
             profileImageURL: providerUserProfile.profileImageURL,

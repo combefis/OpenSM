@@ -43,8 +43,8 @@ module.exports = {
         username: process.env.MONGO_SEED_USER_USERNAME || 'seeduser',
         provider: 'local',
         email: process.env.MONGO_SEED_USER_EMAIL || 'user@localhost.com',
-        firstName: 'User',
-        lastName: 'Local',
+        firstname: 'User',
+        lastname: 'Local',
         displayName: 'User Local',
         roles: ['user']
       },
@@ -52,8 +52,8 @@ module.exports = {
         username: process.env.MONGO_SEED_ADMIN_USERNAME || 'seedadmin',
         provider: 'local',
         email: process.env.MONGO_SEED_ADMIN_EMAIL || 'admin@localhost.com',
-        firstName: 'Admin',
-        lastName: 'Local',
+        firstname: 'Admin',
+        lastname: 'Local',
         displayName: 'Admin Local',
         roles: ['user', 'admin']
       }
