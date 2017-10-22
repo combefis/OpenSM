@@ -57,7 +57,7 @@
     vm.lang = $translateLocalStorage.get('NG_TRANSLATE_LANG_KEY');
     vm.changeLanguage = changeLanguage;
 
-    changeLanguage(vm.lang);
+    changeLanguage(vm.lang ? vm.lang : 'en_GB');
 
     function changeLanguage (lang) {
       $translate.use(lang);
