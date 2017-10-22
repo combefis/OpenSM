@@ -16,14 +16,12 @@ exports.create = function (req, res) {
   var room = new Room(req.body);
   room.user = req.user;
 
-  // Save the room
   room.save(function (err) {
     if (err) {
-      return res.status(400).send({
+      return res.status(422).send({
         message: errorHandler.getErrorMessage(err)
       });
     }
-
     res.json(room);
   });
 };
@@ -34,7 +32,6 @@ exports.create = function (req, res) {
 exports.read = function (req, res) {
   // convert mongoose document to JSON
   var room = req.room ? req.room.toJSON() : {};
-
   res.json(room);
 };
 
@@ -56,7 +53,6 @@ exports.update = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     }
-
     res.json(room);
   });
 };
@@ -75,24 +71,20 @@ exports.delete = function (req, res) {
       });
     }
 
-    exams.forEach(function (exam) {
-      if (exam.rooms.some(function (element) { return element.room.equals(room.id); })) {
-        return res.status(400).send({
-          message: 'Cannot delete a room that is used by some exams'
-        });
-      }
-
-      // Delete the room
+    if (exams.every(function (exam) {
+      return !exam.rooms.some(function (element) {
+        return element.room.equals(room.id);
+      });
+    })) {
       room.remove(function (err) {
         if (err) {
           return res.status(422).send({
             message: errorHandler.getErrorMessage(err)
           });
         }
-
         res.json(room);
       });
-    });
+    }
   });
 };
 
@@ -104,11 +96,10 @@ exports.list = function (req, res) {
   .sort({ code: 1 })
   .exec(function (err, rooms) {
     if (err) {
-      return res.status(400).send({
+      return res.status(422).send({
         message: errorHandler.getErrorMessage(err)
       });
     }
-
     res.json(rooms);
   });
 };
@@ -127,7 +118,6 @@ exports.roomByCode = function (req, res, next, code) {
         message: 'No room with that code has been found.'
       });
     }
-
     req.room = room;
     next();
   });

@@ -1,14 +1,14 @@
-(function () {
+(function() {
   'use strict';
 
   angular
     .module('rooms.services')
     .factory('RoomsService', RoomsService);
 
-  RoomsService.$inject = ['$resource'];
+  RoomsService.$inject = ['$resource', '$log'];
 
-  function RoomsService($resource) {
-    var Room = $resource('api/rooms/:roomCode', {
+  function RoomsService($resource, $log) {
+    var Room = $resource('/api/rooms/:roomCode', {
       roomCode: ''
     }, {
       update: {
@@ -32,7 +32,7 @@
       return room.$save(onSuccess, onError);
 
       // Handle successful response
-      function onSuccess(examsession) {
+      function onSuccess(room) {
         // Any required internal processing from inside the service, goes here.
       }
 
@@ -46,7 +46,7 @@
 
     function handleError(error) {
       // Log error
-      console.log(error);
+      $log.error(error);
     }
   }
 }());

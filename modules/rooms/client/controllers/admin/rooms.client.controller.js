@@ -1,18 +1,17 @@
-(function () {
+(function() {
   'use strict';
 
   angular
     .module('rooms.admin')
     .controller('RoomsController', RoomsController);
 
-  RoomsController.$inject = ['$scope', '$state', 'roomResolve', '$window', '$http', 'Authentication', 'Notification', '$filter'];
+  RoomsController.$inject = ['$scope', '$state', 'roomResolve', 'Authentication', 'Notification', '$filter'];
 
-  function RoomsController($scope, $state, room, $window, $http, Authentication, Notification, $filter) {
+  function RoomsController($scope, $state, room, Authentication, Notification, $filter) {
     var vm = this;
 
     vm.room = room;
     vm.authentication = Authentication;
-    vm.error = null;
     vm.form = {};
     vm.save = save;
     vm.configuration = null;
@@ -48,17 +47,25 @@
         vm.room.nbseats = '';
 
         if (roomId) {
-          $state.go('admin.manage.rooms.view', {
-            roomCode: code
+          $state.go('admin.manage.rooms.view', { roomCode: code });
+          Notification.success({
+            title: '<i class="glyphicon glyphicon-exclamation-pencil"></i> ' + $filter('translate')('ROOM.UPDATE'),
+            message: $filter('translate')('ROOM.SUCCESSFUL_UPDATE', { code: code })
           });
         } else {
           $state.go('admin.manage.rooms.list');
+          Notification.success({
+            title: '<i class="glyphicon glyphicon-exclamation-add"></i> ' + $filter('translate')('ROOM.CREATION'),
+            message: $filter('translate')('ROOM.SUCCESSFUL_CREATION', { code: code })
+          });
         }
-        Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')(roomId ? 'ROOM.SUCCESSFUL_UPDATE' : 'ROOM.SUCCESSFUL_CREATION', { code: code }) });
       }
 
       function errorCallback(res) {
-        vm.error = res.data.message;
+        Notification.error({
+          title: '<i class="glyphicon glyphicon-remove"></i> ' + $filter('translate')('GENERAL.ERROR'),
+          message: res.data.message
+        });
       }
     }
 
@@ -71,7 +78,10 @@
           startseat: vm.startseat
         };
 
-        Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('ROOM.CONFIGURATION_CHANGED') });
+        Notification.success({
+          title: '<i class="glyphicon glyphicon-exclamation-pencil"></i> ' + $filter('translate')('ROOM.UPDATE'),
+          message: $filter('translate')('ROOM.CONFIGURATION_CHANGED')
+        });
       }
     }
   }
