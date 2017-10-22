@@ -4,6 +4,7 @@
  * Module dependencies
  */
 var mongoose = require('mongoose'),
+  uniqueValidator = require('mongoose-unique-validator'),
   Schema = mongoose.Schema;
 
 /**
@@ -54,6 +55,11 @@ var ActivitySchema = new Schema({
     type: Schema.ObjectId,
     ref: 'User'
   }
+});
+
+ActivitySchema.index({ academicyear: -1, code: 1 }, { unique: true });
+ActivitySchema.plugin(uniqueValidator, {
+  message: 'An activity with the same code already exists in the specified academic year.'
 });
 
 mongoose.model('Activity', ActivitySchema);
