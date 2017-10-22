@@ -45,11 +45,13 @@ exports.create = function (req, res) {
         message: 'Error while retrieving information about the course.'
       });
     }
+
     course.coordinator = req.body.coordinator[0];
     course.hours = getHours(course);
     course.team = getTeam(course);
     course.academicyear = req.session.academicyear;
     course.user = req.user;
+
     course.save(function (err) {
       if (err) {
         return res.status(422).send({

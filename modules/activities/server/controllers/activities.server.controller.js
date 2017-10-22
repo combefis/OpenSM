@@ -14,7 +14,7 @@ var path = require('path'),
 exports.create = function (req, res) {
   var activity = new Activity(req.body);
   activity.user = req.user;
-  activity.academicyear = 2016;
+  activity.academicyear = req.session.academicyear;
 
   activity.save(function (err) {
     if (err) {

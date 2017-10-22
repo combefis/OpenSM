@@ -28,7 +28,7 @@ function checkData (examsession) {
 exports.create = function (req, res) {
   var examsession = new ExamSession(req.body);
   examsession.user = req.user;
-  examsession.academicyear = 2016;
+  examsession.academicyear = req.session.academicyear;
 
   // Check data
   var errorMsg = checkData(examsession);

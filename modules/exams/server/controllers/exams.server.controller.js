@@ -94,7 +94,7 @@ exports.create = function (req, res) {
   exam.user = req.user;
   exam.course = req.body.course[0];
   exam.examsession = req.body.examsession[0];
-  exam.academicyear = 2016;
+  exam.academicyear = req.session.academicyear;
 
   // Load the exam session
   ExamSession.findById(exam.examsession)
