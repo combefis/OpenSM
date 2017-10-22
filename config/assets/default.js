@@ -28,7 +28,7 @@ module.exports = {
         'public/lib/angular-file-upload/dist/angular-file-upload.js',
         'public/lib/owasp-password-strength-test/owasp-password-strength-test.js',
         'public/lib/nya-bootstrap-select/dist/js/nya-bs-select.js',
-        'public/lib/moment/min/moment-with-locales.min.js',
+        'public/lib/moment/min/moment-with-locales.js',
         'public/lib/angular-moment/angular-moment.js',
         'public/lib/angular-bootstrap-datetimepicker/src/js/datetimepicker.js',
         'public/lib/angular-bootstrap-datetimepicker/src/js/datetimepicker.templates.js',

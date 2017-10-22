@@ -22,7 +22,7 @@
         <a ng-switch-default ui-sref="{{item.state}}" ng-bind="item.title"></a>
       </li>
     </ul>
-    <ul class="nav navbar-nav navbar-right" ng-show="vm.authentication.user">
+    <ul class="nav navbar-nav navbar-right" ng-if="vm.authentication.user">
       <li class="dropdown" uib-dropdown>
         <a class="dropdown-toggle user-header-dropdown-toggle" uib-dropdown-toggle role="button">
           <img ng-src="/{{vm.authentication.user.profileImageURL}}" alt="{{vm.authentication.user.displayName}}" class="header-profile-image" />
@@ -39,7 +39,7 @@
         </ul>
       </li>
     </ul>
-    <ul class="nav navbar-nav navbar-right" ng-show="vm.authentication.user && vm.academicyear !== null">
+    <ul class="nav navbar-nav navbar-right" ng-if="vm.authentication.user && vm.academicyear !== null">
       <li class="dropdown" dropdown>
         <a class="dropdown-toggle" dropdown-toggle role="button">{{vm.academicyear.code}}&ndash;{{vm.academicyear.code+1}}</a>
       </li>

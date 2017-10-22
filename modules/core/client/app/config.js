@@ -13,7 +13,7 @@
   window.ApplicationConfiguration = service;
 
   // Add a new vertical module
-  function registerModule(moduleName, dependencies) {
+  function registerModule (moduleName, dependencies) {
     // Create angular module
     angular.module(moduleName, dependencies || []);
 

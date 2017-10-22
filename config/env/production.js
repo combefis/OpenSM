@@ -20,7 +20,7 @@ module.exports = {
         * servers. Adjust the settings below for your specific certificate
         * setup.
         * for connect to a replicaset, rename server:{...} to replset:{...}
-      server: {
+
         ssl: true,
         sslValidate: false,
         checkServerIdentity: false,
@@ -28,7 +28,7 @@ module.exports = {
         sslCert: fs.readFileSync('./config/sslcerts/ssl-cert.pem'),
         sslKey: fs.readFileSync('./config/sslcerts/ssl-key.pem'),
         sslPass: '1234'
-      }
+
       */
     },
     // Enable mongoose debug mode
@@ -59,25 +59,19 @@ module.exports = {
   seedDB: {
     seed: process.env.MONGO_SEED === 'true',
     options: {
-      logResults: process.env.MONGO_SEED_LOG_RESULTS !== 'false',
-      seedUser: {
-        username: process.env.MONGO_SEED_USER_USERNAME || 'seeduser',
-        provider: 'local',
-        email: process.env.MONGO_SEED_USER_EMAIL || 'user@localhost.com',
-        firstname: 'User',
-        lastname: 'Local',
-        displayName: 'User Local',
-        roles: ['user']
-      },
-      seedAdmin: {
-        username: process.env.MONGO_SEED_ADMIN_USERNAME || 'seedadmin',
-        provider: 'local',
-        email: process.env.MONGO_SEED_ADMIN_EMAIL || 'admin@localhost.com',
-        firstname: 'Admin',
-        lastname: 'Local',
-        displayName: 'Admin Local',
-        roles: ['user', 'admin']
-      }
-    }
+      logResults: process.env.MONGO_SEED_LOG_RESULTS !== 'false'
+    },
+    collections: [{
+      model: 'User',
+      docs: [{
+        data: {
+          username: 'local-admin',
+          email: 'admin@localhost.com',
+          firstName: 'Admin',
+          lastName: 'Local',
+          roles: ['admin', 'user']
+        }
+      }]
+    }]
   }
 };

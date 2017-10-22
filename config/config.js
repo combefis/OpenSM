@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Module dependencies.
+ * Module dependencies
  */
 var _ = require('lodash'),
   chalk = require('chalk'),
@@ -53,7 +53,7 @@ var getGlobbedPaths = function (globPatterns, excludes) {
 /**
  * Validate NODE_ENV existence
  */
-var validateEnvironmentVariable = function () {
+var validateEnvironmentVariable = function() {
   var environmentFiles = glob.sync('./config/env/' + process.env.NODE_ENV + '.js');
   console.log();
   if (!environmentFiles.length) {
@@ -114,9 +114,8 @@ var validateSessionSecret = function (config, testing) {
       console.log();
     }
     return false;
-  } else {
-    return true;
   }
+  return true;
 };
 
 /**

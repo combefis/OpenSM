@@ -12,7 +12,7 @@
 
   bootstrapConfig.$inject = ['$compileProvider', '$locationProvider', '$httpProvider', '$logProvider'];
 
-  function bootstrapConfig($compileProvider, $locationProvider, $httpProvider, $logProvider) {
+  function bootstrapConfig ($compileProvider, $locationProvider, $httpProvider, $logProvider) {
     $locationProvider.html5Mode({
       enabled: true,
       requireBase: false
@@ -33,7 +33,7 @@
 
   translationConfig.$inject = ['$translateProvider'];
 
-  function translationConfig($translateProvider) {
+  function translationConfig ($translateProvider) {
     $translateProvider.useSanitizeValueStrategy('escape');
     $translateProvider.useStaticFilesLoader({
       prefix: '/lang/',
@@ -51,7 +51,7 @@
 
   languageController.$inject = ['$translate', '$translateLocalStorage', 'amMoment'];
 
-  function languageController($translate, $translateLocalStorage, amMoment) {
+  function languageController ($translate, $translateLocalStorage, amMoment) {
     var vm = this;
 
     vm.lang = $translateLocalStorage.get('NG_TRANSLATE_LANG_KEY');
@@ -59,7 +59,7 @@
 
     changeLanguage(vm.lang);
 
-    function changeLanguage(lang) {
+    function changeLanguage (lang) {
       $translate.use(lang);
       amMoment.changeLocale(lang.substr(0, 2));
     }

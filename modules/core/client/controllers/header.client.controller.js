@@ -17,9 +17,11 @@
 
     // Load current academic year
     vm.academicyear = null;
-    $http.get('/api/academicyears/current').success(function(data, status, headers, config) {
-      vm.academicyear = data;
-    });
+    if (vm.authentication.user) {
+      $http.get('/api/academicyears/current').success(function(data, status, headers, config) {
+        vm.academicyear = data;
+      });
+    }
 
     $scope.$on('$stateChangeSuccess', stateChangeSuccess);
 
