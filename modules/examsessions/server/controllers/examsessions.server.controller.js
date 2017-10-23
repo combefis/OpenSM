@@ -33,7 +33,7 @@ exports.create = function (req, res) {
   // Check data
   var errorMsg = checkData(examsession);
   if (errorMsg !== '') {
-    return res.status(400).send({
+    return res.status(422).send({
       message: errorMsg
     });
   }
@@ -73,7 +73,7 @@ exports.update = function (req, res) {
   // Check data
   var errorMsg = checkData(examsession);
   if (errorMsg !== '') {
-    return res.status(400).send({
+    return res.status(422).send({
       message: errorMsg
     });
   }
@@ -96,7 +96,7 @@ exports.delete = function (req, res) {
 
   // Check if can be deleted
   if (examsession.exams.length) {
-    return res.status(400).send({
+    return res.status(422).send({
       message: 'Cannot delete an exam session with exams'
     });
   }
@@ -150,14 +150,14 @@ exports.examsessionByCode = function (req, res, next, code) {
 
     ExamSession.populate(examsession, { path: 'exams.course', select: 'code name team', model: 'Course' }, function (err, examsession) {
       if (err || !examsession) {
-        return res.status(404).send({
+        return res.status(422).send({
           message: 'Error while retrieving information about the exam session.'
         });
       }
 
       ExamSession.populate(examsession, { path: 'exams.course.team', select: 'username', model: 'User' }, function (err, examsession) {
         if (err || !examsession) {
-          return res.status(404).send({
+          return res.status(422).send({
             message: 'Error while retrieving information about the exam session.'
           });
         }

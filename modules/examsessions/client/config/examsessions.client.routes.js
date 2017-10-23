@@ -16,7 +16,7 @@
       })
       .state('examsessions.list', {
         url: '',
-        templateUrl: 'modules/examsessions/client/views/list-examsessions.client.view.html',
+        templateUrl: '/modules/examsessions/client/views/list-examsessions.client.view.html',
         controller: 'ExamSessionsListController',
         controllerAs: 'vm',
         data: {
@@ -26,7 +26,7 @@
       })
       .state('examsessions.view', {
         url: '/:examsessionCode',
-        templateUrl: 'modules/examsessions/client/views/view-examsession.client.view.html',
+        templateUrl: '/modules/examsessions/client/views/view-examsession.client.view.html',
         controller: 'ExamSessionsController',
         controllerAs: 'vm',
         resolve: {

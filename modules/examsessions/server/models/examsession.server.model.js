@@ -4,6 +4,7 @@
  * Module dependencies
  */
 var mongoose = require('mongoose'),
+  uniqueValidator = require('mongoose-unique-validator'),
   Schema = mongoose.Schema;
 
 /**
@@ -13,8 +14,7 @@ var ExamSessionSchema = new Schema({
   code: {
     type: String,
     required: 'Please fill in the code of the exam session.',
-    trim: true,
-    unique: true
+    trim: true
   },
   name: {
     type: String,
@@ -52,6 +52,11 @@ var ExamSessionSchema = new Schema({
     type: Schema.ObjectId,
     ref: 'User'
   }
+});
+
+ExamSessionSchema.index({ academicyear: -1, code: 1 }, { unique: true });
+ExamSessionSchema.plugin(uniqueValidator, {
+  message: 'An exam session with the same code already exists in the specified academic year.'
 });
 
 mongoose.model('ExamSession', ExamSessionSchema);

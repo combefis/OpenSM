@@ -1,4 +1,4 @@
-(function () {
+(function() {
   'use strict';
 
   angular
@@ -16,7 +16,7 @@
       })
       .state('admin.manage.examsessions.list', {
         url: '',
-        templateUrl: 'modules/examsessions/client/views/admin/list-examsessions.client.view.html',
+        templateUrl: '/modules/examsessions/client/views/admin/list-examsessions.client.view.html',
         controller: 'ExamSessionsListAdminController',
         controllerAs: 'vm',
         data: {
@@ -26,7 +26,7 @@
       })
       .state('admin.manage.examsessions.create', {
         url: '/create',
-        templateUrl: 'modules/examsessions/client/views/admin/form-examsession.client.view.html',
+        templateUrl: '/modules/examsessions/client/views/admin/form-examsession.client.view.html',
         controller: 'ExamSessionsAdminController',
         controllerAs: 'vm',
         resolve: {
@@ -39,7 +39,7 @@
       })
       .state('admin.manage.examsessions.view', {
         url: '/:examsessionCode',
-        templateUrl: 'modules/examsessions/client/views/admin/view-examsession.client.view.html',
+        templateUrl: '/modules/examsessions/client/views/admin/view-examsession.client.view.html',
         controller: 'ExamSessionsAdminController',
         controllerAs: 'vm',
         resolve: {
@@ -52,7 +52,7 @@
       })
       .state('admin.manage.examsessions.edit', {
         url: '/:examsessionCode/edit',
-        templateUrl: 'modules/examsessions/client/views/admin/form-examsession.client.view.html',
+        templateUrl: '/modules/examsessions/client/views/admin/form-examsession.client.view.html',
         controller: 'ExamSessionsAdminController',
         controllerAs: 'vm',
         resolve: {
