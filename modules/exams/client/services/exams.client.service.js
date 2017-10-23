@@ -1,14 +1,14 @@
-(function () {
+(function() {
   'use strict';
 
   angular
     .module('exams.services')
     .factory('ExamsService', ExamsService);
 
-  ExamsService.$inject = ['$resource'];
+  ExamsService.$inject = ['$resource', '$log'];
 
-  function ExamsService($resource) {
-    var Exam = $resource('api/exams/:examId', {
+  function ExamsService($resource, $log) {
+    var Exam = $resource('/api/exams/:examId', {
       examId: '@_id'
     }, {
       update: {
@@ -46,7 +46,7 @@
 
     function handleError(error) {
       // Log error
-      console.log(error);
+      $log.error(error);
     }
   }
 }());

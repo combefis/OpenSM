@@ -130,7 +130,6 @@ exports.create = function (req, res) {
             message: 'Impossible to update the exam session.'
           });
         }
-
         res.json(exam);
       });
     });
@@ -164,7 +163,6 @@ exports.update = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     }
-
     res.json(exam);
   });
 };
@@ -202,7 +200,6 @@ exports.delete = function (req, res) {
             message: errorHandler.getErrorMessage(err)
           });
         }
-
         res.json(exam);
       });
     });
@@ -231,7 +228,6 @@ exports.validate = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     }
-
     res.json({ validation: exam.validation, registrations: exam.registrations });
   });
 };
@@ -260,7 +256,6 @@ exports.assignSeats = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     }
-
     res.json(exam.registrations);
   });
 };
@@ -277,7 +272,6 @@ exports.list = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     }
-
     res.json(exams);
   });
 };
@@ -307,7 +301,6 @@ exports.addStudent = function (req, res) {
           message: errorHandler.getErrorMessage(err)
         });
       }
-
       res.json(exam.registrations);
     });
   });
@@ -327,7 +320,6 @@ exports.deleteStudent = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     }
-
     res.json(exam.registrations);
   });
 };
@@ -357,7 +349,6 @@ exports.addRoom = function (req, res) {
           message: errorHandler.getErrorMessage(err)
         });
       }
-
       res.json(exam.rooms);
     });
   });
@@ -377,7 +368,6 @@ exports.deleteRoom = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     }
-
     res.json(exam.rooms);
   });
 };
@@ -397,7 +387,6 @@ exports.configureRoom = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     }
-
     res.json(exam.rooms);
   });
 };
@@ -504,7 +493,6 @@ exports.addCopy = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     }
-
     res.json(exam.copies);
   });
 };
@@ -534,7 +522,6 @@ exports.deleteCopy = function (req, res) {
         console.log('Error while deleting copy file.');
       }
     }
-
     res.json(exam.copies);
   });
 };
@@ -664,7 +651,6 @@ exports.uploadCopy = function (req, res) {
             message: errorHandler.getErrorMessage(err)
           });
         }
-
         res.json(exam.copies);
       });
     });
@@ -685,7 +671,6 @@ exports.validateCopy = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     }
-
     res.json(exam.copies);
   });
 };
@@ -711,7 +696,6 @@ exports.validateCopies = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     }
-
     res.json(exam.validation);
   });
 };
@@ -826,7 +810,6 @@ exports.markCopiesPrinted = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     }
-
     res.json(exam.validation);
   });
 };
@@ -862,7 +845,6 @@ exports.examByID = function (req, res, next, id) {
           message: 'Error while retrieving information about the exam.'
         });
       }
-
       req.exam = exam;
       next();
     });

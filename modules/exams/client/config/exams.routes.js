@@ -1,4 +1,4 @@
-(function () {
+(function() {
   'use strict';
 
   angular
@@ -11,7 +11,7 @@
     $stateProvider
       .state('examsessions.viewexam', {
         url: '/:examsessionCode/exams/:examId',
-        templateUrl: 'modules/exams/client/views/view-exam.client.view.html',
+        templateUrl: '/modules/exams/client/views/view-exam.client.view.html',
         controller: 'ViewExamController',
         controllerAs: 'vm',
         resolve: {

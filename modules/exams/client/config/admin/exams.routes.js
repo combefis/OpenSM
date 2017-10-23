@@ -1,4 +1,4 @@
-(function () {
+(function() {
   'use strict';
 
   angular
@@ -16,7 +16,7 @@
       })
       .state('admin.manage.exams.list', {
         url: '',
-        templateUrl: 'modules/exams/client/views/admin/list-exams.client.view.html',
+        templateUrl: '/modules/exams/client/views/admin/list-exams.client.view.html',
         controller: 'ExamsListAdminController',
         controllerAs: 'vm',
         data: {
@@ -26,7 +26,7 @@
       })
       .state('admin.manage.exams.create', {
         url: '/create',
-        templateUrl: 'modules/exams/client/views/admin/form-exam.client.view.html',
+        templateUrl: '/modules/exams/client/views/admin/form-exam.client.view.html',
         controller: 'ExamsAdminController',
         controllerAs: 'vm',
         resolve: {
@@ -39,7 +39,7 @@
       })
       .state('admin.manage.exams.view', {
         url: '/:examId',
-        templateUrl: 'modules/exams/client/views/admin/view-exam.client.view.html',
+        templateUrl: '/modules/exams/client/views/admin/view-exam.client.view.html',
         controller: 'ViewExamAdminController',
         controllerAs: 'vm',
         resolve: {
@@ -52,7 +52,7 @@
       })
       .state('admin.manage.exams.edit', {
         url: '/:examId/edit',
-        templateUrl: 'modules/exams/client/views/admin/form-exam.client.view.html',
+        templateUrl: '/modules/exams/client/views/admin/form-exam.client.view.html',
         controller: 'ExamsAdminController',
         controllerAs: 'vm',
         resolve: {

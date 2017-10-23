@@ -1,4 +1,4 @@
-(function () {
+(function() {
   'use strict';
 
   angular
@@ -11,7 +11,7 @@
     $stateProvider
       .state('manage.examsessions.addexam', {
         url: '/:examsessionCode/addexam',
-        templateUrl: 'modules/exams/client/views/manager/form-exam.client.view.html',
+        templateUrl: '/modules/exams/client/views/manager/form-exam.client.view.html',
         controller: 'ExamsManagerController',
         controllerAs: 'vm',
         resolve: {
@@ -24,7 +24,7 @@
       })
       .state('manage.examsessions.viewexam', {
         url: '/:examsessionCode/exams/:examId',
-        templateUrl: 'modules/exams/client/views/manager/view-exam.client.view.html',
+        templateUrl: '/modules/exams/client/views/manager/view-exam.client.view.html',
         controller: 'ViewExamManagerController',
         controllerAs: 'vm',
         resolve: {
@@ -37,7 +37,7 @@
       })
       .state('manage.examsessions.editexam', {
         url: '/:examsessionCode/exams/:examId/edit',
-        templateUrl: 'modules/exams/client/views/manager/form-exam.client.view.html',
+        templateUrl: '/modules/exams/client/views/manager/form-exam.client.view.html',
         controller: 'ExamsManagerController',
         controllerAs: 'vm',
         resolve: {
