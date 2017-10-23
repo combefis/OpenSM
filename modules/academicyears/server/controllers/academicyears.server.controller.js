@@ -106,7 +106,7 @@ exports.delete = function (req, res) {
  */
 exports.list = function (req, res) {
   AcademicYear.find('code start end')
-  .sort({ start: 1 })
+  .sort({ start: -1 })
   .exec(function (err, academicyears) {
     if (err) {
       return res.status(422).send({
