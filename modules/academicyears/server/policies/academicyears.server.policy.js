@@ -22,6 +22,12 @@ exports.invokeRolesPolicies = function() {
       ],
       permissions: '*'
     }]
+  }, {
+    roles: ['manager.exams', 'teacher', 'printer', 'student'],
+    allows: [{
+      resources: '/api/academicyears/current',
+      permissions: ['get']
+    }]
   }]);
 };
 
