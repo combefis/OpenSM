@@ -24,6 +24,14 @@
         data: {
           roles: ['admin']
         }
+      })
+      .state('manage', {
+        abstract: true,
+        url: '/manage',
+        template: '<ui-view/>',
+        data: {
+          roles: ['manager.exams']
+        }
       });
   }
 }());
