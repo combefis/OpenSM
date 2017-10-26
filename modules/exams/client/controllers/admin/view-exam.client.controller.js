@@ -242,7 +242,7 @@
       if (vm.exam.rooms[i].configuration !== null) {
         $http.post('/api/exams/' + vm.exam._id + '/room/' + i + '/configure', { configuration: vm.exam.rooms[i].configuration, startseat: vm.exam.rooms[i].startseat })
         .then(function(response) {
-          vm.exam.copies = response.data;
+          vm.exam.rooms = response.data;
           vm.config[i] = {
             room: vm.exam.rooms[i].room,
             configuration: vm.exam.rooms[i].configuration,
