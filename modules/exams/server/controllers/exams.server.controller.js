@@ -827,7 +827,6 @@ exports.examByID = function (req, res, next, id) {
   Exam.findById(id, 'title course examsession date duration registrations copies rooms ready validation')
   .populate('course', 'code name team')
   .populate('examsession', 'code name')
-  .populate('rooms.room', 'code name nbseats map configurations')
   .populate('registrations.student', 'firstname lastname displayName username')
   .exec(function (err, exam) {
     if (err) {
@@ -841,12 +840,20 @@ exports.examByID = function (req, res, next, id) {
 
     Exam.populate(exam, { path: 'course.team', select: 'username', model: 'User' }, function (err, exam) {
       if (err || !exam) {
-        return res.status(404).send({
+        return res.status(422).send({
           message: 'Error while retrieving information about the exam.'
         });
       }
-      req.exam = exam;
-      next();
+
+      Exam.populate(exam, { path: 'rooms.room', select: 'code name nbseats map configurations', model: 'Room' }, function (err, exam) {
+        if (err || !exam) {
+          return res.status(422).send({
+            message: 'Error while retrieving information about the exam.'
+          });
+        }
+        req.exam = exam;
+        next();
+      });
     });
   });
 };
