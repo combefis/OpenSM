@@ -19,6 +19,7 @@
     var nbCopies = vm.exam.copies.length;
     vm.uploading = Array.apply(null, new Array(nbCopies)).map(function(x, i) { return false; });
     vm.progressValue = Array.apply(null, new Array(nbCopies)).map(function(x, i) { return null; });
+    vm.generatingCopies = false;
     vm.getLetter = getLetter;
     vm.canManageCopies = canManageCopies;
     vm.addCopy = addCopy;
@@ -155,10 +156,12 @@
 
     // Generate the copies of the exam
     function generateCopies() {
+      vm.generatingCopies = true;
       $http.post('/api/exams/' + vm.exam._id + '/copies/generate').then(onSuccess, onError);
 
       function onSuccess(response) {
         vm.exam.generated = response.data;
+        vm.generatingCopies = false;
 
         Notification.success({
           title: '<i class="glyphicon glyphicon-screenshot"></i> ' + $filter('translate')('EXAM.COPY.GENERATION'),
@@ -167,6 +170,8 @@
       }
 
       function onError(err) {
+        vm.generatingCopies = false;
+
         Notification.error({
           title: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('GENERAL.ERROR'),
           message: err.data.message

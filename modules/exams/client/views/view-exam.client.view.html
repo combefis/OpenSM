@@ -70,9 +70,9 @@
 
             <div ng-if="cvm.hasAnyRole(['printer'])" class="clearfix">
               <div class="action-box">
-                <a ng-if="vm.examstep === 3 && !vm.generated" ng-click="vm.generateCopies()" class="btn btn-primary"><span class="glyphicon glyphicon-screenshot" aria-hidden="true"></span> {{'EXAM.COPY.GENERATE' | translate}}</a>
-                <a ng-if="vm.examstep > 2 && vm.generated" href="/api/exams/{{vm.exam._id}}/copies/download" class="btn btn-primary"><span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> {{'EXAM.COPY.DOWNLOAD' | translate}}</a>
-                <a ng-if="vm.examstep === 3 && vm.generated" ng-if="vm.exam.validation.copies && vm.exam.validation.registrations && !vm.exam.validation.printings" ng-click="vm.markCopiesPrinted()" class="btn btn-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> {{'EXAM.COPY.MARK_PRINTED' | translate}}</a>
+                <a ng-if="vm.examstep === 3 && !vm.exam.generated" ng-disabled="vm.generatingCopies" ng-click="vm.generateCopies()" class="btn btn-primary"><span class="glyphicon glyphicon-screenshot" aria-hidden="true"></span> {{'EXAM.COPY.GENERATE' | translate}}</a>
+                <a ng-if="vm.examstep > 2 && vm.exam.generated" href="/api/exams/{{vm.exam._id}}/copies/download" class="btn btn-primary"><span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> {{'EXAM.COPY.DOWNLOAD' | translate}}</a>
+                <a ng-if="vm.examstep === 3 && vm.exam.generated" ng-if="vm.exam.validation.copies && vm.exam.validation.registrations && !vm.exam.validation.printings" ng-click="vm.markCopiesPrinted()" class="btn btn-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> {{'EXAM.COPY.MARK_PRINTED' | translate}}</a>
               </div>
             </div>
             <div ng-if="vm.exam.copies.length">
