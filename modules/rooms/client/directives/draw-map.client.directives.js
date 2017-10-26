@@ -1,4 +1,4 @@
-(function () {
+(function() {
   'use strict';
 
   angular.module('rooms')
@@ -14,10 +14,10 @@
 
     return directive;
 
-    function link(scope, element, attrs) {
+    function link (scope, element, attrs) {
       var configuration;
 
-      scope.$watch(attrs.drawMap, function(value) {
+      scope.$watch(attrs.drawMap, function (value) {
         configuration = value;
         drawMap();
       });
@@ -41,6 +41,12 @@
 
         // Draw room info
         context.fillText(configuration.room.code + ' — ' + configuration.room.name, 5, 15);
+        if (configuration.course) {
+          context.fillText(configuration.course, 10, 25);
+        }
+        if (configuration.date) {
+          context.fillText(configuration.date, 10, 35);
+        }
 
         // Draw the seats
         for (var i = 0; i < map.seats.length; i++) {
@@ -63,7 +69,7 @@
         });
 
         // Draw the configuration
-        if (configuration.configuration !== null) {
+        if (configuration.hasOwnProperty('configuration')) {
           var config = configuration.room.configurations[configuration.configuration];
           for (var j = 0; j < config.seats.length; j++) {
             var s = map.seats[config.seats[j].seat];
@@ -74,8 +80,18 @@
           if (configuration.registrations) {
             configuration.registrations.forEach(function (element) {
               var s = map.seats[config.seats[element.seat].seat];
-              context.fillText(element.student.lastname, s.x, s.y + 25);
-              context.fillText(element.student.firstname, s.x, s.y + 35);
+
+              var lastname = element.student.lastname;
+              while (context.measureText(lastname).width > 50) {
+                lastname = lastname.substring(0, lastname.length - 1);
+              }
+              context.fillText(lastname, s.x, s.y + 25);
+
+              var firstname = element.student.firstname;
+              while (context.measureText(firstname).width > 50) {
+                firstname = firstname.substring(0, firstname.length - 1);
+              }
+              context.fillText(firstname, s.x, s.y + 35);
             });
           }
         }
