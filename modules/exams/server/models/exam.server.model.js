@@ -113,6 +113,9 @@ var ExamSchema = new Schema({
       type: Date
     }
   },
+  generated: {
+    type: Date
+  },
   ready: {
     type: Boolean,
     default: false

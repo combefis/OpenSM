@@ -165,9 +165,11 @@
       "SUCCESSFUL_ADD": "Questionnaire ajouté avec succès !",
       "SUCCESSFUL_DELETE": "Questionnaire supprimé avec succès !",
       "FILE_UPLOADED_ON": "Fichier chargé le",
-      "GENERATE": "Générer les copies",
+      "GENERATE": "Générer",
+      "GENERATION": "Génération des copies",
       "MARK_PRINTED": "Marquer comme imprimé",
       "SUCCESSFUL_VALIDATION": "Les questionnaires ont été validés avec succès !",
+      "SUCCESSFUL_GENERATION": "Les questionnaires ont été générés avec succès !",
       "SUCCESSFUL_MARKASPRINTED": "Les questionnaires ont été marqués comme imprimés avec succès !"
     },
     "ROOM": {

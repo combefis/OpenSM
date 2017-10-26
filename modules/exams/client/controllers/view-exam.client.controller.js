@@ -158,13 +158,19 @@
       $http.post('/api/exams/' + vm.exam._id + '/copies/generate').then(onSuccess, onError);
 
       function onSuccess(response) {
-        console.log(response.data);
+        vm.exam.generated = response.data;
 
-        Notification.success({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('EXAM.COPY.SUCCESSFUL_VALIDATION') });
+        Notification.success({
+          title: '<i class="glyphicon glyphicon-screenshot"></i> ' + $filter('translate')('EXAM.COPY.GENERATION'),
+          message: $filter('translate')('EXAM.COPY.SUCCESSFUL_GENERATION')
+        });
       }
 
       function onError(err) {
-        Notification.error({ message: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + err.data.message });
+        Notification.error({
+          title: '<i class="glyphicon glyphicon-exclamation-sign"></i> ' + $filter('translate')('GENERAL.ERROR'),
+          message: err.data.message
+        });
       }
     }
 

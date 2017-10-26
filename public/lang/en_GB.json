@@ -166,9 +166,11 @@
       "SUCCESSFUL_ADD": "Questionnaire successfully added!",
       "SUCCESSFUL_DELETE": "Questionnaire deleted successfully!",
       "FILE_UPLOADED_ON": "File uploaded on",
-      "GENERATE": "Generate copies",
+      "GENERATE": "Generate",
+      "GENERATION": "Copies generation",
       "MARK_PRINTED": "Mark as printed",
       "SUCCESSFUL_VALIDATION": "The questionnaires have been successfully validated!",
+      "SUCCESSFUL_GENERATION": "The questionnaires have been successfully generated!",
       "SUCCESSFUL_MARKASPRINTED": "The questionnaires have been successfully marked as printed!"
     },
     "ROOM": {
