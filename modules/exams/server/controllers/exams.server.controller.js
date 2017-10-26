@@ -825,9 +825,8 @@ exports.examByID = function (req, res, next, id) {
   }
 
   Exam.findById(id, 'title course examsession date duration registrations copies rooms ready validation')
-  .populate('course', 'code name team')
+  .populate({ path: 'course', select: 'code name team', populate: { path: 'team', select: 'username' } })
   .populate('examsession', 'code name')
-  .populate('registrations.student', 'firstname lastname displayName username')
   .exec(function (err, exam) {
     if (err) {
       return next(err);
@@ -838,7 +837,7 @@ exports.examByID = function (req, res, next, id) {
       });
     }
 
-    Exam.populate(exam, { path: 'course.team', select: 'username', model: 'User' }, function (err, exam) {
+    Exam.populate(exam, { path: 'registrations.student', select: 'firstname lastname displayName username', model: 'User' }, function (err, exam) {
       if (err || !exam) {
         return res.status(422).send({
           message: 'Error while retrieving information about the exam.'
