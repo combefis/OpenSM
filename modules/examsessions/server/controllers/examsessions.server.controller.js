@@ -136,7 +136,7 @@ exports.examsessionByCode = function (req, res, next, code) {
     examFields += ' validation';
   }
 
-  ExamSession.findOne({ 'code': code }, 'code name description start end exams')
+  ExamSession.findOne({ 'code': code, academicyear: req.session.academicyear }, 'code name description start end exams')
   .populate('exams', examFields)
   .exec(function (err, examsession) {
     if (err) {

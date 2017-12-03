@@ -153,7 +153,7 @@ exports.list = function (req, res) {
  * Course middleware
  */
 exports.courseByCode = function (req, res, next, code) {
-  Course.findOne({ code: code }, 'code name coordinator hours credits team description activities')
+  Course.findOne({ code: code, academicyear: req.session.academicyear }, 'code name coordinator hours credits team description activities')
   .populate('coordinator', 'displayName')
   .populate('team', 'firstname lastname displayName')
   .populate('activities', 'code name hours teachers')

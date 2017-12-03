@@ -79,7 +79,7 @@ exports.list = function (req, res) {
  * Activity middleware
  */
 exports.activityByCode = function (req, res, next, code) {
-  Activity.findOne({ code: code }, 'code name teachers hours evaluations description')
+  Activity.findOne({ code: code, academicyear: req.session.academicyear }, 'code name teachers hours evaluations description')
   .populate('teachers', 'firstname lastname displayName')
   .exec(function (err, activity) {
     if (err) {
