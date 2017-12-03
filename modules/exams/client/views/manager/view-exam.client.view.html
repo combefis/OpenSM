@@ -46,6 +46,19 @@
                 <p>{{'EXAM.STATUS.PRINTED' | translate}}<br /><small>{{vm.exam.validation.printings | amDateFormat:'D MMM YYYY HH:mm'}}</small></p>
               </div>
             </div>
+            <h3 ng-bind="'GENERAL.INFORMATIONS' | translate"></h3>
+            <dl class="dl-horizontal">
+              <dt ng-bind="'EXAM.COURSE' | translate"></dt>
+              <dd>{{vm.exam.course.code}} {{vm.exam.course.name}} <a ui-sref="courses.view({ courseCode: vm.exam.course.code })"><span class="glyphicon glyphicon-search"></span></a></dd>
+              <dt ng-bind="'EXAM.DATE' | translate"></dt>
+              <dd ng-bind="vm.exam.date | amDateFormat:'ddd D MMM YYYY HH:mm'"></dd>
+              <dt ng-bind="'EXAM.DURATION' | translate"></dt>
+              <dd ng-bind="vm.exam.duration"></dd>
+              <dt ng-bind="'EXAM.TYPE' | translate"></dt>
+              <dd ng-bind="vm.exam.type"></dd>
+              <dt ng-bind="'EXAM.REGISTRATIONS' | translate"></dt>
+              <dd ng-bind="vm.exam.registrations.length"></dd>
+            </dl>
           </uib-tab>
           <uib-tab heading="{{'EXAM.STUDENTS' | translate}}">
             <div ng-if="!vm.exam.validation.registrations && cvm.hasAnyRole(['manager.exams'])" class="clearfix">
