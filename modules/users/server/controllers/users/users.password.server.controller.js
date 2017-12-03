@@ -62,7 +62,7 @@ exports.forgot = function (req, res, next) {
         httpTransport = 'https://';
       }
       var baseUrl = config.domain || httpTransport + req.headers.host;
-      res.render(path.resolve('modules/users/server/templates/reset-password-email'), {
+      res.render(path.resolve('./modules/users/server/templates/reset-password-email'), {
         name: user.displayName,
         appName: config.app.title,
         url: baseUrl + '/api/auth/reset/' + token
@@ -173,7 +173,7 @@ exports.reset = function (req, res, next) {
       });
     },
     function (user, done) {
-      res.render('modules/users/server/templates/reset-password-confirm-email', {
+      res.render('./modules/users/server/templates/reset-password-confirm-email', {
         name: user.displayName,
         appName: config.app.title
       }, function (err, emailHTML) {
