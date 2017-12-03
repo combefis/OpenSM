@@ -68,6 +68,7 @@
         vm.exam.examsession = null;
         vm.exam.date = null;
         vm.exam.duration = 0;
+        vm.exam.type = '';
 
         if (!examId) {
           $state.go('manage.examsessions.view', {

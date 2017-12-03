@@ -11,7 +11,15 @@
     "END": "End date",
     "END_ERROR": "Please fill in the end date.",
     "FROM": "From",
-    "TO": "to"
+    "TO": "to",
+    "EVENT": {
+      "EVENTS": "Events",
+      "ADD": "Add an event",
+      "NO_EVENT": "No events yet.",
+      "NAME": "Name",
+      "START": "Start date",
+      "END": "End date"
+    }
   },
   "ACTIVITY": {
     "ACTIVITIES": "Activities",
@@ -145,6 +153,8 @@
     "DATE_ERROR": "Please fill in the date.",
     "DURATION": "Duration",
     "DURATION_ERROR": "Please fill in the duration.",
+    "TYPE": "Type",
+    "TYPE_ERROR": "Please choose the type.",
     "EXAMSESSION_SUMMARY": "Exam of the session of \"{{name}}\" which takes place from",
     "SUCCESSFUL_CREATION": "The exam \"{{title}}\" has been successfully created!",
     "SUCCESSFUL_UPDATE": "The exam \"{{title}}\" has been successfully updated!",
@@ -247,6 +257,7 @@
     "DELETE_CONFIRMATION": "Are you sure you want to delete {{name}}?",
     "EDIT": "Edit",
     "ERROR": "Error",
+    "INFORMATIONS": "Informations",
     "NO_DESCRIPTION": "No description.",
     "UPDATE": "Update"
   },

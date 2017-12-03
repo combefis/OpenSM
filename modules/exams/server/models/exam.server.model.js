@@ -31,6 +31,11 @@ var ExamSchema = new Schema({
     type: Number,
     required: 'Please fill in the duration of the exam.'
   },
+  type: {
+    type: String,
+    enum: ['written', 'oral'],
+    required: 'Please fill in the type of the exam.'
+  },
   registrations: {
     type: [new Schema({
       student: {

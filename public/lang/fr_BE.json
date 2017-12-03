@@ -144,6 +144,8 @@
     "DATE_ERROR": "Veuillez spécifier la date.",
     "DURATION": "Durée",
     "DURATION_ERROR": "Veuillez spécifier la durée.",
+    "TYPE": "Type",
+    "TYPE_ERROR": "Veuillez choisir le type.",
     "EXAMSESSION_SUMMARY": "Examen de la session de \"{{name}}\" qui se déroule du",
     "SUCCESSFUL_CREATION": "L'examen \"{{title}}\" a été créé avec succès !",
     "SUCCESSFUL_UPDATE": "L'examen \"{{title}}\" a été mis à jour avec succès !",
@@ -246,6 +248,7 @@
     "DELETE_CONFIRMATION": "Êtes-vous sûr de vouloir supprimer {{name}} ?",
     "EDIT": "Éditer",
     "ERROR": "Erreur",
+    "INFORMATIONS": "Informations",
     "NO_DESCRIPTION": "No description.",
     "UPDATE": "Mettre à jour"
   },

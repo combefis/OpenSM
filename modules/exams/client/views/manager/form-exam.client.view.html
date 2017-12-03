@@ -60,6 +60,16 @@
               <p class="help-block error-text" ng-message="required" ng-bind="'EXAM.DURATION_ERROR' | translate"></p>
             </div>
           </div>
+          <div class="form-group" show-errors>
+            <label class="control-label" for="type" ng-bind="'EXAM.TYPE' | translate"></label>
+            <select name="type" ng-model="vm.exam.type" id="type" class="form-control" required>
+              <option value="written" ng-bind="'EVALUATION.WRITTEN' | translate"></option>
+              <option value="oral" ng-bind="'EVALUATION.ORAL' | translate"></option>
+            </select>
+            <div ng-messages="vm.form.examForm.type.$error" role="alert">
+              <p class="help-block error-text" ng-message="required" ng-bind="'EXAM.TYPE_ERROR' | translate"></p>
+            </div>
+          </div>
           <div class="form-group">
             <button type="submit" class="btn btn-primary">{{vm.exam._id ? 'GENERAL.UPDATE' : 'GENERAL.CREATE' | translate}}</button>
           </div>

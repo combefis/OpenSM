@@ -156,6 +156,7 @@ exports.update = function (req, res) {
   exam.examsession = req.body.examsession[0];
   exam.date = req.body.date;
   exam.duration = req.body.duration;
+  exam.type = req.body.type;
 
   exam.save(function (err) {
     if (err) {
@@ -839,7 +840,7 @@ exports.examByID = function (req, res, next, id) {
     });
   }
 
-  Exam.findById(id, 'title course examsession date duration registrations copies rooms generated ready validation')
+  Exam.findById(id, 'title course examsession date duration type registrations copies rooms generated ready validation')
   .populate({ path: 'course', select: 'code name team', populate: { path: 'team', select: 'username' } })
   .populate('examsession', 'code name')
   .exec(function (err, exam) {
